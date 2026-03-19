@@ -1,0 +1,83 @@
+enum AccountStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
+enum RoleType {
+  USER
+  INSTRUCTOR
+  TENANT_ADMIN
+  GLOBAL_ADMIN
+}
+
+enum SocialType {
+  Facebook
+  LinkedIn
+  X
+  Instagram
+  Github
+  Tiktok
+  Snapchat
+}
+
+enum TokenType {
+  REFRESH
+  EMAIL_VERIFICATION
+  PASSWORD_RESET
+}
+
+model User {
+  id                  String        @id @default(uuid())
+  firstName           String
+  lastName            String
+  tenantId            String?
+  email               String        @unique
+  phone               String
+  username            String?
+  profilePicture      String?
+  passwordHash        String
+  isPasswordChanged   Boolean       @default(false)
+  isEmailVerified     Boolean       @default(false)
+  isPhoneVerified     Boolean       @default(false)
+  twoFactorEnabled    Boolean       @default(false)
+  lastLogin           DateTime      @default(now())
+  failedLoginAttempts Int           @default(0)
+  status              AccountStatus
+  role                RoleType      @default(USER)
+  permissions         Json?
+  bio                 String
+  timezone            DateTime?
+  language            String?
+  socialLinks         SocialLinks[]
+  userToken           UserToken[]
+  enrollments         Enrollments[]
+  tenant              Tenant?       @relation(fields: [tenantId], references: [id])
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  isDeleted           Boolean       @default(false)
+  deletedAt           DateTime?
+  deleteAt            DateTime?
+}
+
+model SocialLinks {
+  id         String     @id @default(uuid())
+  socialType SocialType
+  url        String
+  userId     String
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model UserToken {
+  id        String    @id @default(uuid())
+  userId    String
+  token     String    @unique
+  type      TokenType
+  expiresAt DateTime
+  revokedAt DateTime?
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+  @@index([type])
+}

@@ -1,0 +1,12 @@
+model TopicMap {
+  id              String        @id @default(uuid())
+  orderIndex      Int
+  topicId         String
+  lessonId        String
+  courseVersionId String
+  topic           Topics        @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  lesson          Lesson        @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  courseVersion   CourseVersion @relation(fields: [courseVersionId], references: [id], onDelete: Cascade)
+
+  @@unique([courseVersionId, lessonId, topicId])
+}

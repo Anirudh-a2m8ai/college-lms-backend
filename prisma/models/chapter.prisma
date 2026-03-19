@@ -1,0 +1,14 @@
+model Chapter {
+  id          String       @id @default(uuid())
+  logicalId   String       @default(uuid())
+  title       String
+  description String?
+  overview    String?
+  chapterMap  ChapterMap[]
+  lessonMap   lessonMap[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  isDeleted   Boolean      @default(false)
+  deletedAt   DateTime?
+  deleteAt    DateTime?
+}

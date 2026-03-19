@@ -1,0 +1,14 @@
+model Designation {
+    id           String    @id @default(uuid())
+    tenantId     String
+    title        String
+    description  String?
+    thumbnailUrl String?
+    courses      Course[]
+    tenant       Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+    createdAt    DateTime  @default(now())
+    updatedAt    DateTime  @updatedAt
+    isDeleted    Boolean   @default(false)
+    deletedAt    DateTime?
+    deleteAt     DateTime?
+}

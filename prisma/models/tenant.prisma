@@ -1,0 +1,25 @@
+model Tenant {
+  id              String          @id @default(uuid())
+  name            String
+  subdomain       String?
+  email           String          @unique
+  phone           String
+  logo            String?
+  website         String?
+  ownerId         String
+  users           User[]
+  defaultLanguage String?
+  timezone        String?
+  status          AccountStatus   @default(ACTIVE)
+  totalUsers      Int
+  coursesCreated  Int
+  designations    Designation[]
+  courses         Course[]
+  courseVersions  CourseVersion[]
+  hMac            String
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  isDeleted       Boolean         @default(false)
+  deletedAt       DateTime?
+  deleteAt        DateTime?
+}

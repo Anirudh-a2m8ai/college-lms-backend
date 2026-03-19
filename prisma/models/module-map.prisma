@@ -1,0 +1,10 @@
+model ModuleMap {
+  id              String        @id @default(uuid())
+  orderIndex      Int
+  moduleId        String
+  courseVersionId String
+  module          Module        @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  courseVersion   CourseVersion @relation(fields: [courseVersionId], references: [id], onDelete: Cascade)
+
+  @@unique([courseVersionId, moduleId])
+}

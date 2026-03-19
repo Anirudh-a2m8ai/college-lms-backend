@@ -1,0 +1,12 @@
+model ChapterMap {
+    id              String        @id @default(uuid())
+    orderIndex      Int
+    chapterId       String
+    moduleId        String
+    courseVersionId String
+    chapter         Chapter       @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+    module          Module        @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+    courseVersion   CourseVersion @relation(fields: [courseVersionId], references: [id], onDelete: Cascade)
+
+    @@unique([courseVersionId, moduleId, chapterId])
+}
