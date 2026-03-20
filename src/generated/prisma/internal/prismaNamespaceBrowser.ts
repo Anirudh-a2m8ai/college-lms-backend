@@ -339,6 +339,8 @@ export const UserScalarFieldEnum = {
   twoFactorEnabled: 'twoFactorEnabled',
   lastLogin: 'lastLogin',
   failedLoginAttempts: 'failedLoginAttempts',
+  otp: 'otp',
+  otpExpiresAt: 'otpExpiresAt',
   status: 'status',
   role: 'role',
   permissions: 'permissions',

@@ -28,10 +28,12 @@ export type AggregateUser = {
 
 export type UserAvgAggregateOutputType = {
   failedLoginAttempts: number | null
+  otp: number | null
 }
 
 export type UserSumAggregateOutputType = {
   failedLoginAttempts: number | null
+  otp: number | null
 }
 
 export type UserMinAggregateOutputType = {
@@ -50,6 +52,8 @@ export type UserMinAggregateOutputType = {
   twoFactorEnabled: boolean | null
   lastLogin: Date | null
   failedLoginAttempts: number | null
+  otp: number | null
+  otpExpiresAt: Date | null
   status: $Enums.AccountStatus | null
   role: $Enums.RoleType | null
   bio: string | null
@@ -78,6 +82,8 @@ export type UserMaxAggregateOutputType = {
   twoFactorEnabled: boolean | null
   lastLogin: Date | null
   failedLoginAttempts: number | null
+  otp: number | null
+  otpExpiresAt: Date | null
   status: $Enums.AccountStatus | null
   role: $Enums.RoleType | null
   bio: string | null
@@ -106,6 +112,8 @@ export type UserCountAggregateOutputType = {
   twoFactorEnabled: number
   lastLogin: number
   failedLoginAttempts: number
+  otp: number
+  otpExpiresAt: number
   status: number
   role: number
   permissions: number
@@ -123,10 +131,12 @@ export type UserCountAggregateOutputType = {
 
 export type UserAvgAggregateInputType = {
   failedLoginAttempts?: true
+  otp?: true
 }
 
 export type UserSumAggregateInputType = {
   failedLoginAttempts?: true
+  otp?: true
 }
 
 export type UserMinAggregateInputType = {
@@ -145,6 +155,8 @@ export type UserMinAggregateInputType = {
   twoFactorEnabled?: true
   lastLogin?: true
   failedLoginAttempts?: true
+  otp?: true
+  otpExpiresAt?: true
   status?: true
   role?: true
   bio?: true
@@ -173,6 +185,8 @@ export type UserMaxAggregateInputType = {
   twoFactorEnabled?: true
   lastLogin?: true
   failedLoginAttempts?: true
+  otp?: true
+  otpExpiresAt?: true
   status?: true
   role?: true
   bio?: true
@@ -201,6 +215,8 @@ export type UserCountAggregateInputType = {
   twoFactorEnabled?: true
   lastLogin?: true
   failedLoginAttempts?: true
+  otp?: true
+  otpExpiresAt?: true
   status?: true
   role?: true
   permissions?: true
@@ -317,6 +333,8 @@ export type UserGroupByOutputType = {
   twoFactorEnabled: boolean
   lastLogin: Date
   failedLoginAttempts: number
+  otp: number | null
+  otpExpiresAt: Date | null
   status: $Enums.AccountStatus
   role: $Enums.RoleType
   permissions: runtime.JsonValue | null
@@ -369,6 +387,8 @@ export type UserWhereInput = {
   twoFactorEnabled?: Prisma.BoolFilter<"User"> | boolean
   lastLogin?: Prisma.DateTimeFilter<"User"> | Date | string
   failedLoginAttempts?: Prisma.IntFilter<"User"> | number
+  otp?: Prisma.IntNullableFilter<"User"> | number | null
+  otpExpiresAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   status?: Prisma.EnumAccountStatusFilter<"User"> | $Enums.AccountStatus
   role?: Prisma.EnumRoleTypeFilter<"User"> | $Enums.RoleType
   permissions?: Prisma.JsonNullableFilter<"User">
@@ -402,6 +422,8 @@ export type UserOrderByWithRelationInput = {
   twoFactorEnabled?: Prisma.SortOrder
   lastLogin?: Prisma.SortOrder
   failedLoginAttempts?: Prisma.SortOrder
+  otp?: Prisma.SortOrderInput | Prisma.SortOrder
+  otpExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   role?: Prisma.SortOrder
   permissions?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -438,6 +460,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   twoFactorEnabled?: Prisma.BoolFilter<"User"> | boolean
   lastLogin?: Prisma.DateTimeFilter<"User"> | Date | string
   failedLoginAttempts?: Prisma.IntFilter<"User"> | number
+  otp?: Prisma.IntNullableFilter<"User"> | number | null
+  otpExpiresAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   status?: Prisma.EnumAccountStatusFilter<"User"> | $Enums.AccountStatus
   role?: Prisma.EnumRoleTypeFilter<"User"> | $Enums.RoleType
   permissions?: Prisma.JsonNullableFilter<"User">
@@ -471,6 +495,8 @@ export type UserOrderByWithAggregationInput = {
   twoFactorEnabled?: Prisma.SortOrder
   lastLogin?: Prisma.SortOrder
   failedLoginAttempts?: Prisma.SortOrder
+  otp?: Prisma.SortOrderInput | Prisma.SortOrder
+  otpExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   role?: Prisma.SortOrder
   permissions?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -508,6 +534,8 @@ export type UserScalarWhereWithAggregatesInput = {
   twoFactorEnabled?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   lastLogin?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   failedLoginAttempts?: Prisma.IntWithAggregatesFilter<"User"> | number
+  otp?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  otpExpiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   status?: Prisma.EnumAccountStatusWithAggregatesFilter<"User"> | $Enums.AccountStatus
   role?: Prisma.EnumRoleTypeWithAggregatesFilter<"User"> | $Enums.RoleType
   permissions?: Prisma.JsonNullableWithAggregatesFilter<"User">
@@ -536,6 +564,8 @@ export type UserCreateInput = {
   twoFactorEnabled?: boolean
   lastLogin?: Date | string
   failedLoginAttempts?: number
+  otp?: number | null
+  otpExpiresAt?: Date | string | null
   status: $Enums.AccountStatus
   role?: $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -569,6 +599,8 @@ export type UserUncheckedCreateInput = {
   twoFactorEnabled?: boolean
   lastLogin?: Date | string
   failedLoginAttempts?: number
+  otp?: number | null
+  otpExpiresAt?: Date | string | null
   status: $Enums.AccountStatus
   role?: $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -600,6 +632,8 @@ export type UserUpdateInput = {
   twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  otp?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  otpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
   role?: Prisma.EnumRoleTypeFieldUpdateOperationsInput | $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -633,6 +667,8 @@ export type UserUncheckedUpdateInput = {
   twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  otp?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  otpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
   role?: Prisma.EnumRoleTypeFieldUpdateOperationsInput | $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -665,6 +701,8 @@ export type UserCreateManyInput = {
   twoFactorEnabled?: boolean
   lastLogin?: Date | string
   failedLoginAttempts?: number
+  otp?: number | null
+  otpExpiresAt?: Date | string | null
   status: $Enums.AccountStatus
   role?: $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -693,6 +731,8 @@ export type UserUpdateManyMutationInput = {
   twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  otp?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  otpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
   role?: Prisma.EnumRoleTypeFieldUpdateOperationsInput | $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -722,6 +762,8 @@ export type UserUncheckedUpdateManyInput = {
   twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  otp?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  otpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
   role?: Prisma.EnumRoleTypeFieldUpdateOperationsInput | $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -766,6 +808,8 @@ export type UserCountOrderByAggregateInput = {
   twoFactorEnabled?: Prisma.SortOrder
   lastLogin?: Prisma.SortOrder
   failedLoginAttempts?: Prisma.SortOrder
+  otp?: Prisma.SortOrder
+  otpExpiresAt?: Prisma.SortOrder
   status?: Prisma.SortOrder
   role?: Prisma.SortOrder
   permissions?: Prisma.SortOrder
@@ -781,6 +825,7 @@ export type UserCountOrderByAggregateInput = {
 
 export type UserAvgOrderByAggregateInput = {
   failedLoginAttempts?: Prisma.SortOrder
+  otp?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -799,6 +844,8 @@ export type UserMaxOrderByAggregateInput = {
   twoFactorEnabled?: Prisma.SortOrder
   lastLogin?: Prisma.SortOrder
   failedLoginAttempts?: Prisma.SortOrder
+  otp?: Prisma.SortOrder
+  otpExpiresAt?: Prisma.SortOrder
   status?: Prisma.SortOrder
   role?: Prisma.SortOrder
   bio?: Prisma.SortOrder
@@ -827,6 +874,8 @@ export type UserMinOrderByAggregateInput = {
   twoFactorEnabled?: Prisma.SortOrder
   lastLogin?: Prisma.SortOrder
   failedLoginAttempts?: Prisma.SortOrder
+  otp?: Prisma.SortOrder
+  otpExpiresAt?: Prisma.SortOrder
   status?: Prisma.SortOrder
   role?: Prisma.SortOrder
   bio?: Prisma.SortOrder
@@ -841,6 +890,7 @@ export type UserMinOrderByAggregateInput = {
 
 export type UserSumOrderByAggregateInput = {
   failedLoginAttempts?: Prisma.SortOrder
+  otp?: Prisma.SortOrder
 }
 
 export type UserCreateNestedOneWithoutEnrollmentsInput = {
@@ -899,6 +949,14 @@ export type UserUncheckedUpdateManyWithoutTenantNestedInput = {
   deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
 }
 
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type EnumRoleTypeFieldUpdateOperationsInput = {
   set?: $Enums.RoleType
 }
@@ -946,6 +1004,8 @@ export type UserCreateWithoutEnrollmentsInput = {
   twoFactorEnabled?: boolean
   lastLogin?: Date | string
   failedLoginAttempts?: number
+  otp?: number | null
+  otpExpiresAt?: Date | string | null
   status: $Enums.AccountStatus
   role?: $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -978,6 +1038,8 @@ export type UserUncheckedCreateWithoutEnrollmentsInput = {
   twoFactorEnabled?: boolean
   lastLogin?: Date | string
   failedLoginAttempts?: number
+  otp?: number | null
+  otpExpiresAt?: Date | string | null
   status: $Enums.AccountStatus
   role?: $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1024,6 +1086,8 @@ export type UserUpdateWithoutEnrollmentsInput = {
   twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  otp?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  otpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
   role?: Prisma.EnumRoleTypeFieldUpdateOperationsInput | $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1056,6 +1120,8 @@ export type UserUncheckedUpdateWithoutEnrollmentsInput = {
   twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  otp?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  otpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
   role?: Prisma.EnumRoleTypeFieldUpdateOperationsInput | $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1086,6 +1152,8 @@ export type UserCreateWithoutTenantInput = {
   twoFactorEnabled?: boolean
   lastLogin?: Date | string
   failedLoginAttempts?: number
+  otp?: number | null
+  otpExpiresAt?: Date | string | null
   status: $Enums.AccountStatus
   role?: $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1117,6 +1185,8 @@ export type UserUncheckedCreateWithoutTenantInput = {
   twoFactorEnabled?: boolean
   lastLogin?: Date | string
   failedLoginAttempts?: number
+  otp?: number | null
+  otpExpiresAt?: Date | string | null
   status: $Enums.AccountStatus
   role?: $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1178,6 +1248,8 @@ export type UserScalarWhereInput = {
   twoFactorEnabled?: Prisma.BoolFilter<"User"> | boolean
   lastLogin?: Prisma.DateTimeFilter<"User"> | Date | string
   failedLoginAttempts?: Prisma.IntFilter<"User"> | number
+  otp?: Prisma.IntNullableFilter<"User"> | number | null
+  otpExpiresAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   status?: Prisma.EnumAccountStatusFilter<"User"> | $Enums.AccountStatus
   role?: Prisma.EnumRoleTypeFilter<"User"> | $Enums.RoleType
   permissions?: Prisma.JsonNullableFilter<"User">
@@ -1206,6 +1278,8 @@ export type UserCreateWithoutSocialLinksInput = {
   twoFactorEnabled?: boolean
   lastLogin?: Date | string
   failedLoginAttempts?: number
+  otp?: number | null
+  otpExpiresAt?: Date | string | null
   status: $Enums.AccountStatus
   role?: $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1238,6 +1312,8 @@ export type UserUncheckedCreateWithoutSocialLinksInput = {
   twoFactorEnabled?: boolean
   lastLogin?: Date | string
   failedLoginAttempts?: number
+  otp?: number | null
+  otpExpiresAt?: Date | string | null
   status: $Enums.AccountStatus
   role?: $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1284,6 +1360,8 @@ export type UserUpdateWithoutSocialLinksInput = {
   twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  otp?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  otpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
   role?: Prisma.EnumRoleTypeFieldUpdateOperationsInput | $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1316,6 +1394,8 @@ export type UserUncheckedUpdateWithoutSocialLinksInput = {
   twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  otp?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  otpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
   role?: Prisma.EnumRoleTypeFieldUpdateOperationsInput | $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1346,6 +1426,8 @@ export type UserCreateWithoutUserTokenInput = {
   twoFactorEnabled?: boolean
   lastLogin?: Date | string
   failedLoginAttempts?: number
+  otp?: number | null
+  otpExpiresAt?: Date | string | null
   status: $Enums.AccountStatus
   role?: $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1378,6 +1460,8 @@ export type UserUncheckedCreateWithoutUserTokenInput = {
   twoFactorEnabled?: boolean
   lastLogin?: Date | string
   failedLoginAttempts?: number
+  otp?: number | null
+  otpExpiresAt?: Date | string | null
   status: $Enums.AccountStatus
   role?: $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1424,6 +1508,8 @@ export type UserUpdateWithoutUserTokenInput = {
   twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  otp?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  otpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
   role?: Prisma.EnumRoleTypeFieldUpdateOperationsInput | $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1456,6 +1542,8 @@ export type UserUncheckedUpdateWithoutUserTokenInput = {
   twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  otp?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  otpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
   role?: Prisma.EnumRoleTypeFieldUpdateOperationsInput | $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1486,6 +1574,8 @@ export type UserCreateManyTenantInput = {
   twoFactorEnabled?: boolean
   lastLogin?: Date | string
   failedLoginAttempts?: number
+  otp?: number | null
+  otpExpiresAt?: Date | string | null
   status: $Enums.AccountStatus
   role?: $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1514,6 +1604,8 @@ export type UserUpdateWithoutTenantInput = {
   twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  otp?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  otpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
   role?: Prisma.EnumRoleTypeFieldUpdateOperationsInput | $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1545,6 +1637,8 @@ export type UserUncheckedUpdateWithoutTenantInput = {
   twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  otp?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  otpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
   role?: Prisma.EnumRoleTypeFieldUpdateOperationsInput | $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1576,6 +1670,8 @@ export type UserUncheckedUpdateManyWithoutTenantInput = {
   twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  otp?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  otpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
   role?: Prisma.EnumRoleTypeFieldUpdateOperationsInput | $Enums.RoleType
   permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1654,6 +1750,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   twoFactorEnabled?: boolean
   lastLogin?: boolean
   failedLoginAttempts?: boolean
+  otp?: boolean
+  otpExpiresAt?: boolean
   status?: boolean
   role?: boolean
   permissions?: boolean
@@ -1688,6 +1786,8 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   twoFactorEnabled?: boolean
   lastLogin?: boolean
   failedLoginAttempts?: boolean
+  otp?: boolean
+  otpExpiresAt?: boolean
   status?: boolean
   role?: boolean
   permissions?: boolean
@@ -1718,6 +1818,8 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   twoFactorEnabled?: boolean
   lastLogin?: boolean
   failedLoginAttempts?: boolean
+  otp?: boolean
+  otpExpiresAt?: boolean
   status?: boolean
   role?: boolean
   permissions?: boolean
@@ -1748,6 +1850,8 @@ export type UserSelectScalar = {
   twoFactorEnabled?: boolean
   lastLogin?: boolean
   failedLoginAttempts?: boolean
+  otp?: boolean
+  otpExpiresAt?: boolean
   status?: boolean
   role?: boolean
   permissions?: boolean
@@ -1761,7 +1865,7 @@ export type UserSelectScalar = {
   deleteAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "tenantId" | "email" | "phone" | "username" | "profilePicture" | "passwordHash" | "isPasswordChanged" | "isEmailVerified" | "isPhoneVerified" | "twoFactorEnabled" | "lastLogin" | "failedLoginAttempts" | "status" | "role" | "permissions" | "bio" | "timezone" | "language" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt" | "deleteAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "tenantId" | "email" | "phone" | "username" | "profilePicture" | "passwordHash" | "isPasswordChanged" | "isEmailVerified" | "isPhoneVerified" | "twoFactorEnabled" | "lastLogin" | "failedLoginAttempts" | "otp" | "otpExpiresAt" | "status" | "role" | "permissions" | "bio" | "timezone" | "language" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt" | "deleteAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   socialLinks?: boolean | Prisma.User$socialLinksArgs<ExtArgs>
   userToken?: boolean | Prisma.User$userTokenArgs<ExtArgs>
@@ -1800,6 +1904,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     twoFactorEnabled: boolean
     lastLogin: Date
     failedLoginAttempts: number
+    otp: number | null
+    otpExpiresAt: Date | null
     status: $Enums.AccountStatus
     role: $Enums.RoleType
     permissions: runtime.JsonValue | null
@@ -2253,6 +2359,8 @@ export interface UserFieldRefs {
   readonly twoFactorEnabled: Prisma.FieldRef<"User", 'Boolean'>
   readonly lastLogin: Prisma.FieldRef<"User", 'DateTime'>
   readonly failedLoginAttempts: Prisma.FieldRef<"User", 'Int'>
+  readonly otp: Prisma.FieldRef<"User", 'Int'>
+  readonly otpExpiresAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly status: Prisma.FieldRef<"User", 'AccountStatus'>
   readonly role: Prisma.FieldRef<"User", 'RoleType'>
   readonly permissions: Prisma.FieldRef<"User", 'Json'>
