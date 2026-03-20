@@ -4,6 +4,8 @@ import { CreateUserDto } from "./dto/create-user.dto";
 import { ForgotPasswordDto, SentUserOtpDto, SetUserPasswordDto } from "./dto/user.dto";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { multerOptions } from "src/utils/file-upload.util";
+import { AccessTokenGuard } from "src/common/guards/auth.guard";
+import { UseGuards } from "@nestjs/common";
 
 @Controller("user")
 export class UserController {
@@ -29,6 +31,7 @@ export class UserController {
 		return await this.userService.setPassword(payload, token);
 	}
 
+	@UseGuards(AccessTokenGuard)
 	@Post('bulk-upload')
 	@UseInterceptors(FileInterceptor('file', multerOptions))
 	async upload(@UploadedFile() file: Express.Multer.File) {
