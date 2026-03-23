@@ -61,11 +61,14 @@ export const ModelName = {
   Lesson: 'Lesson',
   ModuleMap: 'ModuleMap',
   Module: 'Module',
+  Permission: 'Permission',
+  Role: 'Role',
   SubTopics: 'SubTopics',
   subTopicMap: 'subTopicMap',
   Tenant: 'Tenant',
   TopicMap: 'TopicMap',
   Topics: 'Topics',
+  UserPermission: 'UserPermission',
   User: 'User',
   SocialLinks: 'SocialLinks',
   UserToken: 'UserToken'
@@ -241,6 +244,36 @@ export const ModuleScalarFieldEnum = {
 export type ModuleScalarFieldEnum = (typeof ModuleScalarFieldEnum)[keyof typeof ModuleScalarFieldEnum]
 
 
+export const PermissionScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  tag: 'tag',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt',
+  isDeleted: 'isDeleted',
+  deleteAt: 'deleteAt'
+} as const
+
+export type PermissionScalarFieldEnum = (typeof PermissionScalarFieldEnum)[keyof typeof PermissionScalarFieldEnum]
+
+
+export const RoleScalarFieldEnum = {
+  id: 'id',
+  role: 'role',
+  isSystemDefined: 'isSystemDefined',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt',
+  isDeleted: 'isDeleted',
+  deleteAt: 'deleteAt'
+} as const
+
+export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
+
+
 export const SubTopicsScalarFieldEnum = {
   id: 'id',
   logicalId: 'logicalId',
@@ -323,6 +356,16 @@ export const TopicsScalarFieldEnum = {
 export type TopicsScalarFieldEnum = (typeof TopicsScalarFieldEnum)[keyof typeof TopicsScalarFieldEnum]
 
 
+export const UserPermissionScalarFieldEnum = {
+  userId: 'userId',
+  permissionId: 'permissionId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserPermissionScalarFieldEnum = (typeof UserPermissionScalarFieldEnum)[keyof typeof UserPermissionScalarFieldEnum]
+
+
 export const UserScalarFieldEnum = {
   id: 'id',
   firstName: 'firstName',
@@ -342,11 +385,10 @@ export const UserScalarFieldEnum = {
   otp: 'otp',
   otpExpiresAt: 'otpExpiresAt',
   status: 'status',
-  role: 'role',
-  permissions: 'permissions',
   bio: 'bio',
   timezone: 'timezone',
   language: 'language',
+  roleId: 'roleId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isDeleted: 'isDeleted',

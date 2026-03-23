@@ -1,15 +1,10 @@
-import { Module } from "@nestjs/common";
-import { UserDbService } from "./user.db-service";
-import { UserTokenDbService } from "./user-token.db-service";
+import { Module } from '@nestjs/common';
+import { UserDbService } from './user.db-service';
+import { UserTokenDbService } from './user-token.db-service';
+import { RoleDbService } from './role.db-service';
 
 @Module({
-	providers: [
-		UserDbService,
-		UserTokenDbService
-	],
-	exports: [
-		UserDbService,
-		UserTokenDbService
-	],
+  providers: [UserDbService, UserTokenDbService, RoleDbService],
+  exports: [UserDbService, UserTokenDbService, RoleDbService],
 })
 export class DbServiceModule {}

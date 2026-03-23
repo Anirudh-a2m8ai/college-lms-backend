@@ -68,6 +68,16 @@ export type ModuleMap = Prisma.ModuleMapModel
  */
 export type Module = Prisma.ModuleModel
 /**
+ * Model Permission
+ * 
+ */
+export type Permission = Prisma.PermissionModel
+/**
+ * Model Role
+ * 
+ */
+export type Role = Prisma.RoleModel
+/**
  * Model SubTopics
  * 
  */
@@ -92,6 +102,11 @@ export type TopicMap = Prisma.TopicMapModel
  * 
  */
 export type Topics = Prisma.TopicsModel
+/**
+ * Model UserPermission
+ * 
+ */
+export type UserPermission = Prisma.UserPermissionModel
 /**
  * Model User
  * 

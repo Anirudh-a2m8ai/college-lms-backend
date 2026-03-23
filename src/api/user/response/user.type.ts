@@ -1,37 +1,37 @@
-import { Exclude, Expose } from "class-transformer";
+import { Exclude, Expose } from 'class-transformer';
 
 @Exclude()
 export class UserResponseDto {
   @Expose()
-	id: string;
+  id: string;
 
-	@Expose()
-	firstName: string;
+  @Expose()
+  firstName: string;
 
-	@Expose()
-	lastName: string;
+  @Expose()
+  lastName: string;
 
-	@Expose()
-	email: string;
+  @Expose()
+  email: string;
 
-	@Expose()
-	phone: string;
+  @Expose()
+  phone: string;
 
-	@Expose()
-	username: string;
+  @Expose()
+  username: string;
 
-	@Expose()
-	bio: string;
+  @Expose()
+  bio: string;
 
-	@Expose()
-	status: string;
+  @Expose()
+  status: string;
 
-	@Expose()
-	role: string;
+  @Expose()
+  role: string;
 
-	@Expose()
-	createdAt: Date;
+  @Expose()
+  createdAt: Date;
 
-	@Expose()
-	updatedAt: Date;
+  @Expose()
+  updatedAt: Date;
 }

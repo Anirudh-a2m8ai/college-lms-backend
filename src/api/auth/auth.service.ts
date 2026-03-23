@@ -1,22 +1,25 @@
-import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
-import { JwtService } from "@nestjs/jwt";
-import { LoginDto } from "./dto/login-dto";
-import { UserDbService } from "src/repository/user.db-service";
-import { UserTokenDbService } from "src/repository/user-token.db-service";
-import { AccountStatus, RoleType, TokenType } from "src/generated/prisma/enums";
-import { compare } from "bcrypt";
-import { hashToken } from "src/utils/generate-token.util";
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { LoginDto } from './dto/login-dto';
+import { UserDbService } from 'src/repository/user.db-service';
+import { UserTokenDbService } from 'src/repository/user-token.db-service';
+import { AccountStatus, RoleType, TokenType } from 'src/generated/prisma/enums';
+import { compare } from 'bcrypt';
+import { hashToken } from 'src/utils/generate-token.util';
 import { Request, Response } from 'express';
+import { RoleDbService } from 'src/repository/role.db-service';
+import { Permission, Role } from 'src/generated/prisma/client';
 
 @Injectable()
 export class AuthService {
-    constructor(
-			private jwtService: JwtService,
-			private readonly userDbService: UserDbService,
-			private readonly userTokenDbService: UserTokenDbService,
-		) {}
+  constructor(
+    private jwtService: JwtService,
+    private readonly userDbService: UserDbService,
+    private readonly userTokenDbService: UserTokenDbService,
+    private readonly roleDbService: RoleDbService,
+  ) {}
 
-	async loginUser(loginDto: LoginDto, req: Request, res: Response) {
+  async loginUser(loginDto: LoginDto, req: Request, res: Response) {
     const { email, password } = loginDto;
     const user = await this.userDbService.findFirst({
       where: {
@@ -26,7 +29,7 @@ export class AuthService {
     if (!user) {
       throw new NotFoundException('User not found');
     }
-    if (user.role !== RoleType.GLOBAL_ADMIN && user.status === AccountStatus.INACTIVE) {
+    if (user.status === AccountStatus.INACTIVE) {
       throw new BadRequestException('User is inactive');
     }
 
@@ -35,20 +38,29 @@ export class AuthService {
       throw new BadRequestException('Invalid password');
     }
 
+    const userPermissions = (await this.roleDbService.findUnique({
+      where: {
+        id: user.roleId,
+      },
+      include: {
+        permissions: true,
+      },
+    })) as Role & { permissions: Permission[] };
+
     const tokenPayload = {
       id: user.id,
       email: user.email,
-      role: user.role,
+      permissions: userPermissions.permissions.map((permission) => permission.name),
     };
 
     const accessToken = await this.jwtService.signAsync(tokenPayload, {
       secret: process.env.JWT_ACCESS_SECRET!,
-      expiresIn: (process.env.JWT_ACCESS_SECRET || '15m') as unknown as number,
+      expiresIn: (process.env.ACCESS_TOKEN_EXPIRY || '15m') as unknown as number,
     });
 
     const newRefreshToken = await this.jwtService.signAsync(tokenPayload, {
       secret: process.env.JWT_REFRESH_SECRET,
-      expiresIn: (process.env.JWT_REFRESH_SECRET || '7d') as unknown as number,
+      expiresIn: (process.env.REFRESH_TOKEN_EXPIRY || '7d') as unknown as number,
     });
     const hashedRefreshToken = hashToken(newRefreshToken);
 
@@ -58,7 +70,7 @@ export class AuthService {
         userId: user.id,
         token: hashedRefreshToken,
         type: TokenType.REFRESH,
-        expiresAt: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000), // 10 days
+        expiresAt: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
       },
     });
 
@@ -77,7 +89,7 @@ export class AuthService {
       secure: isProduction,
       path: '/',
       httpOnly: isProduction,
-      maxAge: 10 * 24 * 60 * 60 * 1000, // 10 days
+      maxAge: 10 * 24 * 60 * 60 * 1000,
     });
 
     return {
@@ -87,7 +99,7 @@ export class AuthService {
     };
   }
 
-	async refreshToken(req: Request, res: Response) {
+  async refreshToken(req: Request, res: Response) {
     const cookieRefreshToken = req.cookies?.refreshToken as string;
     if (!cookieRefreshToken) {
       throw new NotFoundException('Refresh token not found');
@@ -136,7 +148,6 @@ export class AuthService {
     const tokenPayload = {
       id: user.id,
       email: user.email,
-      role: user.role,
     };
 
     const accessToken = await this.jwtService.signAsync(tokenPayload, {
@@ -189,7 +200,7 @@ export class AuthService {
     };
   }
 
-	async logout(req: Request, res: Response) {
+  async logout(req: Request, res: Response) {
     const cookieRefreshToken = req.cookies?.refreshToken as string;
     const isProduction = process.env.NODE_ENV === 'production';
     if (!cookieRefreshToken) {

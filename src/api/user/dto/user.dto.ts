@@ -1,8 +1,18 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class SentUserOtpDto {
   @IsString()
 	email: string;
+}
+
+export class VerifyUserOtpDto {
+  @IsNotEmpty()
+	@IsString()
+	email: string;
+
+  @IsNotEmpty()
+	@IsNumber()
+	otp: number;
 }
 
 export class SetUserPasswordDto {
