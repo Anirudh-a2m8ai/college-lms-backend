@@ -8,6 +8,7 @@ import { UseGuards } from '@nestjs/common';
 import { Public } from 'src/common/decorators/public.decorator';
 import { PermissionGuard } from 'src/common/guards/permission.guard';
 import { Permissions } from 'src/common/decorators/permissions.decorator';
+import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 
 @Controller('user')
 @UseGuards(PermissionGuard)
@@ -45,8 +46,13 @@ export class UserController {
     return this.userService.handleBulkUpload(file);
   }
 
+  @Get('permissions')
+  async getPermissions(@CurrentUser() user: any) {
+    return this.userService.getPermissions(user.userId);
+  }
+
   @Public()
-  @Get(':id')
+  @Get('/:id')
   async findOne(@Param('id') id: string) {
     return this.userService.findOne(id);
   }

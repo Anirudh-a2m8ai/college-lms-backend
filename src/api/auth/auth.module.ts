@@ -24,13 +24,8 @@ import { DbServiceModule } from 'src/repository/db-service.module';
 
   controllers: [AuthController],
 
-  providers: [
-    AuthService,
-    AuthStrategy,
-  ],
+  providers: [AuthService, AuthStrategy],
 
-  exports: [
-    JwtModule,
-  ],
+  exports: [JwtModule],
 })
 export class AuthModule {}

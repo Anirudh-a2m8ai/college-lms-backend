@@ -3,7 +3,7 @@ import { UserDbService } from 'src/repository/user.db-service';
 import { CreateUserBulkDto, CreateUserDto } from './dto/create-user.dto';
 import { AccountStatus, RoleType, TokenType } from 'src/generated/prisma/enums';
 import { plainToInstance } from 'class-transformer';
-import { UserResponseDto } from './response/user.type';
+import { UserPermissionsResponseDto, UserResponseDto } from './response/user.type';
 import { QueueService } from 'src/queue/queue.service';
 import { SentUserOtpDto, SetUserPasswordDto } from './dto/user.dto';
 import { generateToken, hashToken } from 'src/utils/generate-token.util';
@@ -209,6 +209,28 @@ export class UserService {
       throw new BadRequestException('User not found');
     }
     return user;
+  }
+
+  async getPermissions(id: string) {
+    const user = (await this.userDbService.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        role: {
+          include: {
+            permissions: true,
+          },
+        },
+      },
+    })) as User & { role: { permissions: string[] } };
+    if (!user) {
+      throw new BadRequestException('User not found');
+    }
+    const permissionResponse = plainToInstance(UserPermissionsResponseDto, user.role.permissions, {
+      excludeExtraneousValues: true,
+    });
+    return permissionResponse;
   }
 
   private saveFile(file: Express.Multer.File): string {

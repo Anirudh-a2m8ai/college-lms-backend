@@ -35,3 +35,14 @@ export class UserResponseDto {
   @Expose()
   updatedAt: Date;
 }
+
+export class UserPermissionsResponseDto {
+  @Expose()
+  id: string;
+
+  @Expose()
+  name: string;
+
+  @Expose()
+  tag: string;
+}

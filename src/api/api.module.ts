@@ -6,11 +6,7 @@ import { AccessTokenGuard } from 'src/common/guards/auth.guard';
 import { RoleModule } from './role/role.module';
 
 @Module({
-  imports: [
-    AuthModule,
-    UserModule,
-    RoleModule
-  ],
+  imports: [AuthModule, UserModule, RoleModule],
   providers: [
     {
       provide: APP_GUARD,
