@@ -72,7 +72,7 @@ export class UserProcessor extends WorkerHost {
                   passwordHash: hashedPassword,
                   phone: row.phone,
                   bio: row.bio,
-                  role: RoleType.USER,
+                  roleId: row.roleId,
                   status: AccountStatus.INACTIVE,
                 };
 
@@ -126,7 +126,7 @@ export class UserProcessor extends WorkerHost {
               passwordHash: hashedPassword,
               phone: row.phone,
               bio: row.bio,
-              role: RoleType.USER,
+              role: row.roleId,
               status: AccountStatus.INACTIVE,
             };
 

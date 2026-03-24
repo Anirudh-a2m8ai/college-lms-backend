@@ -51,9 +51,9 @@ export class CreateUserBulkDto {
   @IsOptional()
   bio: string;
 
-  @IsEnum(RoleType)
+  @IsString()
   @IsOptional()
-  role: RoleType;
+  roleId: string;
 
   @IsEnum(AccountStatus)
   @IsOptional()

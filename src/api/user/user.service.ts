@@ -185,12 +185,12 @@ export class UserService {
     for (let i = 0; i < users.length; i += BATCH_SIZE) {
       const chunk = users.slice(i, i + BATCH_SIZE);
 
-      // const result = await this.userDbService.createMany({
-      //   data: chunk,
-      //   skipDuplicates: true,
-      // });
+      const result = await this.userDbService.createMany({
+        data: chunk,
+        skipDuplicates: true,
+      });
 
-      // totalInserted += result.count;
+      totalInserted += result.count;
     }
 
     return { success: totalInserted };
