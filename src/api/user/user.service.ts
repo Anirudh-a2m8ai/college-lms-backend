@@ -150,6 +150,7 @@ export class UserService {
       },
       data: {
         passwordHash: hashedPassword,
+        isPasswordChanged: true,
       },
     });
     await this.userTokenDbService.delete({
