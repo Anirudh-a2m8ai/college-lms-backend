@@ -44,7 +44,6 @@ export type TenantMinAggregateOutputType = {
   phone: string | null
   logo: string | null
   website: string | null
-  ownerId: string | null
   defaultLanguage: string | null
   timezone: string | null
   status: $Enums.AccountStatus | null
@@ -66,7 +65,6 @@ export type TenantMaxAggregateOutputType = {
   phone: string | null
   logo: string | null
   website: string | null
-  ownerId: string | null
   defaultLanguage: string | null
   timezone: string | null
   status: $Enums.AccountStatus | null
@@ -88,7 +86,6 @@ export type TenantCountAggregateOutputType = {
   phone: number
   logo: number
   website: number
-  ownerId: number
   defaultLanguage: number
   timezone: number
   status: number
@@ -122,7 +119,6 @@ export type TenantMinAggregateInputType = {
   phone?: true
   logo?: true
   website?: true
-  ownerId?: true
   defaultLanguage?: true
   timezone?: true
   status?: true
@@ -144,7 +140,6 @@ export type TenantMaxAggregateInputType = {
   phone?: true
   logo?: true
   website?: true
-  ownerId?: true
   defaultLanguage?: true
   timezone?: true
   status?: true
@@ -166,7 +161,6 @@ export type TenantCountAggregateInputType = {
   phone?: true
   logo?: true
   website?: true
-  ownerId?: true
   defaultLanguage?: true
   timezone?: true
   status?: true
@@ -275,13 +269,12 @@ export type TenantGroupByOutputType = {
   phone: string
   logo: string | null
   website: string | null
-  ownerId: string
   defaultLanguage: string | null
   timezone: string | null
   status: $Enums.AccountStatus
-  totalUsers: number
-  coursesCreated: number
-  hMac: string
+  totalUsers: number | null
+  coursesCreated: number | null
+  hMac: string | null
   createdAt: Date
   updatedAt: Date
   isDeleted: boolean
@@ -320,19 +313,19 @@ export type TenantWhereInput = {
   phone?: Prisma.StringFilter<"Tenant"> | string
   logo?: Prisma.StringNullableFilter<"Tenant"> | string | null
   website?: Prisma.StringNullableFilter<"Tenant"> | string | null
-  ownerId?: Prisma.StringFilter<"Tenant"> | string
   defaultLanguage?: Prisma.StringNullableFilter<"Tenant"> | string | null
   timezone?: Prisma.StringNullableFilter<"Tenant"> | string | null
   status?: Prisma.EnumAccountStatusFilter<"Tenant"> | $Enums.AccountStatus
-  totalUsers?: Prisma.IntFilter<"Tenant"> | number
-  coursesCreated?: Prisma.IntFilter<"Tenant"> | number
-  hMac?: Prisma.StringFilter<"Tenant"> | string
+  totalUsers?: Prisma.IntNullableFilter<"Tenant"> | number | null
+  coursesCreated?: Prisma.IntNullableFilter<"Tenant"> | number | null
+  hMac?: Prisma.StringNullableFilter<"Tenant"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   isDeleted?: Prisma.BoolFilter<"Tenant"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
   deleteAt?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
   users?: Prisma.UserListRelationFilter
+  roles?: Prisma.RoleListRelationFilter
   designations?: Prisma.DesignationListRelationFilter
   courses?: Prisma.CourseListRelationFilter
   courseVersions?: Prisma.CourseVersionListRelationFilter
@@ -346,19 +339,19 @@ export type TenantOrderByWithRelationInput = {
   phone?: Prisma.SortOrder
   logo?: Prisma.SortOrderInput | Prisma.SortOrder
   website?: Prisma.SortOrderInput | Prisma.SortOrder
-  ownerId?: Prisma.SortOrder
   defaultLanguage?: Prisma.SortOrderInput | Prisma.SortOrder
   timezone?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
-  totalUsers?: Prisma.SortOrder
-  coursesCreated?: Prisma.SortOrder
-  hMac?: Prisma.SortOrder
+  totalUsers?: Prisma.SortOrderInput | Prisma.SortOrder
+  coursesCreated?: Prisma.SortOrderInput | Prisma.SortOrder
+  hMac?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   deleteAt?: Prisma.SortOrderInput | Prisma.SortOrder
   users?: Prisma.UserOrderByRelationAggregateInput
+  roles?: Prisma.RoleOrderByRelationAggregateInput
   designations?: Prisma.DesignationOrderByRelationAggregateInput
   courses?: Prisma.CourseOrderByRelationAggregateInput
   courseVersions?: Prisma.CourseVersionOrderByRelationAggregateInput
@@ -375,19 +368,19 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   phone?: Prisma.StringFilter<"Tenant"> | string
   logo?: Prisma.StringNullableFilter<"Tenant"> | string | null
   website?: Prisma.StringNullableFilter<"Tenant"> | string | null
-  ownerId?: Prisma.StringFilter<"Tenant"> | string
   defaultLanguage?: Prisma.StringNullableFilter<"Tenant"> | string | null
   timezone?: Prisma.StringNullableFilter<"Tenant"> | string | null
   status?: Prisma.EnumAccountStatusFilter<"Tenant"> | $Enums.AccountStatus
-  totalUsers?: Prisma.IntFilter<"Tenant"> | number
-  coursesCreated?: Prisma.IntFilter<"Tenant"> | number
-  hMac?: Prisma.StringFilter<"Tenant"> | string
+  totalUsers?: Prisma.IntNullableFilter<"Tenant"> | number | null
+  coursesCreated?: Prisma.IntNullableFilter<"Tenant"> | number | null
+  hMac?: Prisma.StringNullableFilter<"Tenant"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   isDeleted?: Prisma.BoolFilter<"Tenant"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
   deleteAt?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
   users?: Prisma.UserListRelationFilter
+  roles?: Prisma.RoleListRelationFilter
   designations?: Prisma.DesignationListRelationFilter
   courses?: Prisma.CourseListRelationFilter
   courseVersions?: Prisma.CourseVersionListRelationFilter
@@ -401,13 +394,12 @@ export type TenantOrderByWithAggregationInput = {
   phone?: Prisma.SortOrder
   logo?: Prisma.SortOrderInput | Prisma.SortOrder
   website?: Prisma.SortOrderInput | Prisma.SortOrder
-  ownerId?: Prisma.SortOrder
   defaultLanguage?: Prisma.SortOrderInput | Prisma.SortOrder
   timezone?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
-  totalUsers?: Prisma.SortOrder
-  coursesCreated?: Prisma.SortOrder
-  hMac?: Prisma.SortOrder
+  totalUsers?: Prisma.SortOrderInput | Prisma.SortOrder
+  coursesCreated?: Prisma.SortOrderInput | Prisma.SortOrder
+  hMac?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -431,13 +423,12 @@ export type TenantScalarWhereWithAggregatesInput = {
   phone?: Prisma.StringWithAggregatesFilter<"Tenant"> | string
   logo?: Prisma.StringNullableWithAggregatesFilter<"Tenant"> | string | null
   website?: Prisma.StringNullableWithAggregatesFilter<"Tenant"> | string | null
-  ownerId?: Prisma.StringWithAggregatesFilter<"Tenant"> | string
   defaultLanguage?: Prisma.StringNullableWithAggregatesFilter<"Tenant"> | string | null
   timezone?: Prisma.StringNullableWithAggregatesFilter<"Tenant"> | string | null
   status?: Prisma.EnumAccountStatusWithAggregatesFilter<"Tenant"> | $Enums.AccountStatus
-  totalUsers?: Prisma.IntWithAggregatesFilter<"Tenant"> | number
-  coursesCreated?: Prisma.IntWithAggregatesFilter<"Tenant"> | number
-  hMac?: Prisma.StringWithAggregatesFilter<"Tenant"> | string
+  totalUsers?: Prisma.IntNullableWithAggregatesFilter<"Tenant"> | number | null
+  coursesCreated?: Prisma.IntNullableWithAggregatesFilter<"Tenant"> | number | null
+  hMac?: Prisma.StringNullableWithAggregatesFilter<"Tenant"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Tenant"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Tenant"> | Date | string
   isDeleted?: Prisma.BoolWithAggregatesFilter<"Tenant"> | boolean
@@ -453,19 +444,19 @@ export type TenantCreateInput = {
   phone: string
   logo?: string | null
   website?: string | null
-  ownerId: string
   defaultLanguage?: string | null
   timezone?: string | null
   status?: $Enums.AccountStatus
-  totalUsers: number
-  coursesCreated: number
-  hMac: string
+  totalUsers?: number | null
+  coursesCreated?: number | null
+  hMac?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   designations?: Prisma.DesignationCreateNestedManyWithoutTenantInput
   courses?: Prisma.CourseCreateNestedManyWithoutTenantInput
   courseVersions?: Prisma.CourseVersionCreateNestedManyWithoutTenantInput
@@ -479,19 +470,19 @@ export type TenantUncheckedCreateInput = {
   phone: string
   logo?: string | null
   website?: string | null
-  ownerId: string
   defaultLanguage?: string | null
   timezone?: string | null
   status?: $Enums.AccountStatus
-  totalUsers: number
-  coursesCreated: number
-  hMac: string
+  totalUsers?: number | null
+  coursesCreated?: number | null
+  hMac?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
   designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutTenantInput
   courses?: Prisma.CourseUncheckedCreateNestedManyWithoutTenantInput
   courseVersions?: Prisma.CourseVersionUncheckedCreateNestedManyWithoutTenantInput
@@ -505,19 +496,19 @@ export type TenantUpdateInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   defaultLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  totalUsers?: Prisma.IntFieldUpdateOperationsInput | number
-  coursesCreated?: Prisma.IntFieldUpdateOperationsInput | number
-  hMac?: Prisma.StringFieldUpdateOperationsInput | string
+  totalUsers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coursesCreated?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hMac?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   designations?: Prisma.DesignationUpdateManyWithoutTenantNestedInput
   courses?: Prisma.CourseUpdateManyWithoutTenantNestedInput
   courseVersions?: Prisma.CourseVersionUpdateManyWithoutTenantNestedInput
@@ -531,19 +522,19 @@ export type TenantUncheckedUpdateInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   defaultLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  totalUsers?: Prisma.IntFieldUpdateOperationsInput | number
-  coursesCreated?: Prisma.IntFieldUpdateOperationsInput | number
-  hMac?: Prisma.StringFieldUpdateOperationsInput | string
+  totalUsers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coursesCreated?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hMac?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
   designations?: Prisma.DesignationUncheckedUpdateManyWithoutTenantNestedInput
   courses?: Prisma.CourseUncheckedUpdateManyWithoutTenantNestedInput
   courseVersions?: Prisma.CourseVersionUncheckedUpdateManyWithoutTenantNestedInput
@@ -557,13 +548,12 @@ export type TenantCreateManyInput = {
   phone: string
   logo?: string | null
   website?: string | null
-  ownerId: string
   defaultLanguage?: string | null
   timezone?: string | null
   status?: $Enums.AccountStatus
-  totalUsers: number
-  coursesCreated: number
-  hMac: string
+  totalUsers?: number | null
+  coursesCreated?: number | null
+  hMac?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -579,13 +569,12 @@ export type TenantUpdateManyMutationInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   defaultLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  totalUsers?: Prisma.IntFieldUpdateOperationsInput | number
-  coursesCreated?: Prisma.IntFieldUpdateOperationsInput | number
-  hMac?: Prisma.StringFieldUpdateOperationsInput | string
+  totalUsers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coursesCreated?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hMac?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -601,13 +590,12 @@ export type TenantUncheckedUpdateManyInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   defaultLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  totalUsers?: Prisma.IntFieldUpdateOperationsInput | number
-  coursesCreated?: Prisma.IntFieldUpdateOperationsInput | number
-  hMac?: Prisma.StringFieldUpdateOperationsInput | string
+  totalUsers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coursesCreated?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hMac?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -620,6 +608,11 @@ export type TenantScalarRelationFilter = {
   isNot?: Prisma.TenantWhereInput
 }
 
+export type TenantNullableScalarRelationFilter = {
+  is?: Prisma.TenantWhereInput | null
+  isNot?: Prisma.TenantWhereInput | null
+}
+
 export type TenantCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
@@ -628,7 +621,6 @@ export type TenantCountOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   logo?: Prisma.SortOrder
   website?: Prisma.SortOrder
-  ownerId?: Prisma.SortOrder
   defaultLanguage?: Prisma.SortOrder
   timezone?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -655,7 +647,6 @@ export type TenantMaxOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   logo?: Prisma.SortOrder
   website?: Prisma.SortOrder
-  ownerId?: Prisma.SortOrder
   defaultLanguage?: Prisma.SortOrder
   timezone?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -677,7 +668,6 @@ export type TenantMinOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   logo?: Prisma.SortOrder
   website?: Prisma.SortOrder
-  ownerId?: Prisma.SortOrder
   defaultLanguage?: Prisma.SortOrder
   timezone?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -694,11 +684,6 @@ export type TenantMinOrderByAggregateInput = {
 export type TenantSumOrderByAggregateInput = {
   totalUsers?: Prisma.SortOrder
   coursesCreated?: Prisma.SortOrder
-}
-
-export type TenantNullableScalarRelationFilter = {
-  is?: Prisma.TenantWhereInput | null
-  isNot?: Prisma.TenantWhereInput | null
 }
 
 export type TenantCreateNestedOneWithoutCourseVersionsInput = {
@@ -743,8 +728,32 @@ export type TenantUpdateOneRequiredWithoutDesignationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutDesignationsInput, Prisma.TenantUpdateWithoutDesignationsInput>, Prisma.TenantUncheckedUpdateWithoutDesignationsInput>
 }
 
+export type TenantCreateNestedOneWithoutRolesInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutRolesInput, Prisma.TenantUncheckedCreateWithoutRolesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutRolesInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneWithoutRolesNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutRolesInput, Prisma.TenantUncheckedCreateWithoutRolesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutRolesInput
+  upsert?: Prisma.TenantUpsertWithoutRolesInput
+  disconnect?: Prisma.TenantWhereInput | boolean
+  delete?: Prisma.TenantWhereInput | boolean
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutRolesInput, Prisma.TenantUpdateWithoutRolesInput>, Prisma.TenantUncheckedUpdateWithoutRolesInput>
+}
+
 export type EnumAccountStatusFieldUpdateOperationsInput = {
   set?: $Enums.AccountStatus
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type TenantCreateNestedOneWithoutUsersInput = {
@@ -771,19 +780,19 @@ export type TenantCreateWithoutCourseVersionsInput = {
   phone: string
   logo?: string | null
   website?: string | null
-  ownerId: string
   defaultLanguage?: string | null
   timezone?: string | null
   status?: $Enums.AccountStatus
-  totalUsers: number
-  coursesCreated: number
-  hMac: string
+  totalUsers?: number | null
+  coursesCreated?: number | null
+  hMac?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   designations?: Prisma.DesignationCreateNestedManyWithoutTenantInput
   courses?: Prisma.CourseCreateNestedManyWithoutTenantInput
 }
@@ -796,19 +805,19 @@ export type TenantUncheckedCreateWithoutCourseVersionsInput = {
   phone: string
   logo?: string | null
   website?: string | null
-  ownerId: string
   defaultLanguage?: string | null
   timezone?: string | null
   status?: $Enums.AccountStatus
-  totalUsers: number
-  coursesCreated: number
-  hMac: string
+  totalUsers?: number | null
+  coursesCreated?: number | null
+  hMac?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
   designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutTenantInput
   courses?: Prisma.CourseUncheckedCreateNestedManyWithoutTenantInput
 }
@@ -837,19 +846,19 @@ export type TenantUpdateWithoutCourseVersionsInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   defaultLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  totalUsers?: Prisma.IntFieldUpdateOperationsInput | number
-  coursesCreated?: Prisma.IntFieldUpdateOperationsInput | number
-  hMac?: Prisma.StringFieldUpdateOperationsInput | string
+  totalUsers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coursesCreated?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hMac?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   designations?: Prisma.DesignationUpdateManyWithoutTenantNestedInput
   courses?: Prisma.CourseUpdateManyWithoutTenantNestedInput
 }
@@ -862,19 +871,19 @@ export type TenantUncheckedUpdateWithoutCourseVersionsInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   defaultLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  totalUsers?: Prisma.IntFieldUpdateOperationsInput | number
-  coursesCreated?: Prisma.IntFieldUpdateOperationsInput | number
-  hMac?: Prisma.StringFieldUpdateOperationsInput | string
+  totalUsers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coursesCreated?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hMac?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
   designations?: Prisma.DesignationUncheckedUpdateManyWithoutTenantNestedInput
   courses?: Prisma.CourseUncheckedUpdateManyWithoutTenantNestedInput
 }
@@ -887,19 +896,19 @@ export type TenantCreateWithoutCoursesInput = {
   phone: string
   logo?: string | null
   website?: string | null
-  ownerId: string
   defaultLanguage?: string | null
   timezone?: string | null
   status?: $Enums.AccountStatus
-  totalUsers: number
-  coursesCreated: number
-  hMac: string
+  totalUsers?: number | null
+  coursesCreated?: number | null
+  hMac?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   designations?: Prisma.DesignationCreateNestedManyWithoutTenantInput
   courseVersions?: Prisma.CourseVersionCreateNestedManyWithoutTenantInput
 }
@@ -912,19 +921,19 @@ export type TenantUncheckedCreateWithoutCoursesInput = {
   phone: string
   logo?: string | null
   website?: string | null
-  ownerId: string
   defaultLanguage?: string | null
   timezone?: string | null
   status?: $Enums.AccountStatus
-  totalUsers: number
-  coursesCreated: number
-  hMac: string
+  totalUsers?: number | null
+  coursesCreated?: number | null
+  hMac?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
   designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutTenantInput
   courseVersions?: Prisma.CourseVersionUncheckedCreateNestedManyWithoutTenantInput
 }
@@ -953,19 +962,19 @@ export type TenantUpdateWithoutCoursesInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   defaultLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  totalUsers?: Prisma.IntFieldUpdateOperationsInput | number
-  coursesCreated?: Prisma.IntFieldUpdateOperationsInput | number
-  hMac?: Prisma.StringFieldUpdateOperationsInput | string
+  totalUsers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coursesCreated?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hMac?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   designations?: Prisma.DesignationUpdateManyWithoutTenantNestedInput
   courseVersions?: Prisma.CourseVersionUpdateManyWithoutTenantNestedInput
 }
@@ -978,19 +987,19 @@ export type TenantUncheckedUpdateWithoutCoursesInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   defaultLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  totalUsers?: Prisma.IntFieldUpdateOperationsInput | number
-  coursesCreated?: Prisma.IntFieldUpdateOperationsInput | number
-  hMac?: Prisma.StringFieldUpdateOperationsInput | string
+  totalUsers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coursesCreated?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hMac?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
   designations?: Prisma.DesignationUncheckedUpdateManyWithoutTenantNestedInput
   courseVersions?: Prisma.CourseVersionUncheckedUpdateManyWithoutTenantNestedInput
 }
@@ -1003,19 +1012,19 @@ export type TenantCreateWithoutDesignationsInput = {
   phone: string
   logo?: string | null
   website?: string | null
-  ownerId: string
   defaultLanguage?: string | null
   timezone?: string | null
   status?: $Enums.AccountStatus
-  totalUsers: number
-  coursesCreated: number
-  hMac: string
+  totalUsers?: number | null
+  coursesCreated?: number | null
+  hMac?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   courses?: Prisma.CourseCreateNestedManyWithoutTenantInput
   courseVersions?: Prisma.CourseVersionCreateNestedManyWithoutTenantInput
 }
@@ -1028,19 +1037,19 @@ export type TenantUncheckedCreateWithoutDesignationsInput = {
   phone: string
   logo?: string | null
   website?: string | null
-  ownerId: string
   defaultLanguage?: string | null
   timezone?: string | null
   status?: $Enums.AccountStatus
-  totalUsers: number
-  coursesCreated: number
-  hMac: string
+  totalUsers?: number | null
+  coursesCreated?: number | null
+  hMac?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
   courses?: Prisma.CourseUncheckedCreateNestedManyWithoutTenantInput
   courseVersions?: Prisma.CourseVersionUncheckedCreateNestedManyWithoutTenantInput
 }
@@ -1069,19 +1078,19 @@ export type TenantUpdateWithoutDesignationsInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   defaultLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  totalUsers?: Prisma.IntFieldUpdateOperationsInput | number
-  coursesCreated?: Prisma.IntFieldUpdateOperationsInput | number
-  hMac?: Prisma.StringFieldUpdateOperationsInput | string
+  totalUsers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coursesCreated?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hMac?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   courses?: Prisma.CourseUpdateManyWithoutTenantNestedInput
   courseVersions?: Prisma.CourseVersionUpdateManyWithoutTenantNestedInput
 }
@@ -1094,19 +1103,135 @@ export type TenantUncheckedUpdateWithoutDesignationsInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   defaultLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  totalUsers?: Prisma.IntFieldUpdateOperationsInput | number
-  coursesCreated?: Prisma.IntFieldUpdateOperationsInput | number
-  hMac?: Prisma.StringFieldUpdateOperationsInput | string
+  totalUsers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coursesCreated?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hMac?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  courses?: Prisma.CourseUncheckedUpdateManyWithoutTenantNestedInput
+  courseVersions?: Prisma.CourseVersionUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutRolesInput = {
+  id?: string
+  name: string
+  subdomain?: string | null
+  email: string
+  phone: string
+  logo?: string | null
+  website?: string | null
+  defaultLanguage?: string | null
+  timezone?: string | null
+  status?: $Enums.AccountStatus
+  totalUsers?: number | null
+  coursesCreated?: number | null
+  hMac?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutTenantInput
+  courses?: Prisma.CourseCreateNestedManyWithoutTenantInput
+  courseVersions?: Prisma.CourseVersionCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutRolesInput = {
+  id?: string
+  name: string
+  subdomain?: string | null
+  email: string
+  phone: string
+  logo?: string | null
+  website?: string | null
+  defaultLanguage?: string | null
+  timezone?: string | null
+  status?: $Enums.AccountStatus
+  totalUsers?: number | null
+  coursesCreated?: number | null
+  hMac?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutTenantInput
+  courses?: Prisma.CourseUncheckedCreateNestedManyWithoutTenantInput
+  courseVersions?: Prisma.CourseVersionUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutRolesInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutRolesInput, Prisma.TenantUncheckedCreateWithoutRolesInput>
+}
+
+export type TenantUpsertWithoutRolesInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutRolesInput, Prisma.TenantUncheckedUpdateWithoutRolesInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutRolesInput, Prisma.TenantUncheckedCreateWithoutRolesInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutRolesInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutRolesInput, Prisma.TenantUncheckedUpdateWithoutRolesInput>
+}
+
+export type TenantUpdateWithoutRolesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  subdomain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  defaultLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  totalUsers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coursesCreated?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hMac?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutTenantNestedInput
+  courses?: Prisma.CourseUpdateManyWithoutTenantNestedInput
+  courseVersions?: Prisma.CourseVersionUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutRolesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  subdomain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  defaultLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  totalUsers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coursesCreated?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hMac?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutTenantNestedInput
   courses?: Prisma.CourseUncheckedUpdateManyWithoutTenantNestedInput
   courseVersions?: Prisma.CourseVersionUncheckedUpdateManyWithoutTenantNestedInput
 }
@@ -1119,18 +1244,18 @@ export type TenantCreateWithoutUsersInput = {
   phone: string
   logo?: string | null
   website?: string | null
-  ownerId: string
   defaultLanguage?: string | null
   timezone?: string | null
   status?: $Enums.AccountStatus
-  totalUsers: number
-  coursesCreated: number
-  hMac: string
+  totalUsers?: number | null
+  coursesCreated?: number | null
+  hMac?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   designations?: Prisma.DesignationCreateNestedManyWithoutTenantInput
   courses?: Prisma.CourseCreateNestedManyWithoutTenantInput
   courseVersions?: Prisma.CourseVersionCreateNestedManyWithoutTenantInput
@@ -1144,18 +1269,18 @@ export type TenantUncheckedCreateWithoutUsersInput = {
   phone: string
   logo?: string | null
   website?: string | null
-  ownerId: string
   defaultLanguage?: string | null
   timezone?: string | null
   status?: $Enums.AccountStatus
-  totalUsers: number
-  coursesCreated: number
-  hMac: string
+  totalUsers?: number | null
+  coursesCreated?: number | null
+  hMac?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
   designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutTenantInput
   courses?: Prisma.CourseUncheckedCreateNestedManyWithoutTenantInput
   courseVersions?: Prisma.CourseVersionUncheckedCreateNestedManyWithoutTenantInput
@@ -1185,18 +1310,18 @@ export type TenantUpdateWithoutUsersInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   defaultLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  totalUsers?: Prisma.IntFieldUpdateOperationsInput | number
-  coursesCreated?: Prisma.IntFieldUpdateOperationsInput | number
-  hMac?: Prisma.StringFieldUpdateOperationsInput | string
+  totalUsers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coursesCreated?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hMac?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   designations?: Prisma.DesignationUpdateManyWithoutTenantNestedInput
   courses?: Prisma.CourseUpdateManyWithoutTenantNestedInput
   courseVersions?: Prisma.CourseVersionUpdateManyWithoutTenantNestedInput
@@ -1210,18 +1335,18 @@ export type TenantUncheckedUpdateWithoutUsersInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   defaultLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  totalUsers?: Prisma.IntFieldUpdateOperationsInput | number
-  coursesCreated?: Prisma.IntFieldUpdateOperationsInput | number
-  hMac?: Prisma.StringFieldUpdateOperationsInput | string
+  totalUsers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coursesCreated?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hMac?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
   designations?: Prisma.DesignationUncheckedUpdateManyWithoutTenantNestedInput
   courses?: Prisma.CourseUncheckedUpdateManyWithoutTenantNestedInput
   courseVersions?: Prisma.CourseVersionUncheckedUpdateManyWithoutTenantNestedInput
@@ -1234,6 +1359,7 @@ export type TenantUncheckedUpdateWithoutUsersInput = {
 
 export type TenantCountOutputType = {
   users: number
+  roles: number
   designations: number
   courses: number
   courseVersions: number
@@ -1241,6 +1367,7 @@ export type TenantCountOutputType = {
 
 export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   users?: boolean | TenantCountOutputTypeCountUsersArgs
+  roles?: boolean | TenantCountOutputTypeCountRolesArgs
   designations?: boolean | TenantCountOutputTypeCountDesignationsArgs
   courses?: boolean | TenantCountOutputTypeCountCoursesArgs
   courseVersions?: boolean | TenantCountOutputTypeCountCourseVersionsArgs
@@ -1261,6 +1388,13 @@ export type TenantCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
  */
 export type TenantCountOutputTypeCountUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.UserWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountRolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RoleWhereInput
 }
 
 /**
@@ -1293,7 +1427,6 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   phone?: boolean
   logo?: boolean
   website?: boolean
-  ownerId?: boolean
   defaultLanguage?: boolean
   timezone?: boolean
   status?: boolean
@@ -1306,6 +1439,7 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   deletedAt?: boolean
   deleteAt?: boolean
   users?: boolean | Prisma.Tenant$usersArgs<ExtArgs>
+  roles?: boolean | Prisma.Tenant$rolesArgs<ExtArgs>
   designations?: boolean | Prisma.Tenant$designationsArgs<ExtArgs>
   courses?: boolean | Prisma.Tenant$coursesArgs<ExtArgs>
   courseVersions?: boolean | Prisma.Tenant$courseVersionsArgs<ExtArgs>
@@ -1320,7 +1454,6 @@ export type TenantSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   phone?: boolean
   logo?: boolean
   website?: boolean
-  ownerId?: boolean
   defaultLanguage?: boolean
   timezone?: boolean
   status?: boolean
@@ -1342,7 +1475,6 @@ export type TenantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   phone?: boolean
   logo?: boolean
   website?: boolean
-  ownerId?: boolean
   defaultLanguage?: boolean
   timezone?: boolean
   status?: boolean
@@ -1364,7 +1496,6 @@ export type TenantSelectScalar = {
   phone?: boolean
   logo?: boolean
   website?: boolean
-  ownerId?: boolean
   defaultLanguage?: boolean
   timezone?: boolean
   status?: boolean
@@ -1378,9 +1509,10 @@ export type TenantSelectScalar = {
   deleteAt?: boolean
 }
 
-export type TenantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "subdomain" | "email" | "phone" | "logo" | "website" | "ownerId" | "defaultLanguage" | "timezone" | "status" | "totalUsers" | "coursesCreated" | "hMac" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt" | "deleteAt", ExtArgs["result"]["tenant"]>
+export type TenantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "subdomain" | "email" | "phone" | "logo" | "website" | "defaultLanguage" | "timezone" | "status" | "totalUsers" | "coursesCreated" | "hMac" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt" | "deleteAt", ExtArgs["result"]["tenant"]>
 export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   users?: boolean | Prisma.Tenant$usersArgs<ExtArgs>
+  roles?: boolean | Prisma.Tenant$rolesArgs<ExtArgs>
   designations?: boolean | Prisma.Tenant$designationsArgs<ExtArgs>
   courses?: boolean | Prisma.Tenant$coursesArgs<ExtArgs>
   courseVersions?: boolean | Prisma.Tenant$courseVersionsArgs<ExtArgs>
@@ -1393,6 +1525,7 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name: "Tenant"
   objects: {
     users: Prisma.$UserPayload<ExtArgs>[]
+    roles: Prisma.$RolePayload<ExtArgs>[]
     designations: Prisma.$DesignationPayload<ExtArgs>[]
     courses: Prisma.$CoursePayload<ExtArgs>[]
     courseVersions: Prisma.$CourseVersionPayload<ExtArgs>[]
@@ -1405,13 +1538,12 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     phone: string
     logo: string | null
     website: string | null
-    ownerId: string
     defaultLanguage: string | null
     timezone: string | null
     status: $Enums.AccountStatus
-    totalUsers: number
-    coursesCreated: number
-    hMac: string
+    totalUsers: number | null
+    coursesCreated: number | null
+    hMac: string | null
     createdAt: Date
     updatedAt: Date
     isDeleted: boolean
@@ -1812,6 +1944,7 @@ readonly fields: TenantFieldRefs;
 export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   users<T extends Prisma.Tenant$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  roles<T extends Prisma.Tenant$rolesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$rolesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   designations<T extends Prisma.Tenant$designationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$designationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DesignationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   courses<T extends Prisma.Tenant$coursesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$coursesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   courseVersions<T extends Prisma.Tenant$courseVersionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$courseVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CourseVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1851,7 +1984,6 @@ export interface TenantFieldRefs {
   readonly phone: Prisma.FieldRef<"Tenant", 'String'>
   readonly logo: Prisma.FieldRef<"Tenant", 'String'>
   readonly website: Prisma.FieldRef<"Tenant", 'String'>
-  readonly ownerId: Prisma.FieldRef<"Tenant", 'String'>
   readonly defaultLanguage: Prisma.FieldRef<"Tenant", 'String'>
   readonly timezone: Prisma.FieldRef<"Tenant", 'String'>
   readonly status: Prisma.FieldRef<"Tenant", 'AccountStatus'>
@@ -2277,6 +2409,30 @@ export type Tenant$usersArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
+}
+
+/**
+ * Tenant.roles
+ */
+export type Tenant$rolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Role
+   */
+  select?: Prisma.RoleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Role
+   */
+  omit?: Prisma.RoleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RoleInclude<ExtArgs> | null
+  where?: Prisma.RoleWhereInput
+  orderBy?: Prisma.RoleOrderByWithRelationInput | Prisma.RoleOrderByWithRelationInput[]
+  cursor?: Prisma.RoleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RoleScalarFieldEnum | Prisma.RoleScalarFieldEnum[]
 }
 
 /**

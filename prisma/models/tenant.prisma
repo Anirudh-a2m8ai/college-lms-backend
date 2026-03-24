@@ -6,17 +6,17 @@ model Tenant {
   phone           String
   logo            String?
   website         String?
-  ownerId         String
   users           User[]
   defaultLanguage String?
   timezone        String?
+  roles           Role[]
   status          AccountStatus   @default(ACTIVE)
-  totalUsers      Int
-  coursesCreated  Int
+  totalUsers      Int?
+  coursesCreated  Int?
   designations    Designation[]
   courses         Course[]
   courseVersions  CourseVersion[]
-  hMac            String
+  hMac            String?
   createdAt       DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
   isDeleted       Boolean         @default(false)

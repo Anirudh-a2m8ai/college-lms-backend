@@ -1,4 +1,4 @@
-import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { AccountStatus, RoleType } from 'src/generated/prisma/enums';
 
 export class CreateUserDto {
@@ -23,7 +23,11 @@ export class CreateUserDto {
 
   @IsString()
   @IsNotEmpty()
-  roleId: string;
+  tenantId: string;
+
+  @IsArray()
+  @IsString({ each: true })
+  roleIds: string[];
 }
 
 export class CreateUserBulkDto {

@@ -8,7 +8,7 @@ import { compare } from 'bcrypt';
 import { hashToken } from 'src/utils/generate-token.util';
 import { Request, Response } from 'express';
 import { RoleDbService } from 'src/repository/role.db-service';
-import { Permission, Role } from 'src/generated/prisma/client';
+import { Permission, Role, User } from 'src/generated/prisma/client';
 
 @Injectable()
 export class AuthService {
@@ -21,11 +21,14 @@ export class AuthService {
 
   async loginUser(loginDto: LoginDto, req: Request, res: Response) {
     const { email, password } = loginDto;
-    const user = await this.userDbService.findFirst({
+    const user = (await this.userDbService.findFirst({
       where: {
         email: email,
       },
-    });
+      include: {
+        role: true,
+      },
+    })) as User & { role: Role[] };
     if (!user) {
       throw new NotFoundException('User not found');
     }
@@ -38,19 +41,26 @@ export class AuthService {
       throw new BadRequestException('Invalid password');
     }
 
-    const userPermissions = (await this.roleDbService.findUnique({
+    const userPermissions = (await this.roleDbService.findMany({
       where: {
-        id: user.roleId,
+        id: {
+          in: user.role.map((role) => role.id),
+        },
       },
       include: {
         permissions: true,
       },
-    })) as Role & { permissions: Permission[] };
+    })) as (Role & { permissions: Permission[] })[];
+
+    const permissionNames = [
+      ...new Set(userPermissions.flatMap((role) => role.permissions.map((permission) => permission.name))),
+    ];
 
     const tokenPayload = {
       id: user.id,
       email: user.email,
-      permissions: userPermissions.permissions.map((permission) => permission.name),
+      tenantId: user.tenantId,
+      permissions: permissionNames,
     };
 
     const accessToken = await this.jwtService.signAsync(tokenPayload, {

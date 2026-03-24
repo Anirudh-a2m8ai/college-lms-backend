@@ -23,8 +23,6 @@ export class PermissionGuard implements CanActivate {
       throw new ForbiddenException('User not found');
     }
 
-    console.log(user);
-
     const userPermissions: string[] = user.permissions;
 
     if (!userPermissions) {

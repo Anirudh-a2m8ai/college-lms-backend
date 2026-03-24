@@ -13,6 +13,12 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { User } from 'src/generated/prisma/client';
 import { generateRandomPassword } from 'src/utils/generate-password.util';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { PaginationMapper } from 'src/utils/search/pagination.mapper';
+import { OrderMapper } from 'src/utils/search/order.mapper';
+import { FilterMapper } from 'src/utils/search/filter.mapper';
+import { PaginationResponse } from 'src/utils/search/pagination.response';
+import { SearchInputDto } from 'src/utils/search/search.input.dto';
 
 @Injectable()
 export class UserService {
@@ -46,7 +52,12 @@ export class UserService {
         ...createUserDto,
         passwordHash: hashedPassword,
         status: AccountStatus.INACTIVE,
-        roleId: createUserDto.roleId,
+        role: {
+          connect: createUserDto.roleIds.map((id) => ({ id })),
+        },
+      },
+      include: {
+        role: true,
       },
     });
 
@@ -234,11 +245,119 @@ export class UserService {
     return permissionResponse;
   }
 
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    const existingUser = await this.userDbService.findUnique({
+      where: {
+        id,
+      },
+    });
+    if (!existingUser) {
+      throw new BadRequestException('User not found');
+    }
+    const updatedUser = await this.userDbService.update({
+      where: {
+        id,
+      },
+      data: {
+        ...updateUserDto,
+        socialLinks: {
+          create: updateUserDto.socialLinks,
+        },
+        role: {
+          connect: updateUserDto.roleIds.map((id) => ({ id })),
+        },
+      },
+    });
+    const userResponse = plainToInstance(UserResponseDto, updatedUser, {
+      excludeExtraneousValues: true,
+    });
+    return userResponse;
+  }
+
+  async delete(id: string) {
+    const existingUser = await this.userDbService.findUnique({
+      where: {
+        id,
+      },
+    });
+    if (!existingUser) {
+      throw new BadRequestException('User not found');
+    }
+    await this.userDbService.update({
+      where: {
+        id,
+      },
+      data: {
+        status: AccountStatus.INACTIVE,
+        isDeleted: true,
+        deletedAt: new Date(),
+      },
+    });
+    return {
+      message: 'User deleted successfully',
+    };
+  }
+
+  async suspend(id: string) {
+    const existingUser = await this.userDbService.findUnique({
+      where: {
+        id,
+      },
+    });
+    if (!existingUser) {
+      throw new BadRequestException('User not found');
+    }
+    await this.userDbService.update({
+      where: {
+        id,
+      },
+      data: {
+        status: AccountStatus.SUSPENDED,
+      },
+    });
+    return {
+      message: 'User suspended successfully',
+    };
+  }
+
+  async findAll(query: SearchInputDto, body: any, user: any) {
+    const pagination = PaginationMapper(query);
+    const orderBy = OrderMapper(query);
+
+    let filterInput = body?.filter ? { ...body.filter } : {};
+
+    if (user.tenantId) {
+      filterInput.tenantId = user.tenantId;
+    }
+
+    const where = FilterMapper(filterInput, query);
+
+    const [data, total] = await Promise.all([
+      this.userDbService.findMany({
+        where,
+        skip: pagination.skip,
+        take: pagination.take,
+        orderBy,
+        include: { role: true },
+      }),
+      this.userDbService.count({ where }),
+    ]);
+
+    const sendData = {
+      data: plainToInstance(UserResponseDto, data, {
+        excludeExtraneousValues: true,
+      }),
+      total,
+      pagination,
+    };
+
+    return PaginationResponse(sendData);
+  }
+
   private saveFile(file: Express.Multer.File): string {
     const uploadDir = path.join(process.cwd(), 'uploads');
 
     if (!fs.existsSync(uploadDir)) {
-      console.log('hi');
       fs.mkdirSync(uploadDir, { recursive: true });
     }
 
