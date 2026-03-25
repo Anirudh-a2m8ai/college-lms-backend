@@ -98,6 +98,7 @@ export class UserController {
     return this.userService.suspend(id);
   }
 
+  @Permissions('user:read')
   @Post('list')
   async list(@Query() query: SearchInputDto, @Body() body: any, @CurrentUser() user: any) {
     return this.userService.findAll(query, body, user);

@@ -29,6 +29,12 @@ export class PermissionGuard implements CanActivate {
       throw new ForbiddenException('Permissions missing in token');
     }
 
+    const hasPermission = requiredPermissions.some((permission) => userPermissions.includes(permission));
+
+    if (!hasPermission) {
+      throw new ForbiddenException('Insufficient permissions');
+    }
+
     return true;
   }
 }

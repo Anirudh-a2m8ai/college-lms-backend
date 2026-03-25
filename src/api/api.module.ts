@@ -5,9 +5,10 @@ import { APP_GUARD } from '@nestjs/core';
 import { AccessTokenGuard } from 'src/common/guards/auth.guard';
 import { RoleModule } from './role/role.module';
 import { TenantModule } from './tenant/tenant.module';
+import { DesignationModule } from './designation/designation.module';
 
 @Module({
-  imports: [AuthModule, UserModule, RoleModule, TenantModule],
+  imports: [AuthModule, UserModule, RoleModule, TenantModule, DesignationModule],
   providers: [
     {
       provide: APP_GUARD,

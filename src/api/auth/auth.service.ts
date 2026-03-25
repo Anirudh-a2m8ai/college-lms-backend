@@ -56,10 +56,13 @@ export class AuthService {
       ...new Set(userPermissions.flatMap((role) => role.permissions.map((permission) => permission.name))),
     ];
 
+    const roleNames = [...new Set(userPermissions.flatMap((role) => role.role))];
+
     const tokenPayload = {
       id: user.id,
       email: user.email,
       tenantId: user.tenantId,
+      role: roleNames,
       permissions: permissionNames,
     };
 
