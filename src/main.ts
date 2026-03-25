@@ -4,9 +4,12 @@ import { GlobalExceptionFilter } from './common/filters/global-exception.filter'
 import { ValidationPipe } from '@nestjs/common';
 import 'dotenv/config';
 import { PrismaExceptionFilter } from './common/filters/prisma-exception.filter';
+import cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  app.use(cookieParser());
 
   const corsAllowedOrigins = process.env.ALLOWED_ORIGINS?.toString().split(',') as string[];
   app.enableCors({
@@ -29,10 +32,7 @@ async function bootstrap() {
   );
 
   app.setGlobalPrefix('api/v1');
-  app.useGlobalFilters(
-    new GlobalExceptionFilter(),
-    //  new PrismaExceptionFilter()
-  );
+  app.useGlobalFilters(new GlobalExceptionFilter(), new PrismaExceptionFilter());
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();

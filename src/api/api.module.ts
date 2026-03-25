@@ -6,9 +6,10 @@ import { AccessTokenGuard } from 'src/common/guards/auth.guard';
 import { RoleModule } from './role/role.module';
 import { TenantModule } from './tenant/tenant.module';
 import { DesignationModule } from './designation/designation.module';
+import { CourseModule } from './course/course.module';
 
 @Module({
-  imports: [AuthModule, UserModule, RoleModule, TenantModule, DesignationModule],
+  imports: [AuthModule, UserModule, RoleModule, TenantModule, DesignationModule, CourseModule],
   providers: [
     {
       provide: APP_GUARD,

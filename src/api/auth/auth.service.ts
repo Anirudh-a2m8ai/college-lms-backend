@@ -150,17 +150,42 @@ export class AuthService {
       throw new BadRequestException('Invalid or expired refresh token');
     }
 
-    const user = await this.userDbService.findUnique({
-      where: { id: decodedToken.id },
-    });
+    const user = (await this.userDbService.findFirst({
+      where: {
+        id: decodedToken.id,
+      },
+      include: {
+        role: true,
+      },
+    })) as User & { role: Role[] };
 
     if (!user) {
       throw new NotFoundException('User not found');
     }
 
+    const userPermissions = (await this.roleDbService.findMany({
+      where: {
+        id: {
+          in: user.role.map((role) => role.id),
+        },
+      },
+      include: {
+        permissions: true,
+      },
+    })) as (Role & { permissions: Permission[] })[];
+
+    const permissionNames = [
+      ...new Set(userPermissions.flatMap((role) => role.permissions.map((permission) => permission.name))),
+    ];
+
+    const roleName = [...new Set(userPermissions.flatMap((role) => (role.isSystemDefined ? [role.role] : [])))];
+
     const tokenPayload = {
       id: user.id,
       email: user.email,
+      tenantId: user.tenantId,
+      role: roleName[0],
+      permissions: permissionNames,
     };
 
     const accessToken = await this.jwtService.signAsync(tokenPayload, {
