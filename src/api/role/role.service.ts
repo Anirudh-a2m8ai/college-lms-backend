@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { RoleDbService } from 'src/repository/role.db-service';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { plainToInstance } from 'class-transformer';
 import { RoleResponseDto } from './response/role.type';
+import { UpdateRoleDto } from './dto/update-role.dto';
 
 @Injectable()
 export class RoleService {
@@ -36,5 +37,57 @@ export class RoleService {
     });
 
     return plainToInstance(RoleResponseDto, roles);
+  }
+
+  async update(id: string, payload: UpdateRoleDto, user: any) {
+    const isExist = await this.roleDbService.findUnique({
+      where: {
+        id,
+      },
+    });
+    if (!isExist) {
+      throw new NotFoundException('Role not found');
+    }
+    const role = await this.roleDbService.update({
+      where: {
+        id,
+      },
+      data: {
+        role: payload.name,
+        permissions: {
+          set: payload.permissions?.map((permission: string) => ({
+            id: permission,
+          })),
+        },
+      },
+    });
+
+    const roleResponse = plainToInstance(RoleResponseDto, role);
+
+    return roleResponse;
+  }
+
+  async delete(id: string) {
+    const isExist = await this.roleDbService.findUnique({
+      where: {
+        id,
+      },
+    });
+    if (!isExist) {
+      throw new NotFoundException('Role not found');
+    }
+    const role = await this.roleDbService.update({
+      where: {
+        id,
+      },
+      data: {
+        isDeleted: true,
+        deletedAt: new Date(),
+      },
+    });
+
+    const roleResponse = plainToInstance(RoleResponseDto, role);
+
+    return roleResponse;
   }
 }

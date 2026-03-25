@@ -8,6 +8,7 @@ import { PaginationMapper } from 'src/utils/search/pagination.mapper';
 import { OrderMapper } from 'src/utils/search/order.mapper';
 import { FilterMapper } from 'src/utils/search/filter.mapper';
 import { PaginationResponse } from 'src/utils/search/pagination.response';
+import { UpdateCourseDto } from './dto/update-course.dto';
 
 @Injectable()
 export class CourseService {
@@ -81,6 +82,51 @@ export class CourseService {
     if (!course) {
       throw new NotFoundException('Course not found');
     }
+
+    const courseResponse = plainToInstance(CourseResponseDto, course);
+
+    return courseResponse;
+  }
+
+  async update(id: string, payload: UpdateCourseDto, user: any) {
+    const isExist = await this.courseDbService.findUnique({
+      where: {
+        id,
+      },
+    });
+    if (!isExist) {
+      throw new NotFoundException('Course not found');
+    }
+    const course = await this.courseDbService.update({
+      where: {
+        id,
+      },
+      data: payload,
+    });
+
+    const courseResponse = plainToInstance(CourseResponseDto, course);
+
+    return courseResponse;
+  }
+
+  async delete(id: string) {
+    const isExist = await this.courseDbService.findUnique({
+      where: {
+        id,
+      },
+    });
+    if (!isExist) {
+      throw new NotFoundException('Course not found');
+    }
+    const course = await this.courseDbService.update({
+      where: {
+        id,
+      },
+      data: {
+        isDeleted: true,
+        deletedAt: new Date(),
+      },
+    });
 
     const courseResponse = plainToInstance(CourseResponseDto, course);
 

@@ -1,10 +1,11 @@
-import { Body, Controller, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { CourseService } from './course.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { PermissionGuard } from 'src/common/guards/permission.guard';
 import { Permissions } from 'src/common/decorators/permissions.decorator';
 import { SearchInputDto } from 'src/utils/search/search.input.dto';
+import { UpdateCourseDto } from './dto/update-course.dto';
 
 @Controller('course')
 @UseGuards(PermissionGuard)
@@ -27,5 +28,17 @@ export class CourseController {
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return await this.courseService.findOne(id);
+  }
+
+  @Permissions('course:edit')
+  @Patch(':id')
+  async update(@Param('id') id: string, @Body() payload: UpdateCourseDto, @CurrentUser() user: any) {
+    return await this.courseService.update(id, payload, user);
+  }
+
+  @Permissions('course:delete')
+  @Delete(':id')
+  async delete(@Param('id') id: string) {
+    return await this.courseService.delete(id);
   }
 }
