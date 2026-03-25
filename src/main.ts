@@ -8,6 +8,18 @@ import { PrismaExceptionFilter } from './common/filters/prisma-exception.filter'
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  const corsAllowedOrigins = process.env.ALLOWED_ORIGINS?.toString().split(',') as string[];
+  app.enableCors({
+    origin: (origin, callback) => {
+      if (process.env.NODE_ENV !== 'production' || corsAllowedOrigins.indexOf(origin as string) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('CROSS origin error'), false);
+      }
+    },
+    credentials: true,
+  });
+
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -19,7 +31,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api/v1');
   app.useGlobalFilters(
     new GlobalExceptionFilter(),
-  //  new PrismaExceptionFilter()
+    //  new PrismaExceptionFilter()
   );
   await app.listen(process.env.PORT ?? 3000);
 }
