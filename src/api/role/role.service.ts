@@ -23,7 +23,12 @@ export class RoleService {
       },
     });
 
-    return plainToInstance(RoleResponseDto, role);
+    const roleResponse = plainToInstance(RoleResponseDto, role);
+
+    return {
+      message: 'Role created successfully',
+      data: roleResponse,
+    };
   }
 
   async findAll() {
@@ -64,7 +69,10 @@ export class RoleService {
 
     const roleResponse = plainToInstance(RoleResponseDto, role);
 
-    return roleResponse;
+    return {
+      message: 'Role updated successfully',
+      data: roleResponse,
+    };
   }
 
   async delete(id: string) {
@@ -86,8 +94,8 @@ export class RoleService {
       },
     });
 
-    const roleResponse = plainToInstance(RoleResponseDto, role);
-
-    return roleResponse;
+    return {
+      message: 'Role deleted successfully',
+    };
   }
 }

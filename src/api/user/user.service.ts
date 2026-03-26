@@ -271,7 +271,10 @@ export class UserService {
     const userResponse = plainToInstance(UserResponseDto, updatedUser, {
       excludeExtraneousValues: true,
     });
-    return userResponse;
+    return {
+      message: 'User updated successfully',
+      data: userResponse,
+    };
   }
 
   async delete(id: string) {

@@ -34,7 +34,10 @@ export class CourseService {
 
     const courseResponse = plainToInstance(CourseResponseDto, course);
 
-    return courseResponse;
+    return {
+      message: 'Course created successfully',
+      data: courseResponse,
+    };
   }
 
   async findAll(query: SearchInputDto, body: any, user: any) {
@@ -106,7 +109,10 @@ export class CourseService {
 
     const courseResponse = plainToInstance(CourseResponseDto, course);
 
-    return courseResponse;
+    return {
+      message: 'Course updated successfully',
+      data: courseResponse,
+    };
   }
 
   async delete(id: string) {
@@ -128,8 +134,8 @@ export class CourseService {
       },
     });
 
-    const courseResponse = plainToInstance(CourseResponseDto, course);
-
-    return courseResponse;
+    return {
+      message: 'Course deleted successfully',
+    };
   }
 }

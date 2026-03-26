@@ -34,7 +34,11 @@ export class TenantService {
         id: tenant.id,
       },
     });
-    return plainToInstance(TenantResponse, createdTenant);
+    const tenantResponse = plainToInstance(TenantResponse, createdTenant);
+    return {
+      message: 'Tenant created successfully',
+      data: tenantResponse,
+    };
   }
 
   async findOne(id: string) {
@@ -97,7 +101,11 @@ export class TenantService {
       },
       data: payload,
     });
-    return plainToInstance(TenantResponse, tenant);
+    const tenantResponse = plainToInstance(TenantResponse, tenant);
+    return {
+      message: 'Tenant updated successfully',
+      data: tenantResponse,
+    };
   }
 
   async delete(id: string) {

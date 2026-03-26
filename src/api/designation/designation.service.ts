@@ -38,7 +38,10 @@ export class DesignationService {
 
     const designationResponse = plainToInstance(DesignationResponse, designation);
 
-    return designationResponse;
+    return {
+      message: 'Designation created successfully',
+      data: designationResponse,
+    };
   }
 
   async findAll(query: SearchInputDto, body: any, user: any) {
@@ -109,7 +112,10 @@ export class DesignationService {
 
     const designationResponse = plainToInstance(DesignationResponse, designation);
 
-    return designationResponse;
+    return {
+      message: 'Designation updated successfully',
+      data: designationResponse,
+    };
   }
 
   async delete(id: string) {
