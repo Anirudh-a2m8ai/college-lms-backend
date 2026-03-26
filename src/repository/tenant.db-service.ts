@@ -33,4 +33,8 @@ export class TenantDbService {
   async delete(payload: Prisma.TenantDeleteArgs): Promise<Tenant> {
     return await this.prisma.tenant.delete(payload);
   }
+
+  async count(query: Prisma.TenantCountArgs): Promise<number> {
+    return await this.prisma.tenant.count(query);
+  }
 }
