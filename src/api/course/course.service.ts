@@ -9,10 +9,15 @@ import { OrderMapper } from 'src/utils/search/order.mapper';
 import { FilterMapper } from 'src/utils/search/filter.mapper';
 import { PaginationResponse } from 'src/utils/search/pagination.response';
 import { UpdateCourseDto } from './dto/update-course.dto';
+import { CourseVersionDbService } from 'src/repository/courseVersion.db-service';
+import { CourseStatus } from 'src/generated/prisma/enums';
 
 @Injectable()
 export class CourseService {
-  constructor(private readonly courseDbService: CourseDbService) {}
+  constructor(
+    private readonly courseDbService: CourseDbService,
+    private readonly courseVersionDbService: CourseVersionDbService,
+  ) {}
 
   async create(payload: CreateCourseDto, user: any) {
     const existingCourseCode = await this.courseDbService.findFirst({
@@ -25,15 +30,31 @@ export class CourseService {
     if (existingCourseCode) {
       throw new BadRequestException('Course code already exists');
     }
+    const { versionName, ...rest } = payload;
     const course = await this.courseDbService.create({
       data: {
-        ...payload,
+        ...rest,
         tenantId: user.tenantId ? user.tenantId : payload.tenantId,
       },
     });
+    const courseVersion = await this.courseVersionDbService.create({
+      data: {
+        courseId: course.id,
+        versionName: versionName,
+        tenantId: user.tenantId ? user.tenantId : payload.tenantId,
+        status: CourseStatus.DRAFT,
+      },
+    });
 
-    const courseResponse = plainToInstance(CourseResponseDto, course);
-
+    const updatedCourse = await this.courseDbService.update({
+      where: {
+        id: course.id,
+      },
+      data: {
+        latestCourseVersionId: courseVersion.id,
+      },
+    });
+    const courseResponse = plainToInstance(CourseResponseDto, updatedCourse);
     return {
       message: 'Course created successfully',
       data: courseResponse,
@@ -136,6 +157,38 @@ export class CourseService {
 
     return {
       message: 'Course deleted successfully',
+    };
+  }
+
+  async createLessonPlan(payload: any, user: any) {
+    const course = await this.courseDbService.findUnique({
+      where: {
+        id: payload.courseId,
+      },
+    });
+    if (!course) {
+      throw new NotFoundException('Course not found');
+    }
+    const courseVersion = await this.courseVersionDbService.create({
+      data: {
+        courseId: course.id,
+        versionName: payload.versionName,
+        tenantId: user.tenantId ? user.tenantId : payload.tenantId,
+        status: CourseStatus.DRAFT,
+      },
+    });
+    const updatedCourse = await this.courseDbService.update({
+      where: {
+        id: course.id,
+      },
+      data: {
+        latestCourseVersionId: courseVersion.id,
+      },
+    });
+    const courseResponse = plainToInstance(CourseResponseDto, updatedCourse);
+    return {
+      message: 'Course created successfully',
+      data: courseResponse,
     };
   }
 }

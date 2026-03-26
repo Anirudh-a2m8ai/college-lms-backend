@@ -7,9 +7,10 @@ import { RoleModule } from './role/role.module';
 import { TenantModule } from './tenant/tenant.module';
 import { DesignationModule } from './designation/designation.module';
 import { CourseModule } from './course/course.module';
+import { PermissionModule } from './permission/permission.module';
 
 @Module({
-  imports: [AuthModule, UserModule, RoleModule, TenantModule, DesignationModule, CourseModule],
+  imports: [AuthModule, UserModule, RoleModule, TenantModule, DesignationModule, CourseModule, PermissionModule],
   providers: [
     {
       provide: APP_GUARD,

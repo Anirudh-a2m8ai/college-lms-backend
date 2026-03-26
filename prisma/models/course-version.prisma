@@ -7,11 +7,11 @@ enum CourseStatus {
 model CourseVersion {
   id              String        @id @default(uuid())
   versionName     String
-  sourceVersionId String
+  sourceVersionId String?
   status          CourseStatus
   enrollments     Enrollments[]
-  lessonCount     Int
-  quizCount       Int
+  lessonCount     Int?
+  quizCount       Int?
   courseId        String
   course          Course        @relation(fields: [courseId], references: [id], onDelete: Cascade)
   tenantId        String

@@ -20,4 +20,8 @@ export class CreateCourseDto {
   @IsString()
   @IsOptional()
   tenantId: string;
+
+  @IsString()
+  @IsNotEmpty()
+  versionName: string;
 }

@@ -240,10 +240,10 @@ export type CourseVersionGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 export type CourseVersionGroupByOutputType = {
   id: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount: number | null
+  quizCount: number | null
   courseId: string
   tenantId: string
   isModified: boolean
@@ -280,10 +280,10 @@ export type CourseVersionWhereInput = {
   NOT?: Prisma.CourseVersionWhereInput | Prisma.CourseVersionWhereInput[]
   id?: Prisma.StringFilter<"CourseVersion"> | string
   versionName?: Prisma.StringFilter<"CourseVersion"> | string
-  sourceVersionId?: Prisma.StringFilter<"CourseVersion"> | string
+  sourceVersionId?: Prisma.StringNullableFilter<"CourseVersion"> | string | null
   status?: Prisma.EnumCourseStatusFilter<"CourseVersion"> | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFilter<"CourseVersion"> | number
-  quizCount?: Prisma.IntFilter<"CourseVersion"> | number
+  lessonCount?: Prisma.IntNullableFilter<"CourseVersion"> | number | null
+  quizCount?: Prisma.IntNullableFilter<"CourseVersion"> | number | null
   courseId?: Prisma.StringFilter<"CourseVersion"> | string
   tenantId?: Prisma.StringFilter<"CourseVersion"> | string
   isModified?: Prisma.BoolFilter<"CourseVersion"> | boolean
@@ -305,10 +305,10 @@ export type CourseVersionWhereInput = {
 export type CourseVersionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   versionName?: Prisma.SortOrder
-  sourceVersionId?: Prisma.SortOrder
+  sourceVersionId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
-  lessonCount?: Prisma.SortOrder
-  quizCount?: Prisma.SortOrder
+  lessonCount?: Prisma.SortOrderInput | Prisma.SortOrder
+  quizCount?: Prisma.SortOrderInput | Prisma.SortOrder
   courseId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   isModified?: Prisma.SortOrder
@@ -333,10 +333,10 @@ export type CourseVersionWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.CourseVersionWhereInput[]
   NOT?: Prisma.CourseVersionWhereInput | Prisma.CourseVersionWhereInput[]
   versionName?: Prisma.StringFilter<"CourseVersion"> | string
-  sourceVersionId?: Prisma.StringFilter<"CourseVersion"> | string
+  sourceVersionId?: Prisma.StringNullableFilter<"CourseVersion"> | string | null
   status?: Prisma.EnumCourseStatusFilter<"CourseVersion"> | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFilter<"CourseVersion"> | number
-  quizCount?: Prisma.IntFilter<"CourseVersion"> | number
+  lessonCount?: Prisma.IntNullableFilter<"CourseVersion"> | number | null
+  quizCount?: Prisma.IntNullableFilter<"CourseVersion"> | number | null
   courseId?: Prisma.StringFilter<"CourseVersion"> | string
   tenantId?: Prisma.StringFilter<"CourseVersion"> | string
   isModified?: Prisma.BoolFilter<"CourseVersion"> | boolean
@@ -358,10 +358,10 @@ export type CourseVersionWhereUniqueInput = Prisma.AtLeast<{
 export type CourseVersionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   versionName?: Prisma.SortOrder
-  sourceVersionId?: Prisma.SortOrder
+  sourceVersionId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
-  lessonCount?: Prisma.SortOrder
-  quizCount?: Prisma.SortOrder
+  lessonCount?: Prisma.SortOrderInput | Prisma.SortOrder
+  quizCount?: Prisma.SortOrderInput | Prisma.SortOrder
   courseId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   isModified?: Prisma.SortOrder
@@ -383,10 +383,10 @@ export type CourseVersionScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CourseVersionScalarWhereWithAggregatesInput | Prisma.CourseVersionScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"CourseVersion"> | string
   versionName?: Prisma.StringWithAggregatesFilter<"CourseVersion"> | string
-  sourceVersionId?: Prisma.StringWithAggregatesFilter<"CourseVersion"> | string
+  sourceVersionId?: Prisma.StringNullableWithAggregatesFilter<"CourseVersion"> | string | null
   status?: Prisma.EnumCourseStatusWithAggregatesFilter<"CourseVersion"> | $Enums.CourseStatus
-  lessonCount?: Prisma.IntWithAggregatesFilter<"CourseVersion"> | number
-  quizCount?: Prisma.IntWithAggregatesFilter<"CourseVersion"> | number
+  lessonCount?: Prisma.IntNullableWithAggregatesFilter<"CourseVersion"> | number | null
+  quizCount?: Prisma.IntNullableWithAggregatesFilter<"CourseVersion"> | number | null
   courseId?: Prisma.StringWithAggregatesFilter<"CourseVersion"> | string
   tenantId?: Prisma.StringWithAggregatesFilter<"CourseVersion"> | string
   isModified?: Prisma.BoolWithAggregatesFilter<"CourseVersion"> | boolean
@@ -400,10 +400,10 @@ export type CourseVersionScalarWhereWithAggregatesInput = {
 export type CourseVersionCreateInput = {
   id?: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId?: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount?: number | null
+  quizCount?: number | null
   isModified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -423,10 +423,10 @@ export type CourseVersionCreateInput = {
 export type CourseVersionUncheckedCreateInput = {
   id?: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId?: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount?: number | null
+  quizCount?: number | null
   courseId: string
   tenantId: string
   isModified?: boolean
@@ -446,10 +446,10 @@ export type CourseVersionUncheckedCreateInput = {
 export type CourseVersionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -469,10 +469,10 @@ export type CourseVersionUpdateInput = {
 export type CourseVersionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -492,10 +492,10 @@ export type CourseVersionUncheckedUpdateInput = {
 export type CourseVersionCreateManyInput = {
   id?: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId?: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount?: number | null
+  quizCount?: number | null
   courseId: string
   tenantId: string
   isModified?: boolean
@@ -509,10 +509,10 @@ export type CourseVersionCreateManyInput = {
 export type CourseVersionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -524,10 +524,10 @@ export type CourseVersionUpdateManyMutationInput = {
 export type CourseVersionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -630,6 +630,14 @@ export type CourseVersionUpdateOneRequiredWithoutChapterMapNestedInput = {
 
 export type EnumCourseStatusFieldUpdateOperationsInput = {
   set?: $Enums.CourseStatus
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type CourseVersionCreateNestedManyWithoutCourseInput = {
@@ -789,10 +797,10 @@ export type CourseVersionUpdateOneRequiredWithoutTopicMapNestedInput = {
 export type CourseVersionCreateWithoutChapterMapInput = {
   id?: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId?: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount?: number | null
+  quizCount?: number | null
   isModified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -811,10 +819,10 @@ export type CourseVersionCreateWithoutChapterMapInput = {
 export type CourseVersionUncheckedCreateWithoutChapterMapInput = {
   id?: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId?: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount?: number | null
+  quizCount?: number | null
   courseId: string
   tenantId: string
   isModified?: boolean
@@ -849,10 +857,10 @@ export type CourseVersionUpdateToOneWithWhereWithoutChapterMapInput = {
 export type CourseVersionUpdateWithoutChapterMapInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -871,10 +879,10 @@ export type CourseVersionUpdateWithoutChapterMapInput = {
 export type CourseVersionUncheckedUpdateWithoutChapterMapInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -893,10 +901,10 @@ export type CourseVersionUncheckedUpdateWithoutChapterMapInput = {
 export type CourseVersionCreateWithoutCourseInput = {
   id?: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId?: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount?: number | null
+  quizCount?: number | null
   isModified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -915,10 +923,10 @@ export type CourseVersionCreateWithoutCourseInput = {
 export type CourseVersionUncheckedCreateWithoutCourseInput = {
   id?: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId?: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount?: number | null
+  quizCount?: number | null
   tenantId: string
   isModified?: boolean
   createdAt?: Date | string
@@ -966,10 +974,10 @@ export type CourseVersionScalarWhereInput = {
   NOT?: Prisma.CourseVersionScalarWhereInput | Prisma.CourseVersionScalarWhereInput[]
   id?: Prisma.StringFilter<"CourseVersion"> | string
   versionName?: Prisma.StringFilter<"CourseVersion"> | string
-  sourceVersionId?: Prisma.StringFilter<"CourseVersion"> | string
+  sourceVersionId?: Prisma.StringNullableFilter<"CourseVersion"> | string | null
   status?: Prisma.EnumCourseStatusFilter<"CourseVersion"> | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFilter<"CourseVersion"> | number
-  quizCount?: Prisma.IntFilter<"CourseVersion"> | number
+  lessonCount?: Prisma.IntNullableFilter<"CourseVersion"> | number | null
+  quizCount?: Prisma.IntNullableFilter<"CourseVersion"> | number | null
   courseId?: Prisma.StringFilter<"CourseVersion"> | string
   tenantId?: Prisma.StringFilter<"CourseVersion"> | string
   isModified?: Prisma.BoolFilter<"CourseVersion"> | boolean
@@ -983,10 +991,10 @@ export type CourseVersionScalarWhereInput = {
 export type CourseVersionCreateWithoutEnrollmentsInput = {
   id?: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId?: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount?: number | null
+  quizCount?: number | null
   isModified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1005,10 +1013,10 @@ export type CourseVersionCreateWithoutEnrollmentsInput = {
 export type CourseVersionUncheckedCreateWithoutEnrollmentsInput = {
   id?: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId?: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount?: number | null
+  quizCount?: number | null
   courseId: string
   tenantId: string
   isModified?: boolean
@@ -1043,10 +1051,10 @@ export type CourseVersionUpdateToOneWithWhereWithoutEnrollmentsInput = {
 export type CourseVersionUpdateWithoutEnrollmentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1065,10 +1073,10 @@ export type CourseVersionUpdateWithoutEnrollmentsInput = {
 export type CourseVersionUncheckedUpdateWithoutEnrollmentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1087,10 +1095,10 @@ export type CourseVersionUncheckedUpdateWithoutEnrollmentsInput = {
 export type CourseVersionCreateWithoutLessonMapInput = {
   id?: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId?: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount?: number | null
+  quizCount?: number | null
   isModified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1109,10 +1117,10 @@ export type CourseVersionCreateWithoutLessonMapInput = {
 export type CourseVersionUncheckedCreateWithoutLessonMapInput = {
   id?: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId?: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount?: number | null
+  quizCount?: number | null
   courseId: string
   tenantId: string
   isModified?: boolean
@@ -1147,10 +1155,10 @@ export type CourseVersionUpdateToOneWithWhereWithoutLessonMapInput = {
 export type CourseVersionUpdateWithoutLessonMapInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1169,10 +1177,10 @@ export type CourseVersionUpdateWithoutLessonMapInput = {
 export type CourseVersionUncheckedUpdateWithoutLessonMapInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1191,10 +1199,10 @@ export type CourseVersionUncheckedUpdateWithoutLessonMapInput = {
 export type CourseVersionCreateWithoutModuleMapInput = {
   id?: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId?: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount?: number | null
+  quizCount?: number | null
   isModified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1213,10 +1221,10 @@ export type CourseVersionCreateWithoutModuleMapInput = {
 export type CourseVersionUncheckedCreateWithoutModuleMapInput = {
   id?: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId?: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount?: number | null
+  quizCount?: number | null
   courseId: string
   tenantId: string
   isModified?: boolean
@@ -1251,10 +1259,10 @@ export type CourseVersionUpdateToOneWithWhereWithoutModuleMapInput = {
 export type CourseVersionUpdateWithoutModuleMapInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1273,10 +1281,10 @@ export type CourseVersionUpdateWithoutModuleMapInput = {
 export type CourseVersionUncheckedUpdateWithoutModuleMapInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1295,10 +1303,10 @@ export type CourseVersionUncheckedUpdateWithoutModuleMapInput = {
 export type CourseVersionCreateWithoutSubTopicMapInput = {
   id?: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId?: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount?: number | null
+  quizCount?: number | null
   isModified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1317,10 +1325,10 @@ export type CourseVersionCreateWithoutSubTopicMapInput = {
 export type CourseVersionUncheckedCreateWithoutSubTopicMapInput = {
   id?: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId?: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount?: number | null
+  quizCount?: number | null
   courseId: string
   tenantId: string
   isModified?: boolean
@@ -1355,10 +1363,10 @@ export type CourseVersionUpdateToOneWithWhereWithoutSubTopicMapInput = {
 export type CourseVersionUpdateWithoutSubTopicMapInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1377,10 +1385,10 @@ export type CourseVersionUpdateWithoutSubTopicMapInput = {
 export type CourseVersionUncheckedUpdateWithoutSubTopicMapInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1399,10 +1407,10 @@ export type CourseVersionUncheckedUpdateWithoutSubTopicMapInput = {
 export type CourseVersionCreateWithoutTenantInput = {
   id?: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId?: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount?: number | null
+  quizCount?: number | null
   isModified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1421,10 +1429,10 @@ export type CourseVersionCreateWithoutTenantInput = {
 export type CourseVersionUncheckedCreateWithoutTenantInput = {
   id?: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId?: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount?: number | null
+  quizCount?: number | null
   courseId: string
   isModified?: boolean
   createdAt?: Date | string
@@ -1469,10 +1477,10 @@ export type CourseVersionUpdateManyWithWhereWithoutTenantInput = {
 export type CourseVersionCreateWithoutTopicMapInput = {
   id?: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId?: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount?: number | null
+  quizCount?: number | null
   isModified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1491,10 +1499,10 @@ export type CourseVersionCreateWithoutTopicMapInput = {
 export type CourseVersionUncheckedCreateWithoutTopicMapInput = {
   id?: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId?: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount?: number | null
+  quizCount?: number | null
   courseId: string
   tenantId: string
   isModified?: boolean
@@ -1529,10 +1537,10 @@ export type CourseVersionUpdateToOneWithWhereWithoutTopicMapInput = {
 export type CourseVersionUpdateWithoutTopicMapInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1551,10 +1559,10 @@ export type CourseVersionUpdateWithoutTopicMapInput = {
 export type CourseVersionUncheckedUpdateWithoutTopicMapInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1573,10 +1581,10 @@ export type CourseVersionUncheckedUpdateWithoutTopicMapInput = {
 export type CourseVersionCreateManyCourseInput = {
   id?: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId?: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount?: number | null
+  quizCount?: number | null
   tenantId: string
   isModified?: boolean
   createdAt?: Date | string
@@ -1589,10 +1597,10 @@ export type CourseVersionCreateManyCourseInput = {
 export type CourseVersionUpdateWithoutCourseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1611,10 +1619,10 @@ export type CourseVersionUpdateWithoutCourseInput = {
 export type CourseVersionUncheckedUpdateWithoutCourseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1633,10 +1641,10 @@ export type CourseVersionUncheckedUpdateWithoutCourseInput = {
 export type CourseVersionUncheckedUpdateManyWithoutCourseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1649,10 +1657,10 @@ export type CourseVersionUncheckedUpdateManyWithoutCourseInput = {
 export type CourseVersionCreateManyTenantInput = {
   id?: string
   versionName: string
-  sourceVersionId: string
+  sourceVersionId?: string | null
   status: $Enums.CourseStatus
-  lessonCount: number
-  quizCount: number
+  lessonCount?: number | null
+  quizCount?: number | null
   courseId: string
   isModified?: boolean
   createdAt?: Date | string
@@ -1665,10 +1673,10 @@ export type CourseVersionCreateManyTenantInput = {
 export type CourseVersionUpdateWithoutTenantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1687,10 +1695,10 @@ export type CourseVersionUpdateWithoutTenantInput = {
 export type CourseVersionUncheckedUpdateWithoutTenantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1709,10 +1717,10 @@ export type CourseVersionUncheckedUpdateWithoutTenantInput = {
 export type CourseVersionUncheckedUpdateManyWithoutTenantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   versionName?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
-  lessonCount?: Prisma.IntFieldUpdateOperationsInput | number
-  quizCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1915,10 +1923,10 @@ export type $CourseVersionPayload<ExtArgs extends runtime.Types.Extensions.Inter
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     versionName: string
-    sourceVersionId: string
+    sourceVersionId: string | null
     status: $Enums.CourseStatus
-    lessonCount: number
-    quizCount: number
+    lessonCount: number | null
+    quizCount: number | null
     courseId: string
     tenantId: string
     isModified: boolean

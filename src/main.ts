@@ -32,7 +32,10 @@ async function bootstrap() {
   );
 
   app.setGlobalPrefix('api/v1');
-  app.useGlobalFilters(new GlobalExceptionFilter(), new PrismaExceptionFilter());
+  app.useGlobalFilters(
+    new GlobalExceptionFilter(),
+    // new PrismaExceptionFilter()
+  );
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();

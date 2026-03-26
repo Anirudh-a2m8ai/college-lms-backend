@@ -254,18 +254,25 @@ export class UserService {
     if (!existingUser) {
       throw new BadRequestException('User not found');
     }
+    const { roleIds, socialLinks, ...rest } = updateUserDto;
     const updatedUser = await this.userDbService.update({
       where: {
         id,
       },
       data: {
-        ...updateUserDto,
-        socialLinks: {
-          create: updateUserDto.socialLinks,
-        },
-        role: {
-          connect: updateUserDto.roleIds.map((id) => ({ id })),
-        },
+        ...rest,
+
+        ...(socialLinks && {
+          socialLinks: {
+            create: socialLinks,
+          },
+        }),
+
+        ...(roleIds && {
+          role: {
+            set: roleIds.map((id) => ({ id })),
+          },
+        }),
       },
     });
     const userResponse = plainToInstance(UserResponseDto, updatedUser, {

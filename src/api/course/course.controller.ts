@@ -41,4 +41,10 @@ export class CourseController {
   async delete(@Param('id') id: string) {
     return await this.courseService.delete(id);
   }
+
+  // @Permissions('course:create')
+  // @Post('lesson-plan')
+  // async createLessonPlan(@Body() payload: any, @CurrentUser() user: any) {
+  //   return await this.courseService.createLessonPlan(payload, user);
+  // }
 }

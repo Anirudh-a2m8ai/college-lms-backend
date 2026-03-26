@@ -748,14 +748,6 @@ export type EnumAccountStatusFieldUpdateOperationsInput = {
   set?: $Enums.AccountStatus
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type TenantCreateNestedOneWithoutUsersInput = {
   create?: Prisma.XOR<Prisma.TenantCreateWithoutUsersInput, Prisma.TenantUncheckedCreateWithoutUsersInput>
   connectOrCreate?: Prisma.TenantCreateOrConnectWithoutUsersInput
