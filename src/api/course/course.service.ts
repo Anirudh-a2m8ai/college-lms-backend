@@ -161,34 +161,58 @@ export class CourseService {
   }
 
   async createLessonPlan(payload: any, user: any) {
-    const course = await this.courseDbService.findUnique({
+    const courseVersion = await this.courseVersionDbService.findUnique({
       where: {
-        id: payload.courseId,
+        id: payload.courseVersionId,
       },
     });
-    if (!course) {
-      throw new NotFoundException('Course not found');
+    if (!courseVersion) {
+      throw new NotFoundException('Course version not found');
     }
-    const courseVersion = await this.courseVersionDbService.create({
-      data: {
-        courseId: course.id,
-        versionName: payload.versionName,
-        tenantId: user.tenantId ? user.tenantId : payload.tenantId,
-        status: CourseStatus.DRAFT,
-      },
-    });
-    const updatedCourse = await this.courseDbService.update({
+    const courseVersionEntity = await this.courseVersionDbService.createCourseVersion(payload, courseVersion.id);
+    return courseVersionEntity;
+  }
+
+  async getCourseVersion(courseVersionId: string) {
+    const courseVersion = await this.courseVersionDbService.findUnique({
       where: {
-        id: course.id,
-      },
-      data: {
-        latestCourseVersionId: courseVersion.id,
+        id: courseVersionId,
       },
     });
-    const courseResponse = plainToInstance(CourseResponseDto, updatedCourse);
+    if (!courseVersion) {
+      throw new NotFoundException('Course version not found');
+    }
+    const courseVersionEntity = await this.courseVersionDbService.getCourseVersion(courseVersionId);
+    const courseVersionResponse = {
+      courseVersion,
+      module: courseVersionEntity.module,
+    };
     return {
-      message: 'Course created successfully',
-      data: courseResponse,
+      message: 'Course version fetched successfully',
+      data: courseVersionResponse,
+    };
+  }
+
+  async updateCourseVersionStatus(courseVersionId: string, payload: any, user: any) {
+    const courseVersion = await this.courseVersionDbService.findUnique({
+      where: {
+        id: courseVersionId,
+      },
+    });
+    if (!courseVersion) {
+      throw new NotFoundException('Course version not found');
+    }
+    const courseVersionEntity = await this.courseVersionDbService.update({
+      where: {
+        id: courseVersionId,
+      },
+      data: {
+        status: payload.status,
+      },
+    });
+    return {
+      message: 'Course version status updated successfully',
+      data: courseVersionEntity,
     };
   }
 }

@@ -186,7 +186,7 @@ export type SubTopicsGroupByOutputType = {
   logicalId: string
   title: string
   isMandatory: boolean
-  content: string
+  content: string | null
   examples: runtime.JsonValue | null
   image: runtime.JsonValue | null
   createdAt: Date
@@ -222,7 +222,7 @@ export type SubTopicsWhereInput = {
   logicalId?: Prisma.StringFilter<"SubTopics"> | string
   title?: Prisma.StringFilter<"SubTopics"> | string
   isMandatory?: Prisma.BoolFilter<"SubTopics"> | boolean
-  content?: Prisma.StringFilter<"SubTopics"> | string
+  content?: Prisma.StringNullableFilter<"SubTopics"> | string | null
   examples?: Prisma.JsonNullableFilter<"SubTopics">
   image?: Prisma.JsonNullableFilter<"SubTopics">
   createdAt?: Prisma.DateTimeFilter<"SubTopics"> | Date | string
@@ -238,7 +238,7 @@ export type SubTopicsOrderByWithRelationInput = {
   logicalId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   isMandatory?: Prisma.SortOrder
-  content?: Prisma.SortOrder
+  content?: Prisma.SortOrderInput | Prisma.SortOrder
   examples?: Prisma.SortOrderInput | Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -257,7 +257,7 @@ export type SubTopicsWhereUniqueInput = Prisma.AtLeast<{
   logicalId?: Prisma.StringFilter<"SubTopics"> | string
   title?: Prisma.StringFilter<"SubTopics"> | string
   isMandatory?: Prisma.BoolFilter<"SubTopics"> | boolean
-  content?: Prisma.StringFilter<"SubTopics"> | string
+  content?: Prisma.StringNullableFilter<"SubTopics"> | string | null
   examples?: Prisma.JsonNullableFilter<"SubTopics">
   image?: Prisma.JsonNullableFilter<"SubTopics">
   createdAt?: Prisma.DateTimeFilter<"SubTopics"> | Date | string
@@ -273,7 +273,7 @@ export type SubTopicsOrderByWithAggregationInput = {
   logicalId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   isMandatory?: Prisma.SortOrder
-  content?: Prisma.SortOrder
+  content?: Prisma.SortOrderInput | Prisma.SortOrder
   examples?: Prisma.SortOrderInput | Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -294,7 +294,7 @@ export type SubTopicsScalarWhereWithAggregatesInput = {
   logicalId?: Prisma.StringWithAggregatesFilter<"SubTopics"> | string
   title?: Prisma.StringWithAggregatesFilter<"SubTopics"> | string
   isMandatory?: Prisma.BoolWithAggregatesFilter<"SubTopics"> | boolean
-  content?: Prisma.StringWithAggregatesFilter<"SubTopics"> | string
+  content?: Prisma.StringNullableWithAggregatesFilter<"SubTopics"> | string | null
   examples?: Prisma.JsonNullableWithAggregatesFilter<"SubTopics">
   image?: Prisma.JsonNullableWithAggregatesFilter<"SubTopics">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"SubTopics"> | Date | string
@@ -309,7 +309,7 @@ export type SubTopicsCreateInput = {
   logicalId?: string
   title: string
   isMandatory?: boolean
-  content: string
+  content?: string | null
   examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
@@ -325,7 +325,7 @@ export type SubTopicsUncheckedCreateInput = {
   logicalId?: string
   title: string
   isMandatory?: boolean
-  content: string
+  content?: string | null
   examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
@@ -341,7 +341,7 @@ export type SubTopicsUpdateInput = {
   logicalId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   isMandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  content?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -357,7 +357,7 @@ export type SubTopicsUncheckedUpdateInput = {
   logicalId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   isMandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  content?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -373,7 +373,7 @@ export type SubTopicsCreateManyInput = {
   logicalId?: string
   title: string
   isMandatory?: boolean
-  content: string
+  content?: string | null
   examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
@@ -388,7 +388,7 @@ export type SubTopicsUpdateManyMutationInput = {
   logicalId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   isMandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  content?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -403,7 +403,7 @@ export type SubTopicsUncheckedUpdateManyInput = {
   logicalId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   isMandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  content?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -478,7 +478,7 @@ export type SubTopicsCreateWithoutSubTopicMapInput = {
   logicalId?: string
   title: string
   isMandatory?: boolean
-  content: string
+  content?: string | null
   examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
@@ -493,7 +493,7 @@ export type SubTopicsUncheckedCreateWithoutSubTopicMapInput = {
   logicalId?: string
   title: string
   isMandatory?: boolean
-  content: string
+  content?: string | null
   examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
@@ -524,7 +524,7 @@ export type SubTopicsUpdateWithoutSubTopicMapInput = {
   logicalId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   isMandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  content?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -539,7 +539,7 @@ export type SubTopicsUncheckedUpdateWithoutSubTopicMapInput = {
   logicalId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   isMandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  content?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -660,7 +660,7 @@ export type $SubTopicsPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     logicalId: string
     title: string
     isMandatory: boolean
-    content: string
+    content: string | null
     examples: runtime.JsonValue | null
     image: runtime.JsonValue | null
     createdAt: Date

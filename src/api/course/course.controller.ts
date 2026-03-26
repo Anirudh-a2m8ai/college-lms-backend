@@ -42,9 +42,24 @@ export class CourseController {
     return await this.courseService.delete(id);
   }
 
-  // @Permissions('course:create')
-  // @Post('lesson-plan')
-  // async createLessonPlan(@Body() payload: any, @CurrentUser() user: any) {
-  //   return await this.courseService.createLessonPlan(payload, user);
-  // }
+  @Permissions('course:create')
+  @Post('lesson-plan')
+  async createLessonPlan(@Body() payload: any, @CurrentUser() user: any) {
+    return await this.courseService.createLessonPlan(payload, user);
+  }
+
+  @Get('/course-version/:courseVersionId')
+  async getCourseVersion(@Param('courseVersionId') courseVersionId: string) {
+    return await this.courseService.getCourseVersion(courseVersionId);
+  }
+
+  @Permissions('course:edit')
+  @Patch('/course-version/status/:courseVersionId')
+  async updateCourseVersionStatus(
+    @Param('courseVersionId') courseVersionId: string,
+    @Body() payload: any,
+    @CurrentUser() user: any,
+  ) {
+    return await this.courseService.updateCourseVersionStatus(courseVersionId, payload, user);
+  }
 }

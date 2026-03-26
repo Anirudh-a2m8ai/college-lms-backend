@@ -3,7 +3,7 @@ model SubTopics {
   logicalId   String        @default(uuid())
   title       String
   isMandatory Boolean       @default(false)
-  content     String
+  content     String?
   examples    Json?
   image       Json?
   subTopicMap subTopicMap[]
