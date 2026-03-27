@@ -189,13 +189,13 @@ export class AuthService {
     };
 
     const accessToken = await this.jwtService.signAsync(tokenPayload, {
-      secret: process.env.ACCESS_SECRET!,
-      expiresIn: (process.env.ACCESS_EXPIRY || '15m') as unknown as number,
+      secret: process.env.JWT_ACCESS_SECRET!,
+      expiresIn: (process.env.ACCESS_TOKEN_EXPIRY || '15m') as unknown as number,
     });
 
     const newRefreshToken = await this.jwtService.signAsync(tokenPayload, {
-      secret: process.env.REFRESH_SECRET,
-      expiresIn: (process.env.REFRESH_EXPIRY || '7d') as unknown as number,
+      secret: process.env.JWT_REFRESH_SECRET,
+      expiresIn: (process.env.REFRESH_TOKEN_EXPIRY || '7d') as unknown as number,
     });
     const hashedNewToken = hashToken(newRefreshToken);
     await this.userTokenDbService.delete({
