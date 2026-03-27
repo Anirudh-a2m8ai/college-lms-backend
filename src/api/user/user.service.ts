@@ -49,9 +49,17 @@ export class UserService {
     const { hashedPassword } = await generateRandomPassword();
     const user = await this.userDbService.create({
       data: {
-        ...createUserDto,
+        firstName: createUserDto.firstName,
+        lastName: createUserDto.lastName,
+        email: createUserDto.email,
+        phone: createUserDto.phone,
+        username: createUserDto.username,
+        bio: createUserDto.bio,
         passwordHash: hashedPassword,
         status: AccountStatus.INACTIVE,
+        tenant: {
+          connect: { id: createUserDto.tenantId },
+        },
         role: {
           connect: createUserDto.roleIds.map((id) => ({ id })),
         },
