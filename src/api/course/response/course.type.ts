@@ -15,6 +15,12 @@ export class CourseResponseDto {
   courseCode: string;
 
   @Expose()
+  latestCourseVersionId: string;
+
+  @Expose()
+  designationId: string;
+
+  @Expose()
   createdAt: Date;
 
   @Expose()
