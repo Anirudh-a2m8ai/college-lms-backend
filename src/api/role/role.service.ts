@@ -9,10 +9,11 @@ import { UpdateRoleDto } from './dto/update-role.dto';
 export class RoleService {
   constructor(private readonly roleDbService: RoleDbService) {}
 
-  async create(payload: CreateRoleDto) {
+  async create(payload: CreateRoleDto, user: any) {
     const role = await this.roleDbService.create({
       data: {
         role: payload.name,
+        tenantId: user.tenantId,
         permissions: {
           connect: payload.permissions.map((permission: string) => ({
             id: permission,

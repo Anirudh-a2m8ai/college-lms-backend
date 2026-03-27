@@ -7,6 +7,16 @@ import { DesignationDbService } from './designation.db-service';
 import { CourseDbService } from './course.db-service';
 import { CourseVersionDbService } from './courseVersion.db-service';
 import { PermissionDbService } from './permission.db-service';
+import { ModuleDbService } from './module.db-service';
+import { ModuleMapDbService } from './moduleMap.db-service';
+import { ChapterDbService } from './chapter.db-service';
+import { ChapterMapDbService } from './chapterMap.db-service';
+import { LessonDbService } from './lesson.db-service';
+import { LessonMapDbService } from './lessonMap.db-service';
+import { TopicDbService } from './topic.db-service';
+import { TopicMapDbService } from './topicMap.db-service';
+import { SubTopicDbService } from './subTopic.db-service';
+import { SubTopicMapDbService } from './subTopicMap.db-service';
 
 @Module({
   providers: [
@@ -18,6 +28,16 @@ import { PermissionDbService } from './permission.db-service';
     CourseDbService,
     CourseVersionDbService,
     PermissionDbService,
+    ModuleDbService,
+    ModuleMapDbService,
+    ChapterDbService,
+    ChapterMapDbService,
+    LessonDbService,
+    LessonMapDbService,
+    TopicDbService,
+    TopicMapDbService,
+    SubTopicDbService,
+    SubTopicMapDbService,
   ],
   exports: [
     UserDbService,
@@ -28,6 +48,16 @@ import { PermissionDbService } from './permission.db-service';
     CourseDbService,
     CourseVersionDbService,
     PermissionDbService,
+    ModuleDbService,
+    ModuleMapDbService,
+    ChapterDbService,
+    ChapterMapDbService,
+    LessonDbService,
+    LessonMapDbService,
+    TopicDbService,
+    TopicMapDbService,
+    SubTopicDbService,
+    SubTopicMapDbService,
   ],
 })
 export class DbServiceModule {}

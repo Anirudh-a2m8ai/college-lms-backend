@@ -14,8 +14,8 @@ export class RoleController {
 
   @Permissions('role:create')
   @Post()
-  async create(@Body() payload: CreateRoleDto) {
-    return await this.roleService.create(payload);
+  async create(@Body() payload: CreateRoleDto, @CurrentUser() user: any) {
+    return await this.roleService.create(payload, user);
   }
 
   @Permissions('role:read')

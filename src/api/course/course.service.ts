@@ -184,12 +184,15 @@ export class CourseService {
     }
     const courseVersionEntity = await this.courseVersionDbService.getCourseVersion(courseVersionId);
     const courseVersionResponse = {
-      courseVersion,
+      ...courseVersion,
       module: courseVersionEntity.module,
     };
+    const courseVersionResponseDto = plainToInstance(CourseResponseDto, courseVersionResponse, {
+      excludeExtraneousValues: true,
+    });
     return {
       message: 'Course version fetched successfully',
-      data: courseVersionResponse,
+      data: courseVersionResponseDto,
     };
   }
 

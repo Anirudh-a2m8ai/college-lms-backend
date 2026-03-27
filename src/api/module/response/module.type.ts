@@ -1,8 +1,8 @@
 import { Exclude, Expose, Type } from 'class-transformer';
-import { ModuleResponseDto } from 'src/api/module/response/module.type';
+import { ChapterResponseDto } from 'src/api/chapter/response/chapter.type';
 
 @Exclude()
-export class CourseResponseDto {
+export class ModuleResponseDto {
   @Expose()
   id: string;
 
@@ -13,13 +13,10 @@ export class CourseResponseDto {
   description: string;
 
   @Expose()
-  courseCode: string;
+  overview: string;
 
   @Expose()
-  latestCourseVersionId: string;
-
-  @Expose()
-  designationId: string;
+  orderIndex: number;
 
   @Expose()
   createdAt: Date;
@@ -28,6 +25,6 @@ export class CourseResponseDto {
   updatedAt: Date;
 
   @Expose()
-  @Type(() => ModuleResponseDto)
-  module: ModuleResponseDto[];
+  @Type(() => ChapterResponseDto)
+  chapter: ChapterResponseDto[];
 }
