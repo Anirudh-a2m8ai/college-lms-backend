@@ -6,6 +6,7 @@ import { PermissionGuard } from 'src/common/guards/permission.guard';
 import { Permissions } from 'src/common/decorators/permissions.decorator';
 import { SearchInputDto } from 'src/utils/search/search.input.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
+import { EnableEditDto } from './dto/enable-edit.dto';
 
 @Controller('course')
 @UseGuards(PermissionGuard)
@@ -61,5 +62,11 @@ export class CourseController {
     @CurrentUser() user: any,
   ) {
     return await this.courseService.updateCourseVersionStatus(courseVersionId, payload, user);
+  }
+
+  @Permissions('course:create')
+  @Post('enable-edit')
+  async enableEdit(@Body() payload: EnableEditDto, @CurrentUser() user: any) {
+    return await this.courseService.enableEdit(payload, user);
   }
 }

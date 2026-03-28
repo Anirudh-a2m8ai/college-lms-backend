@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma, CourseVersion } from 'src/generated/prisma/client';
+import { Prisma, CourseVersion, CourseStatus } from 'src/generated/prisma/client';
 import { BatchPayload } from 'src/generated/prisma/internal/prismaNamespace';
 import { PrismaService } from 'src/prisma/prisma.service';
 
@@ -224,5 +224,118 @@ export class CourseVersionDbService {
         chapter: chapterByModule.get(m.moduleId) || [],
       })),
     };
+  }
+
+  async createDraftWithClone(courseId: string, tenantId: string, sourceCourseVersionId: string, versionName: string) {
+    return this.prisma.$transaction(async (tx) => {
+      // ---------------- CHECK EXISTING DRAFT ----------------
+      const existingDraft = await tx.courseVersion.findFirst({
+        where: {
+          courseId,
+          status: CourseStatus.DRAFT,
+        },
+      });
+
+      if (existingDraft) {
+        return {
+          message: 'Draft already exists',
+          courseVersionId: existingDraft.id,
+        };
+      }
+
+      // ---------------- CREATE NEW VERSION ----------------
+      const newVersion = await tx.courseVersion.create({
+        data: {
+          courseId,
+          tenantId,
+          versionName,
+          status: CourseStatus.DRAFT,
+          sourceVersionId: sourceCourseVersionId,
+        },
+      });
+
+      // ---------------- FETCH MAPS ----------------
+      const [moduleMaps, chapterMaps, lessonMaps, topicMaps, subTopicMaps] = await Promise.all([
+        tx.moduleMap.findMany({
+          where: { courseVersionId: sourceCourseVersionId },
+        }),
+        tx.chapterMap.findMany({
+          where: { courseVersionId: sourceCourseVersionId },
+        }),
+        tx.lessonMap.findMany({
+          where: { courseVersionId: sourceCourseVersionId },
+        }),
+        tx.topicMap.findMany({
+          where: { courseVersionId: sourceCourseVersionId },
+        }),
+        tx.subTopicMap.findMany({
+          where: { courseVersionId: sourceCourseVersionId },
+        }),
+      ]);
+
+      // ---------------- CLONE MODULE MAP ----------------
+      if (moduleMaps.length) {
+        await tx.moduleMap.createMany({
+          data: moduleMaps.map((m) => ({
+            moduleId: m.moduleId,
+            courseVersionId: newVersion.id,
+            orderIndex: m.orderIndex,
+          })),
+        });
+      }
+
+      // ---------------- CLONE CHAPTER MAP ----------------
+      if (chapterMaps.length) {
+        await tx.chapterMap.createMany({
+          data: chapterMaps.map((c) => ({
+            chapterId: c.chapterId,
+            moduleId: c.moduleId,
+            courseVersionId: newVersion.id,
+            orderIndex: c.orderIndex,
+          })),
+        });
+      }
+
+      // ---------------- CLONE LESSON MAP ----------------
+      if (lessonMaps.length) {
+        await tx.lessonMap.createMany({
+          data: lessonMaps.map((l) => ({
+            lessonId: l.lessonId,
+            chapterId: l.chapterId,
+            courseVersionId: newVersion.id,
+            orderIndex: l.orderIndex,
+          })),
+        });
+      }
+
+      // ---------------- CLONE TOPIC MAP ----------------
+      if (topicMaps.length) {
+        await tx.topicMap.createMany({
+          data: topicMaps.map((t) => ({
+            topicId: t.topicId,
+            lessonId: t.lessonId,
+            courseVersionId: newVersion.id,
+            orderIndex: t.orderIndex,
+          })),
+        });
+      }
+
+      // ---------------- CLONE SUBTOPIC MAP ----------------
+      if (subTopicMaps.length) {
+        await tx.subTopicMap.createMany({
+          data: subTopicMaps.map((s) => ({
+            subTopicId: s.subTopicId,
+            topicId: s.topicId,
+            courseVersionId: newVersion.id,
+            orderIndex: s.orderIndex,
+          })),
+        });
+      }
+
+      return {
+        message: 'Draft version created successfully',
+        courseVersionId: newVersion.id,
+      };
+    });
   }
 }

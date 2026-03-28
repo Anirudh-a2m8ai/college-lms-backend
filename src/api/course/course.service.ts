@@ -2,7 +2,7 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { CourseDbService } from 'src/repository/course.db-service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { plainToInstance } from 'class-transformer';
-import { CourseResponseDto } from './response/course.type';
+import { CourseResponseDto, CourseVersionResponseDto } from './response/course.type';
 import { SearchInputDto } from 'src/utils/search/search.input.dto';
 import { PaginationMapper } from 'src/utils/search/pagination.mapper';
 import { OrderMapper } from 'src/utils/search/order.mapper';
@@ -11,6 +11,8 @@ import { PaginationResponse } from 'src/utils/search/pagination.response';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { CourseVersionDbService } from 'src/repository/courseVersion.db-service';
 import { CourseStatus } from 'src/generated/prisma/enums';
+import { EnableEditDto } from './dto/enable-edit.dto';
+import { Course, CourseVersion } from 'src/generated/prisma/client';
 
 @Injectable()
 export class CourseService {
@@ -174,11 +176,12 @@ export class CourseService {
   }
 
   async getCourseVersion(courseVersionId: string) {
-    const courseVersion = await this.courseVersionDbService.findUnique({
+    const courseVersion = (await this.courseVersionDbService.findUnique({
       where: {
         id: courseVersionId,
       },
-    });
+      include: { course: true },
+    })) as CourseVersion & { course: Course };
     if (!courseVersion) {
       throw new NotFoundException('Course version not found');
     }
@@ -187,12 +190,19 @@ export class CourseService {
       ...courseVersion,
       module: courseVersionEntity.module,
     };
-    const courseVersionResponseDto = plainToInstance(CourseResponseDto, courseVersionResponse, {
+    const courseVersionResponseDto = plainToInstance(CourseVersionResponseDto, courseVersionResponse, {
       excludeExtraneousValues: true,
     });
+    const course = plainToInstance(CourseResponseDto, courseVersion.course, {
+      excludeExtraneousValues: true,
+    });
+    const courseResponse = {
+      course: course,
+      courseVersion: courseVersionResponseDto,
+    };
     return {
       message: 'Course version fetched successfully',
-      data: courseVersionResponseDto,
+      data: courseResponse,
     };
   }
 
@@ -215,6 +225,32 @@ export class CourseService {
     });
     return {
       message: 'Course version status updated successfully',
+      data: courseVersionEntity,
+    };
+  }
+
+  async enableEdit(payload: EnableEditDto, user: any) {
+    const course = await this.courseDbService.findUnique({
+      where: {
+        id: payload.courseId,
+      },
+    });
+    if (!course) {
+      throw new NotFoundException('Course not found');
+    }
+    if (!course.latestCourseVersionId) {
+      throw new NotFoundException('Course version not found');
+    }
+
+    const courseVersionEntity = await this.courseVersionDbService.createDraftWithClone(
+      course.id,
+      course.tenantId,
+      course.latestCourseVersionId,
+      payload.versionName,
+    );
+
+    return {
+      message: 'Course version enabled successfully',
       data: courseVersionEntity,
     };
   }
