@@ -231,6 +231,8 @@ export type SubTopicsWhereInput = {
   deletedAt?: Prisma.DateTimeNullableFilter<"SubTopics"> | Date | string | null
   deleteAt?: Prisma.DateTimeNullableFilter<"SubTopics"> | Date | string | null
   subTopicMap?: Prisma.SubTopicMapListRelationFilter
+  userProcess?: Prisma.UserProcessListRelationFilter
+  quizzes?: Prisma.QuizListRelationFilter
 }
 
 export type SubTopicsOrderByWithRelationInput = {
@@ -247,6 +249,8 @@ export type SubTopicsOrderByWithRelationInput = {
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   deleteAt?: Prisma.SortOrderInput | Prisma.SortOrder
   subTopicMap?: Prisma.subTopicMapOrderByRelationAggregateInput
+  userProcess?: Prisma.UserProcessOrderByRelationAggregateInput
+  quizzes?: Prisma.QuizOrderByRelationAggregateInput
 }
 
 export type SubTopicsWhereUniqueInput = Prisma.AtLeast<{
@@ -266,6 +270,8 @@ export type SubTopicsWhereUniqueInput = Prisma.AtLeast<{
   deletedAt?: Prisma.DateTimeNullableFilter<"SubTopics"> | Date | string | null
   deleteAt?: Prisma.DateTimeNullableFilter<"SubTopics"> | Date | string | null
   subTopicMap?: Prisma.SubTopicMapListRelationFilter
+  userProcess?: Prisma.UserProcessListRelationFilter
+  quizzes?: Prisma.QuizListRelationFilter
 }, "id">
 
 export type SubTopicsOrderByWithAggregationInput = {
@@ -318,6 +324,8 @@ export type SubTopicsCreateInput = {
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
   subTopicMap?: Prisma.subTopicMapCreateNestedManyWithoutSubTopicInput
+  userProcess?: Prisma.UserProcessCreateNestedManyWithoutSubTopicInput
+  quizzes?: Prisma.QuizCreateNestedManyWithoutSubTopicInput
 }
 
 export type SubTopicsUncheckedCreateInput = {
@@ -334,6 +342,8 @@ export type SubTopicsUncheckedCreateInput = {
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
   subTopicMap?: Prisma.subTopicMapUncheckedCreateNestedManyWithoutSubTopicInput
+  userProcess?: Prisma.UserProcessUncheckedCreateNestedManyWithoutSubTopicInput
+  quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutSubTopicInput
 }
 
 export type SubTopicsUpdateInput = {
@@ -350,6 +360,8 @@ export type SubTopicsUpdateInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   subTopicMap?: Prisma.subTopicMapUpdateManyWithoutSubTopicNestedInput
+  userProcess?: Prisma.UserProcessUpdateManyWithoutSubTopicNestedInput
+  quizzes?: Prisma.QuizUpdateManyWithoutSubTopicNestedInput
 }
 
 export type SubTopicsUncheckedUpdateInput = {
@@ -366,6 +378,8 @@ export type SubTopicsUncheckedUpdateInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   subTopicMap?: Prisma.subTopicMapUncheckedUpdateManyWithoutSubTopicNestedInput
+  userProcess?: Prisma.UserProcessUncheckedUpdateManyWithoutSubTopicNestedInput
+  quizzes?: Prisma.QuizUncheckedUpdateManyWithoutSubTopicNestedInput
 }
 
 export type SubTopicsCreateManyInput = {
@@ -411,6 +425,11 @@ export type SubTopicsUncheckedUpdateManyInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type SubTopicsNullableScalarRelationFilter = {
+  is?: Prisma.SubTopicsWhereInput | null
+  isNot?: Prisma.SubTopicsWhereInput | null
 }
 
 export type SubTopicsCountOrderByAggregateInput = {
@@ -459,6 +478,22 @@ export type SubTopicsScalarRelationFilter = {
   isNot?: Prisma.SubTopicsWhereInput
 }
 
+export type SubTopicsCreateNestedOneWithoutQuizzesInput = {
+  create?: Prisma.XOR<Prisma.SubTopicsCreateWithoutQuizzesInput, Prisma.SubTopicsUncheckedCreateWithoutQuizzesInput>
+  connectOrCreate?: Prisma.SubTopicsCreateOrConnectWithoutQuizzesInput
+  connect?: Prisma.SubTopicsWhereUniqueInput
+}
+
+export type SubTopicsUpdateOneWithoutQuizzesNestedInput = {
+  create?: Prisma.XOR<Prisma.SubTopicsCreateWithoutQuizzesInput, Prisma.SubTopicsUncheckedCreateWithoutQuizzesInput>
+  connectOrCreate?: Prisma.SubTopicsCreateOrConnectWithoutQuizzesInput
+  upsert?: Prisma.SubTopicsUpsertWithoutQuizzesInput
+  disconnect?: Prisma.SubTopicsWhereInput | boolean
+  delete?: Prisma.SubTopicsWhereInput | boolean
+  connect?: Prisma.SubTopicsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SubTopicsUpdateToOneWithWhereWithoutQuizzesInput, Prisma.SubTopicsUpdateWithoutQuizzesInput>, Prisma.SubTopicsUncheckedUpdateWithoutQuizzesInput>
+}
+
 export type SubTopicsCreateNestedOneWithoutSubTopicMapInput = {
   create?: Prisma.XOR<Prisma.SubTopicsCreateWithoutSubTopicMapInput, Prisma.SubTopicsUncheckedCreateWithoutSubTopicMapInput>
   connectOrCreate?: Prisma.SubTopicsCreateOrConnectWithoutSubTopicMapInput
@@ -471,6 +506,104 @@ export type SubTopicsUpdateOneRequiredWithoutSubTopicMapNestedInput = {
   upsert?: Prisma.SubTopicsUpsertWithoutSubTopicMapInput
   connect?: Prisma.SubTopicsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.SubTopicsUpdateToOneWithWhereWithoutSubTopicMapInput, Prisma.SubTopicsUpdateWithoutSubTopicMapInput>, Prisma.SubTopicsUncheckedUpdateWithoutSubTopicMapInput>
+}
+
+export type SubTopicsCreateNestedOneWithoutUserProcessInput = {
+  create?: Prisma.XOR<Prisma.SubTopicsCreateWithoutUserProcessInput, Prisma.SubTopicsUncheckedCreateWithoutUserProcessInput>
+  connectOrCreate?: Prisma.SubTopicsCreateOrConnectWithoutUserProcessInput
+  connect?: Prisma.SubTopicsWhereUniqueInput
+}
+
+export type SubTopicsUpdateOneRequiredWithoutUserProcessNestedInput = {
+  create?: Prisma.XOR<Prisma.SubTopicsCreateWithoutUserProcessInput, Prisma.SubTopicsUncheckedCreateWithoutUserProcessInput>
+  connectOrCreate?: Prisma.SubTopicsCreateOrConnectWithoutUserProcessInput
+  upsert?: Prisma.SubTopicsUpsertWithoutUserProcessInput
+  connect?: Prisma.SubTopicsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SubTopicsUpdateToOneWithWhereWithoutUserProcessInput, Prisma.SubTopicsUpdateWithoutUserProcessInput>, Prisma.SubTopicsUncheckedUpdateWithoutUserProcessInput>
+}
+
+export type SubTopicsCreateWithoutQuizzesInput = {
+  id?: string
+  logicalId?: string
+  title: string
+  isMandatory?: boolean
+  content?: string | null
+  examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  subTopicMap?: Prisma.subTopicMapCreateNestedManyWithoutSubTopicInput
+  userProcess?: Prisma.UserProcessCreateNestedManyWithoutSubTopicInput
+}
+
+export type SubTopicsUncheckedCreateWithoutQuizzesInput = {
+  id?: string
+  logicalId?: string
+  title: string
+  isMandatory?: boolean
+  content?: string | null
+  examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  subTopicMap?: Prisma.subTopicMapUncheckedCreateNestedManyWithoutSubTopicInput
+  userProcess?: Prisma.UserProcessUncheckedCreateNestedManyWithoutSubTopicInput
+}
+
+export type SubTopicsCreateOrConnectWithoutQuizzesInput = {
+  where: Prisma.SubTopicsWhereUniqueInput
+  create: Prisma.XOR<Prisma.SubTopicsCreateWithoutQuizzesInput, Prisma.SubTopicsUncheckedCreateWithoutQuizzesInput>
+}
+
+export type SubTopicsUpsertWithoutQuizzesInput = {
+  update: Prisma.XOR<Prisma.SubTopicsUpdateWithoutQuizzesInput, Prisma.SubTopicsUncheckedUpdateWithoutQuizzesInput>
+  create: Prisma.XOR<Prisma.SubTopicsCreateWithoutQuizzesInput, Prisma.SubTopicsUncheckedCreateWithoutQuizzesInput>
+  where?: Prisma.SubTopicsWhereInput
+}
+
+export type SubTopicsUpdateToOneWithWhereWithoutQuizzesInput = {
+  where?: Prisma.SubTopicsWhereInput
+  data: Prisma.XOR<Prisma.SubTopicsUpdateWithoutQuizzesInput, Prisma.SubTopicsUncheckedUpdateWithoutQuizzesInput>
+}
+
+export type SubTopicsUpdateWithoutQuizzesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  logicalId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  isMandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subTopicMap?: Prisma.subTopicMapUpdateManyWithoutSubTopicNestedInput
+  userProcess?: Prisma.UserProcessUpdateManyWithoutSubTopicNestedInput
+}
+
+export type SubTopicsUncheckedUpdateWithoutQuizzesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  logicalId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  isMandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subTopicMap?: Prisma.subTopicMapUncheckedUpdateManyWithoutSubTopicNestedInput
+  userProcess?: Prisma.UserProcessUncheckedUpdateManyWithoutSubTopicNestedInput
 }
 
 export type SubTopicsCreateWithoutSubTopicMapInput = {
@@ -486,6 +619,8 @@ export type SubTopicsCreateWithoutSubTopicMapInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
+  userProcess?: Prisma.UserProcessCreateNestedManyWithoutSubTopicInput
+  quizzes?: Prisma.QuizCreateNestedManyWithoutSubTopicInput
 }
 
 export type SubTopicsUncheckedCreateWithoutSubTopicMapInput = {
@@ -501,6 +636,8 @@ export type SubTopicsUncheckedCreateWithoutSubTopicMapInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
+  userProcess?: Prisma.UserProcessUncheckedCreateNestedManyWithoutSubTopicInput
+  quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutSubTopicInput
 }
 
 export type SubTopicsCreateOrConnectWithoutSubTopicMapInput = {
@@ -532,6 +669,8 @@ export type SubTopicsUpdateWithoutSubTopicMapInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userProcess?: Prisma.UserProcessUpdateManyWithoutSubTopicNestedInput
+  quizzes?: Prisma.QuizUpdateManyWithoutSubTopicNestedInput
 }
 
 export type SubTopicsUncheckedUpdateWithoutSubTopicMapInput = {
@@ -547,6 +686,92 @@ export type SubTopicsUncheckedUpdateWithoutSubTopicMapInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userProcess?: Prisma.UserProcessUncheckedUpdateManyWithoutSubTopicNestedInput
+  quizzes?: Prisma.QuizUncheckedUpdateManyWithoutSubTopicNestedInput
+}
+
+export type SubTopicsCreateWithoutUserProcessInput = {
+  id?: string
+  logicalId?: string
+  title: string
+  isMandatory?: boolean
+  content?: string | null
+  examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  subTopicMap?: Prisma.subTopicMapCreateNestedManyWithoutSubTopicInput
+  quizzes?: Prisma.QuizCreateNestedManyWithoutSubTopicInput
+}
+
+export type SubTopicsUncheckedCreateWithoutUserProcessInput = {
+  id?: string
+  logicalId?: string
+  title: string
+  isMandatory?: boolean
+  content?: string | null
+  examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  subTopicMap?: Prisma.subTopicMapUncheckedCreateNestedManyWithoutSubTopicInput
+  quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutSubTopicInput
+}
+
+export type SubTopicsCreateOrConnectWithoutUserProcessInput = {
+  where: Prisma.SubTopicsWhereUniqueInput
+  create: Prisma.XOR<Prisma.SubTopicsCreateWithoutUserProcessInput, Prisma.SubTopicsUncheckedCreateWithoutUserProcessInput>
+}
+
+export type SubTopicsUpsertWithoutUserProcessInput = {
+  update: Prisma.XOR<Prisma.SubTopicsUpdateWithoutUserProcessInput, Prisma.SubTopicsUncheckedUpdateWithoutUserProcessInput>
+  create: Prisma.XOR<Prisma.SubTopicsCreateWithoutUserProcessInput, Prisma.SubTopicsUncheckedCreateWithoutUserProcessInput>
+  where?: Prisma.SubTopicsWhereInput
+}
+
+export type SubTopicsUpdateToOneWithWhereWithoutUserProcessInput = {
+  where?: Prisma.SubTopicsWhereInput
+  data: Prisma.XOR<Prisma.SubTopicsUpdateWithoutUserProcessInput, Prisma.SubTopicsUncheckedUpdateWithoutUserProcessInput>
+}
+
+export type SubTopicsUpdateWithoutUserProcessInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  logicalId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  isMandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subTopicMap?: Prisma.subTopicMapUpdateManyWithoutSubTopicNestedInput
+  quizzes?: Prisma.QuizUpdateManyWithoutSubTopicNestedInput
+}
+
+export type SubTopicsUncheckedUpdateWithoutUserProcessInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  logicalId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  isMandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subTopicMap?: Prisma.subTopicMapUncheckedUpdateManyWithoutSubTopicNestedInput
+  quizzes?: Prisma.QuizUncheckedUpdateManyWithoutSubTopicNestedInput
 }
 
 
@@ -556,10 +781,14 @@ export type SubTopicsUncheckedUpdateWithoutSubTopicMapInput = {
 
 export type SubTopicsCountOutputType = {
   subTopicMap: number
+  userProcess: number
+  quizzes: number
 }
 
 export type SubTopicsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   subTopicMap?: boolean | SubTopicsCountOutputTypeCountSubTopicMapArgs
+  userProcess?: boolean | SubTopicsCountOutputTypeCountUserProcessArgs
+  quizzes?: boolean | SubTopicsCountOutputTypeCountQuizzesArgs
 }
 
 /**
@@ -579,6 +808,20 @@ export type SubTopicsCountOutputTypeCountSubTopicMapArgs<ExtArgs extends runtime
   where?: Prisma.subTopicMapWhereInput
 }
 
+/**
+ * SubTopicsCountOutputType without action
+ */
+export type SubTopicsCountOutputTypeCountUserProcessArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserProcessWhereInput
+}
+
+/**
+ * SubTopicsCountOutputType without action
+ */
+export type SubTopicsCountOutputTypeCountQuizzesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QuizWhereInput
+}
+
 
 export type SubTopicsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -594,6 +837,8 @@ export type SubTopicsSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   deletedAt?: boolean
   deleteAt?: boolean
   subTopicMap?: boolean | Prisma.SubTopics$subTopicMapArgs<ExtArgs>
+  userProcess?: boolean | Prisma.SubTopics$userProcessArgs<ExtArgs>
+  quizzes?: boolean | Prisma.SubTopics$quizzesArgs<ExtArgs>
   _count?: boolean | Prisma.SubTopicsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["subTopics"]>
 
@@ -645,6 +890,8 @@ export type SubTopicsSelectScalar = {
 export type SubTopicsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "logicalId" | "title" | "isMandatory" | "content" | "examples" | "image" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt" | "deleteAt", ExtArgs["result"]["subTopics"]>
 export type SubTopicsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   subTopicMap?: boolean | Prisma.SubTopics$subTopicMapArgs<ExtArgs>
+  userProcess?: boolean | Prisma.SubTopics$userProcessArgs<ExtArgs>
+  quizzes?: boolean | Prisma.SubTopics$quizzesArgs<ExtArgs>
   _count?: boolean | Prisma.SubTopicsCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SubTopicsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -654,6 +901,8 @@ export type $SubTopicsPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   name: "SubTopics"
   objects: {
     subTopicMap: Prisma.$subTopicMapPayload<ExtArgs>[]
+    userProcess: Prisma.$UserProcessPayload<ExtArgs>[]
+    quizzes: Prisma.$QuizPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1063,6 +1312,8 @@ readonly fields: SubTopicsFieldRefs;
 export interface Prisma__SubTopicsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   subTopicMap<T extends Prisma.SubTopics$subTopicMapArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SubTopics$subTopicMapArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$subTopicMapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  userProcess<T extends Prisma.SubTopics$userProcessArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SubTopics$userProcessArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserProcessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  quizzes<T extends Prisma.SubTopics$quizzesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SubTopics$quizzesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuizPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1518,6 +1769,54 @@ export type SubTopics$subTopicMapArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.SubTopicMapScalarFieldEnum | Prisma.SubTopicMapScalarFieldEnum[]
+}
+
+/**
+ * SubTopics.userProcess
+ */
+export type SubTopics$userProcessArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserProcess
+   */
+  select?: Prisma.UserProcessSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserProcess
+   */
+  omit?: Prisma.UserProcessOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserProcessInclude<ExtArgs> | null
+  where?: Prisma.UserProcessWhereInput
+  orderBy?: Prisma.UserProcessOrderByWithRelationInput | Prisma.UserProcessOrderByWithRelationInput[]
+  cursor?: Prisma.UserProcessWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserProcessScalarFieldEnum | Prisma.UserProcessScalarFieldEnum[]
+}
+
+/**
+ * SubTopics.quizzes
+ */
+export type SubTopics$quizzesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Quiz
+   */
+  select?: Prisma.QuizSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Quiz
+   */
+  omit?: Prisma.QuizOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuizInclude<ExtArgs> | null
+  where?: Prisma.QuizWhereInput
+  orderBy?: Prisma.QuizOrderByWithRelationInput | Prisma.QuizOrderByWithRelationInput[]
+  cursor?: Prisma.QuizWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QuizScalarFieldEnum | Prisma.QuizScalarFieldEnum[]
 }
 
 /**

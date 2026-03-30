@@ -95,6 +95,26 @@ export type Module = Prisma.ModuleModel
  */
 export type Permission = Prisma.PermissionModel
 /**
+ * Model Quiz
+ * 
+ */
+export type Quiz = Prisma.QuizModel
+/**
+ * Model QuizQuestion
+ * 
+ */
+export type QuizQuestion = Prisma.QuizQuestionModel
+/**
+ * Model QuizAttempt
+ * 
+ */
+export type QuizAttempt = Prisma.QuizAttemptModel
+/**
+ * Model QuizSubmission
+ * 
+ */
+export type QuizSubmission = Prisma.QuizSubmissionModel
+/**
  * Model Role
  * 
  */
@@ -129,6 +149,16 @@ export type Topics = Prisma.TopicsModel
  * 
  */
 export type UserPermission = Prisma.UserPermissionModel
+/**
+ * Model UserProcess
+ * 
+ */
+export type UserProcess = Prisma.UserProcessModel
+/**
+ * Model quizProgress
+ * 
+ */
+export type quizProgress = Prisma.quizProgressModel
 /**
  * Model User
  * 

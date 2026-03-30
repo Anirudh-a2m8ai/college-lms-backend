@@ -224,6 +224,7 @@ export type ModuleWhereInput = {
   deleteAt?: Prisma.DateTimeNullableFilter<"Module"> | Date | string | null
   moduleMap?: Prisma.ModuleMapListRelationFilter
   chapterMap?: Prisma.ChapterMapListRelationFilter
+  quizzes?: Prisma.QuizListRelationFilter
 }
 
 export type ModuleOrderByWithRelationInput = {
@@ -239,6 +240,7 @@ export type ModuleOrderByWithRelationInput = {
   deleteAt?: Prisma.SortOrderInput | Prisma.SortOrder
   moduleMap?: Prisma.ModuleMapOrderByRelationAggregateInput
   chapterMap?: Prisma.ChapterMapOrderByRelationAggregateInput
+  quizzes?: Prisma.QuizOrderByRelationAggregateInput
 }
 
 export type ModuleWhereUniqueInput = Prisma.AtLeast<{
@@ -257,6 +259,7 @@ export type ModuleWhereUniqueInput = Prisma.AtLeast<{
   deleteAt?: Prisma.DateTimeNullableFilter<"Module"> | Date | string | null
   moduleMap?: Prisma.ModuleMapListRelationFilter
   chapterMap?: Prisma.ChapterMapListRelationFilter
+  quizzes?: Prisma.QuizListRelationFilter
 }, "id">
 
 export type ModuleOrderByWithAggregationInput = {
@@ -304,6 +307,7 @@ export type ModuleCreateInput = {
   deleteAt?: Date | string | null
   moduleMap?: Prisma.ModuleMapCreateNestedManyWithoutModuleInput
   chapterMap?: Prisma.ChapterMapCreateNestedManyWithoutModuleInput
+  quizzes?: Prisma.QuizCreateNestedManyWithoutModuleInput
 }
 
 export type ModuleUncheckedCreateInput = {
@@ -319,6 +323,7 @@ export type ModuleUncheckedCreateInput = {
   deleteAt?: Date | string | null
   moduleMap?: Prisma.ModuleMapUncheckedCreateNestedManyWithoutModuleInput
   chapterMap?: Prisma.ChapterMapUncheckedCreateNestedManyWithoutModuleInput
+  quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutModuleInput
 }
 
 export type ModuleUpdateInput = {
@@ -334,6 +339,7 @@ export type ModuleUpdateInput = {
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   moduleMap?: Prisma.ModuleMapUpdateManyWithoutModuleNestedInput
   chapterMap?: Prisma.ChapterMapUpdateManyWithoutModuleNestedInput
+  quizzes?: Prisma.QuizUpdateManyWithoutModuleNestedInput
 }
 
 export type ModuleUncheckedUpdateInput = {
@@ -349,6 +355,7 @@ export type ModuleUncheckedUpdateInput = {
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   moduleMap?: Prisma.ModuleMapUncheckedUpdateManyWithoutModuleNestedInput
   chapterMap?: Prisma.ChapterMapUncheckedUpdateManyWithoutModuleNestedInput
+  quizzes?: Prisma.QuizUncheckedUpdateManyWithoutModuleNestedInput
 }
 
 export type ModuleCreateManyInput = {
@@ -434,6 +441,11 @@ export type ModuleMinOrderByAggregateInput = {
   deleteAt?: Prisma.SortOrder
 }
 
+export type ModuleNullableScalarRelationFilter = {
+  is?: Prisma.ModuleWhereInput | null
+  isNot?: Prisma.ModuleWhereInput | null
+}
+
 export type ModuleCreateNestedOneWithoutChapterMapInput = {
   create?: Prisma.XOR<Prisma.ModuleCreateWithoutChapterMapInput, Prisma.ModuleUncheckedCreateWithoutChapterMapInput>
   connectOrCreate?: Prisma.ModuleCreateOrConnectWithoutChapterMapInput
@@ -462,6 +474,22 @@ export type ModuleUpdateOneRequiredWithoutModuleMapNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ModuleUpdateToOneWithWhereWithoutModuleMapInput, Prisma.ModuleUpdateWithoutModuleMapInput>, Prisma.ModuleUncheckedUpdateWithoutModuleMapInput>
 }
 
+export type ModuleCreateNestedOneWithoutQuizzesInput = {
+  create?: Prisma.XOR<Prisma.ModuleCreateWithoutQuizzesInput, Prisma.ModuleUncheckedCreateWithoutQuizzesInput>
+  connectOrCreate?: Prisma.ModuleCreateOrConnectWithoutQuizzesInput
+  connect?: Prisma.ModuleWhereUniqueInput
+}
+
+export type ModuleUpdateOneWithoutQuizzesNestedInput = {
+  create?: Prisma.XOR<Prisma.ModuleCreateWithoutQuizzesInput, Prisma.ModuleUncheckedCreateWithoutQuizzesInput>
+  connectOrCreate?: Prisma.ModuleCreateOrConnectWithoutQuizzesInput
+  upsert?: Prisma.ModuleUpsertWithoutQuizzesInput
+  disconnect?: Prisma.ModuleWhereInput | boolean
+  delete?: Prisma.ModuleWhereInput | boolean
+  connect?: Prisma.ModuleWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ModuleUpdateToOneWithWhereWithoutQuizzesInput, Prisma.ModuleUpdateWithoutQuizzesInput>, Prisma.ModuleUncheckedUpdateWithoutQuizzesInput>
+}
+
 export type ModuleCreateWithoutChapterMapInput = {
   id?: string
   logicalId?: string
@@ -474,6 +502,7 @@ export type ModuleCreateWithoutChapterMapInput = {
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
   moduleMap?: Prisma.ModuleMapCreateNestedManyWithoutModuleInput
+  quizzes?: Prisma.QuizCreateNestedManyWithoutModuleInput
 }
 
 export type ModuleUncheckedCreateWithoutChapterMapInput = {
@@ -488,6 +517,7 @@ export type ModuleUncheckedCreateWithoutChapterMapInput = {
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
   moduleMap?: Prisma.ModuleMapUncheckedCreateNestedManyWithoutModuleInput
+  quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutModuleInput
 }
 
 export type ModuleCreateOrConnectWithoutChapterMapInput = {
@@ -518,6 +548,7 @@ export type ModuleUpdateWithoutChapterMapInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   moduleMap?: Prisma.ModuleMapUpdateManyWithoutModuleNestedInput
+  quizzes?: Prisma.QuizUpdateManyWithoutModuleNestedInput
 }
 
 export type ModuleUncheckedUpdateWithoutChapterMapInput = {
@@ -532,6 +563,7 @@ export type ModuleUncheckedUpdateWithoutChapterMapInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   moduleMap?: Prisma.ModuleMapUncheckedUpdateManyWithoutModuleNestedInput
+  quizzes?: Prisma.QuizUncheckedUpdateManyWithoutModuleNestedInput
 }
 
 export type ModuleCreateWithoutModuleMapInput = {
@@ -546,6 +578,7 @@ export type ModuleCreateWithoutModuleMapInput = {
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
   chapterMap?: Prisma.ChapterMapCreateNestedManyWithoutModuleInput
+  quizzes?: Prisma.QuizCreateNestedManyWithoutModuleInput
 }
 
 export type ModuleUncheckedCreateWithoutModuleMapInput = {
@@ -560,6 +593,7 @@ export type ModuleUncheckedCreateWithoutModuleMapInput = {
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
   chapterMap?: Prisma.ChapterMapUncheckedCreateNestedManyWithoutModuleInput
+  quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutModuleInput
 }
 
 export type ModuleCreateOrConnectWithoutModuleMapInput = {
@@ -590,6 +624,7 @@ export type ModuleUpdateWithoutModuleMapInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   chapterMap?: Prisma.ChapterMapUpdateManyWithoutModuleNestedInput
+  quizzes?: Prisma.QuizUpdateManyWithoutModuleNestedInput
 }
 
 export type ModuleUncheckedUpdateWithoutModuleMapInput = {
@@ -604,6 +639,83 @@ export type ModuleUncheckedUpdateWithoutModuleMapInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   chapterMap?: Prisma.ChapterMapUncheckedUpdateManyWithoutModuleNestedInput
+  quizzes?: Prisma.QuizUncheckedUpdateManyWithoutModuleNestedInput
+}
+
+export type ModuleCreateWithoutQuizzesInput = {
+  id?: string
+  logicalId?: string
+  title: string
+  description?: string | null
+  overview?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  moduleMap?: Prisma.ModuleMapCreateNestedManyWithoutModuleInput
+  chapterMap?: Prisma.ChapterMapCreateNestedManyWithoutModuleInput
+}
+
+export type ModuleUncheckedCreateWithoutQuizzesInput = {
+  id?: string
+  logicalId?: string
+  title: string
+  description?: string | null
+  overview?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  moduleMap?: Prisma.ModuleMapUncheckedCreateNestedManyWithoutModuleInput
+  chapterMap?: Prisma.ChapterMapUncheckedCreateNestedManyWithoutModuleInput
+}
+
+export type ModuleCreateOrConnectWithoutQuizzesInput = {
+  where: Prisma.ModuleWhereUniqueInput
+  create: Prisma.XOR<Prisma.ModuleCreateWithoutQuizzesInput, Prisma.ModuleUncheckedCreateWithoutQuizzesInput>
+}
+
+export type ModuleUpsertWithoutQuizzesInput = {
+  update: Prisma.XOR<Prisma.ModuleUpdateWithoutQuizzesInput, Prisma.ModuleUncheckedUpdateWithoutQuizzesInput>
+  create: Prisma.XOR<Prisma.ModuleCreateWithoutQuizzesInput, Prisma.ModuleUncheckedCreateWithoutQuizzesInput>
+  where?: Prisma.ModuleWhereInput
+}
+
+export type ModuleUpdateToOneWithWhereWithoutQuizzesInput = {
+  where?: Prisma.ModuleWhereInput
+  data: Prisma.XOR<Prisma.ModuleUpdateWithoutQuizzesInput, Prisma.ModuleUncheckedUpdateWithoutQuizzesInput>
+}
+
+export type ModuleUpdateWithoutQuizzesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  logicalId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  overview?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  moduleMap?: Prisma.ModuleMapUpdateManyWithoutModuleNestedInput
+  chapterMap?: Prisma.ChapterMapUpdateManyWithoutModuleNestedInput
+}
+
+export type ModuleUncheckedUpdateWithoutQuizzesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  logicalId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  overview?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  moduleMap?: Prisma.ModuleMapUncheckedUpdateManyWithoutModuleNestedInput
+  chapterMap?: Prisma.ChapterMapUncheckedUpdateManyWithoutModuleNestedInput
 }
 
 
@@ -614,11 +726,13 @@ export type ModuleUncheckedUpdateWithoutModuleMapInput = {
 export type ModuleCountOutputType = {
   moduleMap: number
   chapterMap: number
+  quizzes: number
 }
 
 export type ModuleCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   moduleMap?: boolean | ModuleCountOutputTypeCountModuleMapArgs
   chapterMap?: boolean | ModuleCountOutputTypeCountChapterMapArgs
+  quizzes?: boolean | ModuleCountOutputTypeCountQuizzesArgs
 }
 
 /**
@@ -645,6 +759,13 @@ export type ModuleCountOutputTypeCountChapterMapArgs<ExtArgs extends runtime.Typ
   where?: Prisma.ChapterMapWhereInput
 }
 
+/**
+ * ModuleCountOutputType without action
+ */
+export type ModuleCountOutputTypeCountQuizzesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QuizWhereInput
+}
+
 
 export type ModuleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -659,6 +780,7 @@ export type ModuleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   deleteAt?: boolean
   moduleMap?: boolean | Prisma.Module$moduleMapArgs<ExtArgs>
   chapterMap?: boolean | Prisma.Module$chapterMapArgs<ExtArgs>
+  quizzes?: boolean | Prisma.Module$quizzesArgs<ExtArgs>
   _count?: boolean | Prisma.ModuleCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["module"]>
 
@@ -705,6 +827,7 @@ export type ModuleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
 export type ModuleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   moduleMap?: boolean | Prisma.Module$moduleMapArgs<ExtArgs>
   chapterMap?: boolean | Prisma.Module$chapterMapArgs<ExtArgs>
+  quizzes?: boolean | Prisma.Module$quizzesArgs<ExtArgs>
   _count?: boolean | Prisma.ModuleCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ModuleIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -715,6 +838,7 @@ export type $ModulePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   objects: {
     moduleMap: Prisma.$ModuleMapPayload<ExtArgs>[]
     chapterMap: Prisma.$ChapterMapPayload<ExtArgs>[]
+    quizzes: Prisma.$QuizPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1123,6 +1247,7 @@ export interface Prisma__ModuleClient<T, Null = never, ExtArgs extends runtime.T
   readonly [Symbol.toStringTag]: "PrismaPromise"
   moduleMap<T extends Prisma.Module$moduleMapArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Module$moduleMapArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ModuleMapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   chapterMap<T extends Prisma.Module$chapterMapArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Module$chapterMapArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChapterMapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  quizzes<T extends Prisma.Module$quizzesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Module$quizzesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuizPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1600,6 +1725,30 @@ export type Module$chapterMapArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.ChapterMapScalarFieldEnum | Prisma.ChapterMapScalarFieldEnum[]
+}
+
+/**
+ * Module.quizzes
+ */
+export type Module$quizzesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Quiz
+   */
+  select?: Prisma.QuizSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Quiz
+   */
+  omit?: Prisma.QuizOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuizInclude<ExtArgs> | null
+  where?: Prisma.QuizWhereInput
+  orderBy?: Prisma.QuizOrderByWithRelationInput | Prisma.QuizOrderByWithRelationInput[]
+  cursor?: Prisma.QuizWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QuizScalarFieldEnum | Prisma.QuizScalarFieldEnum[]
 }
 
 /**

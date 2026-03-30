@@ -394,6 +394,7 @@ export type UserWhereInput = {
   userPermissions?: Prisma.UserPermissionListRelationFilter
   tenant?: Prisma.XOR<Prisma.TenantNullableScalarRelationFilter, Prisma.TenantWhereInput> | null
   role?: Prisma.RoleListRelationFilter
+  userProcess?: Prisma.UserProcessListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -429,6 +430,7 @@ export type UserOrderByWithRelationInput = {
   userPermissions?: Prisma.UserPermissionOrderByRelationAggregateInput
   tenant?: Prisma.TenantOrderByWithRelationInput
   role?: Prisma.RoleOrderByRelationAggregateInput
+  userProcess?: Prisma.UserProcessOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -467,6 +469,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   userPermissions?: Prisma.UserPermissionListRelationFilter
   tenant?: Prisma.XOR<Prisma.TenantNullableScalarRelationFilter, Prisma.TenantWhereInput> | null
   role?: Prisma.RoleListRelationFilter
+  userProcess?: Prisma.UserProcessListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -567,6 +570,7 @@ export type UserCreateInput = {
   userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
   tenant?: Prisma.TenantCreateNestedOneWithoutUsersInput
   role?: Prisma.RoleCreateNestedManyWithoutUsersInput
+  userProcess?: Prisma.UserProcessCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -601,6 +605,7 @@ export type UserUncheckedCreateInput = {
   enrollments?: Prisma.EnrollmentsUncheckedCreateNestedManyWithoutUserInput
   userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
   role?: Prisma.RoleUncheckedCreateNestedManyWithoutUsersInput
+  userProcess?: Prisma.UserProcessUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -635,6 +640,7 @@ export type UserUpdateInput = {
   userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
   tenant?: Prisma.TenantUpdateOneWithoutUsersNestedInput
   role?: Prisma.RoleUpdateManyWithoutUsersNestedInput
+  userProcess?: Prisma.UserProcessUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -669,6 +675,7 @@ export type UserUncheckedUpdateInput = {
   enrollments?: Prisma.EnrollmentsUncheckedUpdateManyWithoutUserNestedInput
   userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
   role?: Prisma.RoleUncheckedUpdateManyWithoutUsersNestedInput
+  userProcess?: Prisma.UserProcessUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -977,6 +984,20 @@ export type UserUpdateOneRequiredWithoutUserPermissionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUserPermissionsInput, Prisma.UserUpdateWithoutUserPermissionsInput>, Prisma.UserUncheckedUpdateWithoutUserPermissionsInput>
 }
 
+export type UserCreateNestedOneWithoutUserProcessInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUserProcessInput, Prisma.UserUncheckedCreateWithoutUserProcessInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUserProcessInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutUserProcessNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUserProcessInput, Prisma.UserUncheckedCreateWithoutUserProcessInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUserProcessInput
+  upsert?: Prisma.UserUpsertWithoutUserProcessInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUserProcessInput, Prisma.UserUpdateWithoutUserProcessInput>, Prisma.UserUncheckedUpdateWithoutUserProcessInput>
+}
+
 export type UserCreateNestedOneWithoutSocialLinksInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutSocialLinksInput, Prisma.UserUncheckedCreateWithoutSocialLinksInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutSocialLinksInput
@@ -1036,6 +1057,7 @@ export type UserCreateWithoutEnrollmentsInput = {
   userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
   tenant?: Prisma.TenantCreateNestedOneWithoutUsersInput
   role?: Prisma.RoleCreateNestedManyWithoutUsersInput
+  userProcess?: Prisma.UserProcessCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutEnrollmentsInput = {
@@ -1069,6 +1091,7 @@ export type UserUncheckedCreateWithoutEnrollmentsInput = {
   userToken?: Prisma.UserTokenUncheckedCreateNestedManyWithoutUserInput
   userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
   role?: Prisma.RoleUncheckedCreateNestedManyWithoutUsersInput
+  userProcess?: Prisma.UserProcessUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutEnrollmentsInput = {
@@ -1118,6 +1141,7 @@ export type UserUpdateWithoutEnrollmentsInput = {
   userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
   tenant?: Prisma.TenantUpdateOneWithoutUsersNestedInput
   role?: Prisma.RoleUpdateManyWithoutUsersNestedInput
+  userProcess?: Prisma.UserProcessUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEnrollmentsInput = {
@@ -1151,6 +1175,7 @@ export type UserUncheckedUpdateWithoutEnrollmentsInput = {
   userToken?: Prisma.UserTokenUncheckedUpdateManyWithoutUserNestedInput
   userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
   role?: Prisma.RoleUncheckedUpdateManyWithoutUsersNestedInput
+  userProcess?: Prisma.UserProcessUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutRoleInput = {
@@ -1184,6 +1209,7 @@ export type UserCreateWithoutRoleInput = {
   enrollments?: Prisma.EnrollmentsCreateNestedManyWithoutUserInput
   userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
   tenant?: Prisma.TenantCreateNestedOneWithoutUsersInput
+  userProcess?: Prisma.UserProcessCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRoleInput = {
@@ -1217,6 +1243,7 @@ export type UserUncheckedCreateWithoutRoleInput = {
   userToken?: Prisma.UserTokenUncheckedCreateNestedManyWithoutUserInput
   enrollments?: Prisma.EnrollmentsUncheckedCreateNestedManyWithoutUserInput
   userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  userProcess?: Prisma.UserProcessUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRoleInput = {
@@ -1303,6 +1330,7 @@ export type UserCreateWithoutTenantInput = {
   enrollments?: Prisma.EnrollmentsCreateNestedManyWithoutUserInput
   userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
   role?: Prisma.RoleCreateNestedManyWithoutUsersInput
+  userProcess?: Prisma.UserProcessCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTenantInput = {
@@ -1336,6 +1364,7 @@ export type UserUncheckedCreateWithoutTenantInput = {
   enrollments?: Prisma.EnrollmentsUncheckedCreateNestedManyWithoutUserInput
   userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
   role?: Prisma.RoleUncheckedCreateNestedManyWithoutUsersInput
+  userProcess?: Prisma.UserProcessUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTenantInput = {
@@ -1395,6 +1424,7 @@ export type UserCreateWithoutUserPermissionsInput = {
   enrollments?: Prisma.EnrollmentsCreateNestedManyWithoutUserInput
   tenant?: Prisma.TenantCreateNestedOneWithoutUsersInput
   role?: Prisma.RoleCreateNestedManyWithoutUsersInput
+  userProcess?: Prisma.UserProcessCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutUserPermissionsInput = {
@@ -1428,6 +1458,7 @@ export type UserUncheckedCreateWithoutUserPermissionsInput = {
   userToken?: Prisma.UserTokenUncheckedCreateNestedManyWithoutUserInput
   enrollments?: Prisma.EnrollmentsUncheckedCreateNestedManyWithoutUserInput
   role?: Prisma.RoleUncheckedCreateNestedManyWithoutUsersInput
+  userProcess?: Prisma.UserProcessUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutUserPermissionsInput = {
@@ -1477,6 +1508,7 @@ export type UserUpdateWithoutUserPermissionsInput = {
   enrollments?: Prisma.EnrollmentsUpdateManyWithoutUserNestedInput
   tenant?: Prisma.TenantUpdateOneWithoutUsersNestedInput
   role?: Prisma.RoleUpdateManyWithoutUsersNestedInput
+  userProcess?: Prisma.UserProcessUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUserPermissionsInput = {
@@ -1509,6 +1541,159 @@ export type UserUncheckedUpdateWithoutUserPermissionsInput = {
   socialLinks?: Prisma.SocialLinksUncheckedUpdateManyWithoutUserNestedInput
   userToken?: Prisma.UserTokenUncheckedUpdateManyWithoutUserNestedInput
   enrollments?: Prisma.EnrollmentsUncheckedUpdateManyWithoutUserNestedInput
+  role?: Prisma.RoleUncheckedUpdateManyWithoutUsersNestedInput
+  userProcess?: Prisma.UserProcessUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutUserProcessInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  username?: string | null
+  profilePicture?: string | null
+  passwordHash: string
+  isPasswordChanged?: boolean
+  isEmailVerified?: boolean
+  isPhoneVerified?: boolean
+  twoFactorEnabled?: boolean
+  lastLogin?: Date | string
+  failedLoginAttempts?: number
+  otp?: number | null
+  otpExpiresAt?: Date | string | null
+  status: $Enums.AccountStatus
+  bio?: string | null
+  timezone?: Date | string | null
+  language?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  socialLinks?: Prisma.SocialLinksCreateNestedManyWithoutUserInput
+  userToken?: Prisma.UserTokenCreateNestedManyWithoutUserInput
+  enrollments?: Prisma.EnrollmentsCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  tenant?: Prisma.TenantCreateNestedOneWithoutUsersInput
+  role?: Prisma.RoleCreateNestedManyWithoutUsersInput
+}
+
+export type UserUncheckedCreateWithoutUserProcessInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  tenantId?: string | null
+  email: string
+  phone: string
+  username?: string | null
+  profilePicture?: string | null
+  passwordHash: string
+  isPasswordChanged?: boolean
+  isEmailVerified?: boolean
+  isPhoneVerified?: boolean
+  twoFactorEnabled?: boolean
+  lastLogin?: Date | string
+  failedLoginAttempts?: number
+  otp?: number | null
+  otpExpiresAt?: Date | string | null
+  status: $Enums.AccountStatus
+  bio?: string | null
+  timezone?: Date | string | null
+  language?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  socialLinks?: Prisma.SocialLinksUncheckedCreateNestedManyWithoutUserInput
+  userToken?: Prisma.UserTokenUncheckedCreateNestedManyWithoutUserInput
+  enrollments?: Prisma.EnrollmentsUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  role?: Prisma.RoleUncheckedCreateNestedManyWithoutUsersInput
+}
+
+export type UserCreateOrConnectWithoutUserProcessInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutUserProcessInput, Prisma.UserUncheckedCreateWithoutUserProcessInput>
+}
+
+export type UserUpsertWithoutUserProcessInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutUserProcessInput, Prisma.UserUncheckedUpdateWithoutUserProcessInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutUserProcessInput, Prisma.UserUncheckedCreateWithoutUserProcessInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutUserProcessInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutUserProcessInput, Prisma.UserUncheckedUpdateWithoutUserProcessInput>
+}
+
+export type UserUpdateWithoutUserProcessInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profilePicture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPasswordChanged?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isEmailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPhoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  otp?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  otpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  language?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  socialLinks?: Prisma.SocialLinksUpdateManyWithoutUserNestedInput
+  userToken?: Prisma.UserTokenUpdateManyWithoutUserNestedInput
+  enrollments?: Prisma.EnrollmentsUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  tenant?: Prisma.TenantUpdateOneWithoutUsersNestedInput
+  role?: Prisma.RoleUpdateManyWithoutUsersNestedInput
+}
+
+export type UserUncheckedUpdateWithoutUserProcessInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profilePicture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPasswordChanged?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isEmailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPhoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  otp?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  otpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  language?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  socialLinks?: Prisma.SocialLinksUncheckedUpdateManyWithoutUserNestedInput
+  userToken?: Prisma.UserTokenUncheckedUpdateManyWithoutUserNestedInput
+  enrollments?: Prisma.EnrollmentsUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
   role?: Prisma.RoleUncheckedUpdateManyWithoutUsersNestedInput
 }
 
@@ -1543,6 +1728,7 @@ export type UserCreateWithoutSocialLinksInput = {
   userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
   tenant?: Prisma.TenantCreateNestedOneWithoutUsersInput
   role?: Prisma.RoleCreateNestedManyWithoutUsersInput
+  userProcess?: Prisma.UserProcessCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSocialLinksInput = {
@@ -1576,6 +1762,7 @@ export type UserUncheckedCreateWithoutSocialLinksInput = {
   enrollments?: Prisma.EnrollmentsUncheckedCreateNestedManyWithoutUserInput
   userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
   role?: Prisma.RoleUncheckedCreateNestedManyWithoutUsersInput
+  userProcess?: Prisma.UserProcessUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSocialLinksInput = {
@@ -1625,6 +1812,7 @@ export type UserUpdateWithoutSocialLinksInput = {
   userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
   tenant?: Prisma.TenantUpdateOneWithoutUsersNestedInput
   role?: Prisma.RoleUpdateManyWithoutUsersNestedInput
+  userProcess?: Prisma.UserProcessUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSocialLinksInput = {
@@ -1658,6 +1846,7 @@ export type UserUncheckedUpdateWithoutSocialLinksInput = {
   enrollments?: Prisma.EnrollmentsUncheckedUpdateManyWithoutUserNestedInput
   userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
   role?: Prisma.RoleUncheckedUpdateManyWithoutUsersNestedInput
+  userProcess?: Prisma.UserProcessUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutUserTokenInput = {
@@ -1691,6 +1880,7 @@ export type UserCreateWithoutUserTokenInput = {
   userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
   tenant?: Prisma.TenantCreateNestedOneWithoutUsersInput
   role?: Prisma.RoleCreateNestedManyWithoutUsersInput
+  userProcess?: Prisma.UserProcessCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutUserTokenInput = {
@@ -1724,6 +1914,7 @@ export type UserUncheckedCreateWithoutUserTokenInput = {
   enrollments?: Prisma.EnrollmentsUncheckedCreateNestedManyWithoutUserInput
   userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
   role?: Prisma.RoleUncheckedCreateNestedManyWithoutUsersInput
+  userProcess?: Prisma.UserProcessUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutUserTokenInput = {
@@ -1773,6 +1964,7 @@ export type UserUpdateWithoutUserTokenInput = {
   userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
   tenant?: Prisma.TenantUpdateOneWithoutUsersNestedInput
   role?: Prisma.RoleUpdateManyWithoutUsersNestedInput
+  userProcess?: Prisma.UserProcessUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUserTokenInput = {
@@ -1806,6 +1998,7 @@ export type UserUncheckedUpdateWithoutUserTokenInput = {
   enrollments?: Prisma.EnrollmentsUncheckedUpdateManyWithoutUserNestedInput
   userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
   role?: Prisma.RoleUncheckedUpdateManyWithoutUsersNestedInput
+  userProcess?: Prisma.UserProcessUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpdateWithoutRoleInput = {
@@ -1839,6 +2032,7 @@ export type UserUpdateWithoutRoleInput = {
   enrollments?: Prisma.EnrollmentsUpdateManyWithoutUserNestedInput
   userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
   tenant?: Prisma.TenantUpdateOneWithoutUsersNestedInput
+  userProcess?: Prisma.UserProcessUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRoleInput = {
@@ -1872,6 +2066,7 @@ export type UserUncheckedUpdateWithoutRoleInput = {
   userToken?: Prisma.UserTokenUncheckedUpdateManyWithoutUserNestedInput
   enrollments?: Prisma.EnrollmentsUncheckedUpdateManyWithoutUserNestedInput
   userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  userProcess?: Prisma.UserProcessUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutRoleInput = {
@@ -1962,6 +2157,7 @@ export type UserUpdateWithoutTenantInput = {
   enrollments?: Prisma.EnrollmentsUpdateManyWithoutUserNestedInput
   userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
   role?: Prisma.RoleUpdateManyWithoutUsersNestedInput
+  userProcess?: Prisma.UserProcessUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTenantInput = {
@@ -1995,6 +2191,7 @@ export type UserUncheckedUpdateWithoutTenantInput = {
   enrollments?: Prisma.EnrollmentsUncheckedUpdateManyWithoutUserNestedInput
   userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
   role?: Prisma.RoleUncheckedUpdateManyWithoutUsersNestedInput
+  userProcess?: Prisma.UserProcessUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutTenantInput = {
@@ -2036,6 +2233,7 @@ export type UserCountOutputType = {
   enrollments: number
   userPermissions: number
   role: number
+  userProcess: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2044,6 +2242,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   enrollments?: boolean | UserCountOutputTypeCountEnrollmentsArgs
   userPermissions?: boolean | UserCountOutputTypeCountUserPermissionsArgs
   role?: boolean | UserCountOutputTypeCountRoleArgs
+  userProcess?: boolean | UserCountOutputTypeCountUserProcessArgs
 }
 
 /**
@@ -2091,6 +2290,13 @@ export type UserCountOutputTypeCountRoleArgs<ExtArgs extends runtime.Types.Exten
   where?: Prisma.RoleWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountUserProcessArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserProcessWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2125,6 +2331,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   userPermissions?: boolean | Prisma.User$userPermissionsArgs<ExtArgs>
   tenant?: boolean | Prisma.User$tenantArgs<ExtArgs>
   role?: boolean | Prisma.User$roleArgs<ExtArgs>
+  userProcess?: boolean | Prisma.User$userProcessArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -2225,6 +2432,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   userPermissions?: boolean | Prisma.User$userPermissionsArgs<ExtArgs>
   tenant?: boolean | Prisma.User$tenantArgs<ExtArgs>
   role?: boolean | Prisma.User$roleArgs<ExtArgs>
+  userProcess?: boolean | Prisma.User$userProcessArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2243,6 +2451,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     userPermissions: Prisma.$UserPermissionPayload<ExtArgs>[]
     tenant: Prisma.$TenantPayload<ExtArgs> | null
     role: Prisma.$RolePayload<ExtArgs>[]
+    userProcess: Prisma.$UserProcessPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2671,6 +2880,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   userPermissions<T extends Prisma.User$userPermissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$userPermissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPermissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tenant<T extends Prisma.User$tenantArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tenantArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   role<T extends Prisma.User$roleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$roleArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  userProcess<T extends Prisma.User$userProcessArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$userProcessArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserProcessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3263,6 +3473,30 @@ export type User$roleArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   take?: number
   skip?: number
   distinct?: Prisma.RoleScalarFieldEnum | Prisma.RoleScalarFieldEnum[]
+}
+
+/**
+ * User.userProcess
+ */
+export type User$userProcessArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserProcess
+   */
+  select?: Prisma.UserProcessSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserProcess
+   */
+  omit?: Prisma.UserProcessOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserProcessInclude<ExtArgs> | null
+  where?: Prisma.UserProcessWhereInput
+  orderBy?: Prisma.UserProcessOrderByWithRelationInput | Prisma.UserProcessOrderByWithRelationInput[]
+  cursor?: Prisma.UserProcessWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserProcessScalarFieldEnum | Prisma.UserProcessScalarFieldEnum[]
 }
 
 /**

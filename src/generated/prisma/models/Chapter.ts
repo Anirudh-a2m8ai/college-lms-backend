@@ -224,6 +224,7 @@ export type ChapterWhereInput = {
   deleteAt?: Prisma.DateTimeNullableFilter<"Chapter"> | Date | string | null
   chapterMap?: Prisma.ChapterMapListRelationFilter
   lessonMap?: Prisma.LessonMapListRelationFilter
+  quizzes?: Prisma.QuizListRelationFilter
 }
 
 export type ChapterOrderByWithRelationInput = {
@@ -239,6 +240,7 @@ export type ChapterOrderByWithRelationInput = {
   deleteAt?: Prisma.SortOrderInput | Prisma.SortOrder
   chapterMap?: Prisma.ChapterMapOrderByRelationAggregateInput
   lessonMap?: Prisma.lessonMapOrderByRelationAggregateInput
+  quizzes?: Prisma.QuizOrderByRelationAggregateInput
 }
 
 export type ChapterWhereUniqueInput = Prisma.AtLeast<{
@@ -257,6 +259,7 @@ export type ChapterWhereUniqueInput = Prisma.AtLeast<{
   deleteAt?: Prisma.DateTimeNullableFilter<"Chapter"> | Date | string | null
   chapterMap?: Prisma.ChapterMapListRelationFilter
   lessonMap?: Prisma.LessonMapListRelationFilter
+  quizzes?: Prisma.QuizListRelationFilter
 }, "id">
 
 export type ChapterOrderByWithAggregationInput = {
@@ -304,6 +307,7 @@ export type ChapterCreateInput = {
   deleteAt?: Date | string | null
   chapterMap?: Prisma.ChapterMapCreateNestedManyWithoutChapterInput
   lessonMap?: Prisma.lessonMapCreateNestedManyWithoutChapterInput
+  quizzes?: Prisma.QuizCreateNestedManyWithoutChapterInput
 }
 
 export type ChapterUncheckedCreateInput = {
@@ -319,6 +323,7 @@ export type ChapterUncheckedCreateInput = {
   deleteAt?: Date | string | null
   chapterMap?: Prisma.ChapterMapUncheckedCreateNestedManyWithoutChapterInput
   lessonMap?: Prisma.lessonMapUncheckedCreateNestedManyWithoutChapterInput
+  quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutChapterInput
 }
 
 export type ChapterUpdateInput = {
@@ -334,6 +339,7 @@ export type ChapterUpdateInput = {
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   chapterMap?: Prisma.ChapterMapUpdateManyWithoutChapterNestedInput
   lessonMap?: Prisma.lessonMapUpdateManyWithoutChapterNestedInput
+  quizzes?: Prisma.QuizUpdateManyWithoutChapterNestedInput
 }
 
 export type ChapterUncheckedUpdateInput = {
@@ -349,6 +355,7 @@ export type ChapterUncheckedUpdateInput = {
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   chapterMap?: Prisma.ChapterMapUncheckedUpdateManyWithoutChapterNestedInput
   lessonMap?: Prisma.lessonMapUncheckedUpdateManyWithoutChapterNestedInput
+  quizzes?: Prisma.QuizUncheckedUpdateManyWithoutChapterNestedInput
 }
 
 export type ChapterCreateManyInput = {
@@ -434,6 +441,11 @@ export type ChapterMinOrderByAggregateInput = {
   deleteAt?: Prisma.SortOrder
 }
 
+export type ChapterNullableScalarRelationFilter = {
+  is?: Prisma.ChapterWhereInput | null
+  isNot?: Prisma.ChapterWhereInput | null
+}
+
 export type ChapterCreateNestedOneWithoutChapterMapInput = {
   create?: Prisma.XOR<Prisma.ChapterCreateWithoutChapterMapInput, Prisma.ChapterUncheckedCreateWithoutChapterMapInput>
   connectOrCreate?: Prisma.ChapterCreateOrConnectWithoutChapterMapInput
@@ -478,6 +490,22 @@ export type ChapterUpdateOneRequiredWithoutLessonMapNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ChapterUpdateToOneWithWhereWithoutLessonMapInput, Prisma.ChapterUpdateWithoutLessonMapInput>, Prisma.ChapterUncheckedUpdateWithoutLessonMapInput>
 }
 
+export type ChapterCreateNestedOneWithoutQuizzesInput = {
+  create?: Prisma.XOR<Prisma.ChapterCreateWithoutQuizzesInput, Prisma.ChapterUncheckedCreateWithoutQuizzesInput>
+  connectOrCreate?: Prisma.ChapterCreateOrConnectWithoutQuizzesInput
+  connect?: Prisma.ChapterWhereUniqueInput
+}
+
+export type ChapterUpdateOneWithoutQuizzesNestedInput = {
+  create?: Prisma.XOR<Prisma.ChapterCreateWithoutQuizzesInput, Prisma.ChapterUncheckedCreateWithoutQuizzesInput>
+  connectOrCreate?: Prisma.ChapterCreateOrConnectWithoutQuizzesInput
+  upsert?: Prisma.ChapterUpsertWithoutQuizzesInput
+  disconnect?: Prisma.ChapterWhereInput | boolean
+  delete?: Prisma.ChapterWhereInput | boolean
+  connect?: Prisma.ChapterWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ChapterUpdateToOneWithWhereWithoutQuizzesInput, Prisma.ChapterUpdateWithoutQuizzesInput>, Prisma.ChapterUncheckedUpdateWithoutQuizzesInput>
+}
+
 export type ChapterCreateWithoutChapterMapInput = {
   id?: string
   logicalId?: string
@@ -490,6 +518,7 @@ export type ChapterCreateWithoutChapterMapInput = {
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
   lessonMap?: Prisma.lessonMapCreateNestedManyWithoutChapterInput
+  quizzes?: Prisma.QuizCreateNestedManyWithoutChapterInput
 }
 
 export type ChapterUncheckedCreateWithoutChapterMapInput = {
@@ -504,6 +533,7 @@ export type ChapterUncheckedCreateWithoutChapterMapInput = {
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
   lessonMap?: Prisma.lessonMapUncheckedCreateNestedManyWithoutChapterInput
+  quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutChapterInput
 }
 
 export type ChapterCreateOrConnectWithoutChapterMapInput = {
@@ -534,6 +564,7 @@ export type ChapterUpdateWithoutChapterMapInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lessonMap?: Prisma.lessonMapUpdateManyWithoutChapterNestedInput
+  quizzes?: Prisma.QuizUpdateManyWithoutChapterNestedInput
 }
 
 export type ChapterUncheckedUpdateWithoutChapterMapInput = {
@@ -548,6 +579,7 @@ export type ChapterUncheckedUpdateWithoutChapterMapInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lessonMap?: Prisma.lessonMapUncheckedUpdateManyWithoutChapterNestedInput
+  quizzes?: Prisma.QuizUncheckedUpdateManyWithoutChapterNestedInput
 }
 
 export type ChapterCreateWithoutLessonMapInput = {
@@ -562,6 +594,7 @@ export type ChapterCreateWithoutLessonMapInput = {
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
   chapterMap?: Prisma.ChapterMapCreateNestedManyWithoutChapterInput
+  quizzes?: Prisma.QuizCreateNestedManyWithoutChapterInput
 }
 
 export type ChapterUncheckedCreateWithoutLessonMapInput = {
@@ -576,6 +609,7 @@ export type ChapterUncheckedCreateWithoutLessonMapInput = {
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
   chapterMap?: Prisma.ChapterMapUncheckedCreateNestedManyWithoutChapterInput
+  quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutChapterInput
 }
 
 export type ChapterCreateOrConnectWithoutLessonMapInput = {
@@ -606,6 +640,7 @@ export type ChapterUpdateWithoutLessonMapInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   chapterMap?: Prisma.ChapterMapUpdateManyWithoutChapterNestedInput
+  quizzes?: Prisma.QuizUpdateManyWithoutChapterNestedInput
 }
 
 export type ChapterUncheckedUpdateWithoutLessonMapInput = {
@@ -620,6 +655,83 @@ export type ChapterUncheckedUpdateWithoutLessonMapInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   chapterMap?: Prisma.ChapterMapUncheckedUpdateManyWithoutChapterNestedInput
+  quizzes?: Prisma.QuizUncheckedUpdateManyWithoutChapterNestedInput
+}
+
+export type ChapterCreateWithoutQuizzesInput = {
+  id?: string
+  logicalId?: string
+  title: string
+  description?: string | null
+  overview?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  chapterMap?: Prisma.ChapterMapCreateNestedManyWithoutChapterInput
+  lessonMap?: Prisma.lessonMapCreateNestedManyWithoutChapterInput
+}
+
+export type ChapterUncheckedCreateWithoutQuizzesInput = {
+  id?: string
+  logicalId?: string
+  title: string
+  description?: string | null
+  overview?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  chapterMap?: Prisma.ChapterMapUncheckedCreateNestedManyWithoutChapterInput
+  lessonMap?: Prisma.lessonMapUncheckedCreateNestedManyWithoutChapterInput
+}
+
+export type ChapterCreateOrConnectWithoutQuizzesInput = {
+  where: Prisma.ChapterWhereUniqueInput
+  create: Prisma.XOR<Prisma.ChapterCreateWithoutQuizzesInput, Prisma.ChapterUncheckedCreateWithoutQuizzesInput>
+}
+
+export type ChapterUpsertWithoutQuizzesInput = {
+  update: Prisma.XOR<Prisma.ChapterUpdateWithoutQuizzesInput, Prisma.ChapterUncheckedUpdateWithoutQuizzesInput>
+  create: Prisma.XOR<Prisma.ChapterCreateWithoutQuizzesInput, Prisma.ChapterUncheckedCreateWithoutQuizzesInput>
+  where?: Prisma.ChapterWhereInput
+}
+
+export type ChapterUpdateToOneWithWhereWithoutQuizzesInput = {
+  where?: Prisma.ChapterWhereInput
+  data: Prisma.XOR<Prisma.ChapterUpdateWithoutQuizzesInput, Prisma.ChapterUncheckedUpdateWithoutQuizzesInput>
+}
+
+export type ChapterUpdateWithoutQuizzesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  logicalId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  overview?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  chapterMap?: Prisma.ChapterMapUpdateManyWithoutChapterNestedInput
+  lessonMap?: Prisma.lessonMapUpdateManyWithoutChapterNestedInput
+}
+
+export type ChapterUncheckedUpdateWithoutQuizzesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  logicalId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  overview?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  chapterMap?: Prisma.ChapterMapUncheckedUpdateManyWithoutChapterNestedInput
+  lessonMap?: Prisma.lessonMapUncheckedUpdateManyWithoutChapterNestedInput
 }
 
 
@@ -630,11 +742,13 @@ export type ChapterUncheckedUpdateWithoutLessonMapInput = {
 export type ChapterCountOutputType = {
   chapterMap: number
   lessonMap: number
+  quizzes: number
 }
 
 export type ChapterCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   chapterMap?: boolean | ChapterCountOutputTypeCountChapterMapArgs
   lessonMap?: boolean | ChapterCountOutputTypeCountLessonMapArgs
+  quizzes?: boolean | ChapterCountOutputTypeCountQuizzesArgs
 }
 
 /**
@@ -661,6 +775,13 @@ export type ChapterCountOutputTypeCountLessonMapArgs<ExtArgs extends runtime.Typ
   where?: Prisma.lessonMapWhereInput
 }
 
+/**
+ * ChapterCountOutputType without action
+ */
+export type ChapterCountOutputTypeCountQuizzesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QuizWhereInput
+}
+
 
 export type ChapterSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -675,6 +796,7 @@ export type ChapterSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   deleteAt?: boolean
   chapterMap?: boolean | Prisma.Chapter$chapterMapArgs<ExtArgs>
   lessonMap?: boolean | Prisma.Chapter$lessonMapArgs<ExtArgs>
+  quizzes?: boolean | Prisma.Chapter$quizzesArgs<ExtArgs>
   _count?: boolean | Prisma.ChapterCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["chapter"]>
 
@@ -721,6 +843,7 @@ export type ChapterOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 export type ChapterInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   chapterMap?: boolean | Prisma.Chapter$chapterMapArgs<ExtArgs>
   lessonMap?: boolean | Prisma.Chapter$lessonMapArgs<ExtArgs>
+  quizzes?: boolean | Prisma.Chapter$quizzesArgs<ExtArgs>
   _count?: boolean | Prisma.ChapterCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ChapterIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -731,6 +854,7 @@ export type $ChapterPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   objects: {
     chapterMap: Prisma.$ChapterMapPayload<ExtArgs>[]
     lessonMap: Prisma.$lessonMapPayload<ExtArgs>[]
+    quizzes: Prisma.$QuizPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1139,6 +1263,7 @@ export interface Prisma__ChapterClient<T, Null = never, ExtArgs extends runtime.
   readonly [Symbol.toStringTag]: "PrismaPromise"
   chapterMap<T extends Prisma.Chapter$chapterMapArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Chapter$chapterMapArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChapterMapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   lessonMap<T extends Prisma.Chapter$lessonMapArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Chapter$lessonMapArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$lessonMapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  quizzes<T extends Prisma.Chapter$quizzesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Chapter$quizzesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuizPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1616,6 +1741,30 @@ export type Chapter$lessonMapArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.LessonMapScalarFieldEnum | Prisma.LessonMapScalarFieldEnum[]
+}
+
+/**
+ * Chapter.quizzes
+ */
+export type Chapter$quizzesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Quiz
+   */
+  select?: Prisma.QuizSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Quiz
+   */
+  omit?: Prisma.QuizOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuizInclude<ExtArgs> | null
+  where?: Prisma.QuizWhereInput
+  orderBy?: Prisma.QuizOrderByWithRelationInput | Prisma.QuizOrderByWithRelationInput[]
+  cursor?: Prisma.QuizWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QuizScalarFieldEnum | Prisma.QuizScalarFieldEnum[]
 }
 
 /**

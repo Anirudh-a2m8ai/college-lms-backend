@@ -6,6 +6,7 @@ model Module {
   overview    String?
   moduleMap   ModuleMap[]
   chapterMap  ChapterMap[]
+  quizzes     Quiz[]
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
   isDeleted   Boolean      @default(false)

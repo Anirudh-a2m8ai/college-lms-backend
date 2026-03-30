@@ -7,6 +7,8 @@ model SubTopics {
   examples    Json?
   image       Json?
   subTopicMap subTopicMap[]
+  userProcess UserProcess[]
+  quizzes     Quiz[]
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   isDeleted   Boolean       @default(false)

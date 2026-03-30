@@ -6,6 +6,7 @@ model Chapter {
   overview    String?
   chapterMap  ChapterMap[]
   lessonMap   lessonMap[]
+  quizzes     Quiz[]
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
   isDeleted   Boolean      @default(false)

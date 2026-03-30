@@ -1,17 +1,17 @@
 model Enrollments {
-    id                     String        @id @default(uuid())
-    userId                 String
-    courseVersionId        String
-    totalLessons           Int
-    totalQuizzes           Int
-    completedLessons       Int
-    completedQuizzes       Int
-    LastAccessedSubTopicId String?
-    user                   User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-    courseVersion          CourseVersion @relation(fields: [courseVersionId], references: [id], onDelete: Cascade)
-    createdAt              DateTime      @default(now())
-    updatedAt              DateTime      @updatedAt
-    isDeleted              Boolean       @default(false)
-    deletedAt              DateTime?
-    deleteAt               DateTime?
+	id                     String        @id @default(uuid())
+	userId                 String
+	courseVersionId        String
+	totalLessons           Int
+	totalQuizzes           Int
+	LastAccessedSubTopicId String?
+	user                   User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+	courseVersion          CourseVersion @relation(fields: [courseVersionId], references: [id], onDelete: Cascade)
+	userProcess            UserProcess[]
+	quizProgress           quizProgress[]
+	createdAt              DateTime      @default(now())
+	updatedAt              DateTime      @updatedAt
+	isDeleted              Boolean       @default(false)
+	deletedAt              DateTime?
+	deleteAt               DateTime?
 }

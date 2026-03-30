@@ -1,0 +1,86 @@
+enum QuizType {
+	MANUAL
+	AI_GENERATED
+}
+
+enum QuizDifficulty {
+	EASY
+	MEDIUM
+	HARD
+}
+
+enum QuizQuestionType {
+	MCQ
+	MULTI_SELECT
+	TRUE_OR_FALSE
+	FILL_IN_THE_BLANKS
+	SHORT_ANSWER
+}
+
+model Quiz {
+	id                 String         @id @default(uuid())
+	title              String
+	description        String?
+	courseVersionId    String
+	orderIndex         Int 
+	isMandatory        Boolean        @default(true)
+	quizType           QuizType
+	noOfQuestions      Int?
+	difficulty         QuizDifficulty?
+	passPercentage     Int
+	timeLimitInSeconds Int
+	questionPattern    Json?
+	noOfAttempt        Int
+	moduleId           String?
+	chapterId          String?
+	lessonId           String?
+	topicId            String?
+	subTopicId         String?
+	module             Module? 					@relation(fields: [moduleId], references: [id], onDelete: Cascade) 
+	chapter            Chapter? 				@relation(fields: [chapterId], references: [id], onDelete: Cascade) 
+	lesson             Lesson? 					@relation(fields: [lessonId], references: [id], onDelete: Cascade) 
+	topic              Topics? 					@relation(fields: [topicId], references: [id], onDelete: Cascade) 
+	subTopic           SubTopics? 			@relation(fields: [subTopicId], references: [id], onDelete: Cascade) 
+	courseVersion      CourseVersion 		@relation(fields: [courseVersionId], references: [id], onDelete: Cascade) 
+	quizQuestions      QuizQuestion[]
+	createdAt          DateTime 				@default(now())
+	updatedAt          DateTime 				@updatedAt
+	isDeleted          Boolean      		@default(false)
+	deletedAt          DateTime?
+	deleteAt           DateTime?
+}
+
+model QuizQuestion {
+	id                 String           @id @default(uuid())
+	question           String
+	questionType       QuizQuestionType
+	options            String[]
+	correctAnswer      Json
+	quizId             String
+	quiz               Quiz 						@relation(fields: [quizId], references: [id])
+	createdAt          DateTime 				@default(now())
+	updatedAt          DateTime 				@updatedAt
+}
+
+model QuizAttempt {
+	id                 String           @id @default(uuid())
+	quizId             String
+	attemptNumber      Int
+	quizSubmissions    QuizSubmission[]
+	quizProgressId     String
+	quizProgress       quizProgress 		@relation(fields: [quizProgressId], references: [id], onDelete: Cascade)
+	score              Float 						@default(0.0)
+	createdAt          DateTime 				@default(now())
+	updatedAt          DateTime 				@updatedAt
+}
+
+model QuizSubmission {
+	id                 String           @id @default(uuid())
+	answer             Json
+	quizQuestionId     String
+	isCorrect          Boolean          @default(false)
+	attemptId          String
+	attempt            QuizAttempt 			@relation(fields: [attemptId], references: [id], onDelete: Cascade)
+	createdAt          DateTime         @default(now())
+	updatedAt          DateTime         @updatedAt
+}

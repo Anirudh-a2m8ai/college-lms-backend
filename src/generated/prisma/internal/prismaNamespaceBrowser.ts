@@ -62,6 +62,10 @@ export const ModelName = {
   ModuleMap: 'ModuleMap',
   Module: 'Module',
   Permission: 'Permission',
+  Quiz: 'Quiz',
+  QuizQuestion: 'QuizQuestion',
+  QuizAttempt: 'QuizAttempt',
+  QuizSubmission: 'QuizSubmission',
   Role: 'Role',
   SubTopics: 'SubTopics',
   subTopicMap: 'subTopicMap',
@@ -69,6 +73,8 @@ export const ModelName = {
   TopicMap: 'TopicMap',
   Topics: 'Topics',
   UserPermission: 'UserPermission',
+  UserProcess: 'UserProcess',
+  quizProgress: 'quizProgress',
   User: 'User',
   SocialLinks: 'SocialLinks',
   UserToken: 'UserToken'
@@ -178,8 +184,6 @@ export const EnrollmentsScalarFieldEnum = {
   courseVersionId: 'courseVersionId',
   totalLessons: 'totalLessons',
   totalQuizzes: 'totalQuizzes',
-  completedLessons: 'completedLessons',
-  completedQuizzes: 'completedQuizzes',
   LastAccessedSubTopicId: 'LastAccessedSubTopicId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
@@ -257,6 +261,75 @@ export const PermissionScalarFieldEnum = {
 } as const
 
 export type PermissionScalarFieldEnum = (typeof PermissionScalarFieldEnum)[keyof typeof PermissionScalarFieldEnum]
+
+
+export const QuizScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  courseVersionId: 'courseVersionId',
+  orderIndex: 'orderIndex',
+  isMandatory: 'isMandatory',
+  quizType: 'quizType',
+  noOfQuestions: 'noOfQuestions',
+  difficulty: 'difficulty',
+  passPercentage: 'passPercentage',
+  timeLimitInSeconds: 'timeLimitInSeconds',
+  questionPattern: 'questionPattern',
+  noOfAttempt: 'noOfAttempt',
+  moduleId: 'moduleId',
+  chapterId: 'chapterId',
+  lessonId: 'lessonId',
+  topicId: 'topicId',
+  subTopicId: 'subTopicId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt',
+  deleteAt: 'deleteAt'
+} as const
+
+export type QuizScalarFieldEnum = (typeof QuizScalarFieldEnum)[keyof typeof QuizScalarFieldEnum]
+
+
+export const QuizQuestionScalarFieldEnum = {
+  id: 'id',
+  question: 'question',
+  questionType: 'questionType',
+  options: 'options',
+  correctAnswer: 'correctAnswer',
+  quizId: 'quizId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QuizQuestionScalarFieldEnum = (typeof QuizQuestionScalarFieldEnum)[keyof typeof QuizQuestionScalarFieldEnum]
+
+
+export const QuizAttemptScalarFieldEnum = {
+  id: 'id',
+  quizId: 'quizId',
+  attemptNumber: 'attemptNumber',
+  quizProgressId: 'quizProgressId',
+  score: 'score',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QuizAttemptScalarFieldEnum = (typeof QuizAttemptScalarFieldEnum)[keyof typeof QuizAttemptScalarFieldEnum]
+
+
+export const QuizSubmissionScalarFieldEnum = {
+  id: 'id',
+  answer: 'answer',
+  quizQuestionId: 'quizQuestionId',
+  isCorrect: 'isCorrect',
+  attemptId: 'attemptId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QuizSubmissionScalarFieldEnum = (typeof QuizSubmissionScalarFieldEnum)[keyof typeof QuizSubmissionScalarFieldEnum]
 
 
 export const RoleScalarFieldEnum = {
@@ -366,6 +439,40 @@ export const UserPermissionScalarFieldEnum = {
 export type UserPermissionScalarFieldEnum = (typeof UserPermissionScalarFieldEnum)[keyof typeof UserPermissionScalarFieldEnum]
 
 
+export const UserProcessScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  subTopicId: 'subTopicId',
+  enrollmentId: 'enrollmentId',
+  status: 'status',
+  currentTimeStamp: 'currentTimeStamp',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt',
+  lastAccessedAt: 'lastAccessedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt',
+  deleteAt: 'deleteAt'
+} as const
+
+export type UserProcessScalarFieldEnum = (typeof UserProcessScalarFieldEnum)[keyof typeof UserProcessScalarFieldEnum]
+
+
+export const QuizProgressScalarFieldEnum = {
+  id: 'id',
+  enrollmentId: 'enrollmentId',
+  quizId: 'quizId',
+  courseSectionId: 'courseSectionId',
+  highScore: 'highScore',
+  isCompleted: 'isCompleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QuizProgressScalarFieldEnum = (typeof QuizProgressScalarFieldEnum)[keyof typeof QuizProgressScalarFieldEnum]
+
+
 export const UserScalarFieldEnum = {
   id: 'id',
   firstName: 'firstName',
@@ -435,6 +542,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {

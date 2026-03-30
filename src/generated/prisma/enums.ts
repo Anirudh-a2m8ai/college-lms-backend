@@ -18,6 +18,43 @@ export const CourseStatus = {
 export type CourseStatus = (typeof CourseStatus)[keyof typeof CourseStatus]
 
 
+export const QuizType = {
+  MANUAL: 'MANUAL',
+  AI_GENERATED: 'AI_GENERATED'
+} as const
+
+export type QuizType = (typeof QuizType)[keyof typeof QuizType]
+
+
+export const QuizDifficulty = {
+  EASY: 'EASY',
+  MEDIUM: 'MEDIUM',
+  HARD: 'HARD'
+} as const
+
+export type QuizDifficulty = (typeof QuizDifficulty)[keyof typeof QuizDifficulty]
+
+
+export const QuizQuestionType = {
+  MCQ: 'MCQ',
+  MULTI_SELECT: 'MULTI_SELECT',
+  TRUE_OR_FALSE: 'TRUE_OR_FALSE',
+  FILL_IN_THE_BLANKS: 'FILL_IN_THE_BLANKS',
+  SHORT_ANSWER: 'SHORT_ANSWER'
+} as const
+
+export type QuizQuestionType = (typeof QuizQuestionType)[keyof typeof QuizQuestionType]
+
+
+export const ProcessStatus = {
+  NOT_STARTED: 'NOT_STARTED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED'
+} as const
+
+export type ProcessStatus = (typeof ProcessStatus)[keyof typeof ProcessStatus]
+
+
 export const AccountStatus = {
   ACTIVE: 'ACTIVE',
   INACTIVE: 'INACTIVE',
