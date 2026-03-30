@@ -16,6 +16,12 @@ export class LessonResponseDto {
   overview: string;
 
   @Expose()
+  chapterId: string;
+
+  @Expose()
+  moduleId: string;
+
+  @Expose()
   orderIndex: number;
 
   @Expose()

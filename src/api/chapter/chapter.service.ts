@@ -40,6 +40,7 @@ export class ChapterService {
     });
     const chapterResponse = plainToInstance(ChapterResponseDto, chapter);
     chapterResponse.orderIndex = payload.orderIndex;
+    chapterResponse.moduleId = payload.moduleId;
     return {
       message: 'Chapter created successfully',
       data: chapterResponse,

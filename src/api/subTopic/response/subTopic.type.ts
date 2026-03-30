@@ -10,4 +10,7 @@ export class SubTopicResponseDto {
 
   @Expose()
   orderIndex: number;
+
+  @Expose()
+  topicId: string;
 }

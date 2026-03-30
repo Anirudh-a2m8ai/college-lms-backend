@@ -39,8 +39,9 @@ export class LessonService {
       },
     });
     const lessonResponse = plainToInstance(LessonResponseDto, lesson);
-    console.log(lessonResponse);
     lessonResponse.orderIndex = payload.orderIndex;
+    lessonResponse.chapterId = payload.chapterId;
+    lessonResponse.moduleId = payload.moduleId;
     return {
       message: 'Lesson created successfully',
       data: lessonResponse,

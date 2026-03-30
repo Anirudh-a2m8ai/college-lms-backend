@@ -14,6 +14,9 @@ export class ChapterResponseDto {
   description: string;
 
   @Expose()
+  moduleId: string;
+
+  @Expose()
   overview: string;
 
   @Expose()

@@ -19,6 +19,9 @@ export class TopicResponseDto {
   orderIndex: number;
 
   @Expose()
+  lessonId: string;
+
+  @Expose()
   @Type(() => SubTopicResponseDto)
   subTopic: SubTopicResponseDto[];
 }
