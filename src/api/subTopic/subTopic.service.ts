@@ -38,6 +38,7 @@ export class SubTopicService {
     });
     const subTopicResponse = plainToInstance(SubTopicResponseDto, subTopic);
     subTopicResponse.orderIndex = payload.orderIndex;
+    subTopicResponse.topicId = payload.topicId;
     return {
       message: 'Sub topic created successfully',
       data: subTopicResponse,

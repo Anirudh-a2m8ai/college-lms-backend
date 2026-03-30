@@ -40,6 +40,7 @@ export class TopicService {
     });
     const topicResponse = plainToInstance(TopicResponseDto, topic);
     topicResponse.orderIndex = payload.orderIndex;
+    topicResponse.lessonId = payload.lessonId;
     return {
       message: 'Topic created successfully',
       data: topicResponse,
