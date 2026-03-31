@@ -25,3 +25,33 @@ export class CreateChapterDto {
   @IsNotEmpty()
   orderIndex: number;
 }
+
+export class UpdateChapterDto {
+  @IsString()
+  @IsNotEmpty()
+  id: string;
+
+  @IsString()
+  @IsNotEmpty()
+  title: string;
+
+  @IsString()
+  @IsOptional()
+  description: string;
+
+  @IsString()
+  @IsOptional()
+  overview: string;
+
+  @IsString()
+  @IsNotEmpty()
+  moduleId: string;
+
+  @IsString()
+  @IsNotEmpty()
+  courseVersionId: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  orderIndex: number;
+}

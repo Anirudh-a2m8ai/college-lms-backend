@@ -31,6 +31,10 @@ export class ModuleMapDbService {
     return await this.prisma.moduleMap.update(payload);
   }
 
+  async updateMany(payload: Prisma.ModuleMapUpdateManyArgs): Promise<BatchPayload> {
+    return await this.prisma.moduleMap.updateMany(payload);
+  }
+
   async delete(payload: Prisma.ModuleMapDeleteArgs): Promise<ModuleMap> {
     return await this.prisma.moduleMap.delete(payload);
   }

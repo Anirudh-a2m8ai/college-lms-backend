@@ -1,15 +1,17 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
-import { CreateLessonDto } from './dto/create-lesson.dto';
+import { CreateLessonDto, UpdateLessonDto } from './dto/create-lesson.dto';
 import { LessonDbService } from 'src/repository/lesson.db-service';
 import { LessonMapDbService } from 'src/repository/lessonMap.db-service';
 import { LessonResponseDto } from './response/lesson.type';
+import { TopicMapDbService } from 'src/repository/topicMap.db-service';
 
 @Injectable()
 export class LessonService {
   constructor(
     private readonly lessonDbService: LessonDbService,
     private readonly lessonMapDbService: LessonMapDbService,
+    private readonly topicMapDbService: TopicMapDbService,
   ) {}
 
   async create(payload: CreateLessonDto, user: any) {
@@ -44,6 +46,76 @@ export class LessonService {
     lessonResponse.moduleId = payload.moduleId;
     return {
       message: 'Lesson created successfully',
+      data: lessonResponse,
+    };
+  }
+
+  async update(payload: UpdateLessonDto, user: any) {
+    const existingLesson = await this.lessonMapDbService.findFirst({
+      where: {
+        lessonId: payload.id,
+        courseVersionId: payload.courseVersionId,
+      },
+    });
+    if (!existingLesson) {
+      throw new NotFoundException('Lesson not found');
+    }
+    const existingLessonCount = await this.lessonMapDbService.count({
+      where: {
+        lessonId: payload.id,
+        courseVersionId: payload.courseVersionId,
+      },
+    });
+    if (existingLessonCount > 1) {
+      const createLesson = await this.lessonDbService.create({
+        data: {
+          title: payload.title,
+          description: payload.description,
+          overview: payload.overview,
+        },
+      });
+      await this.lessonMapDbService.update({
+        where: {
+          courseVersionId_chapterId_lessonId: {
+            lessonId: payload.id,
+            courseVersionId: payload.courseVersionId,
+            chapterId: existingLesson.chapterId,
+          },
+        },
+        data: {
+          lessonId: createLesson.id,
+        },
+      });
+      await this.topicMapDbService.updateMany({
+        where: {
+          lessonId: payload.id,
+          courseVersionId: payload.courseVersionId,
+        },
+        data: {
+          lessonId: createLesson.id,
+        },
+      });
+      const lessonResponse = plainToInstance(LessonResponseDto, createLesson);
+      lessonResponse.orderIndex = payload.orderIndex;
+      return {
+        message: 'Chapter updated successfully',
+        data: lessonResponse,
+      };
+    }
+    const module = await this.lessonDbService.update({
+      where: {
+        id: payload.id,
+      },
+      data: {
+        title: payload.title,
+        description: payload.description,
+        overview: payload.overview,
+      },
+    });
+    const lessonResponse = plainToInstance(LessonResponseDto, module);
+    lessonResponse.orderIndex = payload.orderIndex;
+    return {
+      message: 'Chapter updated successfully',
       data: lessonResponse,
     };
   }

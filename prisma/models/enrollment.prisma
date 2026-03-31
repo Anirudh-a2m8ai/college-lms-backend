@@ -2,8 +2,10 @@ model Enrollments {
 	id                     String        @id @default(uuid())
 	userId                 String
 	courseVersionId        String
-	totalLessons           Int
+	totalSubTopics         Int
 	totalQuizzes           Int
+	completedSubTopics     Int           @default(0)
+	completedQuizzes       Int           @default(0)
 	LastAccessedSubTopicId String?
 	user                   User          @relation(fields: [userId], references: [id], onDelete: Cascade)
 	courseVersion          CourseVersion @relation(fields: [courseVersionId], references: [id], onDelete: Cascade)

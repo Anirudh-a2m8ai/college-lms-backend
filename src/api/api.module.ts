@@ -13,6 +13,9 @@ import { ChapterModule } from './chapter/chapter.module';
 import { LessonModule } from './lesson/lesson.module';
 import { TopicModule } from './topic/topic.module';
 import { SubTopicModule } from './subTopic/subTopic.module';
+import { EnrollmentsModule } from './enrollments/enrollments.module';
+import { QuizModule } from './quiz/quiz.module';
+import { UserProgressModule } from './userProgress/userProgress.module';
 
 @Module({
   imports: [
@@ -28,6 +31,9 @@ import { SubTopicModule } from './subTopic/subTopic.module';
     LessonModule,
     TopicModule,
     SubTopicModule,
+    EnrollmentsModule,
+    QuizModule,
+    UserProgressModule,
   ],
   providers: [
     {

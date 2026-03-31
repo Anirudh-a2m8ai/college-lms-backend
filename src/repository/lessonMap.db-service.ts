@@ -31,6 +31,10 @@ export class LessonMapDbService {
     return await this.prisma.lessonMap.update(payload);
   }
 
+  async updateMany(payload: Prisma.lessonMapUpdateManyArgs): Promise<BatchPayload> {
+    return await this.prisma.lessonMap.updateMany(payload);
+  }
+
   async delete(payload: Prisma.lessonMapDeleteArgs): Promise<lessonMap> {
     return await this.prisma.lessonMap.delete(payload);
   }

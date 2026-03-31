@@ -21,3 +21,9 @@ export class CreateModuleDto {
   @IsOptional()
   orderIndex: number;
 }
+
+export class UpdateModuleDto extends CreateModuleDto {
+  @IsString()
+  @IsNotEmpty()
+  id: string;
+}

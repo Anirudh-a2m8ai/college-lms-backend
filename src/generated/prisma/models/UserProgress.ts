@@ -315,6 +315,7 @@ export type UserProgressOrderByWithRelationInput = {
 
 export type UserProgressWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  enrollmentId_subTopicId?: Prisma.UserProgressEnrollmentIdSubTopicIdCompoundUniqueInput
   AND?: Prisma.UserProgressWhereInput | Prisma.UserProgressWhereInput[]
   OR?: Prisma.UserProgressWhereInput[]
   NOT?: Prisma.UserProgressWhereInput | Prisma.UserProgressWhereInput[]
@@ -334,7 +335,7 @@ export type UserProgressWhereUniqueInput = Prisma.AtLeast<{
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   enrollment?: Prisma.XOR<Prisma.EnrollmentsScalarRelationFilter, Prisma.EnrollmentsWhereInput>
   subTopic?: Prisma.XOR<Prisma.SubTopicsScalarRelationFilter, Prisma.SubTopicsWhereInput>
-}, "id">
+}, "id" | "enrollmentId_subTopicId">
 
 export type UserProgressOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -502,6 +503,11 @@ export type UserProgressListRelationFilter = {
 
 export type UserProgressOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type UserProgressEnrollmentIdSubTopicIdCompoundUniqueInput = {
+  enrollmentId: string
+  subTopicId: string
 }
 
 export type UserProgressCountOrderByAggregateInput = {

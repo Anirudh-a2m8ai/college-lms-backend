@@ -12,10 +12,19 @@ export class EnrollmentsResponseDto {
   courseVersionId: string;
 
   @Expose()
-  totalLessons: number;
+  totalSubTopics: number;
 
   @Expose()
   totalQuizzes: number;
+
+  @Expose()
+  completedSubTopics: number;
+
+  @Expose()
+  completedQuizzes: number;
+
+  @Expose()
+  LastAccessedSubTopicId: string;
 
   @Expose()
   createdAt: Date;

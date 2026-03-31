@@ -33,4 +33,8 @@ export class UserProgressDbService {
   async count(query: Prisma.UserProgressCountArgs): Promise<number> {
     return await this.prisma.userProgress.count(query);
   }
+
+  async upsert(payload: Prisma.UserProgressUpsertArgs): Promise<UserProgress> {
+    return await this.prisma.userProgress.upsert(payload);
+  }
 }

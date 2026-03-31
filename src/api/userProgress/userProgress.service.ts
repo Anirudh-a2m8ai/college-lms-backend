@@ -15,15 +15,27 @@ export class UserProgressService {
     const enrollment = await this.enrollmentDbService.findFirst({
       where: {
         id: payload.enrollmentId,
-        userId: user.id,
+        userId: user.userId,
       },
     });
     if (!enrollment) {
       throw new NotFoundException('Enrollment not found');
     }
-    const userProgress = await this.userProgressDbService.create({
-      data: {
-        userId: user.id,
+    const userProgress = await this.userProgressDbService.upsert({
+      where: {
+        enrollmentId_subTopicId: {
+          enrollmentId: payload.enrollmentId,
+          subTopicId: payload.subTopicId,
+        },
+      },
+      update: {
+        status: payload.status,
+        currentTimeStamp: payload.currentTimeStamp,
+        completedAt: payload.status === ProcessStatus.COMPLETED ? new Date() : null,
+        lastAccessedAt: new Date(),
+      },
+      create: {
+        userId: user.userId,
         subTopicId: payload.subTopicId,
         enrollmentId: payload.enrollmentId,
         status: payload.status,
@@ -40,6 +52,10 @@ export class UserProgressService {
       },
       data: {
         LastAccessedSubTopicId: payload.subTopicId,
+        completedSubTopics:
+          payload.status === ProcessStatus.COMPLETED
+            ? enrollment.completedSubTopics + 1
+            : enrollment.completedSubTopics,
       },
     });
     return {

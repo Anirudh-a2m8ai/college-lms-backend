@@ -1,9 +1,9 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { SubTopicDbService } from 'src/repository/subTopic.db-service';
 import { SubTopicMapDbService } from 'src/repository/subTopicMap.db-service';
 import { plainToInstance } from 'class-transformer';
 import { SubTopicResponseDto } from './response/subTopic.type';
-import { CreateSubTopicDto } from './dto/create-subTopic.dto';
+import { CreateSubTopicDto, UpdateSubTopicDto } from './dto/create-subTopic.dto';
 
 @Injectable()
 export class SubTopicService {
@@ -41,6 +41,65 @@ export class SubTopicService {
     subTopicResponse.topicId = payload.topicId;
     return {
       message: 'Sub topic created successfully',
+      data: subTopicResponse,
+    };
+  }
+
+  async update(payload: UpdateSubTopicDto, user: any) {
+    const existingSubTopic = await this.subTopicMapDbService.findFirst({
+      where: {
+        subTopicId: payload.id,
+        courseVersionId: payload.courseVersionId,
+      },
+    });
+    if (!existingSubTopic) {
+      throw new NotFoundException('Sub topic not found');
+    }
+    const existingSubTopicCount = await this.subTopicMapDbService.count({
+      where: {
+        subTopicId: payload.id,
+        courseVersionId: payload.courseVersionId,
+      },
+    });
+    if (existingSubTopicCount > 1) {
+      const createSubTopic = await this.subTopicDbService.create({
+        data: {
+          title: payload.title,
+        },
+      });
+      await this.subTopicMapDbService.update({
+        where: {
+          courseVersionId_topicId_subTopicId: {
+            subTopicId: payload.id,
+            courseVersionId: payload.courseVersionId,
+            topicId: payload.topicId,
+          },
+        },
+        data: {
+          subTopicId: createSubTopic.id,
+        },
+      });
+      const subTopicResponse = plainToInstance(SubTopicResponseDto, createSubTopic);
+      subTopicResponse.orderIndex = payload.orderIndex;
+      subTopicResponse.topicId = payload.topicId;
+      return {
+        message: 'Sub topic updated successfully',
+        data: subTopicResponse,
+      };
+    }
+    const subTopic = await this.subTopicDbService.update({
+      where: {
+        id: payload.id,
+      },
+      data: {
+        title: payload.title,
+      },
+    });
+    const subTopicResponse = plainToInstance(SubTopicResponseDto, subTopic);
+    subTopicResponse.orderIndex = payload.orderIndex;
+    subTopicResponse.topicId = payload.topicId;
+    return {
+      message: 'Sub topic updated successfully',
       data: subTopicResponse,
     };
   }

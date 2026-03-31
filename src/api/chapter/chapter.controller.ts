@@ -1,6 +1,6 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Patch, Post, UseGuards } from '@nestjs/common';
 import { ChapterService } from './chapter.service';
-import { CreateChapterDto } from './dto/create-chapter.dto';
+import { CreateChapterDto, UpdateChapterDto } from './dto/create-chapter.dto';
 import { PermissionGuard } from 'src/common/guards/permission.guard';
 import { Permissions } from 'src/common/decorators/permissions.decorator';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
@@ -14,5 +14,11 @@ export class ChapterController {
   @Post()
   async create(@Body() payload: CreateChapterDto, @CurrentUser() user: any) {
     return await this.chapterService.create(payload, user);
+  }
+
+  @Permissions('course:create')
+  @Patch()
+  async update(@Body() payload: UpdateChapterDto, @CurrentUser() user: any) {
+    return await this.chapterService.update(payload, user);
   }
 }

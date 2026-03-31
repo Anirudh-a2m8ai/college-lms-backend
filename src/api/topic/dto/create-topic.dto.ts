@@ -25,3 +25,33 @@ export class CreateTopicDto {
   @IsNotEmpty()
   orderIndex: number;
 }
+
+export class UpdateTopicDto {
+  @IsString()
+  @IsNotEmpty()
+  id: string;
+
+  @IsString()
+  @IsNotEmpty()
+  title: string;
+
+  @IsString()
+  @IsOptional()
+  description: string;
+
+  @IsString()
+  @IsOptional()
+  overview: string;
+
+  @IsString()
+  @IsNotEmpty()
+  lessonId: string;
+
+  @IsString()
+  @IsNotEmpty()
+  courseVersionId: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  orderIndex: number;
+}

@@ -17,3 +17,25 @@ export class CreateSubTopicDto {
   @IsNotEmpty()
   orderIndex: number;
 }
+
+export class UpdateSubTopicDto {
+  @IsString()
+  @IsNotEmpty()
+  id: string;
+
+  @IsString()
+  @IsNotEmpty()
+  title: string;
+
+  @IsString()
+  @IsNotEmpty()
+  topicId: string;
+
+  @IsString()
+  @IsNotEmpty()
+  courseVersionId: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  orderIndex: number;
+}

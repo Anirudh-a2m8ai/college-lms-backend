@@ -31,6 +31,10 @@ export class TopicMapDbService {
     return await this.prisma.topicMap.update(payload);
   }
 
+  async updateMany(payload: Prisma.TopicMapUpdateManyArgs): Promise<BatchPayload> {
+    return await this.prisma.topicMap.updateMany(payload);
+  }
+
   async delete(payload: Prisma.TopicMapDeleteArgs): Promise<TopicMap> {
     return await this.prisma.topicMap.delete(payload);
   }

@@ -29,3 +29,29 @@ export class CreateLessonDto {
   @IsNotEmpty()
   orderIndex: number;
 }
+
+export class UpdateLessonDto {
+  @IsString()
+  @IsNotEmpty()
+  id: string;
+
+  @IsString()
+  @IsNotEmpty()
+  title: string;
+
+  @IsString()
+  @IsOptional()
+  description: string;
+
+  @IsString()
+  @IsOptional()
+  overview: string;
+
+  @IsString()
+  @IsNotEmpty()
+  courseVersionId: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  orderIndex: number;
+}

@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import { IsDate, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 import { ProcessStatus } from 'src/generated/prisma/enums';
 
@@ -17,11 +18,8 @@ export class CreateUserProgressDto {
   @IsNumber()
   currentTimeStamp: number;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @Type(() => Date)
   @IsDate()
   startedAt: Date;
-
-  @IsOptional()
-  @IsDate()
-  completedAt: Date;
 }

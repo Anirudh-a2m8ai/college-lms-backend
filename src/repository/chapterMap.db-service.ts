@@ -31,6 +31,10 @@ export class ChapterMapDbService {
     return await this.prisma.chapterMap.update(payload);
   }
 
+  async updateMany(payload: Prisma.ChapterMapUpdateManyArgs): Promise<BatchPayload> {
+    return await this.prisma.chapterMap.updateMany(payload);
+  }
+
   async delete(payload: Prisma.ChapterMapDeleteArgs): Promise<ChapterMap> {
     return await this.prisma.chapterMap.delete(payload);
   }

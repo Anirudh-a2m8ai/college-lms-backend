@@ -27,21 +27,27 @@ export type AggregateEnrollments = {
 }
 
 export type EnrollmentsAvgAggregateOutputType = {
-  totalLessons: number | null
+  totalSubTopics: number | null
   totalQuizzes: number | null
+  completedSubTopics: number | null
+  completedQuizzes: number | null
 }
 
 export type EnrollmentsSumAggregateOutputType = {
-  totalLessons: number | null
+  totalSubTopics: number | null
   totalQuizzes: number | null
+  completedSubTopics: number | null
+  completedQuizzes: number | null
 }
 
 export type EnrollmentsMinAggregateOutputType = {
   id: string | null
   userId: string | null
   courseVersionId: string | null
-  totalLessons: number | null
+  totalSubTopics: number | null
   totalQuizzes: number | null
+  completedSubTopics: number | null
+  completedQuizzes: number | null
   LastAccessedSubTopicId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -54,8 +60,10 @@ export type EnrollmentsMaxAggregateOutputType = {
   id: string | null
   userId: string | null
   courseVersionId: string | null
-  totalLessons: number | null
+  totalSubTopics: number | null
   totalQuizzes: number | null
+  completedSubTopics: number | null
+  completedQuizzes: number | null
   LastAccessedSubTopicId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -68,8 +76,10 @@ export type EnrollmentsCountAggregateOutputType = {
   id: number
   userId: number
   courseVersionId: number
-  totalLessons: number
+  totalSubTopics: number
   totalQuizzes: number
+  completedSubTopics: number
+  completedQuizzes: number
   LastAccessedSubTopicId: number
   createdAt: number
   updatedAt: number
@@ -81,21 +91,27 @@ export type EnrollmentsCountAggregateOutputType = {
 
 
 export type EnrollmentsAvgAggregateInputType = {
-  totalLessons?: true
+  totalSubTopics?: true
   totalQuizzes?: true
+  completedSubTopics?: true
+  completedQuizzes?: true
 }
 
 export type EnrollmentsSumAggregateInputType = {
-  totalLessons?: true
+  totalSubTopics?: true
   totalQuizzes?: true
+  completedSubTopics?: true
+  completedQuizzes?: true
 }
 
 export type EnrollmentsMinAggregateInputType = {
   id?: true
   userId?: true
   courseVersionId?: true
-  totalLessons?: true
+  totalSubTopics?: true
   totalQuizzes?: true
+  completedSubTopics?: true
+  completedQuizzes?: true
   LastAccessedSubTopicId?: true
   createdAt?: true
   updatedAt?: true
@@ -108,8 +124,10 @@ export type EnrollmentsMaxAggregateInputType = {
   id?: true
   userId?: true
   courseVersionId?: true
-  totalLessons?: true
+  totalSubTopics?: true
   totalQuizzes?: true
+  completedSubTopics?: true
+  completedQuizzes?: true
   LastAccessedSubTopicId?: true
   createdAt?: true
   updatedAt?: true
@@ -122,8 +140,10 @@ export type EnrollmentsCountAggregateInputType = {
   id?: true
   userId?: true
   courseVersionId?: true
-  totalLessons?: true
+  totalSubTopics?: true
   totalQuizzes?: true
+  completedSubTopics?: true
+  completedQuizzes?: true
   LastAccessedSubTopicId?: true
   createdAt?: true
   updatedAt?: true
@@ -223,8 +243,10 @@ export type EnrollmentsGroupByOutputType = {
   id: string
   userId: string
   courseVersionId: string
-  totalLessons: number
+  totalSubTopics: number
   totalQuizzes: number
+  completedSubTopics: number
+  completedQuizzes: number
   LastAccessedSubTopicId: string | null
   createdAt: Date
   updatedAt: Date
@@ -260,8 +282,10 @@ export type EnrollmentsWhereInput = {
   id?: Prisma.StringFilter<"Enrollments"> | string
   userId?: Prisma.StringFilter<"Enrollments"> | string
   courseVersionId?: Prisma.StringFilter<"Enrollments"> | string
-  totalLessons?: Prisma.IntFilter<"Enrollments"> | number
+  totalSubTopics?: Prisma.IntFilter<"Enrollments"> | number
   totalQuizzes?: Prisma.IntFilter<"Enrollments"> | number
+  completedSubTopics?: Prisma.IntFilter<"Enrollments"> | number
+  completedQuizzes?: Prisma.IntFilter<"Enrollments"> | number
   LastAccessedSubTopicId?: Prisma.StringNullableFilter<"Enrollments"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Enrollments"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Enrollments"> | Date | string
@@ -278,8 +302,10 @@ export type EnrollmentsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   courseVersionId?: Prisma.SortOrder
-  totalLessons?: Prisma.SortOrder
+  totalSubTopics?: Prisma.SortOrder
   totalQuizzes?: Prisma.SortOrder
+  completedSubTopics?: Prisma.SortOrder
+  completedQuizzes?: Prisma.SortOrder
   LastAccessedSubTopicId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -299,8 +325,10 @@ export type EnrollmentsWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.EnrollmentsWhereInput | Prisma.EnrollmentsWhereInput[]
   userId?: Prisma.StringFilter<"Enrollments"> | string
   courseVersionId?: Prisma.StringFilter<"Enrollments"> | string
-  totalLessons?: Prisma.IntFilter<"Enrollments"> | number
+  totalSubTopics?: Prisma.IntFilter<"Enrollments"> | number
   totalQuizzes?: Prisma.IntFilter<"Enrollments"> | number
+  completedSubTopics?: Prisma.IntFilter<"Enrollments"> | number
+  completedQuizzes?: Prisma.IntFilter<"Enrollments"> | number
   LastAccessedSubTopicId?: Prisma.StringNullableFilter<"Enrollments"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Enrollments"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Enrollments"> | Date | string
@@ -317,8 +345,10 @@ export type EnrollmentsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   courseVersionId?: Prisma.SortOrder
-  totalLessons?: Prisma.SortOrder
+  totalSubTopics?: Prisma.SortOrder
   totalQuizzes?: Prisma.SortOrder
+  completedSubTopics?: Prisma.SortOrder
+  completedQuizzes?: Prisma.SortOrder
   LastAccessedSubTopicId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -339,8 +369,10 @@ export type EnrollmentsScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Enrollments"> | string
   userId?: Prisma.StringWithAggregatesFilter<"Enrollments"> | string
   courseVersionId?: Prisma.StringWithAggregatesFilter<"Enrollments"> | string
-  totalLessons?: Prisma.IntWithAggregatesFilter<"Enrollments"> | number
+  totalSubTopics?: Prisma.IntWithAggregatesFilter<"Enrollments"> | number
   totalQuizzes?: Prisma.IntWithAggregatesFilter<"Enrollments"> | number
+  completedSubTopics?: Prisma.IntWithAggregatesFilter<"Enrollments"> | number
+  completedQuizzes?: Prisma.IntWithAggregatesFilter<"Enrollments"> | number
   LastAccessedSubTopicId?: Prisma.StringNullableWithAggregatesFilter<"Enrollments"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Enrollments"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Enrollments"> | Date | string
@@ -351,8 +383,10 @@ export type EnrollmentsScalarWhereWithAggregatesInput = {
 
 export type EnrollmentsCreateInput = {
   id?: string
-  totalLessons: number
+  totalSubTopics: number
   totalQuizzes: number
+  completedSubTopics?: number
+  completedQuizzes?: number
   LastAccessedSubTopicId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -369,8 +403,10 @@ export type EnrollmentsUncheckedCreateInput = {
   id?: string
   userId: string
   courseVersionId: string
-  totalLessons: number
+  totalSubTopics: number
   totalQuizzes: number
+  completedSubTopics?: number
+  completedQuizzes?: number
   LastAccessedSubTopicId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -383,8 +419,10 @@ export type EnrollmentsUncheckedCreateInput = {
 
 export type EnrollmentsUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  totalLessons?: Prisma.IntFieldUpdateOperationsInput | number
+  totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
+  completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
+  completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -401,8 +439,10 @@ export type EnrollmentsUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   courseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
-  totalLessons?: Prisma.IntFieldUpdateOperationsInput | number
+  totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
+  completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
+  completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -417,8 +457,10 @@ export type EnrollmentsCreateManyInput = {
   id?: string
   userId: string
   courseVersionId: string
-  totalLessons: number
+  totalSubTopics: number
   totalQuizzes: number
+  completedSubTopics?: number
+  completedQuizzes?: number
   LastAccessedSubTopicId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -429,8 +471,10 @@ export type EnrollmentsCreateManyInput = {
 
 export type EnrollmentsUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  totalLessons?: Prisma.IntFieldUpdateOperationsInput | number
+  totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
+  completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
+  completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -443,8 +487,10 @@ export type EnrollmentsUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   courseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
-  totalLessons?: Prisma.IntFieldUpdateOperationsInput | number
+  totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
+  completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
+  completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -467,8 +513,10 @@ export type EnrollmentsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   courseVersionId?: Prisma.SortOrder
-  totalLessons?: Prisma.SortOrder
+  totalSubTopics?: Prisma.SortOrder
   totalQuizzes?: Prisma.SortOrder
+  completedSubTopics?: Prisma.SortOrder
+  completedQuizzes?: Prisma.SortOrder
   LastAccessedSubTopicId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -478,16 +526,20 @@ export type EnrollmentsCountOrderByAggregateInput = {
 }
 
 export type EnrollmentsAvgOrderByAggregateInput = {
-  totalLessons?: Prisma.SortOrder
+  totalSubTopics?: Prisma.SortOrder
   totalQuizzes?: Prisma.SortOrder
+  completedSubTopics?: Prisma.SortOrder
+  completedQuizzes?: Prisma.SortOrder
 }
 
 export type EnrollmentsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   courseVersionId?: Prisma.SortOrder
-  totalLessons?: Prisma.SortOrder
+  totalSubTopics?: Prisma.SortOrder
   totalQuizzes?: Prisma.SortOrder
+  completedSubTopics?: Prisma.SortOrder
+  completedQuizzes?: Prisma.SortOrder
   LastAccessedSubTopicId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -500,8 +552,10 @@ export type EnrollmentsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   courseVersionId?: Prisma.SortOrder
-  totalLessons?: Prisma.SortOrder
+  totalSubTopics?: Prisma.SortOrder
   totalQuizzes?: Prisma.SortOrder
+  completedSubTopics?: Prisma.SortOrder
+  completedQuizzes?: Prisma.SortOrder
   LastAccessedSubTopicId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -511,8 +565,10 @@ export type EnrollmentsMinOrderByAggregateInput = {
 }
 
 export type EnrollmentsSumOrderByAggregateInput = {
-  totalLessons?: Prisma.SortOrder
+  totalSubTopics?: Prisma.SortOrder
   totalQuizzes?: Prisma.SortOrder
+  completedSubTopics?: Prisma.SortOrder
+  completedQuizzes?: Prisma.SortOrder
 }
 
 export type EnrollmentsScalarRelationFilter = {
@@ -641,8 +697,10 @@ export type EnrollmentsUncheckedUpdateManyWithoutUserNestedInput = {
 
 export type EnrollmentsCreateWithoutCourseVersionInput = {
   id?: string
-  totalLessons: number
+  totalSubTopics: number
   totalQuizzes: number
+  completedSubTopics?: number
+  completedQuizzes?: number
   LastAccessedSubTopicId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -657,8 +715,10 @@ export type EnrollmentsCreateWithoutCourseVersionInput = {
 export type EnrollmentsUncheckedCreateWithoutCourseVersionInput = {
   id?: string
   userId: string
-  totalLessons: number
+  totalSubTopics: number
   totalQuizzes: number
+  completedSubTopics?: number
+  completedQuizzes?: number
   LastAccessedSubTopicId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -702,8 +762,10 @@ export type EnrollmentsScalarWhereInput = {
   id?: Prisma.StringFilter<"Enrollments"> | string
   userId?: Prisma.StringFilter<"Enrollments"> | string
   courseVersionId?: Prisma.StringFilter<"Enrollments"> | string
-  totalLessons?: Prisma.IntFilter<"Enrollments"> | number
+  totalSubTopics?: Prisma.IntFilter<"Enrollments"> | number
   totalQuizzes?: Prisma.IntFilter<"Enrollments"> | number
+  completedSubTopics?: Prisma.IntFilter<"Enrollments"> | number
+  completedQuizzes?: Prisma.IntFilter<"Enrollments"> | number
   LastAccessedSubTopicId?: Prisma.StringNullableFilter<"Enrollments"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Enrollments"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Enrollments"> | Date | string
@@ -714,8 +776,10 @@ export type EnrollmentsScalarWhereInput = {
 
 export type EnrollmentsCreateWithoutUserProgressInput = {
   id?: string
-  totalLessons: number
+  totalSubTopics: number
   totalQuizzes: number
+  completedSubTopics?: number
+  completedQuizzes?: number
   LastAccessedSubTopicId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -731,8 +795,10 @@ export type EnrollmentsUncheckedCreateWithoutUserProgressInput = {
   id?: string
   userId: string
   courseVersionId: string
-  totalLessons: number
+  totalSubTopics: number
   totalQuizzes: number
+  completedSubTopics?: number
+  completedQuizzes?: number
   LastAccessedSubTopicId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -760,8 +826,10 @@ export type EnrollmentsUpdateToOneWithWhereWithoutUserProgressInput = {
 
 export type EnrollmentsUpdateWithoutUserProgressInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  totalLessons?: Prisma.IntFieldUpdateOperationsInput | number
+  totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
+  completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
+  completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -777,8 +845,10 @@ export type EnrollmentsUncheckedUpdateWithoutUserProgressInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   courseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
-  totalLessons?: Prisma.IntFieldUpdateOperationsInput | number
+  totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
+  completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
+  completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -790,8 +860,10 @@ export type EnrollmentsUncheckedUpdateWithoutUserProgressInput = {
 
 export type EnrollmentsCreateWithoutQuizProgressInput = {
   id?: string
-  totalLessons: number
+  totalSubTopics: number
   totalQuizzes: number
+  completedSubTopics?: number
+  completedQuizzes?: number
   LastAccessedSubTopicId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -807,8 +879,10 @@ export type EnrollmentsUncheckedCreateWithoutQuizProgressInput = {
   id?: string
   userId: string
   courseVersionId: string
-  totalLessons: number
+  totalSubTopics: number
   totalQuizzes: number
+  completedSubTopics?: number
+  completedQuizzes?: number
   LastAccessedSubTopicId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -836,8 +910,10 @@ export type EnrollmentsUpdateToOneWithWhereWithoutQuizProgressInput = {
 
 export type EnrollmentsUpdateWithoutQuizProgressInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  totalLessons?: Prisma.IntFieldUpdateOperationsInput | number
+  totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
+  completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
+  completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -853,8 +929,10 @@ export type EnrollmentsUncheckedUpdateWithoutQuizProgressInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   courseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
-  totalLessons?: Prisma.IntFieldUpdateOperationsInput | number
+  totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
+  completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
+  completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -866,8 +944,10 @@ export type EnrollmentsUncheckedUpdateWithoutQuizProgressInput = {
 
 export type EnrollmentsCreateWithoutUserInput = {
   id?: string
-  totalLessons: number
+  totalSubTopics: number
   totalQuizzes: number
+  completedSubTopics?: number
+  completedQuizzes?: number
   LastAccessedSubTopicId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -882,8 +962,10 @@ export type EnrollmentsCreateWithoutUserInput = {
 export type EnrollmentsUncheckedCreateWithoutUserInput = {
   id?: string
   courseVersionId: string
-  totalLessons: number
+  totalSubTopics: number
   totalQuizzes: number
+  completedSubTopics?: number
+  completedQuizzes?: number
   LastAccessedSubTopicId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -923,8 +1005,10 @@ export type EnrollmentsUpdateManyWithWhereWithoutUserInput = {
 export type EnrollmentsCreateManyCourseVersionInput = {
   id?: string
   userId: string
-  totalLessons: number
+  totalSubTopics: number
   totalQuizzes: number
+  completedSubTopics?: number
+  completedQuizzes?: number
   LastAccessedSubTopicId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -935,8 +1019,10 @@ export type EnrollmentsCreateManyCourseVersionInput = {
 
 export type EnrollmentsUpdateWithoutCourseVersionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  totalLessons?: Prisma.IntFieldUpdateOperationsInput | number
+  totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
+  completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
+  completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -951,8 +1037,10 @@ export type EnrollmentsUpdateWithoutCourseVersionInput = {
 export type EnrollmentsUncheckedUpdateWithoutCourseVersionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  totalLessons?: Prisma.IntFieldUpdateOperationsInput | number
+  totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
+  completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
+  completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -966,8 +1054,10 @@ export type EnrollmentsUncheckedUpdateWithoutCourseVersionInput = {
 export type EnrollmentsUncheckedUpdateManyWithoutCourseVersionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  totalLessons?: Prisma.IntFieldUpdateOperationsInput | number
+  totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
+  completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
+  completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -979,8 +1069,10 @@ export type EnrollmentsUncheckedUpdateManyWithoutCourseVersionInput = {
 export type EnrollmentsCreateManyUserInput = {
   id?: string
   courseVersionId: string
-  totalLessons: number
+  totalSubTopics: number
   totalQuizzes: number
+  completedSubTopics?: number
+  completedQuizzes?: number
   LastAccessedSubTopicId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -991,8 +1083,10 @@ export type EnrollmentsCreateManyUserInput = {
 
 export type EnrollmentsUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  totalLessons?: Prisma.IntFieldUpdateOperationsInput | number
+  totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
+  completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
+  completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1007,8 +1101,10 @@ export type EnrollmentsUpdateWithoutUserInput = {
 export type EnrollmentsUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   courseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
-  totalLessons?: Prisma.IntFieldUpdateOperationsInput | number
+  totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
+  completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
+  completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1022,8 +1118,10 @@ export type EnrollmentsUncheckedUpdateWithoutUserInput = {
 export type EnrollmentsUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   courseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
-  totalLessons?: Prisma.IntFieldUpdateOperationsInput | number
+  totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
+  completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
+  completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1076,8 +1174,10 @@ export type EnrollmentsSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   id?: boolean
   userId?: boolean
   courseVersionId?: boolean
-  totalLessons?: boolean
+  totalSubTopics?: boolean
   totalQuizzes?: boolean
+  completedSubTopics?: boolean
+  completedQuizzes?: boolean
   LastAccessedSubTopicId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1095,8 +1195,10 @@ export type EnrollmentsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   id?: boolean
   userId?: boolean
   courseVersionId?: boolean
-  totalLessons?: boolean
+  totalSubTopics?: boolean
   totalQuizzes?: boolean
+  completedSubTopics?: boolean
+  completedQuizzes?: boolean
   LastAccessedSubTopicId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1111,8 +1213,10 @@ export type EnrollmentsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   id?: boolean
   userId?: boolean
   courseVersionId?: boolean
-  totalLessons?: boolean
+  totalSubTopics?: boolean
   totalQuizzes?: boolean
+  completedSubTopics?: boolean
+  completedQuizzes?: boolean
   LastAccessedSubTopicId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1127,8 +1231,10 @@ export type EnrollmentsSelectScalar = {
   id?: boolean
   userId?: boolean
   courseVersionId?: boolean
-  totalLessons?: boolean
+  totalSubTopics?: boolean
   totalQuizzes?: boolean
+  completedSubTopics?: boolean
+  completedQuizzes?: boolean
   LastAccessedSubTopicId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1137,7 +1243,7 @@ export type EnrollmentsSelectScalar = {
   deleteAt?: boolean
 }
 
-export type EnrollmentsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "courseVersionId" | "totalLessons" | "totalQuizzes" | "LastAccessedSubTopicId" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt" | "deleteAt", ExtArgs["result"]["enrollments"]>
+export type EnrollmentsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "courseVersionId" | "totalSubTopics" | "totalQuizzes" | "completedSubTopics" | "completedQuizzes" | "LastAccessedSubTopicId" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt" | "deleteAt", ExtArgs["result"]["enrollments"]>
 export type EnrollmentsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   courseVersion?: boolean | Prisma.CourseVersionDefaultArgs<ExtArgs>
@@ -1166,8 +1272,10 @@ export type $EnrollmentsPayload<ExtArgs extends runtime.Types.Extensions.Interna
     id: string
     userId: string
     courseVersionId: string
-    totalLessons: number
+    totalSubTopics: number
     totalQuizzes: number
+    completedSubTopics: number
+    completedQuizzes: number
     LastAccessedSubTopicId: string | null
     createdAt: Date
     updatedAt: Date
@@ -1604,8 +1712,10 @@ export interface EnrollmentsFieldRefs {
   readonly id: Prisma.FieldRef<"Enrollments", 'String'>
   readonly userId: Prisma.FieldRef<"Enrollments", 'String'>
   readonly courseVersionId: Prisma.FieldRef<"Enrollments", 'String'>
-  readonly totalLessons: Prisma.FieldRef<"Enrollments", 'Int'>
+  readonly totalSubTopics: Prisma.FieldRef<"Enrollments", 'Int'>
   readonly totalQuizzes: Prisma.FieldRef<"Enrollments", 'Int'>
+  readonly completedSubTopics: Prisma.FieldRef<"Enrollments", 'Int'>
+  readonly completedQuizzes: Prisma.FieldRef<"Enrollments", 'Int'>
   readonly LastAccessedSubTopicId: Prisma.FieldRef<"Enrollments", 'String'>
   readonly createdAt: Prisma.FieldRef<"Enrollments", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Enrollments", 'DateTime'>
