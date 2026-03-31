@@ -128,10 +128,10 @@ export type Topics = Prisma.TopicsModel
  */
 export type UserPermission = Prisma.UserPermissionModel
 /**
- * Model UserProcess
+ * Model UserProgress
  * 
  */
-export type UserProcess = Prisma.UserProcessModel
+export type UserProgress = Prisma.UserProgressModel
 /**
  * Model quizProgress
  * 

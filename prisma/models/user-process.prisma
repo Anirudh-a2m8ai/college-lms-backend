@@ -4,7 +4,7 @@ enum ProcessStatus {
 	COMPLETED
 }
 
-model UserProcess {
+model UserProgress {
   id          			 String   @id @default(uuid())
   userId             String
 	subTopicId  			 String

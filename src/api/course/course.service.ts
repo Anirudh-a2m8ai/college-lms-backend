@@ -185,6 +185,12 @@ export class CourseService {
     if (!courseVersion) {
       throw new NotFoundException('Course version not found');
     }
+    const draftCourseVersion = await this.courseVersionDbService.findFirst({
+      where: {
+        courseId: courseVersion.courseId,
+        status: CourseStatus.DRAFT,
+      },
+    });
     const courseVersionEntity = await this.courseVersionDbService.getCourseVersion(courseVersionId);
     const courseVersionResponse = {
       ...courseVersion,
@@ -193,6 +199,10 @@ export class CourseService {
     const courseVersionResponseDto = plainToInstance(CourseVersionResponseDto, courseVersionResponse, {
       excludeExtraneousValues: true,
     });
+    if (draftCourseVersion) {
+      courseVersionResponseDto.draftCourseVersionId = draftCourseVersion.id;
+      courseVersionResponseDto.draftCourseVersionName = draftCourseVersion.versionName;
+    }
     const course = plainToInstance(CourseResponseDto, courseVersion.course, {
       excludeExtraneousValues: true,
     });
@@ -252,6 +262,21 @@ export class CourseService {
     return {
       message: 'Course version enabled successfully',
       data: courseVersionEntity,
+    };
+  }
+
+  async getCourseVersionList(courseId: string) {
+    const courseVersions = await this.courseVersionDbService.findMany({
+      where: {
+        courseId,
+      },
+      include: { course: true },
+    });
+    const courseVersionResponse = plainToInstance(CourseVersionResponseDto, courseVersions, {
+      excludeExtraneousValues: true,
+    });
+    return {
+      data: courseVersionResponse,
     };
   }
 }

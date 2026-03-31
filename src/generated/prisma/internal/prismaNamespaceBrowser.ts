@@ -73,7 +73,7 @@ export const ModelName = {
   TopicMap: 'TopicMap',
   Topics: 'Topics',
   UserPermission: 'UserPermission',
-  UserProcess: 'UserProcess',
+  UserProgress: 'UserProgress',
   quizProgress: 'quizProgress',
   User: 'User',
   SocialLinks: 'SocialLinks',
@@ -439,7 +439,7 @@ export const UserPermissionScalarFieldEnum = {
 export type UserPermissionScalarFieldEnum = (typeof UserPermissionScalarFieldEnum)[keyof typeof UserPermissionScalarFieldEnum]
 
 
-export const UserProcessScalarFieldEnum = {
+export const UserProgressScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   subTopicId: 'subTopicId',
@@ -456,7 +456,7 @@ export const UserProcessScalarFieldEnum = {
   deleteAt: 'deleteAt'
 } as const
 
-export type UserProcessScalarFieldEnum = (typeof UserProcessScalarFieldEnum)[keyof typeof UserProcessScalarFieldEnum]
+export type UserProgressScalarFieldEnum = (typeof UserProgressScalarFieldEnum)[keyof typeof UserProgressScalarFieldEnum]
 
 
 export const QuizProgressScalarFieldEnum = {

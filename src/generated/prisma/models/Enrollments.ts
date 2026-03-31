@@ -270,7 +270,7 @@ export type EnrollmentsWhereInput = {
   deleteAt?: Prisma.DateTimeNullableFilter<"Enrollments"> | Date | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   courseVersion?: Prisma.XOR<Prisma.CourseVersionScalarRelationFilter, Prisma.CourseVersionWhereInput>
-  userProcess?: Prisma.UserProcessListRelationFilter
+  userProgress?: Prisma.UserProgressListRelationFilter
   quizProgress?: Prisma.QuizProgressListRelationFilter
 }
 
@@ -288,7 +288,7 @@ export type EnrollmentsOrderByWithRelationInput = {
   deleteAt?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   courseVersion?: Prisma.CourseVersionOrderByWithRelationInput
-  userProcess?: Prisma.UserProcessOrderByRelationAggregateInput
+  userProgress?: Prisma.UserProgressOrderByRelationAggregateInput
   quizProgress?: Prisma.quizProgressOrderByRelationAggregateInput
 }
 
@@ -309,7 +309,7 @@ export type EnrollmentsWhereUniqueInput = Prisma.AtLeast<{
   deleteAt?: Prisma.DateTimeNullableFilter<"Enrollments"> | Date | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   courseVersion?: Prisma.XOR<Prisma.CourseVersionScalarRelationFilter, Prisma.CourseVersionWhereInput>
-  userProcess?: Prisma.UserProcessListRelationFilter
+  userProgress?: Prisma.UserProgressListRelationFilter
   quizProgress?: Prisma.QuizProgressListRelationFilter
 }, "id">
 
@@ -361,7 +361,7 @@ export type EnrollmentsCreateInput = {
   deleteAt?: Date | string | null
   user: Prisma.UserCreateNestedOneWithoutEnrollmentsInput
   courseVersion: Prisma.CourseVersionCreateNestedOneWithoutEnrollmentsInput
-  userProcess?: Prisma.UserProcessCreateNestedManyWithoutEnrollmentInput
+  userProgress?: Prisma.UserProgressCreateNestedManyWithoutEnrollmentInput
   quizProgress?: Prisma.quizProgressCreateNestedManyWithoutEnrollmentsInput
 }
 
@@ -377,7 +377,7 @@ export type EnrollmentsUncheckedCreateInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
-  userProcess?: Prisma.UserProcessUncheckedCreateNestedManyWithoutEnrollmentInput
+  userProgress?: Prisma.UserProgressUncheckedCreateNestedManyWithoutEnrollmentInput
   quizProgress?: Prisma.quizProgressUncheckedCreateNestedManyWithoutEnrollmentsInput
 }
 
@@ -393,7 +393,7 @@ export type EnrollmentsUpdateInput = {
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutEnrollmentsNestedInput
   courseVersion?: Prisma.CourseVersionUpdateOneRequiredWithoutEnrollmentsNestedInput
-  userProcess?: Prisma.UserProcessUpdateManyWithoutEnrollmentNestedInput
+  userProgress?: Prisma.UserProgressUpdateManyWithoutEnrollmentNestedInput
   quizProgress?: Prisma.quizProgressUpdateManyWithoutEnrollmentsNestedInput
 }
 
@@ -409,7 +409,7 @@ export type EnrollmentsUncheckedUpdateInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  userProcess?: Prisma.UserProcessUncheckedUpdateManyWithoutEnrollmentNestedInput
+  userProgress?: Prisma.UserProgressUncheckedUpdateManyWithoutEnrollmentNestedInput
   quizProgress?: Prisma.quizProgressUncheckedUpdateManyWithoutEnrollmentsNestedInput
 }
 
@@ -567,18 +567,18 @@ export type EnrollmentsUncheckedUpdateManyWithoutCourseVersionNestedInput = {
   deleteMany?: Prisma.EnrollmentsScalarWhereInput | Prisma.EnrollmentsScalarWhereInput[]
 }
 
-export type EnrollmentsCreateNestedOneWithoutUserProcessInput = {
-  create?: Prisma.XOR<Prisma.EnrollmentsCreateWithoutUserProcessInput, Prisma.EnrollmentsUncheckedCreateWithoutUserProcessInput>
-  connectOrCreate?: Prisma.EnrollmentsCreateOrConnectWithoutUserProcessInput
+export type EnrollmentsCreateNestedOneWithoutUserProgressInput = {
+  create?: Prisma.XOR<Prisma.EnrollmentsCreateWithoutUserProgressInput, Prisma.EnrollmentsUncheckedCreateWithoutUserProgressInput>
+  connectOrCreate?: Prisma.EnrollmentsCreateOrConnectWithoutUserProgressInput
   connect?: Prisma.EnrollmentsWhereUniqueInput
 }
 
-export type EnrollmentsUpdateOneRequiredWithoutUserProcessNestedInput = {
-  create?: Prisma.XOR<Prisma.EnrollmentsCreateWithoutUserProcessInput, Prisma.EnrollmentsUncheckedCreateWithoutUserProcessInput>
-  connectOrCreate?: Prisma.EnrollmentsCreateOrConnectWithoutUserProcessInput
-  upsert?: Prisma.EnrollmentsUpsertWithoutUserProcessInput
+export type EnrollmentsUpdateOneRequiredWithoutUserProgressNestedInput = {
+  create?: Prisma.XOR<Prisma.EnrollmentsCreateWithoutUserProgressInput, Prisma.EnrollmentsUncheckedCreateWithoutUserProgressInput>
+  connectOrCreate?: Prisma.EnrollmentsCreateOrConnectWithoutUserProgressInput
+  upsert?: Prisma.EnrollmentsUpsertWithoutUserProgressInput
   connect?: Prisma.EnrollmentsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.EnrollmentsUpdateToOneWithWhereWithoutUserProcessInput, Prisma.EnrollmentsUpdateWithoutUserProcessInput>, Prisma.EnrollmentsUncheckedUpdateWithoutUserProcessInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EnrollmentsUpdateToOneWithWhereWithoutUserProgressInput, Prisma.EnrollmentsUpdateWithoutUserProgressInput>, Prisma.EnrollmentsUncheckedUpdateWithoutUserProgressInput>
 }
 
 export type EnrollmentsCreateNestedOneWithoutQuizProgressInput = {
@@ -650,7 +650,7 @@ export type EnrollmentsCreateWithoutCourseVersionInput = {
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
   user: Prisma.UserCreateNestedOneWithoutEnrollmentsInput
-  userProcess?: Prisma.UserProcessCreateNestedManyWithoutEnrollmentInput
+  userProgress?: Prisma.UserProgressCreateNestedManyWithoutEnrollmentInput
   quizProgress?: Prisma.quizProgressCreateNestedManyWithoutEnrollmentsInput
 }
 
@@ -665,7 +665,7 @@ export type EnrollmentsUncheckedCreateWithoutCourseVersionInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
-  userProcess?: Prisma.UserProcessUncheckedCreateNestedManyWithoutEnrollmentInput
+  userProgress?: Prisma.UserProgressUncheckedCreateNestedManyWithoutEnrollmentInput
   quizProgress?: Prisma.quizProgressUncheckedCreateNestedManyWithoutEnrollmentsInput
 }
 
@@ -712,7 +712,7 @@ export type EnrollmentsScalarWhereInput = {
   deleteAt?: Prisma.DateTimeNullableFilter<"Enrollments"> | Date | string | null
 }
 
-export type EnrollmentsCreateWithoutUserProcessInput = {
+export type EnrollmentsCreateWithoutUserProgressInput = {
   id?: string
   totalLessons: number
   totalQuizzes: number
@@ -727,7 +727,7 @@ export type EnrollmentsCreateWithoutUserProcessInput = {
   quizProgress?: Prisma.quizProgressCreateNestedManyWithoutEnrollmentsInput
 }
 
-export type EnrollmentsUncheckedCreateWithoutUserProcessInput = {
+export type EnrollmentsUncheckedCreateWithoutUserProgressInput = {
   id?: string
   userId: string
   courseVersionId: string
@@ -742,23 +742,23 @@ export type EnrollmentsUncheckedCreateWithoutUserProcessInput = {
   quizProgress?: Prisma.quizProgressUncheckedCreateNestedManyWithoutEnrollmentsInput
 }
 
-export type EnrollmentsCreateOrConnectWithoutUserProcessInput = {
+export type EnrollmentsCreateOrConnectWithoutUserProgressInput = {
   where: Prisma.EnrollmentsWhereUniqueInput
-  create: Prisma.XOR<Prisma.EnrollmentsCreateWithoutUserProcessInput, Prisma.EnrollmentsUncheckedCreateWithoutUserProcessInput>
+  create: Prisma.XOR<Prisma.EnrollmentsCreateWithoutUserProgressInput, Prisma.EnrollmentsUncheckedCreateWithoutUserProgressInput>
 }
 
-export type EnrollmentsUpsertWithoutUserProcessInput = {
-  update: Prisma.XOR<Prisma.EnrollmentsUpdateWithoutUserProcessInput, Prisma.EnrollmentsUncheckedUpdateWithoutUserProcessInput>
-  create: Prisma.XOR<Prisma.EnrollmentsCreateWithoutUserProcessInput, Prisma.EnrollmentsUncheckedCreateWithoutUserProcessInput>
+export type EnrollmentsUpsertWithoutUserProgressInput = {
+  update: Prisma.XOR<Prisma.EnrollmentsUpdateWithoutUserProgressInput, Prisma.EnrollmentsUncheckedUpdateWithoutUserProgressInput>
+  create: Prisma.XOR<Prisma.EnrollmentsCreateWithoutUserProgressInput, Prisma.EnrollmentsUncheckedCreateWithoutUserProgressInput>
   where?: Prisma.EnrollmentsWhereInput
 }
 
-export type EnrollmentsUpdateToOneWithWhereWithoutUserProcessInput = {
+export type EnrollmentsUpdateToOneWithWhereWithoutUserProgressInput = {
   where?: Prisma.EnrollmentsWhereInput
-  data: Prisma.XOR<Prisma.EnrollmentsUpdateWithoutUserProcessInput, Prisma.EnrollmentsUncheckedUpdateWithoutUserProcessInput>
+  data: Prisma.XOR<Prisma.EnrollmentsUpdateWithoutUserProgressInput, Prisma.EnrollmentsUncheckedUpdateWithoutUserProgressInput>
 }
 
-export type EnrollmentsUpdateWithoutUserProcessInput = {
+export type EnrollmentsUpdateWithoutUserProgressInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   totalLessons?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
@@ -773,7 +773,7 @@ export type EnrollmentsUpdateWithoutUserProcessInput = {
   quizProgress?: Prisma.quizProgressUpdateManyWithoutEnrollmentsNestedInput
 }
 
-export type EnrollmentsUncheckedUpdateWithoutUserProcessInput = {
+export type EnrollmentsUncheckedUpdateWithoutUserProgressInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   courseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -800,7 +800,7 @@ export type EnrollmentsCreateWithoutQuizProgressInput = {
   deleteAt?: Date | string | null
   user: Prisma.UserCreateNestedOneWithoutEnrollmentsInput
   courseVersion: Prisma.CourseVersionCreateNestedOneWithoutEnrollmentsInput
-  userProcess?: Prisma.UserProcessCreateNestedManyWithoutEnrollmentInput
+  userProgress?: Prisma.UserProgressCreateNestedManyWithoutEnrollmentInput
 }
 
 export type EnrollmentsUncheckedCreateWithoutQuizProgressInput = {
@@ -815,7 +815,7 @@ export type EnrollmentsUncheckedCreateWithoutQuizProgressInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
-  userProcess?: Prisma.UserProcessUncheckedCreateNestedManyWithoutEnrollmentInput
+  userProgress?: Prisma.UserProgressUncheckedCreateNestedManyWithoutEnrollmentInput
 }
 
 export type EnrollmentsCreateOrConnectWithoutQuizProgressInput = {
@@ -846,7 +846,7 @@ export type EnrollmentsUpdateWithoutQuizProgressInput = {
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutEnrollmentsNestedInput
   courseVersion?: Prisma.CourseVersionUpdateOneRequiredWithoutEnrollmentsNestedInput
-  userProcess?: Prisma.UserProcessUpdateManyWithoutEnrollmentNestedInput
+  userProgress?: Prisma.UserProgressUpdateManyWithoutEnrollmentNestedInput
 }
 
 export type EnrollmentsUncheckedUpdateWithoutQuizProgressInput = {
@@ -861,7 +861,7 @@ export type EnrollmentsUncheckedUpdateWithoutQuizProgressInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  userProcess?: Prisma.UserProcessUncheckedUpdateManyWithoutEnrollmentNestedInput
+  userProgress?: Prisma.UserProgressUncheckedUpdateManyWithoutEnrollmentNestedInput
 }
 
 export type EnrollmentsCreateWithoutUserInput = {
@@ -875,7 +875,7 @@ export type EnrollmentsCreateWithoutUserInput = {
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
   courseVersion: Prisma.CourseVersionCreateNestedOneWithoutEnrollmentsInput
-  userProcess?: Prisma.UserProcessCreateNestedManyWithoutEnrollmentInput
+  userProgress?: Prisma.UserProgressCreateNestedManyWithoutEnrollmentInput
   quizProgress?: Prisma.quizProgressCreateNestedManyWithoutEnrollmentsInput
 }
 
@@ -890,7 +890,7 @@ export type EnrollmentsUncheckedCreateWithoutUserInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
-  userProcess?: Prisma.UserProcessUncheckedCreateNestedManyWithoutEnrollmentInput
+  userProgress?: Prisma.UserProgressUncheckedCreateNestedManyWithoutEnrollmentInput
   quizProgress?: Prisma.quizProgressUncheckedCreateNestedManyWithoutEnrollmentsInput
 }
 
@@ -944,7 +944,7 @@ export type EnrollmentsUpdateWithoutCourseVersionInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutEnrollmentsNestedInput
-  userProcess?: Prisma.UserProcessUpdateManyWithoutEnrollmentNestedInput
+  userProgress?: Prisma.UserProgressUpdateManyWithoutEnrollmentNestedInput
   quizProgress?: Prisma.quizProgressUpdateManyWithoutEnrollmentsNestedInput
 }
 
@@ -959,7 +959,7 @@ export type EnrollmentsUncheckedUpdateWithoutCourseVersionInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  userProcess?: Prisma.UserProcessUncheckedUpdateManyWithoutEnrollmentNestedInput
+  userProgress?: Prisma.UserProgressUncheckedUpdateManyWithoutEnrollmentNestedInput
   quizProgress?: Prisma.quizProgressUncheckedUpdateManyWithoutEnrollmentsNestedInput
 }
 
@@ -1000,7 +1000,7 @@ export type EnrollmentsUpdateWithoutUserInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   courseVersion?: Prisma.CourseVersionUpdateOneRequiredWithoutEnrollmentsNestedInput
-  userProcess?: Prisma.UserProcessUpdateManyWithoutEnrollmentNestedInput
+  userProgress?: Prisma.UserProgressUpdateManyWithoutEnrollmentNestedInput
   quizProgress?: Prisma.quizProgressUpdateManyWithoutEnrollmentsNestedInput
 }
 
@@ -1015,7 +1015,7 @@ export type EnrollmentsUncheckedUpdateWithoutUserInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  userProcess?: Prisma.UserProcessUncheckedUpdateManyWithoutEnrollmentNestedInput
+  userProgress?: Prisma.UserProgressUncheckedUpdateManyWithoutEnrollmentNestedInput
   quizProgress?: Prisma.quizProgressUncheckedUpdateManyWithoutEnrollmentsNestedInput
 }
 
@@ -1038,12 +1038,12 @@ export type EnrollmentsUncheckedUpdateManyWithoutUserInput = {
  */
 
 export type EnrollmentsCountOutputType = {
-  userProcess: number
+  userProgress: number
   quizProgress: number
 }
 
 export type EnrollmentsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  userProcess?: boolean | EnrollmentsCountOutputTypeCountUserProcessArgs
+  userProgress?: boolean | EnrollmentsCountOutputTypeCountUserProgressArgs
   quizProgress?: boolean | EnrollmentsCountOutputTypeCountQuizProgressArgs
 }
 
@@ -1060,8 +1060,8 @@ export type EnrollmentsCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.
 /**
  * EnrollmentsCountOutputType without action
  */
-export type EnrollmentsCountOutputTypeCountUserProcessArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserProcessWhereInput
+export type EnrollmentsCountOutputTypeCountUserProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserProgressWhereInput
 }
 
 /**
@@ -1086,7 +1086,7 @@ export type EnrollmentsSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   deleteAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   courseVersion?: boolean | Prisma.CourseVersionDefaultArgs<ExtArgs>
-  userProcess?: boolean | Prisma.Enrollments$userProcessArgs<ExtArgs>
+  userProgress?: boolean | Prisma.Enrollments$userProgressArgs<ExtArgs>
   quizProgress?: boolean | Prisma.Enrollments$quizProgressArgs<ExtArgs>
   _count?: boolean | Prisma.EnrollmentsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["enrollments"]>
@@ -1141,7 +1141,7 @@ export type EnrollmentsOmit<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type EnrollmentsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   courseVersion?: boolean | Prisma.CourseVersionDefaultArgs<ExtArgs>
-  userProcess?: boolean | Prisma.Enrollments$userProcessArgs<ExtArgs>
+  userProgress?: boolean | Prisma.Enrollments$userProgressArgs<ExtArgs>
   quizProgress?: boolean | Prisma.Enrollments$quizProgressArgs<ExtArgs>
   _count?: boolean | Prisma.EnrollmentsCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1159,7 +1159,7 @@ export type $EnrollmentsPayload<ExtArgs extends runtime.Types.Extensions.Interna
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
     courseVersion: Prisma.$CourseVersionPayload<ExtArgs>
-    userProcess: Prisma.$UserProcessPayload<ExtArgs>[]
+    userProgress: Prisma.$UserProgressPayload<ExtArgs>[]
     quizProgress: Prisma.$quizProgressPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1570,7 +1570,7 @@ export interface Prisma__EnrollmentsClient<T, Null = never, ExtArgs extends runt
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   courseVersion<T extends Prisma.CourseVersionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CourseVersionDefaultArgs<ExtArgs>>): Prisma.Prisma__CourseVersionClient<runtime.Types.Result.GetResult<Prisma.$CourseVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  userProcess<T extends Prisma.Enrollments$userProcessArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Enrollments$userProcessArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserProcessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  userProgress<T extends Prisma.Enrollments$userProgressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Enrollments$userProgressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   quizProgress<T extends Prisma.Enrollments$quizProgressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Enrollments$quizProgressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$quizProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2013,27 +2013,27 @@ export type EnrollmentsDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
- * Enrollments.userProcess
+ * Enrollments.userProgress
  */
-export type Enrollments$userProcessArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Enrollments$userProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the UserProcess
+   * Select specific fields to fetch from the UserProgress
    */
-  select?: Prisma.UserProcessSelect<ExtArgs> | null
+  select?: Prisma.UserProgressSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the UserProcess
+   * Omit specific fields from the UserProgress
    */
-  omit?: Prisma.UserProcessOmit<ExtArgs> | null
+  omit?: Prisma.UserProgressOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserProcessInclude<ExtArgs> | null
-  where?: Prisma.UserProcessWhereInput
-  orderBy?: Prisma.UserProcessOrderByWithRelationInput | Prisma.UserProcessOrderByWithRelationInput[]
-  cursor?: Prisma.UserProcessWhereUniqueInput
+  include?: Prisma.UserProgressInclude<ExtArgs> | null
+  where?: Prisma.UserProgressWhereInput
+  orderBy?: Prisma.UserProgressOrderByWithRelationInput | Prisma.UserProgressOrderByWithRelationInput[]
+  cursor?: Prisma.UserProgressWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.UserProcessScalarFieldEnum | Prisma.UserProcessScalarFieldEnum[]
+  distinct?: Prisma.UserProgressScalarFieldEnum | Prisma.UserProgressScalarFieldEnum[]
 }
 
 /**

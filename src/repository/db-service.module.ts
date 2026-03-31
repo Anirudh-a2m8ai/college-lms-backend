@@ -17,6 +17,10 @@ import { TopicDbService } from './topic.db-service';
 import { TopicMapDbService } from './topicMap.db-service';
 import { SubTopicDbService } from './subTopic.db-service';
 import { SubTopicMapDbService } from './subTopicMap.db-service';
+import { QuizDbService } from './quiz.db-service';
+import { QuizQuestionDbService } from './quiz-question.db-service';
+import { EnrollmentsDbService } from './enrollments.db-service';
+import { UserProgressDbService } from './userProgress.db-service';
 
 @Module({
   providers: [
@@ -38,6 +42,10 @@ import { SubTopicMapDbService } from './subTopicMap.db-service';
     TopicMapDbService,
     SubTopicDbService,
     SubTopicMapDbService,
+    QuizDbService,
+    QuizQuestionDbService,
+    EnrollmentsDbService,
+    UserProgressDbService,
   ],
   exports: [
     UserDbService,
@@ -58,6 +66,10 @@ import { SubTopicMapDbService } from './subTopicMap.db-service';
     TopicMapDbService,
     SubTopicDbService,
     SubTopicMapDbService,
+    QuizDbService,
+    QuizQuestionDbService,
+    EnrollmentsDbService,
+    UserProgressDbService,
   ],
 })
 export class DbServiceModule {}

@@ -54,6 +54,12 @@ export class CourseVersionResponseDto {
   updatedAt: Date;
 
   @Expose()
+  draftCourseVersionId: string;
+
+  @Expose()
+  draftCourseVersionName: string;
+
+  @Expose()
   @Type(() => ModuleResponseDto)
   module: ModuleResponseDto[];
 }

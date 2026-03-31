@@ -7,7 +7,7 @@ model Enrollments {
 	LastAccessedSubTopicId String?
 	user                   User          @relation(fields: [userId], references: [id], onDelete: Cascade)
 	courseVersion          CourseVersion @relation(fields: [courseVersionId], references: [id], onDelete: Cascade)
-	userProcess            UserProcess[]
+	userProgress           UserProgress[]
 	quizProgress           quizProgress[]
 	createdAt              DateTime      @default(now())
 	updatedAt              DateTime      @updatedAt

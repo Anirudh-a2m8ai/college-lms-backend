@@ -49,6 +49,12 @@ export class CourseController {
     return await this.courseService.createLessonPlan(payload, user);
   }
 
+  @Permissions('course:read')
+  @Get(':id/course-version')
+  async getCourseVersionList(@Param('id') id: string) {
+    return await this.courseService.getCourseVersionList(id);
+  }
+
   @Get('/course-version/:courseVersionId')
   async getCourseVersion(@Param('courseVersionId') courseVersionId: string) {
     return await this.courseService.getCourseVersion(courseVersionId);

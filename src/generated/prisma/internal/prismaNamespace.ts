@@ -406,7 +406,7 @@ export const ModelName = {
   TopicMap: 'TopicMap',
   Topics: 'Topics',
   UserPermission: 'UserPermission',
-  UserProcess: 'UserProcess',
+  UserProgress: 'UserProgress',
   quizProgress: 'quizProgress',
   User: 'User',
   SocialLinks: 'SocialLinks',
@@ -426,7 +426,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "chapterMap" | "chapter" | "courseVersion" | "course" | "designation" | "enrollments" | "lessonMap" | "lesson" | "moduleMap" | "module" | "permission" | "quiz" | "quizQuestion" | "quizAttempt" | "quizSubmission" | "role" | "subTopics" | "subTopicMap" | "tenant" | "topicMap" | "topics" | "userPermission" | "userProcess" | "quizProgress" | "user" | "socialLinks" | "userToken"
+    modelProps: "chapterMap" | "chapter" | "courseVersion" | "course" | "designation" | "enrollments" | "lessonMap" | "lesson" | "moduleMap" | "module" | "permission" | "quiz" | "quizQuestion" | "quizAttempt" | "quizSubmission" | "role" | "subTopics" | "subTopicMap" | "tenant" | "topicMap" | "topics" | "userPermission" | "userProgress" | "quizProgress" | "user" | "socialLinks" | "userToken"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2058,77 +2058,77 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    UserProcess: {
-      payload: Prisma.$UserProcessPayload<ExtArgs>
-      fields: Prisma.UserProcessFieldRefs
+    UserProgress: {
+      payload: Prisma.$UserProgressPayload<ExtArgs>
+      fields: Prisma.UserProgressFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.UserProcessFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProcessPayload> | null
+          args: Prisma.UserProgressFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProgressPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.UserProcessFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProcessPayload>
+          args: Prisma.UserProgressFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProgressPayload>
         }
         findFirst: {
-          args: Prisma.UserProcessFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProcessPayload> | null
+          args: Prisma.UserProgressFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProgressPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.UserProcessFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProcessPayload>
+          args: Prisma.UserProgressFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProgressPayload>
         }
         findMany: {
-          args: Prisma.UserProcessFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProcessPayload>[]
+          args: Prisma.UserProgressFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProgressPayload>[]
         }
         create: {
-          args: Prisma.UserProcessCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProcessPayload>
+          args: Prisma.UserProgressCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProgressPayload>
         }
         createMany: {
-          args: Prisma.UserProcessCreateManyArgs<ExtArgs>
+          args: Prisma.UserProgressCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.UserProcessCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProcessPayload>[]
+          args: Prisma.UserProgressCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProgressPayload>[]
         }
         delete: {
-          args: Prisma.UserProcessDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProcessPayload>
+          args: Prisma.UserProgressDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProgressPayload>
         }
         update: {
-          args: Prisma.UserProcessUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProcessPayload>
+          args: Prisma.UserProgressUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProgressPayload>
         }
         deleteMany: {
-          args: Prisma.UserProcessDeleteManyArgs<ExtArgs>
+          args: Prisma.UserProgressDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.UserProcessUpdateManyArgs<ExtArgs>
+          args: Prisma.UserProgressUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.UserProcessUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProcessPayload>[]
+          args: Prisma.UserProgressUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProgressPayload>[]
         }
         upsert: {
-          args: Prisma.UserProcessUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProcessPayload>
+          args: Prisma.UserProgressUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProgressPayload>
         }
         aggregate: {
-          args: Prisma.UserProcessAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateUserProcess>
+          args: Prisma.UserProgressAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUserProgress>
         }
         groupBy: {
-          args: Prisma.UserProcessGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.UserProcessGroupByOutputType>[]
+          args: Prisma.UserProgressGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserProgressGroupByOutputType>[]
         }
         count: {
-          args: Prisma.UserProcessCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.UserProcessCountAggregateOutputType> | number
+          args: Prisma.UserProgressCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserProgressCountAggregateOutputType> | number
         }
       }
     }
@@ -2810,7 +2810,7 @@ export const UserPermissionScalarFieldEnum = {
 export type UserPermissionScalarFieldEnum = (typeof UserPermissionScalarFieldEnum)[keyof typeof UserPermissionScalarFieldEnum]
 
 
-export const UserProcessScalarFieldEnum = {
+export const UserProgressScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   subTopicId: 'subTopicId',
@@ -2827,7 +2827,7 @@ export const UserProcessScalarFieldEnum = {
   deleteAt: 'deleteAt'
 } as const
 
-export type UserProcessScalarFieldEnum = (typeof UserProcessScalarFieldEnum)[keyof typeof UserProcessScalarFieldEnum]
+export type UserProgressScalarFieldEnum = (typeof UserProgressScalarFieldEnum)[keyof typeof UserProgressScalarFieldEnum]
 
 
 export const QuizProgressScalarFieldEnum = {
@@ -3258,7 +3258,7 @@ export type GlobalOmitConfig = {
   topicMap?: Prisma.TopicMapOmit
   topics?: Prisma.TopicsOmit
   userPermission?: Prisma.UserPermissionOmit
-  userProcess?: Prisma.UserProcessOmit
+  userProgress?: Prisma.UserProgressOmit
   quizProgress?: Prisma.quizProgressOmit
   user?: Prisma.UserOmit
   socialLinks?: Prisma.SocialLinksOmit
