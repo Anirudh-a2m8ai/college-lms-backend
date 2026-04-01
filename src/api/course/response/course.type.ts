@@ -60,6 +60,10 @@ export class CourseVersionResponseDto {
   draftCourseVersionName: string;
 
   @Expose()
+  @Type(() => CourseResponseDto)
+  course: CourseResponseDto;
+
+  @Expose()
   @Type(() => ModuleResponseDto)
   module: ModuleResponseDto[];
 }

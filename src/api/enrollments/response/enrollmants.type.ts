@@ -1,4 +1,5 @@
-import { Exclude, Expose } from 'class-transformer';
+import { Exclude, Expose, Type } from 'class-transformer';
+import { CourseVersionResponseDto } from 'src/api/course/response/course.type';
 
 @Exclude()
 export class EnrollmentsResponseDto {
@@ -31,4 +32,8 @@ export class EnrollmentsResponseDto {
 
   @Expose()
   updatedAt: Date;
+
+  @Expose()
+  @Type(() => CourseVersionResponseDto)
+  courseVersion: CourseVersionResponseDto;
 }
