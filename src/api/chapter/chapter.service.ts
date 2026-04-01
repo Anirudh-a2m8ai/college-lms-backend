@@ -5,6 +5,7 @@ import { CreateChapterDto, UpdateChapterDto } from './dto/create-chapter.dto';
 import { plainToInstance } from 'class-transformer';
 import { ChapterResponseDto } from './response/chapter.type';
 import { LessonMapDbService } from 'src/repository/lessonMap.db-service';
+import { Chapter, ChapterMap } from 'src/generated/prisma/client';
 
 @Injectable()
 export class ChapterService {
@@ -117,6 +118,30 @@ export class ChapterService {
     chapterResponse.isNewlyCreated = false;
     return {
       message: 'Chapter updated successfully',
+      data: chapterResponse,
+    };
+  }
+
+  async findAllChaptersInModule(moduleId: string, courseVersionId: string) {
+    const chapterMap = (await this.chapterMapDbService.findMany({
+      where: {
+        moduleId,
+        courseVersionId,
+      },
+      include: {
+        chapter: true,
+      },
+    })) as (ChapterMap & { chapter: Chapter })[];
+    const chapterResponse = plainToInstance(
+      ChapterResponseDto,
+      chapterMap.map((item) => {
+        const chapterResponse = plainToInstance(ChapterResponseDto, item.chapter);
+        chapterResponse.orderIndex = item.orderIndex;
+        return chapterResponse;
+      }),
+    );
+    return {
+      message: 'Chapters fetched successfully',
       data: chapterResponse,
     };
   }

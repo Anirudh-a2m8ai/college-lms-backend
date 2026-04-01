@@ -4,6 +4,7 @@ import { TopicMapDbService } from 'src/repository/topicMap.db-service';
 import { TopicDbService } from 'src/repository/topic.db-service';
 import { CreateTopicDto, UpdateTopicDto } from './dto/create-topic.dto';
 import { TopicResponseDto } from './response/topic.type';
+import { TopicMap, Topics } from 'src/generated/prisma/client';
 
 @Injectable()
 export class TopicService {
@@ -85,6 +86,8 @@ export class TopicService {
       const topicResponse = plainToInstance(TopicResponseDto, createTopic);
       topicResponse.orderIndex = payload.orderIndex;
       topicResponse.lessonId = payload.lessonId;
+      topicResponse.isNewlyCreated = true;
+      topicResponse.oldTopicId = payload.id;
       return {
         message: 'Topic updated successfully',
         data: topicResponse,
@@ -103,8 +106,33 @@ export class TopicService {
     const topicResponse = plainToInstance(TopicResponseDto, topic);
     topicResponse.orderIndex = payload.orderIndex;
     topicResponse.lessonId = payload.lessonId;
+    topicResponse.isNewlyCreated = false;
     return {
       message: 'Topic updated successfully',
+      data: topicResponse,
+    };
+  }
+
+  async findAllTopicsInLesson(lessonId: string, courseVersionId: string) {
+    const topicMap = (await this.topicMapDbService.findMany({
+      where: {
+        lessonId,
+        courseVersionId,
+      },
+      include: {
+        topic: true,
+      },
+    })) as (TopicMap & { topic: Topics })[];
+    const topicResponse = plainToInstance(
+      TopicResponseDto,
+      topicMap.map((item) => {
+        const topicResponse = plainToInstance(TopicResponseDto, item.topic);
+        topicResponse.orderIndex = item.orderIndex;
+        return topicResponse;
+      }),
+    );
+    return {
+      message: 'Topics fetched successfully',
       data: topicResponse,
     };
   }

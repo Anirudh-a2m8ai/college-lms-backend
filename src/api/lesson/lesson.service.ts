@@ -5,6 +5,7 @@ import { LessonDbService } from 'src/repository/lesson.db-service';
 import { LessonMapDbService } from 'src/repository/lessonMap.db-service';
 import { LessonResponseDto } from './response/lesson.type';
 import { TopicMapDbService } from 'src/repository/topicMap.db-service';
+import { Lesson, lessonMap } from 'src/generated/prisma/client';
 
 @Injectable()
 export class LessonService {
@@ -118,6 +119,30 @@ export class LessonService {
     lessonResponse.isNewlyCreated = false;
     return {
       message: 'Chapter updated successfully',
+      data: lessonResponse,
+    };
+  }
+
+  async findAllLessonsInChapter(chapterId: string, courseVersionId: string) {
+    const lessonMap = (await this.lessonMapDbService.findMany({
+      where: {
+        chapterId,
+        courseVersionId,
+      },
+      include: {
+        lesson: true,
+      },
+    })) as (lessonMap & { lesson: Lesson })[];
+    const lessonResponse = plainToInstance(
+      LessonResponseDto,
+      lessonMap.map((item) => {
+        const lessonResponse = plainToInstance(LessonResponseDto, item.lesson);
+        lessonResponse.orderIndex = item.orderIndex;
+        return lessonResponse;
+      }),
+    );
+    return {
+      message: 'Lessons fetched successfully',
       data: lessonResponse,
     };
   }

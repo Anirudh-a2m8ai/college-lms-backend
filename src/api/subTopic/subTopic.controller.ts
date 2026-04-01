@@ -1,4 +1,4 @@
-import { Body, Controller, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { SubTopicService } from './subTopic.service';
 import { PermissionGuard } from 'src/common/guards/permission.guard';
 import { Permissions } from 'src/common/decorators/permissions.decorator';
@@ -20,5 +20,11 @@ export class SubTopicController {
   @Patch()
   update(@Body() updateSubTopicDto: UpdateSubTopicDto, @CurrentUser() user: any) {
     return this.subTopicService.update(updateSubTopicDto, user);
+  }
+
+  @Permissions('course:read')
+  @Get('topic')
+  async findAll(@Query('topicId') topicId: string, @Query('courseVersionId') courseVersionId: string) {
+    return await this.subTopicService.findAllSubTopicsInTopic(topicId, courseVersionId);
   }
 }

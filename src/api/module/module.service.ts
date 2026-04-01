@@ -5,6 +5,7 @@ import { ModuleMapDbService } from 'src/repository/moduleMap.db-service';
 import { plainToInstance } from 'class-transformer';
 import { ModuleResponseDto } from './response/module.type';
 import { ChapterMapDbService } from 'src/repository/chapterMap.db-service';
+import { Module, ModuleMap } from 'src/generated/prisma/client';
 
 @Injectable()
 export class ModuleService {
@@ -117,6 +118,29 @@ export class ModuleService {
     moduleResponse.isNewlyCreated = false;
     return {
       message: 'Module updated successfully',
+      data: moduleResponse,
+    };
+  }
+
+  async findAllModulesInCourseVersion(courseVersionId: string) {
+    const moduleMap = (await this.moduleMapDbService.findMany({
+      where: {
+        courseVersionId,
+      },
+      include: {
+        module: true,
+      },
+    })) as (ModuleMap & { module: Module })[];
+    const moduleResponse = plainToInstance(
+      ModuleResponseDto,
+      moduleMap.map((item) => {
+        const moduleResponse = plainToInstance(ModuleResponseDto, item.module);
+        moduleResponse.orderIndex = item.orderIndex;
+        return moduleResponse;
+      }),
+    );
+    return {
+      message: 'Modules fetched successfully',
       data: moduleResponse,
     };
   }

@@ -3,6 +3,7 @@ import { SubTopicDbService } from 'src/repository/subTopic.db-service';
 import { SubTopicMapDbService } from 'src/repository/subTopicMap.db-service';
 import { plainToInstance } from 'class-transformer';
 import { SubTopicResponseDto } from './response/subTopic.type';
+import { subTopicMap, SubTopics } from 'src/generated/prisma/client';
 import { CreateSubTopicDto, UpdateSubTopicDto } from './dto/create-subTopic.dto';
 
 @Injectable()
@@ -102,6 +103,31 @@ export class SubTopicService {
     subTopicResponse.isNewlyCreated = false;
     return {
       message: 'Sub topic updated successfully',
+      data: subTopicResponse,
+    };
+  }
+
+  async findAllSubTopicsInTopic(topicId: string, courseVersionId: string) {
+    const subTopicMap = (await this.subTopicMapDbService.findMany({
+      where: {
+        topicId,
+        courseVersionId,
+      },
+      include: {
+        subTopic: true,
+      },
+    })) as (subTopicMap & { subTopic: SubTopics })[];
+    const subTopicResponse = plainToInstance(
+      SubTopicResponseDto,
+      subTopicMap.map((item) => {
+        const subTopicResponse = plainToInstance(SubTopicResponseDto, item.subTopic);
+        subTopicResponse.orderIndex = item.orderIndex;
+        subTopicResponse.topicId = item.topicId;
+        return subTopicResponse;
+      }),
+    );
+    return {
+      message: 'Sub topics fetched successfully',
       data: subTopicResponse,
     };
   }

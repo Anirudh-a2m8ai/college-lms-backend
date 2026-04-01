@@ -1,4 +1,4 @@
-import { Body, Controller, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { ChapterService } from './chapter.service';
 import { CreateChapterDto, UpdateChapterDto } from './dto/create-chapter.dto';
 import { PermissionGuard } from 'src/common/guards/permission.guard';
@@ -20,5 +20,11 @@ export class ChapterController {
   @Patch()
   async update(@Body() payload: UpdateChapterDto, @CurrentUser() user: any) {
     return await this.chapterService.update(payload, user);
+  }
+
+  @Permissions('course:read')
+  @Get('module')
+  async findAll(@Query('moduleId') moduleId: string, @Query('courseVersionId') courseVersionId: string) {
+    return await this.chapterService.findAllChaptersInModule(moduleId, courseVersionId);
   }
 }

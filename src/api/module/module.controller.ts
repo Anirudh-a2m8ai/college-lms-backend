@@ -1,4 +1,4 @@
-import { Controller, Patch, Post, UseGuards } from '@nestjs/common';
+import { Controller, Get, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { ModuleService } from './module.service';
 import { PermissionGuard } from 'src/common/guards/permission.guard';
 import { Permissions } from 'src/common/decorators/permissions.decorator';
@@ -21,5 +21,11 @@ export class ModuleController {
   @Permissions('course:edit')
   async update(@Body() payload: UpdateModuleDto, @CurrentUser() user: any) {
     return await this.moduleService.update(payload, user);
+  }
+
+  @Get('courseVersion')
+  @Permissions('course:read')
+  async findAll(@Query('courseVersionId') courseVersionId: string) {
+    return await this.moduleService.findAllModulesInCourseVersion(courseVersionId);
   }
 }
