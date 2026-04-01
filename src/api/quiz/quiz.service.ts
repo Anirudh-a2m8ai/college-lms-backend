@@ -23,6 +23,20 @@ export class QuizService {
         id: payload.courseVersionId,
       },
     });
+    const existingQuizIndex = await this.quizDbService.findFirst({
+      where: {
+        courseVersionId: payload.courseVersionId,
+        orderIndex: payload.orderIndex,
+        moduleId: payload.moduleId,
+        chapterId: payload.chapterId,
+        lessonId: payload.lessonId,
+        topicId: payload.topicId,
+        subTopicId: payload.subTopicId,
+      },
+    });
+    if (existingQuizIndex) {
+      throw new BadRequestException('Quiz index already exists');
+    }
     if (!courseVersion) {
       throw new BadRequestException('Course version not found');
     }

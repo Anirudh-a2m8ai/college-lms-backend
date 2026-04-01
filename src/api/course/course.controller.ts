@@ -55,6 +55,7 @@ export class CourseController {
     return await this.courseService.getCourseVersionList(id);
   }
 
+  @Permissions('course:read')
   @Get('/course-version/:courseVersionId')
   async getCourseVersion(@Param('courseVersionId') courseVersionId: string) {
     return await this.courseService.getCourseVersion(courseVersionId);
