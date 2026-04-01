@@ -3,6 +3,8 @@ import { UserProgressDbService } from 'src/repository/userProgress.db-service';
 import { CreateUserProgressDto } from './dto/create-userProgress.dto';
 import { EnrollmentsDbService } from 'src/repository/enrollments.db-service';
 import { ProcessStatus } from 'src/generated/prisma/enums';
+import { plainToInstance } from 'class-transformer';
+import { UserProgressResponseDto } from './response/userProgress.type';
 
 @Injectable()
 export class UserProgressService {
@@ -71,9 +73,24 @@ export class UserProgressService {
         userId: user.id,
       },
     });
+    const userProgressResponseDto = plainToInstance(UserProgressResponseDto, userProgress);
     return {
       message: 'User progress fetched successfully',
-      data: userProgress,
+      data: userProgressResponseDto,
+    };
+  }
+
+  async getUserProgress(subTopicId: string, enrollmentId: string) {
+    const userProgress = await this.userProgressDbService.findFirst({
+      where: {
+        enrollmentId,
+        subTopicId,
+      },
+    });
+    const userProgressResponseDto = userProgress ? plainToInstance(UserProgressResponseDto, userProgress) : null;
+    return {
+      message: 'User progress fetched successfully',
+      data: userProgressResponseDto,
     };
   }
 }

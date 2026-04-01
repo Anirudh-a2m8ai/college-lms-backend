@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
 import { UserProgressService } from './userProgress.service';
 import { PermissionGuard } from 'src/common/guards/permission.guard';
 import { Permissions } from 'src/common/decorators/permissions.decorator';
@@ -20,5 +20,11 @@ export class UserProgressController {
   @Get('enrollment/:enrollmentId')
   async findAll(@Param('enrollmentId') enrollmentId: string, @CurrentUser() user: any) {
     return await this.userProgressService.findAll(enrollmentId, user);
+  }
+
+  @Permissions('userProgress:read')
+  @Get()
+  async findOne(@Query('subTopicId') subTopicId: string, @Query('enrollmentId') enrollmentId: string) {
+    return await this.userProgressService.getUserProgress(subTopicId, enrollmentId);
   }
 }
