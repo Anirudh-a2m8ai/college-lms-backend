@@ -16,6 +16,12 @@ export class SubTopicResponseDto {
   topicId: string;
 
   @Expose()
+  isNewlyCreated: boolean;
+
+  @Expose()
+  oldSubTopicId: string;
+
+  @Expose()
   @Type(() => QuizResponseDto)
   quiz: QuizResponseDto[];
 }

@@ -95,6 +95,8 @@ export class ChapterService {
       });
       const chapterResponse = plainToInstance(ChapterResponseDto, createChapter);
       chapterResponse.orderIndex = payload.orderIndex;
+      chapterResponse.isNewlyCreated = true;
+      chapterResponse.oldChapterId = payload.id;
       return {
         message: 'Chapter updated successfully',
         data: chapterResponse,
@@ -112,6 +114,7 @@ export class ChapterService {
     });
     const chapterResponse = plainToInstance(ChapterResponseDto, chapter);
     chapterResponse.orderIndex = payload.orderIndex;
+    chapterResponse.isNewlyCreated = false;
     return {
       message: 'Chapter updated successfully',
       data: chapterResponse,

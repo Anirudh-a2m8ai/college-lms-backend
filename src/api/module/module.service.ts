@@ -94,6 +94,8 @@ export class ModuleService {
         },
       });
       const moduleResponse = plainToInstance(ModuleResponseDto, createModule);
+      moduleResponse.isNewlyCreated = true;
+      moduleResponse.oldModuleId = payload.id;
       moduleResponse.orderIndex = payload.orderIndex;
       return {
         message: 'Module created successfully',
@@ -112,6 +114,7 @@ export class ModuleService {
     });
     const moduleResponse = plainToInstance(ModuleResponseDto, module);
     moduleResponse.orderIndex = payload.orderIndex;
+    moduleResponse.isNewlyCreated = false;
     return {
       message: 'Module updated successfully',
       data: moduleResponse,

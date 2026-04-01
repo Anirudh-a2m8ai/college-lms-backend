@@ -30,6 +30,12 @@ export class ChapterResponseDto {
   updatedAt: Date;
 
   @Expose()
+  isNewlyCreated: boolean;
+
+  @Expose()
+  oldChapterId: string;
+
+  @Expose()
   @Type(() => LessonResponseDto)
   lesson: LessonResponseDto[];
 

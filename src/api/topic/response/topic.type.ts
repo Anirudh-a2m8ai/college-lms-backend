@@ -20,6 +20,12 @@ export class TopicResponseDto {
   orderIndex: number;
 
   @Expose()
+  isNewlyCreated: boolean;
+
+  @Expose()
+  oldTopicId: string;
+
+  @Expose()
   lessonId: string;
 
   @Expose()

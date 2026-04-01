@@ -26,6 +26,12 @@ export class LessonResponseDto {
   orderIndex: number;
 
   @Expose()
+  isNewlyCreated: boolean;
+
+  @Expose()
+  oldLessonId: string;
+
+  @Expose()
   @Type(() => TopicResponseDto)
   topic: TopicResponseDto[];
 

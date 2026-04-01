@@ -30,6 +30,12 @@ export class ModuleResponseDto {
   chapter: ChapterResponseDto[];
 
   @Expose()
+  isNewlyCreated: boolean;
+
+  @Expose()
+  oldModuleId: string;
+
+  @Expose()
   @Type(() => QuizResponseDto)
   quiz: QuizResponseDto[];
 }

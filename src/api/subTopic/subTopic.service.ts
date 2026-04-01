@@ -81,6 +81,8 @@ export class SubTopicService {
       const subTopicResponse = plainToInstance(SubTopicResponseDto, createSubTopic);
       subTopicResponse.orderIndex = payload.orderIndex;
       subTopicResponse.topicId = payload.topicId;
+      subTopicResponse.isNewlyCreated = true;
+      subTopicResponse.oldSubTopicId = payload.id;
       return {
         message: 'Sub topic updated successfully',
         data: subTopicResponse,
@@ -97,6 +99,7 @@ export class SubTopicService {
     const subTopicResponse = plainToInstance(SubTopicResponseDto, subTopic);
     subTopicResponse.orderIndex = payload.orderIndex;
     subTopicResponse.topicId = payload.topicId;
+    subTopicResponse.isNewlyCreated = false;
     return {
       message: 'Sub topic updated successfully',
       data: subTopicResponse,

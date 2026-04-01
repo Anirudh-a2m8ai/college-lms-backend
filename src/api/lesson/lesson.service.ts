@@ -96,6 +96,8 @@ export class LessonService {
       });
       const lessonResponse = plainToInstance(LessonResponseDto, createLesson);
       lessonResponse.orderIndex = payload.orderIndex;
+      lessonResponse.isNewlyCreated = true;
+      lessonResponse.oldLessonId = payload.id;
       return {
         message: 'Chapter updated successfully',
         data: lessonResponse,
@@ -113,6 +115,7 @@ export class LessonService {
     });
     const lessonResponse = plainToInstance(LessonResponseDto, module);
     lessonResponse.orderIndex = payload.orderIndex;
+    lessonResponse.isNewlyCreated = false;
     return {
       message: 'Chapter updated successfully',
       data: lessonResponse,
