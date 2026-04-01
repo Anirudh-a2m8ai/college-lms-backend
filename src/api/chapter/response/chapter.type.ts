@@ -1,5 +1,6 @@
 import { Exclude, Expose, Type } from 'class-transformer';
 import { LessonResponseDto } from 'src/api/lesson/response/lesson.type';
+import { QuizResponseDto } from 'src/api/quiz/response/quiz.type';
 import { TopicResponseDto } from 'src/api/topic/response/topic.type';
 
 @Exclude()
@@ -31,4 +32,8 @@ export class ChapterResponseDto {
   @Expose()
   @Type(() => LessonResponseDto)
   lesson: LessonResponseDto[];
+
+  @Expose()
+  @Type(() => QuizResponseDto)
+  quiz: QuizResponseDto[];
 }

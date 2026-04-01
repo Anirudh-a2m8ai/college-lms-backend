@@ -148,7 +148,7 @@ export class CourseVersionDbService {
   }
 
   async getCourseVersion(courseVersionId: string) {
-    const [modules, chapters, lessons, topics, subTopics] = await this.prisma.$transaction([
+    const [modules, chapters, lessons, topics, subTopics, quizzes] = await this.prisma.$transaction([
       this.prisma.moduleMap.findMany({
         where: { courseVersionId },
         orderBy: { orderIndex: 'asc' },
@@ -174,6 +174,16 @@ export class CourseVersionDbService {
         orderBy: { orderIndex: 'asc' },
         include: { subTopic: true },
       }),
+      this.prisma.quiz.findMany({
+        where: {
+          courseVersionId,
+          isDeleted: false,
+        },
+        orderBy: { orderIndex: 'asc' },
+        include: {
+          quizQuestions: true,
+        },
+      }),
     ]);
 
     const chapterByModule = new Map();
@@ -181,11 +191,47 @@ export class CourseVersionDbService {
     const topicByLesson = new Map();
     const subTopicByTopic = new Map();
 
+    const quizByModule = new Map();
+    const quizByChapter = new Map();
+    const quizByLesson = new Map();
+    const quizByTopic = new Map();
+    const quizBySubTopic = new Map();
+
+    for (const q of quizzes) {
+      if (q.moduleId) {
+        if (!quizByModule.has(q.moduleId)) quizByModule.set(q.moduleId, []);
+        quizByModule.get(q.moduleId).push(q);
+      }
+
+      if (q.chapterId) {
+        if (!quizByChapter.has(q.chapterId)) quizByChapter.set(q.chapterId, []);
+        quizByChapter.get(q.chapterId).push(q);
+      }
+
+      if (q.lessonId) {
+        if (!quizByLesson.has(q.lessonId)) quizByLesson.set(q.lessonId, []);
+        quizByLesson.get(q.lessonId).push(q);
+      }
+
+      if (q.topicId) {
+        if (!quizByTopic.has(q.topicId)) quizByTopic.set(q.topicId, []);
+        quizByTopic.get(q.topicId).push(q);
+      }
+
+      if (q.subTopicId) {
+        if (!quizBySubTopic.has(q.subTopicId)) quizBySubTopic.set(q.subTopicId, []);
+        quizBySubTopic.get(q.subTopicId).push(q);
+      }
+    }
+
     for (const s of subTopics) {
       if (!subTopicByTopic.has(s.topicId)) {
         subTopicByTopic.set(s.topicId, []);
       }
-      subTopicByTopic.get(s.topicId).push(s.subTopic);
+      subTopicByTopic.get(s.topicId).push({
+        ...s.subTopic,
+        quiz: quizBySubTopic.get(s.subTopicId) || [],
+      });
     }
 
     for (const t of topics) {
@@ -195,6 +241,7 @@ export class CourseVersionDbService {
       topicByLesson.get(t.lessonId).push({
         ...t.topic,
         subTopic: subTopicByTopic.get(t.topicId) || [],
+        quiz: quizByTopic.get(t.topicId) || [],
       });
     }
 
@@ -205,6 +252,7 @@ export class CourseVersionDbService {
       lessonByChapter.get(l.chapterId).push({
         ...l.lesson,
         topic: topicByLesson.get(l.lessonId) || [],
+        quiz: quizByLesson.get(l.lessonId) || [],
       });
     }
 
@@ -215,6 +263,7 @@ export class CourseVersionDbService {
       chapterByModule.get(c.moduleId).push({
         ...c.chapter,
         lesson: lessonByChapter.get(c.chapterId) || [],
+        quiz: quizByChapter.get(c.chapterId) || [],
       });
     }
 
@@ -222,6 +271,7 @@ export class CourseVersionDbService {
       module: modules.map((m) => ({
         ...m.module,
         chapter: chapterByModule.get(m.moduleId) || [],
+        quiz: quizByModule.get(m.moduleId) || [],
       })),
     };
   }

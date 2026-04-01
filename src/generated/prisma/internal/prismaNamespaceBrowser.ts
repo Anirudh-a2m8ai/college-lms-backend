@@ -465,7 +465,6 @@ export const QuizProgressScalarFieldEnum = {
   id: 'id',
   enrollmentId: 'enrollmentId',
   quizId: 'quizId',
-  courseSectionId: 'courseSectionId',
   highScore: 'highScore',
   isCompleted: 'isCompleted',
   createdAt: 'createdAt',

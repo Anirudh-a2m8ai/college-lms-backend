@@ -58,7 +58,6 @@ export class SubTopicService {
     const existingSubTopicCount = await this.subTopicMapDbService.count({
       where: {
         subTopicId: payload.id,
-        courseVersionId: payload.courseVersionId,
       },
     });
     if (existingSubTopicCount > 1) {

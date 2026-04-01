@@ -10,6 +10,7 @@ import {
   IsObject,
   IsOptional,
   IsString,
+  IsUUID,
   Min,
   ValidateNested,
 } from 'class-validator';
@@ -126,4 +127,27 @@ export class CreateQuizQuestionDto {
   @IsNotEmpty()
   @IsJSON()
   correctAnswer: Prisma.InputJsonValue;
+}
+
+export class QuestionSubmissionDto {
+  @IsNotEmpty()
+  @IsUUID()
+  quizQuestionId: string;
+
+  @IsNotEmpty()
+  @IsJSON()
+  answer: Prisma.InputJsonValue;
+}
+export class CreateQuizSubmissionDto {
+  @IsNotEmpty()
+  @IsUUID()
+  quizId: string;
+
+  @IsNotEmpty()
+  @IsUUID()
+  enrollmentId: string;
+
+  @IsNotEmpty()
+  @Type(() => QuestionSubmissionDto)
+  quizSubmission: QuestionSubmissionDto[];
 }

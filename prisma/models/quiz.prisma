@@ -43,6 +43,7 @@ model Quiz {
 	subTopic           SubTopics? 			@relation(fields: [subTopicId], references: [id], onDelete: Cascade) 
 	courseVersion      CourseVersion 		@relation(fields: [courseVersionId], references: [id], onDelete: Cascade) 
 	quizQuestions      QuizQuestion[]
+	quizProgress       quizProgress[]
 	createdAt          DateTime 				@default(now())
 	updatedAt          DateTime 				@updatedAt
 	isDeleted          Boolean      		@default(false)

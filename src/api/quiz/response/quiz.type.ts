@@ -1,4 +1,5 @@
-import { Exclude, Expose } from 'class-transformer';
+import { Exclude, Expose, Type } from 'class-transformer';
+import { QuizQuestionResponseDto } from './quiz-question.type';
 
 @Exclude()
 export class QuizResponseDto {
@@ -51,11 +52,9 @@ export class QuizResponseDto {
   updatedAt: Date;
 
   @Expose()
-  isDeleted: boolean;
+  quizQuestionCount: number;
 
   @Expose()
-  deletedAt: Date;
-
-  @Expose()
-  deleteAt: Date;
+  @Type(() => QuizQuestionResponseDto)
+  quizQuestions: QuizQuestionResponseDto[];
 }

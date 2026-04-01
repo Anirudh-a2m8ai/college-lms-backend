@@ -63,7 +63,6 @@ export class ModuleService {
     const existingModuleCount = await this.moduleMapDbService.count({
       where: {
         moduleId: payload.id,
-        courseVersionId: payload.courseVersionId,
       },
     });
     if (existingModuleCount > 1) {

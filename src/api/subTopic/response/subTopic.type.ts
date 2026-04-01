@@ -1,4 +1,5 @@
-import { Exclude, Expose } from 'class-transformer';
+import { Exclude, Expose, Type } from 'class-transformer';
+import { QuizResponseDto } from 'src/api/quiz/response/quiz.type';
 
 @Exclude()
 export class SubTopicResponseDto {
@@ -13,4 +14,8 @@ export class SubTopicResponseDto {
 
   @Expose()
   topicId: string;
+
+  @Expose()
+  @Type(() => QuizResponseDto)
+  quiz: QuizResponseDto[];
 }

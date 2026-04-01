@@ -62,7 +62,6 @@ export class ChapterService {
     const existingChapterCount = await this.chapterMapDbService.count({
       where: {
         chapterId: payload.id,
-        courseVersionId: payload.courseVersionId,
       },
     });
     if (existingChapterCount > 1) {

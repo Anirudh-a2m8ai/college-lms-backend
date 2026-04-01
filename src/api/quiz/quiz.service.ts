@@ -1,11 +1,12 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { QuizDbService } from 'src/repository/quiz.db-service';
-import { CreateQuizDto, CreateQuizQuestionDto } from './dto/create-quiz.dto';
+import { CreateQuizDto, CreateQuizQuestionDto, CreateQuizSubmissionDto } from './dto/create-quiz.dto';
 import { instanceToPlain, plainToInstance } from 'class-transformer';
 import { CourseVersionDbService } from 'src/repository/courseVersion.db-service';
 import { QuizResponseDto } from './response/quiz.type';
 import { QuizQuestionDbService } from 'src/repository/quiz-question.db-service';
 import { QuizQuestionResponseDto } from './response/quiz-question.type';
+import { QuizSubmissionDbService } from 'src/repository/quizSubmission.db-service';
 
 @Injectable()
 export class QuizService {
@@ -13,6 +14,7 @@ export class QuizService {
     private readonly quizDbService: QuizDbService,
     private readonly courseVersionDbService: CourseVersionDbService,
     private readonly quizQuestionDbService: QuizQuestionDbService,
+    private readonly quizSubmissionDbService: QuizSubmissionDbService,
   ) {}
 
   async create(payload: CreateQuizDto) {
@@ -42,6 +44,7 @@ export class QuizService {
         timeLimitInSeconds: payload.timeLimitInSeconds,
         noOfAttempt: payload.noOfAttempt,
         questionPattern,
+        noOfQuestions: payload.noOfQuestions,
         orderIndex: payload.orderIndex,
         courseVersionId: payload.courseVersionId,
         moduleId: payload.moduleId,
@@ -71,6 +74,7 @@ export class QuizService {
     if (!quiz) {
       throw new NotFoundException('Quiz not found');
     }
+    console.log(payload.length);
     if (payload.length !== quiz.noOfQuestions) {
       throw new BadRequestException(
         `Quiz must contain exactly ${quiz.noOfQuestions} questions. Received ${payload.length}.`,
@@ -107,5 +111,39 @@ export class QuizService {
     if (count !== 1) {
       throw new BadRequestException('Quiz must belong to exactly one parent');
     }
+  }
+
+  async createQuizSubmission(payload: CreateQuizSubmissionDto, user: any) {
+    const quiz = await this.quizDbService.findUnique({
+      where: {
+        id: payload.quizId,
+      },
+    });
+    if (!quiz) {
+      throw new NotFoundException(`Quiz not found for ${payload.quizId}`);
+    }
+
+    const questionIds = payload.quizSubmission.map((submission) => submission.quizQuestionId);
+    const questions = await this.quizQuestionDbService.findMany({
+      where: {
+        id: { in: questionIds },
+      },
+    });
+
+    if (questions.length < questionIds.length) {
+      throw new BadRequestException('Invalid quiz question detected');
+    }
+
+    const questionMap = new Map(questions.map((q) => [q.id, q]));
+
+    const quizSubmission = await this.quizSubmissionDbService.createSubmission({
+      enrollmentId: payload.enrollmentId,
+      quiz: quiz,
+      quizSubmission: payload.quizSubmission,
+      userId: user.userId,
+      questionMap: questionMap,
+    });
+
+    return quizSubmission;
   }
 }

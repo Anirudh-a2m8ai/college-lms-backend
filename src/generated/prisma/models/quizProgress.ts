@@ -38,7 +38,6 @@ export type QuizProgressMinAggregateOutputType = {
   id: string | null
   enrollmentId: string | null
   quizId: string | null
-  courseSectionId: string | null
   highScore: number | null
   isCompleted: boolean | null
   createdAt: Date | null
@@ -49,7 +48,6 @@ export type QuizProgressMaxAggregateOutputType = {
   id: string | null
   enrollmentId: string | null
   quizId: string | null
-  courseSectionId: string | null
   highScore: number | null
   isCompleted: boolean | null
   createdAt: Date | null
@@ -60,7 +58,6 @@ export type QuizProgressCountAggregateOutputType = {
   id: number
   enrollmentId: number
   quizId: number
-  courseSectionId: number
   highScore: number
   isCompleted: number
   createdAt: number
@@ -81,7 +78,6 @@ export type QuizProgressMinAggregateInputType = {
   id?: true
   enrollmentId?: true
   quizId?: true
-  courseSectionId?: true
   highScore?: true
   isCompleted?: true
   createdAt?: true
@@ -92,7 +88,6 @@ export type QuizProgressMaxAggregateInputType = {
   id?: true
   enrollmentId?: true
   quizId?: true
-  courseSectionId?: true
   highScore?: true
   isCompleted?: true
   createdAt?: true
@@ -103,7 +98,6 @@ export type QuizProgressCountAggregateInputType = {
   id?: true
   enrollmentId?: true
   quizId?: true
-  courseSectionId?: true
   highScore?: true
   isCompleted?: true
   createdAt?: true
@@ -201,7 +195,6 @@ export type QuizProgressGroupByOutputType = {
   id: string
   enrollmentId: string | null
   quizId: string
-  courseSectionId: string
   highScore: number
   isCompleted: boolean
   createdAt: Date
@@ -235,26 +228,26 @@ export type quizProgressWhereInput = {
   id?: Prisma.StringFilter<"quizProgress"> | string
   enrollmentId?: Prisma.StringNullableFilter<"quizProgress"> | string | null
   quizId?: Prisma.StringFilter<"quizProgress"> | string
-  courseSectionId?: Prisma.StringFilter<"quizProgress"> | string
   highScore?: Prisma.FloatFilter<"quizProgress"> | number
   isCompleted?: Prisma.BoolFilter<"quizProgress"> | boolean
   createdAt?: Prisma.DateTimeFilter<"quizProgress"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"quizProgress"> | Date | string
   attempts?: Prisma.QuizAttemptListRelationFilter
   enrollments?: Prisma.XOR<Prisma.EnrollmentsNullableScalarRelationFilter, Prisma.EnrollmentsWhereInput> | null
+  quiz?: Prisma.XOR<Prisma.QuizScalarRelationFilter, Prisma.QuizWhereInput>
 }
 
 export type quizProgressOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   enrollmentId?: Prisma.SortOrderInput | Prisma.SortOrder
   quizId?: Prisma.SortOrder
-  courseSectionId?: Prisma.SortOrder
   highScore?: Prisma.SortOrder
   isCompleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   attempts?: Prisma.QuizAttemptOrderByRelationAggregateInput
   enrollments?: Prisma.EnrollmentsOrderByWithRelationInput
+  quiz?: Prisma.QuizOrderByWithRelationInput
 }
 
 export type quizProgressWhereUniqueInput = Prisma.AtLeast<{
@@ -265,20 +258,19 @@ export type quizProgressWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.quizProgressWhereInput | Prisma.quizProgressWhereInput[]
   enrollmentId?: Prisma.StringNullableFilter<"quizProgress"> | string | null
   quizId?: Prisma.StringFilter<"quizProgress"> | string
-  courseSectionId?: Prisma.StringFilter<"quizProgress"> | string
   highScore?: Prisma.FloatFilter<"quizProgress"> | number
   isCompleted?: Prisma.BoolFilter<"quizProgress"> | boolean
   createdAt?: Prisma.DateTimeFilter<"quizProgress"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"quizProgress"> | Date | string
   attempts?: Prisma.QuizAttemptListRelationFilter
   enrollments?: Prisma.XOR<Prisma.EnrollmentsNullableScalarRelationFilter, Prisma.EnrollmentsWhereInput> | null
+  quiz?: Prisma.XOR<Prisma.QuizScalarRelationFilter, Prisma.QuizWhereInput>
 }, "id" | "enrollmentId_quizId">
 
 export type quizProgressOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   enrollmentId?: Prisma.SortOrderInput | Prisma.SortOrder
   quizId?: Prisma.SortOrder
-  courseSectionId?: Prisma.SortOrder
   highScore?: Prisma.SortOrder
   isCompleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -297,7 +289,6 @@ export type quizProgressScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"quizProgress"> | string
   enrollmentId?: Prisma.StringNullableWithAggregatesFilter<"quizProgress"> | string | null
   quizId?: Prisma.StringWithAggregatesFilter<"quizProgress"> | string
-  courseSectionId?: Prisma.StringWithAggregatesFilter<"quizProgress"> | string
   highScore?: Prisma.FloatWithAggregatesFilter<"quizProgress"> | number
   isCompleted?: Prisma.BoolWithAggregatesFilter<"quizProgress"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"quizProgress"> | Date | string
@@ -306,21 +297,19 @@ export type quizProgressScalarWhereWithAggregatesInput = {
 
 export type quizProgressCreateInput = {
   id?: string
-  quizId: string
-  courseSectionId: string
   highScore?: number
   isCompleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   attempts?: Prisma.QuizAttemptCreateNestedManyWithoutQuizProgressInput
   enrollments?: Prisma.EnrollmentsCreateNestedOneWithoutQuizProgressInput
+  quiz: Prisma.QuizCreateNestedOneWithoutQuizProgressInput
 }
 
 export type quizProgressUncheckedCreateInput = {
   id?: string
   enrollmentId?: string | null
   quizId: string
-  courseSectionId: string
   highScore?: number
   isCompleted?: boolean
   createdAt?: Date | string
@@ -330,21 +319,19 @@ export type quizProgressUncheckedCreateInput = {
 
 export type quizProgressUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  quizId?: Prisma.StringFieldUpdateOperationsInput | string
-  courseSectionId?: Prisma.StringFieldUpdateOperationsInput | string
   highScore?: Prisma.FloatFieldUpdateOperationsInput | number
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attempts?: Prisma.QuizAttemptUpdateManyWithoutQuizProgressNestedInput
   enrollments?: Prisma.EnrollmentsUpdateOneWithoutQuizProgressNestedInput
+  quiz?: Prisma.QuizUpdateOneRequiredWithoutQuizProgressNestedInput
 }
 
 export type quizProgressUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   enrollmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizId?: Prisma.StringFieldUpdateOperationsInput | string
-  courseSectionId?: Prisma.StringFieldUpdateOperationsInput | string
   highScore?: Prisma.FloatFieldUpdateOperationsInput | number
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -356,7 +343,6 @@ export type quizProgressCreateManyInput = {
   id?: string
   enrollmentId?: string | null
   quizId: string
-  courseSectionId: string
   highScore?: number
   isCompleted?: boolean
   createdAt?: Date | string
@@ -365,8 +351,6 @@ export type quizProgressCreateManyInput = {
 
 export type quizProgressUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  quizId?: Prisma.StringFieldUpdateOperationsInput | string
-  courseSectionId?: Prisma.StringFieldUpdateOperationsInput | string
   highScore?: Prisma.FloatFieldUpdateOperationsInput | number
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -377,7 +361,6 @@ export type quizProgressUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   enrollmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizId?: Prisma.StringFieldUpdateOperationsInput | string
-  courseSectionId?: Prisma.StringFieldUpdateOperationsInput | string
   highScore?: Prisma.FloatFieldUpdateOperationsInput | number
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -408,7 +391,6 @@ export type quizProgressCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   enrollmentId?: Prisma.SortOrder
   quizId?: Prisma.SortOrder
-  courseSectionId?: Prisma.SortOrder
   highScore?: Prisma.SortOrder
   isCompleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -423,7 +405,6 @@ export type quizProgressMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   enrollmentId?: Prisma.SortOrder
   quizId?: Prisma.SortOrder
-  courseSectionId?: Prisma.SortOrder
   highScore?: Prisma.SortOrder
   isCompleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -434,7 +415,6 @@ export type quizProgressMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   enrollmentId?: Prisma.SortOrder
   quizId?: Prisma.SortOrder
-  courseSectionId?: Prisma.SortOrder
   highScore?: Prisma.SortOrder
   isCompleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -487,6 +467,48 @@ export type quizProgressUncheckedUpdateManyWithoutEnrollmentsNestedInput = {
   deleteMany?: Prisma.quizProgressScalarWhereInput | Prisma.quizProgressScalarWhereInput[]
 }
 
+export type quizProgressCreateNestedManyWithoutQuizInput = {
+  create?: Prisma.XOR<Prisma.quizProgressCreateWithoutQuizInput, Prisma.quizProgressUncheckedCreateWithoutQuizInput> | Prisma.quizProgressCreateWithoutQuizInput[] | Prisma.quizProgressUncheckedCreateWithoutQuizInput[]
+  connectOrCreate?: Prisma.quizProgressCreateOrConnectWithoutQuizInput | Prisma.quizProgressCreateOrConnectWithoutQuizInput[]
+  createMany?: Prisma.quizProgressCreateManyQuizInputEnvelope
+  connect?: Prisma.quizProgressWhereUniqueInput | Prisma.quizProgressWhereUniqueInput[]
+}
+
+export type quizProgressUncheckedCreateNestedManyWithoutQuizInput = {
+  create?: Prisma.XOR<Prisma.quizProgressCreateWithoutQuizInput, Prisma.quizProgressUncheckedCreateWithoutQuizInput> | Prisma.quizProgressCreateWithoutQuizInput[] | Prisma.quizProgressUncheckedCreateWithoutQuizInput[]
+  connectOrCreate?: Prisma.quizProgressCreateOrConnectWithoutQuizInput | Prisma.quizProgressCreateOrConnectWithoutQuizInput[]
+  createMany?: Prisma.quizProgressCreateManyQuizInputEnvelope
+  connect?: Prisma.quizProgressWhereUniqueInput | Prisma.quizProgressWhereUniqueInput[]
+}
+
+export type quizProgressUpdateManyWithoutQuizNestedInput = {
+  create?: Prisma.XOR<Prisma.quizProgressCreateWithoutQuizInput, Prisma.quizProgressUncheckedCreateWithoutQuizInput> | Prisma.quizProgressCreateWithoutQuizInput[] | Prisma.quizProgressUncheckedCreateWithoutQuizInput[]
+  connectOrCreate?: Prisma.quizProgressCreateOrConnectWithoutQuizInput | Prisma.quizProgressCreateOrConnectWithoutQuizInput[]
+  upsert?: Prisma.quizProgressUpsertWithWhereUniqueWithoutQuizInput | Prisma.quizProgressUpsertWithWhereUniqueWithoutQuizInput[]
+  createMany?: Prisma.quizProgressCreateManyQuizInputEnvelope
+  set?: Prisma.quizProgressWhereUniqueInput | Prisma.quizProgressWhereUniqueInput[]
+  disconnect?: Prisma.quizProgressWhereUniqueInput | Prisma.quizProgressWhereUniqueInput[]
+  delete?: Prisma.quizProgressWhereUniqueInput | Prisma.quizProgressWhereUniqueInput[]
+  connect?: Prisma.quizProgressWhereUniqueInput | Prisma.quizProgressWhereUniqueInput[]
+  update?: Prisma.quizProgressUpdateWithWhereUniqueWithoutQuizInput | Prisma.quizProgressUpdateWithWhereUniqueWithoutQuizInput[]
+  updateMany?: Prisma.quizProgressUpdateManyWithWhereWithoutQuizInput | Prisma.quizProgressUpdateManyWithWhereWithoutQuizInput[]
+  deleteMany?: Prisma.quizProgressScalarWhereInput | Prisma.quizProgressScalarWhereInput[]
+}
+
+export type quizProgressUncheckedUpdateManyWithoutQuizNestedInput = {
+  create?: Prisma.XOR<Prisma.quizProgressCreateWithoutQuizInput, Prisma.quizProgressUncheckedCreateWithoutQuizInput> | Prisma.quizProgressCreateWithoutQuizInput[] | Prisma.quizProgressUncheckedCreateWithoutQuizInput[]
+  connectOrCreate?: Prisma.quizProgressCreateOrConnectWithoutQuizInput | Prisma.quizProgressCreateOrConnectWithoutQuizInput[]
+  upsert?: Prisma.quizProgressUpsertWithWhereUniqueWithoutQuizInput | Prisma.quizProgressUpsertWithWhereUniqueWithoutQuizInput[]
+  createMany?: Prisma.quizProgressCreateManyQuizInputEnvelope
+  set?: Prisma.quizProgressWhereUniqueInput | Prisma.quizProgressWhereUniqueInput[]
+  disconnect?: Prisma.quizProgressWhereUniqueInput | Prisma.quizProgressWhereUniqueInput[]
+  delete?: Prisma.quizProgressWhereUniqueInput | Prisma.quizProgressWhereUniqueInput[]
+  connect?: Prisma.quizProgressWhereUniqueInput | Prisma.quizProgressWhereUniqueInput[]
+  update?: Prisma.quizProgressUpdateWithWhereUniqueWithoutQuizInput | Prisma.quizProgressUpdateWithWhereUniqueWithoutQuizInput[]
+  updateMany?: Prisma.quizProgressUpdateManyWithWhereWithoutQuizInput | Prisma.quizProgressUpdateManyWithWhereWithoutQuizInput[]
+  deleteMany?: Prisma.quizProgressScalarWhereInput | Prisma.quizProgressScalarWhereInput[]
+}
+
 export type quizProgressCreateNestedOneWithoutAttemptsInput = {
   create?: Prisma.XOR<Prisma.quizProgressCreateWithoutAttemptsInput, Prisma.quizProgressUncheckedCreateWithoutAttemptsInput>
   connectOrCreate?: Prisma.quizProgressCreateOrConnectWithoutAttemptsInput
@@ -503,19 +525,17 @@ export type quizProgressUpdateOneRequiredWithoutAttemptsNestedInput = {
 
 export type quizProgressCreateWithoutEnrollmentsInput = {
   id?: string
-  quizId: string
-  courseSectionId: string
   highScore?: number
   isCompleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   attempts?: Prisma.QuizAttemptCreateNestedManyWithoutQuizProgressInput
+  quiz: Prisma.QuizCreateNestedOneWithoutQuizProgressInput
 }
 
 export type quizProgressUncheckedCreateWithoutEnrollmentsInput = {
   id?: string
   quizId: string
-  courseSectionId: string
   highScore?: number
   isCompleted?: boolean
   createdAt?: Date | string
@@ -556,29 +576,72 @@ export type quizProgressScalarWhereInput = {
   id?: Prisma.StringFilter<"quizProgress"> | string
   enrollmentId?: Prisma.StringNullableFilter<"quizProgress"> | string | null
   quizId?: Prisma.StringFilter<"quizProgress"> | string
-  courseSectionId?: Prisma.StringFilter<"quizProgress"> | string
   highScore?: Prisma.FloatFilter<"quizProgress"> | number
   isCompleted?: Prisma.BoolFilter<"quizProgress"> | boolean
   createdAt?: Prisma.DateTimeFilter<"quizProgress"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"quizProgress"> | Date | string
 }
 
+export type quizProgressCreateWithoutQuizInput = {
+  id?: string
+  highScore?: number
+  isCompleted?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  attempts?: Prisma.QuizAttemptCreateNestedManyWithoutQuizProgressInput
+  enrollments?: Prisma.EnrollmentsCreateNestedOneWithoutQuizProgressInput
+}
+
+export type quizProgressUncheckedCreateWithoutQuizInput = {
+  id?: string
+  enrollmentId?: string | null
+  highScore?: number
+  isCompleted?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  attempts?: Prisma.QuizAttemptUncheckedCreateNestedManyWithoutQuizProgressInput
+}
+
+export type quizProgressCreateOrConnectWithoutQuizInput = {
+  where: Prisma.quizProgressWhereUniqueInput
+  create: Prisma.XOR<Prisma.quizProgressCreateWithoutQuizInput, Prisma.quizProgressUncheckedCreateWithoutQuizInput>
+}
+
+export type quizProgressCreateManyQuizInputEnvelope = {
+  data: Prisma.quizProgressCreateManyQuizInput | Prisma.quizProgressCreateManyQuizInput[]
+  skipDuplicates?: boolean
+}
+
+export type quizProgressUpsertWithWhereUniqueWithoutQuizInput = {
+  where: Prisma.quizProgressWhereUniqueInput
+  update: Prisma.XOR<Prisma.quizProgressUpdateWithoutQuizInput, Prisma.quizProgressUncheckedUpdateWithoutQuizInput>
+  create: Prisma.XOR<Prisma.quizProgressCreateWithoutQuizInput, Prisma.quizProgressUncheckedCreateWithoutQuizInput>
+}
+
+export type quizProgressUpdateWithWhereUniqueWithoutQuizInput = {
+  where: Prisma.quizProgressWhereUniqueInput
+  data: Prisma.XOR<Prisma.quizProgressUpdateWithoutQuizInput, Prisma.quizProgressUncheckedUpdateWithoutQuizInput>
+}
+
+export type quizProgressUpdateManyWithWhereWithoutQuizInput = {
+  where: Prisma.quizProgressScalarWhereInput
+  data: Prisma.XOR<Prisma.quizProgressUpdateManyMutationInput, Prisma.quizProgressUncheckedUpdateManyWithoutQuizInput>
+}
+
 export type quizProgressCreateWithoutAttemptsInput = {
   id?: string
-  quizId: string
-  courseSectionId: string
   highScore?: number
   isCompleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   enrollments?: Prisma.EnrollmentsCreateNestedOneWithoutQuizProgressInput
+  quiz: Prisma.QuizCreateNestedOneWithoutQuizProgressInput
 }
 
 export type quizProgressUncheckedCreateWithoutAttemptsInput = {
   id?: string
   enrollmentId?: string | null
   quizId: string
-  courseSectionId: string
   highScore?: number
   isCompleted?: boolean
   createdAt?: Date | string
@@ -603,20 +666,18 @@ export type quizProgressUpdateToOneWithWhereWithoutAttemptsInput = {
 
 export type quizProgressUpdateWithoutAttemptsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  quizId?: Prisma.StringFieldUpdateOperationsInput | string
-  courseSectionId?: Prisma.StringFieldUpdateOperationsInput | string
   highScore?: Prisma.FloatFieldUpdateOperationsInput | number
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enrollments?: Prisma.EnrollmentsUpdateOneWithoutQuizProgressNestedInput
+  quiz?: Prisma.QuizUpdateOneRequiredWithoutQuizProgressNestedInput
 }
 
 export type quizProgressUncheckedUpdateWithoutAttemptsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   enrollmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizId?: Prisma.StringFieldUpdateOperationsInput | string
-  courseSectionId?: Prisma.StringFieldUpdateOperationsInput | string
   highScore?: Prisma.FloatFieldUpdateOperationsInput | number
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -626,7 +687,6 @@ export type quizProgressUncheckedUpdateWithoutAttemptsInput = {
 export type quizProgressCreateManyEnrollmentsInput = {
   id?: string
   quizId: string
-  courseSectionId: string
   highScore?: number
   isCompleted?: boolean
   createdAt?: Date | string
@@ -635,19 +695,17 @@ export type quizProgressCreateManyEnrollmentsInput = {
 
 export type quizProgressUpdateWithoutEnrollmentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  quizId?: Prisma.StringFieldUpdateOperationsInput | string
-  courseSectionId?: Prisma.StringFieldUpdateOperationsInput | string
   highScore?: Prisma.FloatFieldUpdateOperationsInput | number
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attempts?: Prisma.QuizAttemptUpdateManyWithoutQuizProgressNestedInput
+  quiz?: Prisma.QuizUpdateOneRequiredWithoutQuizProgressNestedInput
 }
 
 export type quizProgressUncheckedUpdateWithoutEnrollmentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quizId?: Prisma.StringFieldUpdateOperationsInput | string
-  courseSectionId?: Prisma.StringFieldUpdateOperationsInput | string
   highScore?: Prisma.FloatFieldUpdateOperationsInput | number
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -658,7 +716,44 @@ export type quizProgressUncheckedUpdateWithoutEnrollmentsInput = {
 export type quizProgressUncheckedUpdateManyWithoutEnrollmentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quizId?: Prisma.StringFieldUpdateOperationsInput | string
-  courseSectionId?: Prisma.StringFieldUpdateOperationsInput | string
+  highScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type quizProgressCreateManyQuizInput = {
+  id?: string
+  enrollmentId?: string | null
+  highScore?: number
+  isCompleted?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type quizProgressUpdateWithoutQuizInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  highScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  attempts?: Prisma.QuizAttemptUpdateManyWithoutQuizProgressNestedInput
+  enrollments?: Prisma.EnrollmentsUpdateOneWithoutQuizProgressNestedInput
+}
+
+export type quizProgressUncheckedUpdateWithoutQuizInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  enrollmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  highScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  attempts?: Prisma.QuizAttemptUncheckedUpdateManyWithoutQuizProgressNestedInput
+}
+
+export type quizProgressUncheckedUpdateManyWithoutQuizInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  enrollmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   highScore?: Prisma.FloatFieldUpdateOperationsInput | number
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -700,13 +795,13 @@ export type quizProgressSelect<ExtArgs extends runtime.Types.Extensions.Internal
   id?: boolean
   enrollmentId?: boolean
   quizId?: boolean
-  courseSectionId?: boolean
   highScore?: boolean
   isCompleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   attempts?: boolean | Prisma.quizProgress$attemptsArgs<ExtArgs>
   enrollments?: boolean | Prisma.quizProgress$enrollmentsArgs<ExtArgs>
+  quiz?: boolean | Prisma.QuizDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.QuizProgressCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["quizProgress"]>
 
@@ -714,48 +809,50 @@ export type quizProgressSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   id?: boolean
   enrollmentId?: boolean
   quizId?: boolean
-  courseSectionId?: boolean
   highScore?: boolean
   isCompleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   enrollments?: boolean | Prisma.quizProgress$enrollmentsArgs<ExtArgs>
+  quiz?: boolean | Prisma.QuizDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["quizProgress"]>
 
 export type quizProgressSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   enrollmentId?: boolean
   quizId?: boolean
-  courseSectionId?: boolean
   highScore?: boolean
   isCompleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   enrollments?: boolean | Prisma.quizProgress$enrollmentsArgs<ExtArgs>
+  quiz?: boolean | Prisma.QuizDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["quizProgress"]>
 
 export type quizProgressSelectScalar = {
   id?: boolean
   enrollmentId?: boolean
   quizId?: boolean
-  courseSectionId?: boolean
   highScore?: boolean
   isCompleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type quizProgressOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "enrollmentId" | "quizId" | "courseSectionId" | "highScore" | "isCompleted" | "createdAt" | "updatedAt", ExtArgs["result"]["quizProgress"]>
+export type quizProgressOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "enrollmentId" | "quizId" | "highScore" | "isCompleted" | "createdAt" | "updatedAt", ExtArgs["result"]["quizProgress"]>
 export type quizProgressInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   attempts?: boolean | Prisma.quizProgress$attemptsArgs<ExtArgs>
   enrollments?: boolean | Prisma.quizProgress$enrollmentsArgs<ExtArgs>
+  quiz?: boolean | Prisma.QuizDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.QuizProgressCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type quizProgressIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   enrollments?: boolean | Prisma.quizProgress$enrollmentsArgs<ExtArgs>
+  quiz?: boolean | Prisma.QuizDefaultArgs<ExtArgs>
 }
 export type quizProgressIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   enrollments?: boolean | Prisma.quizProgress$enrollmentsArgs<ExtArgs>
+  quiz?: boolean | Prisma.QuizDefaultArgs<ExtArgs>
 }
 
 export type $quizProgressPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -763,12 +860,12 @@ export type $quizProgressPayload<ExtArgs extends runtime.Types.Extensions.Intern
   objects: {
     attempts: Prisma.$QuizAttemptPayload<ExtArgs>[]
     enrollments: Prisma.$EnrollmentsPayload<ExtArgs> | null
+    quiz: Prisma.$QuizPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     enrollmentId: string | null
     quizId: string
-    courseSectionId: string
     highScore: number
     isCompleted: boolean
     createdAt: Date
@@ -1169,6 +1266,7 @@ export interface Prisma__quizProgressClient<T, Null = never, ExtArgs extends run
   readonly [Symbol.toStringTag]: "PrismaPromise"
   attempts<T extends Prisma.quizProgress$attemptsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.quizProgress$attemptsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuizAttemptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   enrollments<T extends Prisma.quizProgress$enrollmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.quizProgress$enrollmentsArgs<ExtArgs>>): Prisma.Prisma__EnrollmentsClient<runtime.Types.Result.GetResult<Prisma.$EnrollmentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  quiz<T extends Prisma.QuizDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuizDefaultArgs<ExtArgs>>): Prisma.Prisma__QuizClient<runtime.Types.Result.GetResult<Prisma.$QuizPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1201,7 +1299,6 @@ export interface quizProgressFieldRefs {
   readonly id: Prisma.FieldRef<"quizProgress", 'String'>
   readonly enrollmentId: Prisma.FieldRef<"quizProgress", 'String'>
   readonly quizId: Prisma.FieldRef<"quizProgress", 'String'>
-  readonly courseSectionId: Prisma.FieldRef<"quizProgress", 'String'>
   readonly highScore: Prisma.FieldRef<"quizProgress", 'Float'>
   readonly isCompleted: Prisma.FieldRef<"quizProgress", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"quizProgress", 'DateTime'>

@@ -30,11 +30,11 @@ model quizProgress {
   id 		         String @id @default(uuid())
   enrollmentId 		 String?
   quizId 			 String
-  courseSectionId 	 String
   attempts 			 QuizAttempt[]
   highScore 		 Float @default(0.0)
   isCompleted 		 Boolean @default(false)
   enrollments 		 Enrollments? @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
+  quiz 				 Quiz @relation(fields: [quizId], references: [id], onDelete: Cascade)
   createdAt 		 DateTime @default(now())
   updatedAt 		 DateTime @updatedAt
 

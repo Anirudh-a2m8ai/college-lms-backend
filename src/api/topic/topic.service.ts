@@ -60,7 +60,6 @@ export class TopicService {
     const existingTopicCount = await this.topicMapDbService.count({
       where: {
         topicId: payload.id,
-        courseVersionId: payload.courseVersionId,
       },
     });
     if (existingTopicCount > 1) {

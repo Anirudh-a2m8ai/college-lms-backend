@@ -63,7 +63,6 @@ export class LessonService {
     const existingLessonCount = await this.lessonMapDbService.count({
       where: {
         lessonId: payload.id,
-        courseVersionId: payload.courseVersionId,
       },
     });
     if (existingLessonCount > 1) {
