@@ -64,6 +64,12 @@ export class UserController {
     return this.userService.getPermissions(user.userId);
   }
 
+  @Permissions('user:read')
+  @Get('listAll')
+  async listAll(@CurrentUser() user: any) {
+    return this.userService.findAllUsers(user);
+  }
+
   @Public()
   @Get('/:id')
   async findOne(@Param('id') id: string) {

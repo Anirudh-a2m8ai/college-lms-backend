@@ -372,6 +372,31 @@ export class UserService {
     return PaginationResponse(sendData);
   }
 
+  async findAllUsers(user: any) {
+    let data;
+    if (user.tenantId) {
+      data = await this.userDbService.findMany({
+        where: {
+          tenantId: user.tenantId,
+          status: AccountStatus.ACTIVE,
+          isDeleted: false,
+        },
+        include: { role: true },
+      });
+    } else {
+      data = await this.userDbService.findMany({
+        where: {
+          status: AccountStatus.ACTIVE,
+          isDeleted: false,
+        },
+        include: { role: true },
+      });
+    }
+    return plainToInstance(UserResponseDto, data, {
+      excludeExtraneousValues: true,
+    });
+  }
+
   private saveFile(file: Express.Multer.File): string {
     const uploadDir = path.join(process.cwd(), 'uploads');
 
