@@ -6,6 +6,11 @@ import { QuizDbService } from 'src/repository/quiz.db-service';
 import { plainToInstance } from 'class-transformer';
 import { EnrollmentsResponseDto } from './response/enrollmants.type';
 import { SubTopicMapDbService } from 'src/repository/subTopicMap.db-service';
+import { SearchInputDto } from 'src/utils/search/search.input.dto';
+import { PaginationMapper } from 'src/utils/search/pagination.mapper';
+import { OrderMapper } from 'src/utils/search/order.mapper';
+import { FilterMapper } from 'src/utils/search/filter.mapper';
+import { PaginationResponse } from 'src/utils/search/pagination.response';
 
 @Injectable()
 export class EnrollmentsService {
@@ -50,6 +55,7 @@ export class EnrollmentsService {
         courseVersionId: payload.courseVersionId,
         totalSubTopics: totalSubTopics,
         totalQuizzes: totalQuizzes,
+        tenantId: courseVersion.tenantId,
       },
     });
     const enrollmentResponse = plainToInstance(EnrollmentsResponseDto, enrollment);
@@ -62,7 +68,7 @@ export class EnrollmentsService {
   async getAllEnrollments(user: any) {
     const enrollments = await this.enrollmentsDbService.findMany({
       where: {
-        userId: user.id,
+        userId: user.userId,
       },
       include: {
         courseVersion: {
@@ -76,5 +82,39 @@ export class EnrollmentsService {
     return {
       data: enrollmentResponse,
     };
+  }
+
+  async listAll(query: SearchInputDto, body: any, user: any) {
+    const pagination = PaginationMapper(query);
+    const orderBy = OrderMapper(query);
+
+    let filterInput = body?.filter ? { ...body.filter } : {};
+
+    if (user.tenantId) {
+      filterInput.tenantId = user.tenantId;
+    }
+
+    const where = FilterMapper(filterInput, query);
+
+    const [data, total] = await Promise.all([
+      this.enrollmentsDbService.findMany({
+        where,
+        skip: pagination.skip,
+        take: pagination.take,
+        orderBy,
+        include: { user: true, courseVersion: { include: { course: true } } },
+      }),
+      this.enrollmentsDbService.count({ where }),
+    ]);
+
+    const sendData = {
+      data: plainToInstance(EnrollmentsResponseDto, data, {
+        excludeExtraneousValues: true,
+      }),
+      total,
+      pagination,
+    };
+
+    return PaginationResponse(sendData);
   }
 }

@@ -2558,6 +2558,7 @@ export const EnrollmentsScalarFieldEnum = {
   completedSubTopics: 'completedSubTopics',
   completedQuizzes: 'completedQuizzes',
   LastAccessedSubTopicId: 'LastAccessedSubTopicId',
+  tenantId: 'tenantId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isDeleted: 'isDeleted',
