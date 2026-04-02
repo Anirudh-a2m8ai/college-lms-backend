@@ -230,6 +230,7 @@ export class CourseVersionDbService {
       }
       subTopicByTopic.get(s.topicId).push({
         ...s.subTopic,
+        orderIndex: s.orderIndex,
         quiz: quizBySubTopic.get(s.subTopicId) || [],
       });
     }
@@ -240,6 +241,7 @@ export class CourseVersionDbService {
       }
       topicByLesson.get(t.lessonId).push({
         ...t.topic,
+        orderIndex: t.orderIndex,
         subTopic: subTopicByTopic.get(t.topicId) || [],
         quiz: quizByTopic.get(t.topicId) || [],
       });
@@ -251,6 +253,7 @@ export class CourseVersionDbService {
       }
       lessonByChapter.get(l.chapterId).push({
         ...l.lesson,
+        orderIndex: l.orderIndex,
         topic: topicByLesson.get(l.lessonId) || [],
         quiz: quizByLesson.get(l.lessonId) || [],
       });
@@ -262,6 +265,7 @@ export class CourseVersionDbService {
       }
       chapterByModule.get(c.moduleId).push({
         ...c.chapter,
+        orderIndex: c.orderIndex,
         lesson: lessonByChapter.get(c.chapterId) || [],
         quiz: quizByChapter.get(c.chapterId) || [],
       });
@@ -270,6 +274,7 @@ export class CourseVersionDbService {
     return {
       module: modules.map((m) => ({
         ...m.module,
+        orderIndex: m.orderIndex,
         chapter: chapterByModule.get(m.moduleId) || [],
         quiz: quizByModule.get(m.moduleId) || [],
       })),
