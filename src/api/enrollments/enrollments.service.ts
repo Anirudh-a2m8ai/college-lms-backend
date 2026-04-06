@@ -117,4 +117,24 @@ export class EnrollmentsService {
 
     return PaginationResponse(sendData);
   }
+
+  async getEnrollment(enrollmentId: string) {
+    const enrollment = await this.enrollmentsDbService.findUnique({
+      where: {
+        id: enrollmentId,
+      },
+      include: {
+        courseVersion: {
+          include: {
+            course: true,
+          },
+        },
+        user: true,
+      },
+    });
+    const enrollmentResponse = plainToInstance(EnrollmentsResponseDto, enrollment);
+    return {
+      data: enrollmentResponse,
+    };
+  }
 }

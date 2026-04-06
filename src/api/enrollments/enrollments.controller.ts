@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
 import { EnrollmentsService } from './enrollments.service';
 import { CreateEnrollmentDto } from './dto/create-enrollments.dto';
 import { PermissionGuard } from 'src/common/guards/permission.guard';
@@ -20,6 +20,11 @@ export class EnrollmentsController {
   @Get('course')
   async getAllEnrollments(@CurrentUser() user: any) {
     return await this.enrollmentsService.getAllEnrollments(user);
+  }
+
+  @Get(':enrollmentId')
+  async getEnrollment(@Param('enrollmentId') enrollmentId: string) {
+    return await this.enrollmentsService.getEnrollment(enrollmentId);
   }
 
   @Post('listAll')
