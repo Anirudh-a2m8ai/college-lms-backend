@@ -52,7 +52,7 @@ export class QuizResponseDto {
   updatedAt: Date;
 
   @Expose()
-  quizQuestionCount: number;
+  noOfQuestions: number;
 
   @Expose()
   @Type(() => QuizQuestionResponseDto)
