@@ -233,6 +233,16 @@ export class CourseService {
         status: payload.status,
       },
     });
+    if (payload.status === CourseStatus.PUBLISHED) {
+      await this.courseDbService.update({
+        where: {
+          id: courseVersion.courseId,
+        },
+        data: {
+          latestCourseVersionId: courseVersionId,
+        },
+      });
+    }
     return {
       message: 'Course version status updated successfully',
       data: courseVersionEntity,
