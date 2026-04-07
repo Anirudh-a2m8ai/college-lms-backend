@@ -67,7 +67,7 @@ export class CourseService {
     const pagination = PaginationMapper(query);
     const orderBy = OrderMapper(query);
 
-    let filterInput = body?.filter ? { ...body.filter } : {};
+    const filterInput = body?.filter ? { ...body.filter } : {};
 
     if (user.tenantId) {
       filterInput.tenantId = user.tenantId;
@@ -286,6 +286,51 @@ export class CourseService {
       excludeExtraneousValues: true,
     });
     return {
+      data: courseVersionResponse,
+    };
+  }
+
+  async getLatestPublishedCourseVersions(user: any) {
+    const courses = (await this.courseDbService.findMany({
+      where: {
+        tenantId: user.tenantId,
+        isDeleted: false,
+        courseVersions: {
+          some: {
+            status: CourseStatus.PUBLISHED,
+            isDeleted: false,
+          },
+        },
+      },
+      include: {
+        courseVersions: {
+          where: {
+            status: CourseStatus.PUBLISHED,
+            isDeleted: false,
+          },
+          orderBy: {
+            createdAt: 'desc',
+          },
+          take: 1,
+        },
+        designation: true,
+      },
+    })) as any[];
+
+    const result = courses.map((course) => {
+      const latestVersion = course.courseVersions[0];
+      return {
+        ...latestVersion,
+        course: course,
+      };
+    });
+
+    const courseVersionResponse = plainToInstance(CourseVersionResponseDto, result, {
+      excludeExtraneousValues: true,
+    });
+
+    return {
+      message: 'Latest published course versions fetched successfully',
       data: courseVersionResponse,
     };
   }

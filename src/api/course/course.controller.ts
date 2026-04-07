@@ -26,6 +26,12 @@ export class CourseController {
   }
 
   @Permissions('course:read')
+  @Get('published-latest')
+  async getLatestPublishedCourseVersions(@CurrentUser() user: any) {
+    return await this.courseService.getLatestPublishedCourseVersions(user);
+  }
+
+  @Permissions('course:read')
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return await this.courseService.findOne(id);
