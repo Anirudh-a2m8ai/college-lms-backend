@@ -1,21 +1,24 @@
 import { Exclude, Expose } from 'class-transformer';
 
 @Exclude()
-export class QuizQuestionResponseDto {
+export class QuizProgressResponseDto {
   @Expose()
   id: string;
 
   @Expose()
-  question: string;
-
-  @Expose()
-  questionType: string;
-
-  @Expose()
-  options: string[];
+  enrollmentId: string;
 
   @Expose()
   quizId: string;
+
+  @Expose()
+  totalAttempts: number;
+
+  @Expose()
+  highScore: number;
+
+  @Expose()
+  isCompleted: boolean;
 
   @Expose()
   createdAt: Date;

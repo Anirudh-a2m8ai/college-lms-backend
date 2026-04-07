@@ -22,6 +22,7 @@ import { QuizQuestionDbService } from './quiz-question.db-service';
 import { EnrollmentsDbService } from './enrollments.db-service';
 import { UserProgressDbService } from './userProgress.db-service';
 import { QuizSubmissionDbService } from './quizSubmission.db-service';
+import { QuizProgressDbService } from './quizProgress.db-service';
 
 @Module({
   providers: [
@@ -48,6 +49,7 @@ import { QuizSubmissionDbService } from './quizSubmission.db-service';
     EnrollmentsDbService,
     UserProgressDbService,
     QuizSubmissionDbService,
+    QuizProgressDbService,
   ],
   exports: [
     UserDbService,
@@ -73,6 +75,7 @@ import { QuizSubmissionDbService } from './quizSubmission.db-service';
     EnrollmentsDbService,
     UserProgressDbService,
     QuizSubmissionDbService,
+    QuizProgressDbService,
   ],
 })
 export class DbServiceModule {}
