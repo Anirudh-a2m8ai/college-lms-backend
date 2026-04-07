@@ -31,7 +31,7 @@ export class AwsService {
 
   async getObjectUrl(fileKey: string) {
     const command = new GetObjectCommand({
-      Bucket: this.configService.get<string>('AWS_S3_BUCKET'),
+      Bucket: this.configService.get<string>('aws.bucketName'),
       Key: fileKey,
     });
     const url = await getSignedUrl(this.s3, command, {
