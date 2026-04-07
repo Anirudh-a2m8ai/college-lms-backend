@@ -136,7 +136,6 @@ export class SubTopicService {
 
   async getUploadUrl(getUploadUrlDto: GetUploadUrlDto, user: any) {
     const { contentType, fileName } = getUploadUrlDto;
-    console.log(user);
     const fileKey = `videos/5ce83f02-820d-4c2e-999f-9065322497ea-${Date.now()}-${fileName}`;
     const uploadUrl = await this.awsService.getPresignedUrl(fileKey, contentType);
     return {
