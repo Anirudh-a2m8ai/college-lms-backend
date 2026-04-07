@@ -16,6 +16,7 @@ import { SubTopicModule } from './subTopic/subTopic.module';
 import { EnrollmentsModule } from './enrollments/enrollments.module';
 import { QuizModule } from './quiz/quiz.module';
 import { UserProgressModule } from './userProgress/userProgress.module';
+import { QuizProgressModule } from './quizProgress/quizProgress.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { UserProgressModule } from './userProgress/userProgress.module';
     EnrollmentsModule,
     QuizModule,
     UserProgressModule,
+    QuizProgressModule,
   ],
   providers: [
     {
