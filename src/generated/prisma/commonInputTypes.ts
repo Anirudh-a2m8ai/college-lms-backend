@@ -219,6 +219,23 @@ export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedIntNullableFilter<$PrismaModel>
 }
 
+export type EnumCourseTypeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.CourseType | Prisma.EnumCourseTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.CourseType[] | Prisma.ListEnumCourseTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.CourseType[] | Prisma.ListEnumCourseTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumCourseTypeNullableFilter<$PrismaModel> | $Enums.CourseType | null
+}
+
+export type EnumCourseTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CourseType | Prisma.EnumCourseTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.CourseType[] | Prisma.ListEnumCourseTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.CourseType[] | Prisma.ListEnumCourseTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumCourseTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.CourseType | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCourseTypeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCourseTypeNullableFilter<$PrismaModel>
+}
+
 export type EnumQuizTypeFilter<$PrismaModel = never> = {
   equals?: $Enums.QuizType | Prisma.EnumQuizTypeFieldRefInput<$PrismaModel>
   in?: $Enums.QuizType[] | Prisma.ListEnumQuizTypeFieldRefInput<$PrismaModel>
@@ -683,6 +700,23 @@ export type NestedFloatNullableFilter<$PrismaModel = never> = {
   gt?: number | Prisma.FloatFieldRefInput<$PrismaModel>
   gte?: number | Prisma.FloatFieldRefInput<$PrismaModel>
   not?: Prisma.NestedFloatNullableFilter<$PrismaModel> | number | null
+}
+
+export type NestedEnumCourseTypeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.CourseType | Prisma.EnumCourseTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.CourseType[] | Prisma.ListEnumCourseTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.CourseType[] | Prisma.ListEnumCourseTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumCourseTypeNullableFilter<$PrismaModel> | $Enums.CourseType | null
+}
+
+export type NestedEnumCourseTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CourseType | Prisma.EnumCourseTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.CourseType[] | Prisma.ListEnumCourseTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.CourseType[] | Prisma.ListEnumCourseTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumCourseTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.CourseType | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCourseTypeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCourseTypeNullableFilter<$PrismaModel>
 }
 
 export type NestedEnumQuizTypeFilter<$PrismaModel = never> = {

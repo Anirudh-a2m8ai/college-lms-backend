@@ -4,13 +4,15 @@ import { SubTopicMapDbService } from 'src/repository/subTopicMap.db-service';
 import { plainToInstance } from 'class-transformer';
 import { SubTopicResponseDto } from './response/subTopic.type';
 import { subTopicMap, SubTopics } from 'src/generated/prisma/client';
-import { CreateSubTopicDto, UpdateSubTopicDto } from './dto/create-subTopic.dto';
+import { ConfirmUploadDto, CreateSubTopicDto, GetUploadUrlDto, UpdateSubTopicDto } from './dto/create-subTopic.dto';
+import { AwsService } from 'src/aws/aws.service';
 
 @Injectable()
 export class SubTopicService {
   constructor(
     private readonly subTopicDbService: SubTopicDbService,
     private readonly subTopicMapDbService: SubTopicMapDbService,
+    private readonly awsService: AwsService,
   ) {}
 
   async create(payload: CreateSubTopicDto, user: any) {
@@ -129,6 +131,44 @@ export class SubTopicService {
     return {
       message: 'Sub topics fetched successfully',
       data: subTopicResponse,
+    };
+  }
+
+  async getUploadUrl(getUploadUrlDto: GetUploadUrlDto, user: any) {
+    const { contentType, fileName } = getUploadUrlDto;
+    console.log(user);
+    const fileKey = `videos/5ce83f02-820d-4c2e-999f-9065322497ea-${Date.now()}-${fileName}`;
+    const uploadUrl = await this.awsService.getPresignedUrl(fileKey, contentType);
+    return {
+      message: 'Upload URL fetched successfully',
+      data: {
+        uploadUrl,
+        fileKey,
+      },
+    };
+  }
+
+  async confirmUpload(payload: ConfirmUploadDto) {
+    const subTopic = await this.subTopicDbService.update({
+      where: {
+        id: payload.subTopicId,
+      },
+      data: {
+        videoUrl: payload.fileKey,
+      },
+    });
+    const subTopicResponse = plainToInstance(SubTopicResponseDto, subTopic);
+    return {
+      message: 'Sub topic video uploaded successfully',
+      data: subTopicResponse,
+    };
+  }
+
+  async getObjectUrl(fileKey: string) {
+    const url = await this.awsService.getObjectUrl(fileKey);
+    return {
+      message: 'Object URL fetched successfully',
+      data: url,
     };
   }
 }

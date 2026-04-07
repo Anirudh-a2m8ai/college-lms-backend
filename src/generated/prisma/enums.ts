@@ -18,6 +18,14 @@ export const CourseStatus = {
 export type CourseStatus = (typeof CourseStatus)[keyof typeof CourseStatus]
 
 
+export const CourseType = {
+  CLASSROOM: 'CLASSROOM',
+  SELF_PACED: 'SELF_PACED'
+} as const
+
+export type CourseType = (typeof CourseType)[keyof typeof CourseType]
+
+
 export const QuizType = {
   MANUAL: 'MANUAL',
   AI_GENERATED: 'AI_GENERATED'

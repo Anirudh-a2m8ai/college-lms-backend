@@ -4,6 +4,7 @@ model SubTopics {
   title       String
   isMandatory Boolean       @default(false)
   content     String?
+  videoUrl    String?
   examples    Json?
   image       Json?
   subTopicMap subTopicMap[]

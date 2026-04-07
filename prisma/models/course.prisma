@@ -1,3 +1,8 @@
+enum CourseType {
+	CLASSROOM
+	SELF_PACED
+}
+
 model Course {
     id                    String          @id @default(uuid())
     tenantId              String
@@ -5,6 +10,7 @@ model Course {
     description           String?
     designationId         String
     thumbnailUrl          String?
+    type                  CourseType?
     courseCode            String
     designation           Designation     @relation(fields: [designationId], references: [id], onDelete: Cascade)
     tenant                Tenant          @relation(fields: [tenantId], references: [id], onDelete: Cascade)

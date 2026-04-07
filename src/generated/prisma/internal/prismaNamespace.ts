@@ -2521,6 +2521,7 @@ export const CourseScalarFieldEnum = {
   description: 'description',
   designationId: 'designationId',
   thumbnailUrl: 'thumbnailUrl',
+  type: 'type',
   courseCode: 'courseCode',
   latestCourseVersionId: 'latestCourseVersionId',
   createdAt: 'createdAt',
@@ -2728,6 +2729,7 @@ export const SubTopicsScalarFieldEnum = {
   title: 'title',
   isMandatory: 'isMandatory',
   content: 'content',
+  videoUrl: 'videoUrl',
   examples: 'examples',
   image: 'image',
   createdAt: 'createdAt',
@@ -3015,6 +3017,20 @@ export type EnumCourseStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
  * Reference to a field of type 'CourseStatus[]'
  */
 export type ListEnumCourseStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CourseStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'CourseType'
+ */
+export type EnumCourseTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CourseType'>
+    
+
+
+/**
+ * Reference to a field of type 'CourseType[]'
+ */
+export type ListEnumCourseTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CourseType[]'>
     
 
 

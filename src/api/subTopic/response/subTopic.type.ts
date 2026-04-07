@@ -16,6 +16,12 @@ export class SubTopicResponseDto {
   topicId: string;
 
   @Expose()
+  videoUrl: string;
+
+  @Expose()
+  content: string;
+
+  @Expose()
   isNewlyCreated: boolean;
 
   @Expose()

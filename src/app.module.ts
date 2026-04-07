@@ -9,6 +9,7 @@ import { DbServiceModule } from './repository/db-service.module';
 import { BullModule } from '@nestjs/bullmq';
 import { ConfigService } from '@nestjs/config';
 import { QueueModule } from './queue/queue.module';
+import { AwsModule } from './aws/aws.module';
 
 @Module({
   imports: [
@@ -29,7 +30,8 @@ import { QueueModule } from './queue/queue.module';
     QueueModule,
     PrismaModule,
     ApiModule,
-    DbServiceModule
+    DbServiceModule,
+    AwsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
