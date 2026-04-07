@@ -4,7 +4,15 @@ import { SubTopicMapDbService } from 'src/repository/subTopicMap.db-service';
 import { plainToInstance } from 'class-transformer';
 import { SubTopicResponseDto } from './response/subTopic.type';
 import { subTopicMap, SubTopics } from 'src/generated/prisma/client';
-import { ConfirmUploadDto, CreateSubTopicDto, GetUploadUrlDto, UpdateSubTopicDto } from './dto/create-subTopic.dto';
+import {
+  AbortMultipartUploadDto,
+  CompleteMultipartUploadDto,
+  ConfirmUploadDto,
+  CreateSubTopicDto,
+  GetUploadPartUrlDto,
+  GetUploadUrlDto,
+  UpdateSubTopicDto,
+} from './dto/create-subTopic.dto';
 import { AwsService } from 'src/aws/aws.service';
 
 @Injectable()
@@ -168,6 +176,53 @@ export class SubTopicService {
     return {
       message: 'Object URL fetched successfully',
       data: url,
+    };
+  }
+
+  async startMultipartUpload(getUploadUrlDto: GetUploadUrlDto) {
+    const fileKey = `videos/${getUploadUrlDto.courseVersionId}-${Date.now()}-${getUploadUrlDto.fileName}`;
+    const uploadId = await this.awsService.startMultipartUpload(fileKey, getUploadUrlDto.contentType);
+    return {
+      message: 'Multipart upload started successfully',
+      data: {
+        uploadId,
+        fileKey,
+      },
+    };
+  }
+
+  async getUploadPartUrl(getUploadPartUrlDto: GetUploadPartUrlDto) {
+    const url = await this.awsService.getUploadPartUrl(
+      getUploadPartUrlDto.key,
+      getUploadPartUrlDto.uploadId,
+      getUploadPartUrlDto.partNumber,
+    );
+    return {
+      data: url,
+      partNumber: getUploadPartUrlDto.partNumber,
+    };
+  }
+
+  async completeMultipartUpload(completeMultipartUploadDto: CompleteMultipartUploadDto) {
+    const response = await this.awsService.completeMultipartUpload(
+      completeMultipartUploadDto.key,
+      completeMultipartUploadDto.uploadId,
+      completeMultipartUploadDto.parts,
+    );
+    return {
+      message: 'Upload completed successfully',
+      data: response,
+    };
+  }
+
+  async abortMultipartUpload(abortMultipartUploadDto: AbortMultipartUploadDto) {
+    const response = await this.awsService.abortMultipartUpload(
+      abortMultipartUploadDto.key,
+      abortMultipartUploadDto.uploadId,
+    );
+    return {
+      message: 'Upload aborted',
+      data: response,
     };
   }
 }

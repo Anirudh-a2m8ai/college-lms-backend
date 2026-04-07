@@ -3,7 +3,15 @@ import { SubTopicService } from './subTopic.service';
 import { PermissionGuard } from 'src/common/guards/permission.guard';
 import { Permissions } from 'src/common/decorators/permissions.decorator';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
-import { ConfirmUploadDto, CreateSubTopicDto, GetUploadUrlDto, UpdateSubTopicDto } from './dto/create-subTopic.dto';
+import {
+  AbortMultipartUploadDto,
+  CompleteMultipartUploadDto,
+  ConfirmUploadDto,
+  CreateSubTopicDto,
+  GetUploadPartUrlDto,
+  GetUploadUrlDto,
+  UpdateSubTopicDto,
+} from './dto/create-subTopic.dto';
 
 @Controller('sub-topic')
 @UseGuards(PermissionGuard)
@@ -44,5 +52,29 @@ export class SubTopicController {
   @Get('object-url')
   async getObjectUrl(@Query('fileKey') fileKey: string) {
     return await this.subTopicService.getObjectUrl(fileKey);
+  }
+
+  @Permissions('course:edit')
+  @Post('multipart/start')
+  startMultipartUpload(@Body() getUploadUrlDto: GetUploadUrlDto) {
+    return this.subTopicService.startMultipartUpload(getUploadUrlDto);
+  }
+
+  @Permissions('course:edit')
+  @Post('multipart/part-url')
+  getUploadPartUrl(@Body() getUploadPartUrlDto: GetUploadPartUrlDto) {
+    return this.subTopicService.getUploadPartUrl(getUploadPartUrlDto);
+  }
+
+  @Permissions('course:edit')
+  @Post('multipart/complete')
+  completeMultipartUpload(@Body() completeMultipartUploadDto: CompleteMultipartUploadDto) {
+    return this.subTopicService.completeMultipartUpload(completeMultipartUploadDto);
+  }
+
+  @Permissions('course:edit')
+  @Post('multipart/abort')
+  abortMultipartUpload(@Body() abortMultipartUploadDto: AbortMultipartUploadDto) {
+    return this.subTopicService.abortMultipartUpload(abortMultipartUploadDto);
   }
 }
