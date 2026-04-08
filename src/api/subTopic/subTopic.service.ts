@@ -204,14 +204,23 @@ export class SubTopicService {
   }
 
   async completeMultipartUpload(completeMultipartUploadDto: CompleteMultipartUploadDto) {
-    const response = await this.awsService.completeMultipartUpload(
+    await this.awsService.completeMultipartUpload(
       completeMultipartUploadDto.key,
       completeMultipartUploadDto.uploadId,
       completeMultipartUploadDto.parts,
     );
+    const subTopic = await this.subTopicDbService.update({
+      where: {
+        id: completeMultipartUploadDto.subTopicId,
+      },
+      data: {
+        videoUrl: completeMultipartUploadDto.key,
+      },
+    });
+    const subTopicResponse = plainToInstance(SubTopicResponseDto, subTopic);
     return {
       message: 'Upload completed successfully',
-      data: response,
+      data: subTopicResponse,
     };
   }
 

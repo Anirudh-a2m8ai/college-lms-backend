@@ -90,6 +90,10 @@ export class CompleteMultipartUploadDto {
   @IsArray()
   @IsNotEmpty()
   parts: { PartNumber: number; ETag: string }[];
+
+  @IsString()
+  @IsNotEmpty()
+  subTopicId: string;
 }
 
 export class AbortMultipartUploadDto {
