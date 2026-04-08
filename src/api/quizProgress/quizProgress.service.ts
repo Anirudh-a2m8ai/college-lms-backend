@@ -30,4 +30,29 @@ export class QuizProgressService {
       data: quizProgressResponseDto,
     };
   }
+
+  async getQuizProgressByEnrollmentId(enrollmentId: string, user: any) {
+    const quizProgress = (await this.quizProgressDbService.findMany({
+      where: {
+        enrollmentId,
+        userId: user.id,
+      },
+      include: {
+        attempts: true,
+      },
+    })) as (quizProgress & { attempts: QuizAttempt[] })[];
+
+    const progress = quizProgress.map((quizProgress) => {
+      return {
+        ...quizProgress,
+        totalAttempts: quizProgress?.attempts.length,
+      };
+    });
+
+    const quizProgressResponseDto = plainToInstance(QuizProgressResponseDto, progress);
+    return {
+      message: 'Quiz progress fetched successfully',
+      data: quizProgressResponseDto,
+    };
+  }
 }
