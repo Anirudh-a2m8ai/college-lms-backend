@@ -12,7 +12,7 @@ export class QuizProgressController {
   }
 
   @Get('enrollment/:enrollmentId')
-  async getQuizProgressByEnrollmentId(@Param('enrollmentId') enrollmentId: string, @CurrentUser() user: any) {
-    return this.quizProgressService.getQuizProgressByEnrollmentId(enrollmentId, user);
+  async getQuizProgressByEnrollmentId(@Param('enrollmentId') enrollmentId: string) {
+    return this.quizProgressService.getQuizProgressByEnrollmentId(enrollmentId);
   }
 }

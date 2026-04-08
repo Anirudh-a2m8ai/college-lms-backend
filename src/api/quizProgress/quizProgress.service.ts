@@ -31,11 +31,10 @@ export class QuizProgressService {
     };
   }
 
-  async getQuizProgressByEnrollmentId(enrollmentId: string, user: any) {
+  async getQuizProgressByEnrollmentId(enrollmentId: string) {
     const quizProgress = (await this.quizProgressDbService.findMany({
       where: {
         enrollmentId,
-        userId: user.id,
       },
       include: {
         attempts: true,
