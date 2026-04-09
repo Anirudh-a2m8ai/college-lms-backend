@@ -55,3 +55,33 @@ export class UpdateLessonDto {
   @IsNotEmpty()
   orderIndex: number;
 }
+
+export class CreateLessonInClassRoomDto {
+  @IsString()
+  @IsNotEmpty()
+  title: string;
+
+  @IsString()
+  @IsOptional()
+  description: string;
+
+  @IsString()
+  @IsOptional()
+  overview: string;
+
+  @IsString()
+  @IsNotEmpty()
+  moduleId: string;
+
+  @IsString()
+  @IsNotEmpty()
+  chapterId: string;
+
+  @IsString()
+  @IsNotEmpty()
+  classRoomId: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  orderIndex: number;
+}

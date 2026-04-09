@@ -1,11 +1,12 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
-import { CreateLessonDto, UpdateLessonDto } from './dto/create-lesson.dto';
+import { CreateLessonDto, CreateLessonInClassRoomDto, UpdateLessonDto } from './dto/create-lesson.dto';
 import { LessonDbService } from 'src/repository/lesson.db-service';
 import { LessonMapDbService } from 'src/repository/lessonMap.db-service';
 import { LessonResponseDto } from './response/lesson.type';
 import { TopicMapDbService } from 'src/repository/topicMap.db-service';
-import { Lesson, lessonMap } from 'src/generated/prisma/client';
+import { ClassLessonMap, Lesson, lessonMap } from 'src/generated/prisma/client';
+import { ClassLessonMapDbService } from 'src/repository/classLessonMap.db-service';
 
 @Injectable()
 export class LessonService {
@@ -13,6 +14,7 @@ export class LessonService {
     private readonly lessonDbService: LessonDbService,
     private readonly lessonMapDbService: LessonMapDbService,
     private readonly topicMapDbService: TopicMapDbService,
+    private readonly classLessonMapDbService: ClassLessonMapDbService,
   ) {}
 
   async create(payload: CreateLessonDto, user: any) {
@@ -143,6 +145,65 @@ export class LessonService {
     );
     return {
       message: 'Lessons fetched successfully',
+      data: lessonResponse,
+    };
+  }
+
+  async findAllLessonsInClassChapter(classRoomId: string) {
+    const lessonMap = (await this.classLessonMapDbService.findMany({
+      where: {
+        classRoomId,
+      },
+      include: {
+        lesson: true,
+      },
+    })) as (ClassLessonMap & { lesson: Lesson })[];
+    const lessonResponse = plainToInstance(
+      LessonResponseDto,
+      lessonMap.map((item) => {
+        const lessonResponse = plainToInstance(LessonResponseDto, item.lesson);
+        lessonResponse.orderIndex = item.orderIndex;
+        return lessonResponse;
+      }),
+    );
+    return {
+      message: 'Lessons fetched successfully',
+      data: lessonResponse,
+    };
+  }
+
+  async createInClassRoom(payload: CreateLessonInClassRoomDto, user: any) {
+    const existingLessonIndex = await this.classLessonMapDbService.findFirst({
+      where: {
+        classRoomId: payload.classRoomId,
+        chapterId: payload.chapterId,
+        orderIndex: payload.orderIndex,
+      },
+    });
+    if (existingLessonIndex) {
+      throw new BadRequestException('Lesson index already exists');
+    }
+    const lesson = await this.lessonDbService.create({
+      data: {
+        title: payload.title,
+        description: payload.description,
+        overview: payload.overview,
+      },
+    });
+    await this.classLessonMapDbService.create({
+      data: {
+        lessonId: lesson.id,
+        chapterId: payload.chapterId,
+        classRoomId: payload.classRoomId,
+        orderIndex: payload.orderIndex,
+      },
+    });
+    const lessonResponse = plainToInstance(LessonResponseDto, lesson);
+    lessonResponse.orderIndex = payload.orderIndex;
+    lessonResponse.chapterId = payload.chapterId;
+    lessonResponse.moduleId = payload.moduleId;
+    return {
+      message: 'Lesson created successfully',
       data: lessonResponse,
     };
   }

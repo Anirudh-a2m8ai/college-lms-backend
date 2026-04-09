@@ -43,13 +43,13 @@ export type EnrollmentsSumAggregateOutputType = {
 export type EnrollmentsMinAggregateOutputType = {
   id: string | null
   userId: string | null
-  courseVersionId: string | null
   totalSubTopics: number | null
   totalQuizzes: number | null
   completedSubTopics: number | null
   completedQuizzes: number | null
   LastAccessedSubTopicId: string | null
   tenantId: string | null
+  classRoomId: string | null
   createdAt: Date | null
   updatedAt: Date | null
   isDeleted: boolean | null
@@ -60,13 +60,13 @@ export type EnrollmentsMinAggregateOutputType = {
 export type EnrollmentsMaxAggregateOutputType = {
   id: string | null
   userId: string | null
-  courseVersionId: string | null
   totalSubTopics: number | null
   totalQuizzes: number | null
   completedSubTopics: number | null
   completedQuizzes: number | null
   LastAccessedSubTopicId: string | null
   tenantId: string | null
+  classRoomId: string | null
   createdAt: Date | null
   updatedAt: Date | null
   isDeleted: boolean | null
@@ -77,13 +77,13 @@ export type EnrollmentsMaxAggregateOutputType = {
 export type EnrollmentsCountAggregateOutputType = {
   id: number
   userId: number
-  courseVersionId: number
   totalSubTopics: number
   totalQuizzes: number
   completedSubTopics: number
   completedQuizzes: number
   LastAccessedSubTopicId: number
   tenantId: number
+  classRoomId: number
   createdAt: number
   updatedAt: number
   isDeleted: number
@@ -110,13 +110,13 @@ export type EnrollmentsSumAggregateInputType = {
 export type EnrollmentsMinAggregateInputType = {
   id?: true
   userId?: true
-  courseVersionId?: true
   totalSubTopics?: true
   totalQuizzes?: true
   completedSubTopics?: true
   completedQuizzes?: true
   LastAccessedSubTopicId?: true
   tenantId?: true
+  classRoomId?: true
   createdAt?: true
   updatedAt?: true
   isDeleted?: true
@@ -127,13 +127,13 @@ export type EnrollmentsMinAggregateInputType = {
 export type EnrollmentsMaxAggregateInputType = {
   id?: true
   userId?: true
-  courseVersionId?: true
   totalSubTopics?: true
   totalQuizzes?: true
   completedSubTopics?: true
   completedQuizzes?: true
   LastAccessedSubTopicId?: true
   tenantId?: true
+  classRoomId?: true
   createdAt?: true
   updatedAt?: true
   isDeleted?: true
@@ -144,13 +144,13 @@ export type EnrollmentsMaxAggregateInputType = {
 export type EnrollmentsCountAggregateInputType = {
   id?: true
   userId?: true
-  courseVersionId?: true
   totalSubTopics?: true
   totalQuizzes?: true
   completedSubTopics?: true
   completedQuizzes?: true
   LastAccessedSubTopicId?: true
   tenantId?: true
+  classRoomId?: true
   createdAt?: true
   updatedAt?: true
   isDeleted?: true
@@ -248,13 +248,13 @@ export type EnrollmentsGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 export type EnrollmentsGroupByOutputType = {
   id: string
   userId: string
-  courseVersionId: string
   totalSubTopics: number
   totalQuizzes: number
   completedSubTopics: number
   completedQuizzes: number
   LastAccessedSubTopicId: string | null
   tenantId: string
+  classRoomId: string
   createdAt: Date
   updatedAt: Date
   isDeleted: boolean
@@ -288,20 +288,20 @@ export type EnrollmentsWhereInput = {
   NOT?: Prisma.EnrollmentsWhereInput | Prisma.EnrollmentsWhereInput[]
   id?: Prisma.StringFilter<"Enrollments"> | string
   userId?: Prisma.StringFilter<"Enrollments"> | string
-  courseVersionId?: Prisma.StringFilter<"Enrollments"> | string
   totalSubTopics?: Prisma.IntFilter<"Enrollments"> | number
   totalQuizzes?: Prisma.IntFilter<"Enrollments"> | number
   completedSubTopics?: Prisma.IntFilter<"Enrollments"> | number
   completedQuizzes?: Prisma.IntFilter<"Enrollments"> | number
   LastAccessedSubTopicId?: Prisma.StringNullableFilter<"Enrollments"> | string | null
   tenantId?: Prisma.StringFilter<"Enrollments"> | string
+  classRoomId?: Prisma.StringFilter<"Enrollments"> | string
   createdAt?: Prisma.DateTimeFilter<"Enrollments"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Enrollments"> | Date | string
   isDeleted?: Prisma.BoolFilter<"Enrollments"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"Enrollments"> | Date | string | null
   deleteAt?: Prisma.DateTimeNullableFilter<"Enrollments"> | Date | string | null
+  classRoom?: Prisma.XOR<Prisma.ClassRoomScalarRelationFilter, Prisma.ClassRoomWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  courseVersion?: Prisma.XOR<Prisma.CourseVersionScalarRelationFilter, Prisma.CourseVersionWhereInput>
   userProgress?: Prisma.UserProgressListRelationFilter
   quizProgress?: Prisma.QuizProgressListRelationFilter
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
@@ -310,20 +310,20 @@ export type EnrollmentsWhereInput = {
 export type EnrollmentsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  courseVersionId?: Prisma.SortOrder
   totalSubTopics?: Prisma.SortOrder
   totalQuizzes?: Prisma.SortOrder
   completedSubTopics?: Prisma.SortOrder
   completedQuizzes?: Prisma.SortOrder
   LastAccessedSubTopicId?: Prisma.SortOrderInput | Prisma.SortOrder
   tenantId?: Prisma.SortOrder
+  classRoomId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   deleteAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  classRoom?: Prisma.ClassRoomOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
-  courseVersion?: Prisma.CourseVersionOrderByWithRelationInput
   userProgress?: Prisma.UserProgressOrderByRelationAggregateInput
   quizProgress?: Prisma.quizProgressOrderByRelationAggregateInput
   tenant?: Prisma.TenantOrderByWithRelationInput
@@ -335,20 +335,20 @@ export type EnrollmentsWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.EnrollmentsWhereInput[]
   NOT?: Prisma.EnrollmentsWhereInput | Prisma.EnrollmentsWhereInput[]
   userId?: Prisma.StringFilter<"Enrollments"> | string
-  courseVersionId?: Prisma.StringFilter<"Enrollments"> | string
   totalSubTopics?: Prisma.IntFilter<"Enrollments"> | number
   totalQuizzes?: Prisma.IntFilter<"Enrollments"> | number
   completedSubTopics?: Prisma.IntFilter<"Enrollments"> | number
   completedQuizzes?: Prisma.IntFilter<"Enrollments"> | number
   LastAccessedSubTopicId?: Prisma.StringNullableFilter<"Enrollments"> | string | null
   tenantId?: Prisma.StringFilter<"Enrollments"> | string
+  classRoomId?: Prisma.StringFilter<"Enrollments"> | string
   createdAt?: Prisma.DateTimeFilter<"Enrollments"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Enrollments"> | Date | string
   isDeleted?: Prisma.BoolFilter<"Enrollments"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"Enrollments"> | Date | string | null
   deleteAt?: Prisma.DateTimeNullableFilter<"Enrollments"> | Date | string | null
+  classRoom?: Prisma.XOR<Prisma.ClassRoomScalarRelationFilter, Prisma.ClassRoomWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  courseVersion?: Prisma.XOR<Prisma.CourseVersionScalarRelationFilter, Prisma.CourseVersionWhereInput>
   userProgress?: Prisma.UserProgressListRelationFilter
   quizProgress?: Prisma.QuizProgressListRelationFilter
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
@@ -357,13 +357,13 @@ export type EnrollmentsWhereUniqueInput = Prisma.AtLeast<{
 export type EnrollmentsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  courseVersionId?: Prisma.SortOrder
   totalSubTopics?: Prisma.SortOrder
   totalQuizzes?: Prisma.SortOrder
   completedSubTopics?: Prisma.SortOrder
   completedQuizzes?: Prisma.SortOrder
   LastAccessedSubTopicId?: Prisma.SortOrderInput | Prisma.SortOrder
   tenantId?: Prisma.SortOrder
+  classRoomId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -382,13 +382,13 @@ export type EnrollmentsScalarWhereWithAggregatesInput = {
   NOT?: Prisma.EnrollmentsScalarWhereWithAggregatesInput | Prisma.EnrollmentsScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Enrollments"> | string
   userId?: Prisma.StringWithAggregatesFilter<"Enrollments"> | string
-  courseVersionId?: Prisma.StringWithAggregatesFilter<"Enrollments"> | string
   totalSubTopics?: Prisma.IntWithAggregatesFilter<"Enrollments"> | number
   totalQuizzes?: Prisma.IntWithAggregatesFilter<"Enrollments"> | number
   completedSubTopics?: Prisma.IntWithAggregatesFilter<"Enrollments"> | number
   completedQuizzes?: Prisma.IntWithAggregatesFilter<"Enrollments"> | number
   LastAccessedSubTopicId?: Prisma.StringNullableWithAggregatesFilter<"Enrollments"> | string | null
   tenantId?: Prisma.StringWithAggregatesFilter<"Enrollments"> | string
+  classRoomId?: Prisma.StringWithAggregatesFilter<"Enrollments"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Enrollments"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Enrollments"> | Date | string
   isDeleted?: Prisma.BoolWithAggregatesFilter<"Enrollments"> | boolean
@@ -408,8 +408,8 @@ export type EnrollmentsCreateInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
+  classRoom: Prisma.ClassRoomCreateNestedOneWithoutEnrollmentsInput
   user: Prisma.UserCreateNestedOneWithoutEnrollmentsInput
-  courseVersion: Prisma.CourseVersionCreateNestedOneWithoutEnrollmentsInput
   userProgress?: Prisma.UserProgressCreateNestedManyWithoutEnrollmentInput
   quizProgress?: Prisma.quizProgressCreateNestedManyWithoutEnrollmentsInput
   tenant: Prisma.TenantCreateNestedOneWithoutEnrollmentsInput
@@ -418,13 +418,13 @@ export type EnrollmentsCreateInput = {
 export type EnrollmentsUncheckedCreateInput = {
   id?: string
   userId: string
-  courseVersionId: string
   totalSubTopics: number
   totalQuizzes: number
   completedSubTopics?: number
   completedQuizzes?: number
   LastAccessedSubTopicId?: string | null
   tenantId: string
+  classRoomId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -446,8 +446,8 @@ export type EnrollmentsUpdateInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  classRoom?: Prisma.ClassRoomUpdateOneRequiredWithoutEnrollmentsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutEnrollmentsNestedInput
-  courseVersion?: Prisma.CourseVersionUpdateOneRequiredWithoutEnrollmentsNestedInput
   userProgress?: Prisma.UserProgressUpdateManyWithoutEnrollmentNestedInput
   quizProgress?: Prisma.quizProgressUpdateManyWithoutEnrollmentsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutEnrollmentsNestedInput
@@ -456,13 +456,13 @@ export type EnrollmentsUpdateInput = {
 export type EnrollmentsUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  courseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  classRoomId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -475,13 +475,13 @@ export type EnrollmentsUncheckedUpdateInput = {
 export type EnrollmentsCreateManyInput = {
   id?: string
   userId: string
-  courseVersionId: string
   totalSubTopics: number
   totalQuizzes: number
   completedSubTopics?: number
   completedQuizzes?: number
   LastAccessedSubTopicId?: string | null
   tenantId: string
+  classRoomId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -506,13 +506,13 @@ export type EnrollmentsUpdateManyMutationInput = {
 export type EnrollmentsUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  courseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  classRoomId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -533,13 +533,13 @@ export type EnrollmentsOrderByRelationAggregateInput = {
 export type EnrollmentsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  courseVersionId?: Prisma.SortOrder
   totalSubTopics?: Prisma.SortOrder
   totalQuizzes?: Prisma.SortOrder
   completedSubTopics?: Prisma.SortOrder
   completedQuizzes?: Prisma.SortOrder
   LastAccessedSubTopicId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
+  classRoomId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -557,13 +557,13 @@ export type EnrollmentsAvgOrderByAggregateInput = {
 export type EnrollmentsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  courseVersionId?: Prisma.SortOrder
   totalSubTopics?: Prisma.SortOrder
   totalQuizzes?: Prisma.SortOrder
   completedSubTopics?: Prisma.SortOrder
   completedQuizzes?: Prisma.SortOrder
   LastAccessedSubTopicId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
+  classRoomId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -574,13 +574,13 @@ export type EnrollmentsMaxOrderByAggregateInput = {
 export type EnrollmentsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  courseVersionId?: Prisma.SortOrder
   totalSubTopics?: Prisma.SortOrder
   totalQuizzes?: Prisma.SortOrder
   completedSubTopics?: Prisma.SortOrder
   completedQuizzes?: Prisma.SortOrder
   LastAccessedSubTopicId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
+  classRoomId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -605,45 +605,45 @@ export type EnrollmentsNullableScalarRelationFilter = {
   isNot?: Prisma.EnrollmentsWhereInput | null
 }
 
-export type EnrollmentsCreateNestedManyWithoutCourseVersionInput = {
-  create?: Prisma.XOR<Prisma.EnrollmentsCreateWithoutCourseVersionInput, Prisma.EnrollmentsUncheckedCreateWithoutCourseVersionInput> | Prisma.EnrollmentsCreateWithoutCourseVersionInput[] | Prisma.EnrollmentsUncheckedCreateWithoutCourseVersionInput[]
-  connectOrCreate?: Prisma.EnrollmentsCreateOrConnectWithoutCourseVersionInput | Prisma.EnrollmentsCreateOrConnectWithoutCourseVersionInput[]
-  createMany?: Prisma.EnrollmentsCreateManyCourseVersionInputEnvelope
+export type EnrollmentsCreateNestedManyWithoutClassRoomInput = {
+  create?: Prisma.XOR<Prisma.EnrollmentsCreateWithoutClassRoomInput, Prisma.EnrollmentsUncheckedCreateWithoutClassRoomInput> | Prisma.EnrollmentsCreateWithoutClassRoomInput[] | Prisma.EnrollmentsUncheckedCreateWithoutClassRoomInput[]
+  connectOrCreate?: Prisma.EnrollmentsCreateOrConnectWithoutClassRoomInput | Prisma.EnrollmentsCreateOrConnectWithoutClassRoomInput[]
+  createMany?: Prisma.EnrollmentsCreateManyClassRoomInputEnvelope
   connect?: Prisma.EnrollmentsWhereUniqueInput | Prisma.EnrollmentsWhereUniqueInput[]
 }
 
-export type EnrollmentsUncheckedCreateNestedManyWithoutCourseVersionInput = {
-  create?: Prisma.XOR<Prisma.EnrollmentsCreateWithoutCourseVersionInput, Prisma.EnrollmentsUncheckedCreateWithoutCourseVersionInput> | Prisma.EnrollmentsCreateWithoutCourseVersionInput[] | Prisma.EnrollmentsUncheckedCreateWithoutCourseVersionInput[]
-  connectOrCreate?: Prisma.EnrollmentsCreateOrConnectWithoutCourseVersionInput | Prisma.EnrollmentsCreateOrConnectWithoutCourseVersionInput[]
-  createMany?: Prisma.EnrollmentsCreateManyCourseVersionInputEnvelope
+export type EnrollmentsUncheckedCreateNestedManyWithoutClassRoomInput = {
+  create?: Prisma.XOR<Prisma.EnrollmentsCreateWithoutClassRoomInput, Prisma.EnrollmentsUncheckedCreateWithoutClassRoomInput> | Prisma.EnrollmentsCreateWithoutClassRoomInput[] | Prisma.EnrollmentsUncheckedCreateWithoutClassRoomInput[]
+  connectOrCreate?: Prisma.EnrollmentsCreateOrConnectWithoutClassRoomInput | Prisma.EnrollmentsCreateOrConnectWithoutClassRoomInput[]
+  createMany?: Prisma.EnrollmentsCreateManyClassRoomInputEnvelope
   connect?: Prisma.EnrollmentsWhereUniqueInput | Prisma.EnrollmentsWhereUniqueInput[]
 }
 
-export type EnrollmentsUpdateManyWithoutCourseVersionNestedInput = {
-  create?: Prisma.XOR<Prisma.EnrollmentsCreateWithoutCourseVersionInput, Prisma.EnrollmentsUncheckedCreateWithoutCourseVersionInput> | Prisma.EnrollmentsCreateWithoutCourseVersionInput[] | Prisma.EnrollmentsUncheckedCreateWithoutCourseVersionInput[]
-  connectOrCreate?: Prisma.EnrollmentsCreateOrConnectWithoutCourseVersionInput | Prisma.EnrollmentsCreateOrConnectWithoutCourseVersionInput[]
-  upsert?: Prisma.EnrollmentsUpsertWithWhereUniqueWithoutCourseVersionInput | Prisma.EnrollmentsUpsertWithWhereUniqueWithoutCourseVersionInput[]
-  createMany?: Prisma.EnrollmentsCreateManyCourseVersionInputEnvelope
+export type EnrollmentsUpdateManyWithoutClassRoomNestedInput = {
+  create?: Prisma.XOR<Prisma.EnrollmentsCreateWithoutClassRoomInput, Prisma.EnrollmentsUncheckedCreateWithoutClassRoomInput> | Prisma.EnrollmentsCreateWithoutClassRoomInput[] | Prisma.EnrollmentsUncheckedCreateWithoutClassRoomInput[]
+  connectOrCreate?: Prisma.EnrollmentsCreateOrConnectWithoutClassRoomInput | Prisma.EnrollmentsCreateOrConnectWithoutClassRoomInput[]
+  upsert?: Prisma.EnrollmentsUpsertWithWhereUniqueWithoutClassRoomInput | Prisma.EnrollmentsUpsertWithWhereUniqueWithoutClassRoomInput[]
+  createMany?: Prisma.EnrollmentsCreateManyClassRoomInputEnvelope
   set?: Prisma.EnrollmentsWhereUniqueInput | Prisma.EnrollmentsWhereUniqueInput[]
   disconnect?: Prisma.EnrollmentsWhereUniqueInput | Prisma.EnrollmentsWhereUniqueInput[]
   delete?: Prisma.EnrollmentsWhereUniqueInput | Prisma.EnrollmentsWhereUniqueInput[]
   connect?: Prisma.EnrollmentsWhereUniqueInput | Prisma.EnrollmentsWhereUniqueInput[]
-  update?: Prisma.EnrollmentsUpdateWithWhereUniqueWithoutCourseVersionInput | Prisma.EnrollmentsUpdateWithWhereUniqueWithoutCourseVersionInput[]
-  updateMany?: Prisma.EnrollmentsUpdateManyWithWhereWithoutCourseVersionInput | Prisma.EnrollmentsUpdateManyWithWhereWithoutCourseVersionInput[]
+  update?: Prisma.EnrollmentsUpdateWithWhereUniqueWithoutClassRoomInput | Prisma.EnrollmentsUpdateWithWhereUniqueWithoutClassRoomInput[]
+  updateMany?: Prisma.EnrollmentsUpdateManyWithWhereWithoutClassRoomInput | Prisma.EnrollmentsUpdateManyWithWhereWithoutClassRoomInput[]
   deleteMany?: Prisma.EnrollmentsScalarWhereInput | Prisma.EnrollmentsScalarWhereInput[]
 }
 
-export type EnrollmentsUncheckedUpdateManyWithoutCourseVersionNestedInput = {
-  create?: Prisma.XOR<Prisma.EnrollmentsCreateWithoutCourseVersionInput, Prisma.EnrollmentsUncheckedCreateWithoutCourseVersionInput> | Prisma.EnrollmentsCreateWithoutCourseVersionInput[] | Prisma.EnrollmentsUncheckedCreateWithoutCourseVersionInput[]
-  connectOrCreate?: Prisma.EnrollmentsCreateOrConnectWithoutCourseVersionInput | Prisma.EnrollmentsCreateOrConnectWithoutCourseVersionInput[]
-  upsert?: Prisma.EnrollmentsUpsertWithWhereUniqueWithoutCourseVersionInput | Prisma.EnrollmentsUpsertWithWhereUniqueWithoutCourseVersionInput[]
-  createMany?: Prisma.EnrollmentsCreateManyCourseVersionInputEnvelope
+export type EnrollmentsUncheckedUpdateManyWithoutClassRoomNestedInput = {
+  create?: Prisma.XOR<Prisma.EnrollmentsCreateWithoutClassRoomInput, Prisma.EnrollmentsUncheckedCreateWithoutClassRoomInput> | Prisma.EnrollmentsCreateWithoutClassRoomInput[] | Prisma.EnrollmentsUncheckedCreateWithoutClassRoomInput[]
+  connectOrCreate?: Prisma.EnrollmentsCreateOrConnectWithoutClassRoomInput | Prisma.EnrollmentsCreateOrConnectWithoutClassRoomInput[]
+  upsert?: Prisma.EnrollmentsUpsertWithWhereUniqueWithoutClassRoomInput | Prisma.EnrollmentsUpsertWithWhereUniqueWithoutClassRoomInput[]
+  createMany?: Prisma.EnrollmentsCreateManyClassRoomInputEnvelope
   set?: Prisma.EnrollmentsWhereUniqueInput | Prisma.EnrollmentsWhereUniqueInput[]
   disconnect?: Prisma.EnrollmentsWhereUniqueInput | Prisma.EnrollmentsWhereUniqueInput[]
   delete?: Prisma.EnrollmentsWhereUniqueInput | Prisma.EnrollmentsWhereUniqueInput[]
   connect?: Prisma.EnrollmentsWhereUniqueInput | Prisma.EnrollmentsWhereUniqueInput[]
-  update?: Prisma.EnrollmentsUpdateWithWhereUniqueWithoutCourseVersionInput | Prisma.EnrollmentsUpdateWithWhereUniqueWithoutCourseVersionInput[]
-  updateMany?: Prisma.EnrollmentsUpdateManyWithWhereWithoutCourseVersionInput | Prisma.EnrollmentsUpdateManyWithWhereWithoutCourseVersionInput[]
+  update?: Prisma.EnrollmentsUpdateWithWhereUniqueWithoutClassRoomInput | Prisma.EnrollmentsUpdateWithWhereUniqueWithoutClassRoomInput[]
+  updateMany?: Prisma.EnrollmentsUpdateManyWithWhereWithoutClassRoomInput | Prisma.EnrollmentsUpdateManyWithWhereWithoutClassRoomInput[]
   deleteMany?: Prisma.EnrollmentsScalarWhereInput | Prisma.EnrollmentsScalarWhereInput[]
 }
 
@@ -761,7 +761,7 @@ export type EnrollmentsUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.EnrollmentsScalarWhereInput | Prisma.EnrollmentsScalarWhereInput[]
 }
 
-export type EnrollmentsCreateWithoutCourseVersionInput = {
+export type EnrollmentsCreateWithoutClassRoomInput = {
   id?: string
   totalSubTopics: number
   totalQuizzes: number
@@ -779,7 +779,7 @@ export type EnrollmentsCreateWithoutCourseVersionInput = {
   tenant: Prisma.TenantCreateNestedOneWithoutEnrollmentsInput
 }
 
-export type EnrollmentsUncheckedCreateWithoutCourseVersionInput = {
+export type EnrollmentsUncheckedCreateWithoutClassRoomInput = {
   id?: string
   userId: string
   totalSubTopics: number
@@ -797,30 +797,30 @@ export type EnrollmentsUncheckedCreateWithoutCourseVersionInput = {
   quizProgress?: Prisma.quizProgressUncheckedCreateNestedManyWithoutEnrollmentsInput
 }
 
-export type EnrollmentsCreateOrConnectWithoutCourseVersionInput = {
+export type EnrollmentsCreateOrConnectWithoutClassRoomInput = {
   where: Prisma.EnrollmentsWhereUniqueInput
-  create: Prisma.XOR<Prisma.EnrollmentsCreateWithoutCourseVersionInput, Prisma.EnrollmentsUncheckedCreateWithoutCourseVersionInput>
+  create: Prisma.XOR<Prisma.EnrollmentsCreateWithoutClassRoomInput, Prisma.EnrollmentsUncheckedCreateWithoutClassRoomInput>
 }
 
-export type EnrollmentsCreateManyCourseVersionInputEnvelope = {
-  data: Prisma.EnrollmentsCreateManyCourseVersionInput | Prisma.EnrollmentsCreateManyCourseVersionInput[]
+export type EnrollmentsCreateManyClassRoomInputEnvelope = {
+  data: Prisma.EnrollmentsCreateManyClassRoomInput | Prisma.EnrollmentsCreateManyClassRoomInput[]
   skipDuplicates?: boolean
 }
 
-export type EnrollmentsUpsertWithWhereUniqueWithoutCourseVersionInput = {
+export type EnrollmentsUpsertWithWhereUniqueWithoutClassRoomInput = {
   where: Prisma.EnrollmentsWhereUniqueInput
-  update: Prisma.XOR<Prisma.EnrollmentsUpdateWithoutCourseVersionInput, Prisma.EnrollmentsUncheckedUpdateWithoutCourseVersionInput>
-  create: Prisma.XOR<Prisma.EnrollmentsCreateWithoutCourseVersionInput, Prisma.EnrollmentsUncheckedCreateWithoutCourseVersionInput>
+  update: Prisma.XOR<Prisma.EnrollmentsUpdateWithoutClassRoomInput, Prisma.EnrollmentsUncheckedUpdateWithoutClassRoomInput>
+  create: Prisma.XOR<Prisma.EnrollmentsCreateWithoutClassRoomInput, Prisma.EnrollmentsUncheckedCreateWithoutClassRoomInput>
 }
 
-export type EnrollmentsUpdateWithWhereUniqueWithoutCourseVersionInput = {
+export type EnrollmentsUpdateWithWhereUniqueWithoutClassRoomInput = {
   where: Prisma.EnrollmentsWhereUniqueInput
-  data: Prisma.XOR<Prisma.EnrollmentsUpdateWithoutCourseVersionInput, Prisma.EnrollmentsUncheckedUpdateWithoutCourseVersionInput>
+  data: Prisma.XOR<Prisma.EnrollmentsUpdateWithoutClassRoomInput, Prisma.EnrollmentsUncheckedUpdateWithoutClassRoomInput>
 }
 
-export type EnrollmentsUpdateManyWithWhereWithoutCourseVersionInput = {
+export type EnrollmentsUpdateManyWithWhereWithoutClassRoomInput = {
   where: Prisma.EnrollmentsScalarWhereInput
-  data: Prisma.XOR<Prisma.EnrollmentsUpdateManyMutationInput, Prisma.EnrollmentsUncheckedUpdateManyWithoutCourseVersionInput>
+  data: Prisma.XOR<Prisma.EnrollmentsUpdateManyMutationInput, Prisma.EnrollmentsUncheckedUpdateManyWithoutClassRoomInput>
 }
 
 export type EnrollmentsScalarWhereInput = {
@@ -829,13 +829,13 @@ export type EnrollmentsScalarWhereInput = {
   NOT?: Prisma.EnrollmentsScalarWhereInput | Prisma.EnrollmentsScalarWhereInput[]
   id?: Prisma.StringFilter<"Enrollments"> | string
   userId?: Prisma.StringFilter<"Enrollments"> | string
-  courseVersionId?: Prisma.StringFilter<"Enrollments"> | string
   totalSubTopics?: Prisma.IntFilter<"Enrollments"> | number
   totalQuizzes?: Prisma.IntFilter<"Enrollments"> | number
   completedSubTopics?: Prisma.IntFilter<"Enrollments"> | number
   completedQuizzes?: Prisma.IntFilter<"Enrollments"> | number
   LastAccessedSubTopicId?: Prisma.StringNullableFilter<"Enrollments"> | string | null
   tenantId?: Prisma.StringFilter<"Enrollments"> | string
+  classRoomId?: Prisma.StringFilter<"Enrollments"> | string
   createdAt?: Prisma.DateTimeFilter<"Enrollments"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Enrollments"> | Date | string
   isDeleted?: Prisma.BoolFilter<"Enrollments"> | boolean
@@ -855,8 +855,8 @@ export type EnrollmentsCreateWithoutTenantInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
+  classRoom: Prisma.ClassRoomCreateNestedOneWithoutEnrollmentsInput
   user: Prisma.UserCreateNestedOneWithoutEnrollmentsInput
-  courseVersion: Prisma.CourseVersionCreateNestedOneWithoutEnrollmentsInput
   userProgress?: Prisma.UserProgressCreateNestedManyWithoutEnrollmentInput
   quizProgress?: Prisma.quizProgressCreateNestedManyWithoutEnrollmentsInput
 }
@@ -864,12 +864,12 @@ export type EnrollmentsCreateWithoutTenantInput = {
 export type EnrollmentsUncheckedCreateWithoutTenantInput = {
   id?: string
   userId: string
-  courseVersionId: string
   totalSubTopics: number
   totalQuizzes: number
   completedSubTopics?: number
   completedQuizzes?: number
   LastAccessedSubTopicId?: string | null
+  classRoomId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -917,8 +917,8 @@ export type EnrollmentsCreateWithoutUserProgressInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
+  classRoom: Prisma.ClassRoomCreateNestedOneWithoutEnrollmentsInput
   user: Prisma.UserCreateNestedOneWithoutEnrollmentsInput
-  courseVersion: Prisma.CourseVersionCreateNestedOneWithoutEnrollmentsInput
   quizProgress?: Prisma.quizProgressCreateNestedManyWithoutEnrollmentsInput
   tenant: Prisma.TenantCreateNestedOneWithoutEnrollmentsInput
 }
@@ -926,13 +926,13 @@ export type EnrollmentsCreateWithoutUserProgressInput = {
 export type EnrollmentsUncheckedCreateWithoutUserProgressInput = {
   id?: string
   userId: string
-  courseVersionId: string
   totalSubTopics: number
   totalQuizzes: number
   completedSubTopics?: number
   completedQuizzes?: number
   LastAccessedSubTopicId?: string | null
   tenantId: string
+  classRoomId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -969,8 +969,8 @@ export type EnrollmentsUpdateWithoutUserProgressInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  classRoom?: Prisma.ClassRoomUpdateOneRequiredWithoutEnrollmentsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutEnrollmentsNestedInput
-  courseVersion?: Prisma.CourseVersionUpdateOneRequiredWithoutEnrollmentsNestedInput
   quizProgress?: Prisma.quizProgressUpdateManyWithoutEnrollmentsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutEnrollmentsNestedInput
 }
@@ -978,13 +978,13 @@ export type EnrollmentsUpdateWithoutUserProgressInput = {
 export type EnrollmentsUncheckedUpdateWithoutUserProgressInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  courseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  classRoomId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1005,8 +1005,8 @@ export type EnrollmentsCreateWithoutQuizProgressInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
+  classRoom: Prisma.ClassRoomCreateNestedOneWithoutEnrollmentsInput
   user: Prisma.UserCreateNestedOneWithoutEnrollmentsInput
-  courseVersion: Prisma.CourseVersionCreateNestedOneWithoutEnrollmentsInput
   userProgress?: Prisma.UserProgressCreateNestedManyWithoutEnrollmentInput
   tenant: Prisma.TenantCreateNestedOneWithoutEnrollmentsInput
 }
@@ -1014,13 +1014,13 @@ export type EnrollmentsCreateWithoutQuizProgressInput = {
 export type EnrollmentsUncheckedCreateWithoutQuizProgressInput = {
   id?: string
   userId: string
-  courseVersionId: string
   totalSubTopics: number
   totalQuizzes: number
   completedSubTopics?: number
   completedQuizzes?: number
   LastAccessedSubTopicId?: string | null
   tenantId: string
+  classRoomId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1057,8 +1057,8 @@ export type EnrollmentsUpdateWithoutQuizProgressInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  classRoom?: Prisma.ClassRoomUpdateOneRequiredWithoutEnrollmentsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutEnrollmentsNestedInput
-  courseVersion?: Prisma.CourseVersionUpdateOneRequiredWithoutEnrollmentsNestedInput
   userProgress?: Prisma.UserProgressUpdateManyWithoutEnrollmentNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutEnrollmentsNestedInput
 }
@@ -1066,13 +1066,13 @@ export type EnrollmentsUpdateWithoutQuizProgressInput = {
 export type EnrollmentsUncheckedUpdateWithoutQuizProgressInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  courseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  classRoomId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1093,7 +1093,7 @@ export type EnrollmentsCreateWithoutUserInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   deleteAt?: Date | string | null
-  courseVersion: Prisma.CourseVersionCreateNestedOneWithoutEnrollmentsInput
+  classRoom: Prisma.ClassRoomCreateNestedOneWithoutEnrollmentsInput
   userProgress?: Prisma.UserProgressCreateNestedManyWithoutEnrollmentInput
   quizProgress?: Prisma.quizProgressCreateNestedManyWithoutEnrollmentsInput
   tenant: Prisma.TenantCreateNestedOneWithoutEnrollmentsInput
@@ -1101,13 +1101,13 @@ export type EnrollmentsCreateWithoutUserInput = {
 
 export type EnrollmentsUncheckedCreateWithoutUserInput = {
   id?: string
-  courseVersionId: string
   totalSubTopics: number
   totalQuizzes: number
   completedSubTopics?: number
   completedQuizzes?: number
   LastAccessedSubTopicId?: string | null
   tenantId: string
+  classRoomId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1143,7 +1143,7 @@ export type EnrollmentsUpdateManyWithWhereWithoutUserInput = {
   data: Prisma.XOR<Prisma.EnrollmentsUpdateManyMutationInput, Prisma.EnrollmentsUncheckedUpdateManyWithoutUserInput>
 }
 
-export type EnrollmentsCreateManyCourseVersionInput = {
+export type EnrollmentsCreateManyClassRoomInput = {
   id?: string
   userId: string
   totalSubTopics: number
@@ -1159,7 +1159,7 @@ export type EnrollmentsCreateManyCourseVersionInput = {
   deleteAt?: Date | string | null
 }
 
-export type EnrollmentsUpdateWithoutCourseVersionInput = {
+export type EnrollmentsUpdateWithoutClassRoomInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1177,7 +1177,7 @@ export type EnrollmentsUpdateWithoutCourseVersionInput = {
   tenant?: Prisma.TenantUpdateOneRequiredWithoutEnrollmentsNestedInput
 }
 
-export type EnrollmentsUncheckedUpdateWithoutCourseVersionInput = {
+export type EnrollmentsUncheckedUpdateWithoutClassRoomInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1195,7 +1195,7 @@ export type EnrollmentsUncheckedUpdateWithoutCourseVersionInput = {
   quizProgress?: Prisma.quizProgressUncheckedUpdateManyWithoutEnrollmentsNestedInput
 }
 
-export type EnrollmentsUncheckedUpdateManyWithoutCourseVersionInput = {
+export type EnrollmentsUncheckedUpdateManyWithoutClassRoomInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1214,12 +1214,12 @@ export type EnrollmentsUncheckedUpdateManyWithoutCourseVersionInput = {
 export type EnrollmentsCreateManyTenantInput = {
   id?: string
   userId: string
-  courseVersionId: string
   totalSubTopics: number
   totalQuizzes: number
   completedSubTopics?: number
   completedQuizzes?: number
   LastAccessedSubTopicId?: string | null
+  classRoomId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1239,8 +1239,8 @@ export type EnrollmentsUpdateWithoutTenantInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  classRoom?: Prisma.ClassRoomUpdateOneRequiredWithoutEnrollmentsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutEnrollmentsNestedInput
-  courseVersion?: Prisma.CourseVersionUpdateOneRequiredWithoutEnrollmentsNestedInput
   userProgress?: Prisma.UserProgressUpdateManyWithoutEnrollmentNestedInput
   quizProgress?: Prisma.quizProgressUpdateManyWithoutEnrollmentsNestedInput
 }
@@ -1248,12 +1248,12 @@ export type EnrollmentsUpdateWithoutTenantInput = {
 export type EnrollmentsUncheckedUpdateWithoutTenantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  courseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoomId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1266,12 +1266,12 @@ export type EnrollmentsUncheckedUpdateWithoutTenantInput = {
 export type EnrollmentsUncheckedUpdateManyWithoutTenantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  courseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoomId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1281,13 +1281,13 @@ export type EnrollmentsUncheckedUpdateManyWithoutTenantInput = {
 
 export type EnrollmentsCreateManyUserInput = {
   id?: string
-  courseVersionId: string
   totalSubTopics: number
   totalQuizzes: number
   completedSubTopics?: number
   completedQuizzes?: number
   LastAccessedSubTopicId?: string | null
   tenantId: string
+  classRoomId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1307,7 +1307,7 @@ export type EnrollmentsUpdateWithoutUserInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  courseVersion?: Prisma.CourseVersionUpdateOneRequiredWithoutEnrollmentsNestedInput
+  classRoom?: Prisma.ClassRoomUpdateOneRequiredWithoutEnrollmentsNestedInput
   userProgress?: Prisma.UserProgressUpdateManyWithoutEnrollmentNestedInput
   quizProgress?: Prisma.quizProgressUpdateManyWithoutEnrollmentsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutEnrollmentsNestedInput
@@ -1315,13 +1315,13 @@ export type EnrollmentsUpdateWithoutUserInput = {
 
 export type EnrollmentsUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  courseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  classRoomId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1333,13 +1333,13 @@ export type EnrollmentsUncheckedUpdateWithoutUserInput = {
 
 export type EnrollmentsUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  courseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   totalSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   totalQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   completedSubTopics?: Prisma.IntFieldUpdateOperationsInput | number
   completedQuizzes?: Prisma.IntFieldUpdateOperationsInput | number
   LastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  classRoomId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1390,20 +1390,20 @@ export type EnrollmentsCountOutputTypeCountQuizProgressArgs<ExtArgs extends runt
 export type EnrollmentsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  courseVersionId?: boolean
   totalSubTopics?: boolean
   totalQuizzes?: boolean
   completedSubTopics?: boolean
   completedQuizzes?: boolean
   LastAccessedSubTopicId?: boolean
   tenantId?: boolean
+  classRoomId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isDeleted?: boolean
   deletedAt?: boolean
   deleteAt?: boolean
+  classRoom?: boolean | Prisma.ClassRoomDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  courseVersion?: boolean | Prisma.CourseVersionDefaultArgs<ExtArgs>
   userProgress?: boolean | Prisma.Enrollments$userProgressArgs<ExtArgs>
   quizProgress?: boolean | Prisma.Enrollments$quizProgressArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
@@ -1413,53 +1413,53 @@ export type EnrollmentsSelect<ExtArgs extends runtime.Types.Extensions.InternalA
 export type EnrollmentsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  courseVersionId?: boolean
   totalSubTopics?: boolean
   totalQuizzes?: boolean
   completedSubTopics?: boolean
   completedQuizzes?: boolean
   LastAccessedSubTopicId?: boolean
   tenantId?: boolean
+  classRoomId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isDeleted?: boolean
   deletedAt?: boolean
   deleteAt?: boolean
+  classRoom?: boolean | Prisma.ClassRoomDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  courseVersion?: boolean | Prisma.CourseVersionDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["enrollments"]>
 
 export type EnrollmentsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  courseVersionId?: boolean
   totalSubTopics?: boolean
   totalQuizzes?: boolean
   completedSubTopics?: boolean
   completedQuizzes?: boolean
   LastAccessedSubTopicId?: boolean
   tenantId?: boolean
+  classRoomId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isDeleted?: boolean
   deletedAt?: boolean
   deleteAt?: boolean
+  classRoom?: boolean | Prisma.ClassRoomDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  courseVersion?: boolean | Prisma.CourseVersionDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["enrollments"]>
 
 export type EnrollmentsSelectScalar = {
   id?: boolean
   userId?: boolean
-  courseVersionId?: boolean
   totalSubTopics?: boolean
   totalQuizzes?: boolean
   completedSubTopics?: boolean
   completedQuizzes?: boolean
   LastAccessedSubTopicId?: boolean
   tenantId?: boolean
+  classRoomId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isDeleted?: boolean
@@ -1467,31 +1467,31 @@ export type EnrollmentsSelectScalar = {
   deleteAt?: boolean
 }
 
-export type EnrollmentsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "courseVersionId" | "totalSubTopics" | "totalQuizzes" | "completedSubTopics" | "completedQuizzes" | "LastAccessedSubTopicId" | "tenantId" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt" | "deleteAt", ExtArgs["result"]["enrollments"]>
+export type EnrollmentsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "totalSubTopics" | "totalQuizzes" | "completedSubTopics" | "completedQuizzes" | "LastAccessedSubTopicId" | "tenantId" | "classRoomId" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt" | "deleteAt", ExtArgs["result"]["enrollments"]>
 export type EnrollmentsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  classRoom?: boolean | Prisma.ClassRoomDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  courseVersion?: boolean | Prisma.CourseVersionDefaultArgs<ExtArgs>
   userProgress?: boolean | Prisma.Enrollments$userProgressArgs<ExtArgs>
   quizProgress?: boolean | Prisma.Enrollments$quizProgressArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.EnrollmentsCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EnrollmentsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  classRoom?: boolean | Prisma.ClassRoomDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  courseVersion?: boolean | Prisma.CourseVersionDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }
 export type EnrollmentsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  classRoom?: boolean | Prisma.ClassRoomDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  courseVersion?: boolean | Prisma.CourseVersionDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }
 
 export type $EnrollmentsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Enrollments"
   objects: {
+    classRoom: Prisma.$ClassRoomPayload<ExtArgs>
     user: Prisma.$UserPayload<ExtArgs>
-    courseVersion: Prisma.$CourseVersionPayload<ExtArgs>
     userProgress: Prisma.$UserProgressPayload<ExtArgs>[]
     quizProgress: Prisma.$quizProgressPayload<ExtArgs>[]
     tenant: Prisma.$TenantPayload<ExtArgs>
@@ -1499,13 +1499,13 @@ export type $EnrollmentsPayload<ExtArgs extends runtime.Types.Extensions.Interna
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     userId: string
-    courseVersionId: string
     totalSubTopics: number
     totalQuizzes: number
     completedSubTopics: number
     completedQuizzes: number
     LastAccessedSubTopicId: string | null
     tenantId: string
+    classRoomId: string
     createdAt: Date
     updatedAt: Date
     isDeleted: boolean
@@ -1905,8 +1905,8 @@ readonly fields: EnrollmentsFieldRefs;
  */
 export interface Prisma__EnrollmentsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  classRoom<T extends Prisma.ClassRoomDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClassRoomDefaultArgs<ExtArgs>>): Prisma.Prisma__ClassRoomClient<runtime.Types.Result.GetResult<Prisma.$ClassRoomPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  courseVersion<T extends Prisma.CourseVersionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CourseVersionDefaultArgs<ExtArgs>>): Prisma.Prisma__CourseVersionClient<runtime.Types.Result.GetResult<Prisma.$CourseVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   userProgress<T extends Prisma.Enrollments$userProgressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Enrollments$userProgressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   quizProgress<T extends Prisma.Enrollments$quizProgressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Enrollments$quizProgressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$quizProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
@@ -1941,13 +1941,13 @@ export interface Prisma__EnrollmentsClient<T, Null = never, ExtArgs extends runt
 export interface EnrollmentsFieldRefs {
   readonly id: Prisma.FieldRef<"Enrollments", 'String'>
   readonly userId: Prisma.FieldRef<"Enrollments", 'String'>
-  readonly courseVersionId: Prisma.FieldRef<"Enrollments", 'String'>
   readonly totalSubTopics: Prisma.FieldRef<"Enrollments", 'Int'>
   readonly totalQuizzes: Prisma.FieldRef<"Enrollments", 'Int'>
   readonly completedSubTopics: Prisma.FieldRef<"Enrollments", 'Int'>
   readonly completedQuizzes: Prisma.FieldRef<"Enrollments", 'Int'>
   readonly LastAccessedSubTopicId: Prisma.FieldRef<"Enrollments", 'String'>
   readonly tenantId: Prisma.FieldRef<"Enrollments", 'String'>
+  readonly classRoomId: Prisma.FieldRef<"Enrollments", 'String'>
   readonly createdAt: Prisma.FieldRef<"Enrollments", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Enrollments", 'DateTime'>
   readonly isDeleted: Prisma.FieldRef<"Enrollments", 'Boolean'>

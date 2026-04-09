@@ -1,15 +1,17 @@
 model Chapter {
-  id          String       @id @default(uuid())
-  logicalId   String       @default(uuid())
-  title       String
-  description String?
-  overview    String?
-  chapterMap  ChapterMap[]
-  lessonMap   lessonMap[]
-  quizzes     Quiz[]
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-  isDeleted   Boolean      @default(false)
-  deletedAt   DateTime?
-  deleteAt    DateTime?
+  id              String            @id @default(uuid())
+  logicalId       String            @default(uuid())
+  title           String
+  description     String?
+  overview        String?
+  chapterMap      ChapterMap[]
+  lessonMap       lessonMap[]
+  quizzes         Quiz[]
+  classChapterMap ClassChapterMap[]
+  classLessonMap  ClassLessonMap[]
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  isDeleted       Boolean           @default(false)
+  deletedAt       DateTime?
+  deleteAt        DateTime?
 }

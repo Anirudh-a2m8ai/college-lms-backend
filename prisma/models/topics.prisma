@@ -1,16 +1,18 @@
 model Topics {
-  id           String        @id @default(uuid())
-  logicalId    String        @default(uuid())
-  title        String
-  overview     String?
-  isMandatory  Boolean       @default(false)
-  description  String?
-  topicMap     TopicMap[]
-  subTopicMaps subTopicMap[]
-  quizzes      Quiz[]
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-  isDeleted    Boolean       @default(false)
-  deletedAt    DateTime?
-  deleteAt     DateTime?
+  id              String            @id @default(uuid())
+  logicalId       String            @default(uuid())
+  title           String
+  overview        String?
+  isMandatory     Boolean           @default(false)
+  description     String?
+  topicMap        TopicMap[]
+  subTopicMaps    subTopicMap[]
+  quizzes         Quiz[]
+  classTopicMap   ClassTopicMap[]
+  classSubTopicMap ClassSubTopicMap[]
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  isDeleted       Boolean           @default(false)
+  deletedAt       DateTime?
+  deleteAt        DateTime?
 }

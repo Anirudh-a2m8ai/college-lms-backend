@@ -175,6 +175,23 @@ export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>
 }
 
+export type EnumClassRoomStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.ClassRoomStatus | Prisma.EnumClassRoomStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ClassRoomStatus[] | Prisma.ListEnumClassRoomStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ClassRoomStatus[] | Prisma.ListEnumClassRoomStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumClassRoomStatusFilter<$PrismaModel> | $Enums.ClassRoomStatus
+}
+
+export type EnumClassRoomStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ClassRoomStatus | Prisma.EnumClassRoomStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ClassRoomStatus[] | Prisma.ListEnumClassRoomStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ClassRoomStatus[] | Prisma.ListEnumClassRoomStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumClassRoomStatusWithAggregatesFilter<$PrismaModel> | $Enums.ClassRoomStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumClassRoomStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumClassRoomStatusFilter<$PrismaModel>
+}
+
 export type EnumCourseStatusFilter<$PrismaModel = never> = {
   equals?: $Enums.CourseStatus | Prisma.EnumCourseStatusFieldRefInput<$PrismaModel>
   in?: $Enums.CourseStatus[] | Prisma.ListEnumCourseStatusFieldRefInput<$PrismaModel>
@@ -656,6 +673,23 @@ export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>
   _max?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumClassRoomStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.ClassRoomStatus | Prisma.EnumClassRoomStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ClassRoomStatus[] | Prisma.ListEnumClassRoomStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ClassRoomStatus[] | Prisma.ListEnumClassRoomStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumClassRoomStatusFilter<$PrismaModel> | $Enums.ClassRoomStatus
+}
+
+export type NestedEnumClassRoomStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ClassRoomStatus | Prisma.EnumClassRoomStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ClassRoomStatus[] | Prisma.ListEnumClassRoomStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ClassRoomStatus[] | Prisma.ListEnumClassRoomStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumClassRoomStatusWithAggregatesFilter<$PrismaModel> | $Enums.ClassRoomStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumClassRoomStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumClassRoomStatusFilter<$PrismaModel>
 }
 
 export type NestedEnumCourseStatusFilter<$PrismaModel = never> = {

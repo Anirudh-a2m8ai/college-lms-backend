@@ -1,0 +1,52 @@
+model ClassModuleMap {
+  id        	String   	@id @default(uuid())
+  classRoomId String
+  classRoom 	ClassRoom @relation(fields: [classRoomId], references: [id], onDelete: Cascade)
+  moduleId  	String
+  module    	Module   	@relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  orderIndex  Int       @default(0)
+}
+
+model ClassChapterMap {
+  id        	String   	@id @default(uuid())
+  classRoomId String
+  chapterId 	String
+  moduleId	  String
+  classRoom 	ClassRoom @relation(fields: [classRoomId], references: [id], onDelete: Cascade)
+  module		  Module	@relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  chapter   	Chapter   @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  orderIndex  Int       @default(0)
+}
+
+model ClassLessonMap {
+  id        	String   	@id @default(uuid())
+  classRoomId String
+  lessonId  	String
+  chapterId   String
+  classRoom 	ClassRoom @relation(fields: [classRoomId], references: [id], onDelete: Cascade)
+  lesson    	Lesson   	@relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  chapter   	Chapter   @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  orderIndex  Int       @default(0)
+}
+
+model ClassTopicMap {
+  id          String    @id @default(uuid())
+  classRoomId String
+  topicId     String
+  lessonId    String
+  classRoom   ClassRoom @relation(fields: [classRoomId], references: [id], onDelete: Cascade)
+  topic       Topics    @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  lesson      Lesson    @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  orderIndex  Int       @default(0)
+}
+
+model ClassSubTopicMap {
+  id          String    @id @default(uuid())
+  classRoomId String
+  subTopicId  String
+  topicId     String
+  classRoom   ClassRoom @relation(fields: [classRoomId], references: [id], onDelete: Cascade)
+  subTopic    SubTopics @relation(fields: [subTopicId], references: [id], onDelete: Cascade)
+  topic       Topics    @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  orderIndex  Int       @default(0)
+}

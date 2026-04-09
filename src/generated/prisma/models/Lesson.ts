@@ -225,6 +225,8 @@ export type LessonWhereInput = {
   lessonMap?: Prisma.LessonMapListRelationFilter
   topicMap?: Prisma.TopicMapListRelationFilter
   quizzes?: Prisma.QuizListRelationFilter
+  classLessonMap?: Prisma.ClassLessonMapListRelationFilter
+  classTopicMap?: Prisma.ClassTopicMapListRelationFilter
 }
 
 export type LessonOrderByWithRelationInput = {
@@ -241,6 +243,8 @@ export type LessonOrderByWithRelationInput = {
   lessonMap?: Prisma.lessonMapOrderByRelationAggregateInput
   topicMap?: Prisma.TopicMapOrderByRelationAggregateInput
   quizzes?: Prisma.QuizOrderByRelationAggregateInput
+  classLessonMap?: Prisma.ClassLessonMapOrderByRelationAggregateInput
+  classTopicMap?: Prisma.ClassTopicMapOrderByRelationAggregateInput
 }
 
 export type LessonWhereUniqueInput = Prisma.AtLeast<{
@@ -260,6 +264,8 @@ export type LessonWhereUniqueInput = Prisma.AtLeast<{
   lessonMap?: Prisma.LessonMapListRelationFilter
   topicMap?: Prisma.TopicMapListRelationFilter
   quizzes?: Prisma.QuizListRelationFilter
+  classLessonMap?: Prisma.ClassLessonMapListRelationFilter
+  classTopicMap?: Prisma.ClassTopicMapListRelationFilter
 }, "id">
 
 export type LessonOrderByWithAggregationInput = {
@@ -308,6 +314,8 @@ export type LessonCreateInput = {
   lessonMap?: Prisma.lessonMapCreateNestedManyWithoutLessonInput
   topicMap?: Prisma.TopicMapCreateNestedManyWithoutLessonInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutLessonInput
+  classLessonMap?: Prisma.ClassLessonMapCreateNestedManyWithoutLessonInput
+  classTopicMap?: Prisma.ClassTopicMapCreateNestedManyWithoutLessonInput
 }
 
 export type LessonUncheckedCreateInput = {
@@ -324,6 +332,8 @@ export type LessonUncheckedCreateInput = {
   lessonMap?: Prisma.lessonMapUncheckedCreateNestedManyWithoutLessonInput
   topicMap?: Prisma.TopicMapUncheckedCreateNestedManyWithoutLessonInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutLessonInput
+  classLessonMap?: Prisma.ClassLessonMapUncheckedCreateNestedManyWithoutLessonInput
+  classTopicMap?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutLessonInput
 }
 
 export type LessonUpdateInput = {
@@ -340,6 +350,8 @@ export type LessonUpdateInput = {
   lessonMap?: Prisma.lessonMapUpdateManyWithoutLessonNestedInput
   topicMap?: Prisma.TopicMapUpdateManyWithoutLessonNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutLessonNestedInput
+  classLessonMap?: Prisma.ClassLessonMapUpdateManyWithoutLessonNestedInput
+  classTopicMap?: Prisma.ClassTopicMapUpdateManyWithoutLessonNestedInput
 }
 
 export type LessonUncheckedUpdateInput = {
@@ -356,6 +368,8 @@ export type LessonUncheckedUpdateInput = {
   lessonMap?: Prisma.lessonMapUncheckedUpdateManyWithoutLessonNestedInput
   topicMap?: Prisma.TopicMapUncheckedUpdateManyWithoutLessonNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutLessonNestedInput
+  classLessonMap?: Prisma.ClassLessonMapUncheckedUpdateManyWithoutLessonNestedInput
+  classTopicMap?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutLessonNestedInput
 }
 
 export type LessonCreateManyInput = {
@@ -446,6 +460,34 @@ export type LessonNullableScalarRelationFilter = {
   isNot?: Prisma.LessonWhereInput | null
 }
 
+export type LessonCreateNestedOneWithoutClassLessonMapInput = {
+  create?: Prisma.XOR<Prisma.LessonCreateWithoutClassLessonMapInput, Prisma.LessonUncheckedCreateWithoutClassLessonMapInput>
+  connectOrCreate?: Prisma.LessonCreateOrConnectWithoutClassLessonMapInput
+  connect?: Prisma.LessonWhereUniqueInput
+}
+
+export type LessonUpdateOneRequiredWithoutClassLessonMapNestedInput = {
+  create?: Prisma.XOR<Prisma.LessonCreateWithoutClassLessonMapInput, Prisma.LessonUncheckedCreateWithoutClassLessonMapInput>
+  connectOrCreate?: Prisma.LessonCreateOrConnectWithoutClassLessonMapInput
+  upsert?: Prisma.LessonUpsertWithoutClassLessonMapInput
+  connect?: Prisma.LessonWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LessonUpdateToOneWithWhereWithoutClassLessonMapInput, Prisma.LessonUpdateWithoutClassLessonMapInput>, Prisma.LessonUncheckedUpdateWithoutClassLessonMapInput>
+}
+
+export type LessonCreateNestedOneWithoutClassTopicMapInput = {
+  create?: Prisma.XOR<Prisma.LessonCreateWithoutClassTopicMapInput, Prisma.LessonUncheckedCreateWithoutClassTopicMapInput>
+  connectOrCreate?: Prisma.LessonCreateOrConnectWithoutClassTopicMapInput
+  connect?: Prisma.LessonWhereUniqueInput
+}
+
+export type LessonUpdateOneRequiredWithoutClassTopicMapNestedInput = {
+  create?: Prisma.XOR<Prisma.LessonCreateWithoutClassTopicMapInput, Prisma.LessonUncheckedCreateWithoutClassTopicMapInput>
+  connectOrCreate?: Prisma.LessonCreateOrConnectWithoutClassTopicMapInput
+  upsert?: Prisma.LessonUpsertWithoutClassTopicMapInput
+  connect?: Prisma.LessonWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LessonUpdateToOneWithWhereWithoutClassTopicMapInput, Prisma.LessonUpdateWithoutClassTopicMapInput>, Prisma.LessonUncheckedUpdateWithoutClassTopicMapInput>
+}
+
 export type LessonCreateNestedOneWithoutLessonMapInput = {
   create?: Prisma.XOR<Prisma.LessonCreateWithoutLessonMapInput, Prisma.LessonUncheckedCreateWithoutLessonMapInput>
   connectOrCreate?: Prisma.LessonCreateOrConnectWithoutLessonMapInput
@@ -490,6 +532,174 @@ export type LessonUpdateOneRequiredWithoutTopicMapNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.LessonUpdateToOneWithWhereWithoutTopicMapInput, Prisma.LessonUpdateWithoutTopicMapInput>, Prisma.LessonUncheckedUpdateWithoutTopicMapInput>
 }
 
+export type LessonCreateWithoutClassLessonMapInput = {
+  id?: string
+  logicalId?: string
+  title: string
+  description?: string | null
+  overview?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  lessonMap?: Prisma.lessonMapCreateNestedManyWithoutLessonInput
+  topicMap?: Prisma.TopicMapCreateNestedManyWithoutLessonInput
+  quizzes?: Prisma.QuizCreateNestedManyWithoutLessonInput
+  classTopicMap?: Prisma.ClassTopicMapCreateNestedManyWithoutLessonInput
+}
+
+export type LessonUncheckedCreateWithoutClassLessonMapInput = {
+  id?: string
+  logicalId?: string
+  title: string
+  description?: string | null
+  overview?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  lessonMap?: Prisma.lessonMapUncheckedCreateNestedManyWithoutLessonInput
+  topicMap?: Prisma.TopicMapUncheckedCreateNestedManyWithoutLessonInput
+  quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutLessonInput
+  classTopicMap?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutLessonInput
+}
+
+export type LessonCreateOrConnectWithoutClassLessonMapInput = {
+  where: Prisma.LessonWhereUniqueInput
+  create: Prisma.XOR<Prisma.LessonCreateWithoutClassLessonMapInput, Prisma.LessonUncheckedCreateWithoutClassLessonMapInput>
+}
+
+export type LessonUpsertWithoutClassLessonMapInput = {
+  update: Prisma.XOR<Prisma.LessonUpdateWithoutClassLessonMapInput, Prisma.LessonUncheckedUpdateWithoutClassLessonMapInput>
+  create: Prisma.XOR<Prisma.LessonCreateWithoutClassLessonMapInput, Prisma.LessonUncheckedCreateWithoutClassLessonMapInput>
+  where?: Prisma.LessonWhereInput
+}
+
+export type LessonUpdateToOneWithWhereWithoutClassLessonMapInput = {
+  where?: Prisma.LessonWhereInput
+  data: Prisma.XOR<Prisma.LessonUpdateWithoutClassLessonMapInput, Prisma.LessonUncheckedUpdateWithoutClassLessonMapInput>
+}
+
+export type LessonUpdateWithoutClassLessonMapInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  logicalId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  overview?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lessonMap?: Prisma.lessonMapUpdateManyWithoutLessonNestedInput
+  topicMap?: Prisma.TopicMapUpdateManyWithoutLessonNestedInput
+  quizzes?: Prisma.QuizUpdateManyWithoutLessonNestedInput
+  classTopicMap?: Prisma.ClassTopicMapUpdateManyWithoutLessonNestedInput
+}
+
+export type LessonUncheckedUpdateWithoutClassLessonMapInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  logicalId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  overview?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lessonMap?: Prisma.lessonMapUncheckedUpdateManyWithoutLessonNestedInput
+  topicMap?: Prisma.TopicMapUncheckedUpdateManyWithoutLessonNestedInput
+  quizzes?: Prisma.QuizUncheckedUpdateManyWithoutLessonNestedInput
+  classTopicMap?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutLessonNestedInput
+}
+
+export type LessonCreateWithoutClassTopicMapInput = {
+  id?: string
+  logicalId?: string
+  title: string
+  description?: string | null
+  overview?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  lessonMap?: Prisma.lessonMapCreateNestedManyWithoutLessonInput
+  topicMap?: Prisma.TopicMapCreateNestedManyWithoutLessonInput
+  quizzes?: Prisma.QuizCreateNestedManyWithoutLessonInput
+  classLessonMap?: Prisma.ClassLessonMapCreateNestedManyWithoutLessonInput
+}
+
+export type LessonUncheckedCreateWithoutClassTopicMapInput = {
+  id?: string
+  logicalId?: string
+  title: string
+  description?: string | null
+  overview?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  lessonMap?: Prisma.lessonMapUncheckedCreateNestedManyWithoutLessonInput
+  topicMap?: Prisma.TopicMapUncheckedCreateNestedManyWithoutLessonInput
+  quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutLessonInput
+  classLessonMap?: Prisma.ClassLessonMapUncheckedCreateNestedManyWithoutLessonInput
+}
+
+export type LessonCreateOrConnectWithoutClassTopicMapInput = {
+  where: Prisma.LessonWhereUniqueInput
+  create: Prisma.XOR<Prisma.LessonCreateWithoutClassTopicMapInput, Prisma.LessonUncheckedCreateWithoutClassTopicMapInput>
+}
+
+export type LessonUpsertWithoutClassTopicMapInput = {
+  update: Prisma.XOR<Prisma.LessonUpdateWithoutClassTopicMapInput, Prisma.LessonUncheckedUpdateWithoutClassTopicMapInput>
+  create: Prisma.XOR<Prisma.LessonCreateWithoutClassTopicMapInput, Prisma.LessonUncheckedCreateWithoutClassTopicMapInput>
+  where?: Prisma.LessonWhereInput
+}
+
+export type LessonUpdateToOneWithWhereWithoutClassTopicMapInput = {
+  where?: Prisma.LessonWhereInput
+  data: Prisma.XOR<Prisma.LessonUpdateWithoutClassTopicMapInput, Prisma.LessonUncheckedUpdateWithoutClassTopicMapInput>
+}
+
+export type LessonUpdateWithoutClassTopicMapInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  logicalId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  overview?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lessonMap?: Prisma.lessonMapUpdateManyWithoutLessonNestedInput
+  topicMap?: Prisma.TopicMapUpdateManyWithoutLessonNestedInput
+  quizzes?: Prisma.QuizUpdateManyWithoutLessonNestedInput
+  classLessonMap?: Prisma.ClassLessonMapUpdateManyWithoutLessonNestedInput
+}
+
+export type LessonUncheckedUpdateWithoutClassTopicMapInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  logicalId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  overview?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lessonMap?: Prisma.lessonMapUncheckedUpdateManyWithoutLessonNestedInput
+  topicMap?: Prisma.TopicMapUncheckedUpdateManyWithoutLessonNestedInput
+  quizzes?: Prisma.QuizUncheckedUpdateManyWithoutLessonNestedInput
+  classLessonMap?: Prisma.ClassLessonMapUncheckedUpdateManyWithoutLessonNestedInput
+}
+
 export type LessonCreateWithoutLessonMapInput = {
   id?: string
   logicalId?: string
@@ -503,6 +713,8 @@ export type LessonCreateWithoutLessonMapInput = {
   deleteAt?: Date | string | null
   topicMap?: Prisma.TopicMapCreateNestedManyWithoutLessonInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutLessonInput
+  classLessonMap?: Prisma.ClassLessonMapCreateNestedManyWithoutLessonInput
+  classTopicMap?: Prisma.ClassTopicMapCreateNestedManyWithoutLessonInput
 }
 
 export type LessonUncheckedCreateWithoutLessonMapInput = {
@@ -518,6 +730,8 @@ export type LessonUncheckedCreateWithoutLessonMapInput = {
   deleteAt?: Date | string | null
   topicMap?: Prisma.TopicMapUncheckedCreateNestedManyWithoutLessonInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutLessonInput
+  classLessonMap?: Prisma.ClassLessonMapUncheckedCreateNestedManyWithoutLessonInput
+  classTopicMap?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutLessonInput
 }
 
 export type LessonCreateOrConnectWithoutLessonMapInput = {
@@ -549,6 +763,8 @@ export type LessonUpdateWithoutLessonMapInput = {
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   topicMap?: Prisma.TopicMapUpdateManyWithoutLessonNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutLessonNestedInput
+  classLessonMap?: Prisma.ClassLessonMapUpdateManyWithoutLessonNestedInput
+  classTopicMap?: Prisma.ClassTopicMapUpdateManyWithoutLessonNestedInput
 }
 
 export type LessonUncheckedUpdateWithoutLessonMapInput = {
@@ -564,6 +780,8 @@ export type LessonUncheckedUpdateWithoutLessonMapInput = {
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   topicMap?: Prisma.TopicMapUncheckedUpdateManyWithoutLessonNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutLessonNestedInput
+  classLessonMap?: Prisma.ClassLessonMapUncheckedUpdateManyWithoutLessonNestedInput
+  classTopicMap?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutLessonNestedInput
 }
 
 export type LessonCreateWithoutQuizzesInput = {
@@ -579,6 +797,8 @@ export type LessonCreateWithoutQuizzesInput = {
   deleteAt?: Date | string | null
   lessonMap?: Prisma.lessonMapCreateNestedManyWithoutLessonInput
   topicMap?: Prisma.TopicMapCreateNestedManyWithoutLessonInput
+  classLessonMap?: Prisma.ClassLessonMapCreateNestedManyWithoutLessonInput
+  classTopicMap?: Prisma.ClassTopicMapCreateNestedManyWithoutLessonInput
 }
 
 export type LessonUncheckedCreateWithoutQuizzesInput = {
@@ -594,6 +814,8 @@ export type LessonUncheckedCreateWithoutQuizzesInput = {
   deleteAt?: Date | string | null
   lessonMap?: Prisma.lessonMapUncheckedCreateNestedManyWithoutLessonInput
   topicMap?: Prisma.TopicMapUncheckedCreateNestedManyWithoutLessonInput
+  classLessonMap?: Prisma.ClassLessonMapUncheckedCreateNestedManyWithoutLessonInput
+  classTopicMap?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutLessonInput
 }
 
 export type LessonCreateOrConnectWithoutQuizzesInput = {
@@ -625,6 +847,8 @@ export type LessonUpdateWithoutQuizzesInput = {
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lessonMap?: Prisma.lessonMapUpdateManyWithoutLessonNestedInput
   topicMap?: Prisma.TopicMapUpdateManyWithoutLessonNestedInput
+  classLessonMap?: Prisma.ClassLessonMapUpdateManyWithoutLessonNestedInput
+  classTopicMap?: Prisma.ClassTopicMapUpdateManyWithoutLessonNestedInput
 }
 
 export type LessonUncheckedUpdateWithoutQuizzesInput = {
@@ -640,6 +864,8 @@ export type LessonUncheckedUpdateWithoutQuizzesInput = {
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lessonMap?: Prisma.lessonMapUncheckedUpdateManyWithoutLessonNestedInput
   topicMap?: Prisma.TopicMapUncheckedUpdateManyWithoutLessonNestedInput
+  classLessonMap?: Prisma.ClassLessonMapUncheckedUpdateManyWithoutLessonNestedInput
+  classTopicMap?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutLessonNestedInput
 }
 
 export type LessonCreateWithoutTopicMapInput = {
@@ -655,6 +881,8 @@ export type LessonCreateWithoutTopicMapInput = {
   deleteAt?: Date | string | null
   lessonMap?: Prisma.lessonMapCreateNestedManyWithoutLessonInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutLessonInput
+  classLessonMap?: Prisma.ClassLessonMapCreateNestedManyWithoutLessonInput
+  classTopicMap?: Prisma.ClassTopicMapCreateNestedManyWithoutLessonInput
 }
 
 export type LessonUncheckedCreateWithoutTopicMapInput = {
@@ -670,6 +898,8 @@ export type LessonUncheckedCreateWithoutTopicMapInput = {
   deleteAt?: Date | string | null
   lessonMap?: Prisma.lessonMapUncheckedCreateNestedManyWithoutLessonInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutLessonInput
+  classLessonMap?: Prisma.ClassLessonMapUncheckedCreateNestedManyWithoutLessonInput
+  classTopicMap?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutLessonInput
 }
 
 export type LessonCreateOrConnectWithoutTopicMapInput = {
@@ -701,6 +931,8 @@ export type LessonUpdateWithoutTopicMapInput = {
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lessonMap?: Prisma.lessonMapUpdateManyWithoutLessonNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutLessonNestedInput
+  classLessonMap?: Prisma.ClassLessonMapUpdateManyWithoutLessonNestedInput
+  classTopicMap?: Prisma.ClassTopicMapUpdateManyWithoutLessonNestedInput
 }
 
 export type LessonUncheckedUpdateWithoutTopicMapInput = {
@@ -716,6 +948,8 @@ export type LessonUncheckedUpdateWithoutTopicMapInput = {
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lessonMap?: Prisma.lessonMapUncheckedUpdateManyWithoutLessonNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutLessonNestedInput
+  classLessonMap?: Prisma.ClassLessonMapUncheckedUpdateManyWithoutLessonNestedInput
+  classTopicMap?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutLessonNestedInput
 }
 
 
@@ -727,12 +961,16 @@ export type LessonCountOutputType = {
   lessonMap: number
   topicMap: number
   quizzes: number
+  classLessonMap: number
+  classTopicMap: number
 }
 
 export type LessonCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   lessonMap?: boolean | LessonCountOutputTypeCountLessonMapArgs
   topicMap?: boolean | LessonCountOutputTypeCountTopicMapArgs
   quizzes?: boolean | LessonCountOutputTypeCountQuizzesArgs
+  classLessonMap?: boolean | LessonCountOutputTypeCountClassLessonMapArgs
+  classTopicMap?: boolean | LessonCountOutputTypeCountClassTopicMapArgs
 }
 
 /**
@@ -766,6 +1004,20 @@ export type LessonCountOutputTypeCountQuizzesArgs<ExtArgs extends runtime.Types.
   where?: Prisma.QuizWhereInput
 }
 
+/**
+ * LessonCountOutputType without action
+ */
+export type LessonCountOutputTypeCountClassLessonMapArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ClassLessonMapWhereInput
+}
+
+/**
+ * LessonCountOutputType without action
+ */
+export type LessonCountOutputTypeCountClassTopicMapArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ClassTopicMapWhereInput
+}
+
 
 export type LessonSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -781,6 +1033,8 @@ export type LessonSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   lessonMap?: boolean | Prisma.Lesson$lessonMapArgs<ExtArgs>
   topicMap?: boolean | Prisma.Lesson$topicMapArgs<ExtArgs>
   quizzes?: boolean | Prisma.Lesson$quizzesArgs<ExtArgs>
+  classLessonMap?: boolean | Prisma.Lesson$classLessonMapArgs<ExtArgs>
+  classTopicMap?: boolean | Prisma.Lesson$classTopicMapArgs<ExtArgs>
   _count?: boolean | Prisma.LessonCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["lesson"]>
 
@@ -828,6 +1082,8 @@ export type LessonInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   lessonMap?: boolean | Prisma.Lesson$lessonMapArgs<ExtArgs>
   topicMap?: boolean | Prisma.Lesson$topicMapArgs<ExtArgs>
   quizzes?: boolean | Prisma.Lesson$quizzesArgs<ExtArgs>
+  classLessonMap?: boolean | Prisma.Lesson$classLessonMapArgs<ExtArgs>
+  classTopicMap?: boolean | Prisma.Lesson$classTopicMapArgs<ExtArgs>
   _count?: boolean | Prisma.LessonCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type LessonIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -839,6 +1095,8 @@ export type $LessonPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     lessonMap: Prisma.$lessonMapPayload<ExtArgs>[]
     topicMap: Prisma.$TopicMapPayload<ExtArgs>[]
     quizzes: Prisma.$QuizPayload<ExtArgs>[]
+    classLessonMap: Prisma.$ClassLessonMapPayload<ExtArgs>[]
+    classTopicMap: Prisma.$ClassTopicMapPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1248,6 +1506,8 @@ export interface Prisma__LessonClient<T, Null = never, ExtArgs extends runtime.T
   lessonMap<T extends Prisma.Lesson$lessonMapArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lesson$lessonMapArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$lessonMapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   topicMap<T extends Prisma.Lesson$topicMapArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lesson$topicMapArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TopicMapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   quizzes<T extends Prisma.Lesson$quizzesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lesson$quizzesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuizPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  classLessonMap<T extends Prisma.Lesson$classLessonMapArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lesson$classLessonMapArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassLessonMapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  classTopicMap<T extends Prisma.Lesson$classTopicMapArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lesson$classTopicMapArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassTopicMapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1749,6 +2009,54 @@ export type Lesson$quizzesArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.QuizScalarFieldEnum | Prisma.QuizScalarFieldEnum[]
+}
+
+/**
+ * Lesson.classLessonMap
+ */
+export type Lesson$classLessonMapArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ClassLessonMap
+   */
+  select?: Prisma.ClassLessonMapSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ClassLessonMap
+   */
+  omit?: Prisma.ClassLessonMapOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClassLessonMapInclude<ExtArgs> | null
+  where?: Prisma.ClassLessonMapWhereInput
+  orderBy?: Prisma.ClassLessonMapOrderByWithRelationInput | Prisma.ClassLessonMapOrderByWithRelationInput[]
+  cursor?: Prisma.ClassLessonMapWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ClassLessonMapScalarFieldEnum | Prisma.ClassLessonMapScalarFieldEnum[]
+}
+
+/**
+ * Lesson.classTopicMap
+ */
+export type Lesson$classTopicMapArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ClassTopicMap
+   */
+  select?: Prisma.ClassTopicMapSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ClassTopicMap
+   */
+  omit?: Prisma.ClassTopicMapOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClassTopicMapInclude<ExtArgs> | null
+  where?: Prisma.ClassTopicMapWhereInput
+  orderBy?: Prisma.ClassTopicMapOrderByWithRelationInput | Prisma.ClassTopicMapOrderByWithRelationInput[]
+  cursor?: Prisma.ClassTopicMapWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ClassTopicMapScalarFieldEnum | Prisma.ClassTopicMapScalarFieldEnum[]
 }
 
 /**

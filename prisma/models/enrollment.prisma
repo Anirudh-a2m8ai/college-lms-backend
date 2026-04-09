@@ -1,15 +1,15 @@
 model Enrollments {
 	id                     String        @id @default(uuid())
 	userId                 String
-	courseVersionId        String
 	totalSubTopics         Int
 	totalQuizzes           Int
 	completedSubTopics     Int           @default(0)
 	completedQuizzes       Int           @default(0)
 	LastAccessedSubTopicId String?
 	tenantId               String
+	classRoomId            String
+	classRoom              ClassRoom     @relation(fields: [classRoomId], references: [id], onDelete: Cascade)
 	user                   User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-	courseVersion          CourseVersion @relation(fields: [courseVersionId], references: [id], onDelete: Cascade)
 	userProgress           UserProgress[]
 	quizProgress           quizProgress[]
 	tenant                 Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)

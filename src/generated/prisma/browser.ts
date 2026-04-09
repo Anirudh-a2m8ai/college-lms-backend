@@ -28,6 +28,36 @@ export type ChapterMap = Prisma.ChapterMapModel
  */
 export type Chapter = Prisma.ChapterModel
 /**
+ * Model ClassModuleMap
+ * 
+ */
+export type ClassModuleMap = Prisma.ClassModuleMapModel
+/**
+ * Model ClassChapterMap
+ * 
+ */
+export type ClassChapterMap = Prisma.ClassChapterMapModel
+/**
+ * Model ClassLessonMap
+ * 
+ */
+export type ClassLessonMap = Prisma.ClassLessonMapModel
+/**
+ * Model ClassTopicMap
+ * 
+ */
+export type ClassTopicMap = Prisma.ClassTopicMapModel
+/**
+ * Model ClassSubTopicMap
+ * 
+ */
+export type ClassSubTopicMap = Prisma.ClassSubTopicMapModel
+/**
+ * Model ClassRoom
+ * 
+ */
+export type ClassRoom = Prisma.ClassRoomModel
+/**
  * Model CourseVersion
  * 
  */
@@ -98,6 +128,11 @@ export type QuizSubmission = Prisma.QuizSubmissionModel
  */
 export type Role = Prisma.RoleModel
 /**
+ * Model StudentProfile
+ * 
+ */
+export type StudentProfile = Prisma.StudentProfileModel
+/**
  * Model SubTopics
  * 
  */
@@ -107,6 +142,11 @@ export type SubTopics = Prisma.SubTopicsModel
  * 
  */
 export type subTopicMap = Prisma.subTopicMapModel
+/**
+ * Model TeacherProfile
+ * 
+ */
+export type TeacherProfile = Prisma.TeacherProfileModel
 /**
  * Model Tenant
  * 

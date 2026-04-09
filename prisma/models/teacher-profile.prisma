@@ -1,0 +1,11 @@
+model TeacherProfile {
+  id             String   @id @default(uuid())
+  createdAt 		 DateTime @default(now())
+	specialization String
+  userId         String
+  user      		 User     @relation(fields: [userId], references: [id])
+  updatedAt      DateTime @updatedAt
+  isDeleted      Boolean  @default(false)
+  deletedAt      DateTime?
+  deleteAt       DateTime?
+}

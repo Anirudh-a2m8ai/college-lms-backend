@@ -53,6 +53,12 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   ChapterMap: 'ChapterMap',
   Chapter: 'Chapter',
+  ClassModuleMap: 'ClassModuleMap',
+  ClassChapterMap: 'ClassChapterMap',
+  ClassLessonMap: 'ClassLessonMap',
+  ClassTopicMap: 'ClassTopicMap',
+  ClassSubTopicMap: 'ClassSubTopicMap',
+  ClassRoom: 'ClassRoom',
   CourseVersion: 'CourseVersion',
   Course: 'Course',
   Designation: 'Designation',
@@ -67,8 +73,10 @@ export const ModelName = {
   QuizAttempt: 'QuizAttempt',
   QuizSubmission: 'QuizSubmission',
   Role: 'Role',
+  StudentProfile: 'StudentProfile',
   SubTopics: 'SubTopics',
   subTopicMap: 'subTopicMap',
+  TeacherProfile: 'TeacherProfile',
   Tenant: 'Tenant',
   TopicMap: 'TopicMap',
   Topics: 'Topics',
@@ -121,6 +129,78 @@ export const ChapterScalarFieldEnum = {
 } as const
 
 export type ChapterScalarFieldEnum = (typeof ChapterScalarFieldEnum)[keyof typeof ChapterScalarFieldEnum]
+
+
+export const ClassModuleMapScalarFieldEnum = {
+  id: 'id',
+  classRoomId: 'classRoomId',
+  moduleId: 'moduleId',
+  orderIndex: 'orderIndex'
+} as const
+
+export type ClassModuleMapScalarFieldEnum = (typeof ClassModuleMapScalarFieldEnum)[keyof typeof ClassModuleMapScalarFieldEnum]
+
+
+export const ClassChapterMapScalarFieldEnum = {
+  id: 'id',
+  classRoomId: 'classRoomId',
+  chapterId: 'chapterId',
+  moduleId: 'moduleId',
+  orderIndex: 'orderIndex'
+} as const
+
+export type ClassChapterMapScalarFieldEnum = (typeof ClassChapterMapScalarFieldEnum)[keyof typeof ClassChapterMapScalarFieldEnum]
+
+
+export const ClassLessonMapScalarFieldEnum = {
+  id: 'id',
+  classRoomId: 'classRoomId',
+  lessonId: 'lessonId',
+  chapterId: 'chapterId',
+  orderIndex: 'orderIndex'
+} as const
+
+export type ClassLessonMapScalarFieldEnum = (typeof ClassLessonMapScalarFieldEnum)[keyof typeof ClassLessonMapScalarFieldEnum]
+
+
+export const ClassTopicMapScalarFieldEnum = {
+  id: 'id',
+  classRoomId: 'classRoomId',
+  topicId: 'topicId',
+  lessonId: 'lessonId',
+  orderIndex: 'orderIndex'
+} as const
+
+export type ClassTopicMapScalarFieldEnum = (typeof ClassTopicMapScalarFieldEnum)[keyof typeof ClassTopicMapScalarFieldEnum]
+
+
+export const ClassSubTopicMapScalarFieldEnum = {
+  id: 'id',
+  classRoomId: 'classRoomId',
+  subTopicId: 'subTopicId',
+  topicId: 'topicId',
+  orderIndex: 'orderIndex'
+} as const
+
+export type ClassSubTopicMapScalarFieldEnum = (typeof ClassSubTopicMapScalarFieldEnum)[keyof typeof ClassSubTopicMapScalarFieldEnum]
+
+
+export const ClassRoomScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  status: 'status',
+  courseId: 'courseId',
+  userId: 'userId',
+  sourceCourseVersionId: 'sourceCourseVersionId',
+  tenantId: 'tenantId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt',
+  deleteAt: 'deleteAt'
+} as const
+
+export type ClassRoomScalarFieldEnum = (typeof ClassRoomScalarFieldEnum)[keyof typeof ClassRoomScalarFieldEnum]
 
 
 export const CourseVersionScalarFieldEnum = {
@@ -182,13 +262,13 @@ export type DesignationScalarFieldEnum = (typeof DesignationScalarFieldEnum)[key
 export const EnrollmentsScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  courseVersionId: 'courseVersionId',
   totalSubTopics: 'totalSubTopics',
   totalQuizzes: 'totalQuizzes',
   completedSubTopics: 'completedSubTopics',
   completedQuizzes: 'completedQuizzes',
   LastAccessedSubTopicId: 'LastAccessedSubTopicId',
   tenantId: 'tenantId',
+  classRoomId: 'classRoomId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isDeleted: 'isDeleted',
@@ -286,6 +366,7 @@ export const QuizScalarFieldEnum = {
   lessonId: 'lessonId',
   topicId: 'topicId',
   subTopicId: 'subTopicId',
+  classRoomId: 'classRoomId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isDeleted: 'isDeleted',
@@ -352,6 +433,22 @@ export const RoleScalarFieldEnum = {
 export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
 
 
+export const StudentProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  grade: 'grade',
+  section: 'section',
+  rollNo: 'rollNo',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt',
+  deleteAt: 'deleteAt'
+} as const
+
+export type StudentProfileScalarFieldEnum = (typeof StudentProfileScalarFieldEnum)[keyof typeof StudentProfileScalarFieldEnum]
+
+
 export const SubTopicsScalarFieldEnum = {
   id: 'id',
   logicalId: 'logicalId',
@@ -380,6 +477,20 @@ export const SubTopicMapScalarFieldEnum = {
 } as const
 
 export type SubTopicMapScalarFieldEnum = (typeof SubTopicMapScalarFieldEnum)[keyof typeof SubTopicMapScalarFieldEnum]
+
+
+export const TeacherProfileScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  specialization: 'specialization',
+  userId: 'userId',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt',
+  deleteAt: 'deleteAt'
+} as const
+
+export type TeacherProfileScalarFieldEnum = (typeof TeacherProfileScalarFieldEnum)[keyof typeof TeacherProfileScalarFieldEnum]
 
 
 export const TenantScalarFieldEnum = {

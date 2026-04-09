@@ -11,51 +11,53 @@ import { PaginationMapper } from 'src/utils/search/pagination.mapper';
 import { OrderMapper } from 'src/utils/search/order.mapper';
 import { FilterMapper } from 'src/utils/search/filter.mapper';
 import { PaginationResponse } from 'src/utils/search/pagination.response';
+import { ClassRoomDbService } from 'src/repository/classRoom.db-service';
+import { ClassSubTopicMapDbService } from 'src/repository/classSubtopicMap.db-service';
 
 @Injectable()
 export class EnrollmentsService {
   constructor(
     private readonly enrollmentsDbService: EnrollmentsDbService,
-    private readonly courseVersionDbService: CourseVersionDbService,
     private readonly quizDbService: QuizDbService,
-    private readonly subTopicMapDbService: SubTopicMapDbService,
+    private readonly classRoomDbService: ClassRoomDbService,
+    private readonly classSubTopicMapDbService: ClassSubTopicMapDbService,
   ) {}
 
   async create(payload: CreateEnrollmentDto) {
     const existingEnrollment = await this.enrollmentsDbService.findFirst({
       where: {
         userId: payload.userId,
-        courseVersionId: payload.courseVersionId,
+        classRoomId: payload.classRoomId,
       },
     });
     if (existingEnrollment) {
       throw new BadRequestException('Enrollment already exists');
     }
-    const courseVersion = await this.courseVersionDbService.findUnique({
+    const classRoom = await this.classRoomDbService.findUnique({
       where: {
-        id: payload.courseVersionId,
+        id: payload.classRoomId,
       },
     });
-    if (!courseVersion) {
-      throw new BadRequestException('Course version not found');
+    if (!classRoom) {
+      throw new BadRequestException('Class room not found');
     }
-    const totalSubTopics = await this.subTopicMapDbService.count({
+    const totalSubTopics = await this.classSubTopicMapDbService.count({
       where: {
-        courseVersionId: payload.courseVersionId,
+        classRoomId: payload.classRoomId,
       },
     });
     const totalQuizzes = await this.quizDbService.count({
       where: {
-        courseVersionId: payload.courseVersionId,
+        classRoomId: classRoom.id,
       },
     });
     const enrollment = await this.enrollmentsDbService.create({
       data: {
         userId: payload.userId,
-        courseVersionId: payload.courseVersionId,
+        classRoomId: payload.classRoomId,
         totalSubTopics: totalSubTopics,
         totalQuizzes: totalQuizzes,
-        tenantId: courseVersion.tenantId,
+        tenantId: classRoom.tenantId,
       },
     });
     const enrollmentResponse = plainToInstance(EnrollmentsResponseDto, enrollment);
@@ -71,7 +73,7 @@ export class EnrollmentsService {
         userId: user.userId,
       },
       include: {
-        courseVersion: {
+        classRoom: {
           include: {
             course: true,
           },
@@ -102,7 +104,7 @@ export class EnrollmentsService {
         skip: pagination.skip,
         take: pagination.take,
         orderBy,
-        include: { user: true, courseVersion: { include: { course: true } } },
+        include: { user: true, classRoom: { include: { course: true } } },
       }),
       this.enrollmentsDbService.count({ where }),
     ]);
@@ -124,7 +126,7 @@ export class EnrollmentsService {
         id: enrollmentId,
       },
       include: {
-        courseVersion: {
+        classRoom: {
           include: {
             course: true,
           },

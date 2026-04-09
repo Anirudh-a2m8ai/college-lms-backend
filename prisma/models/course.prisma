@@ -16,6 +16,7 @@ model Course {
     tenant                Tenant          @relation(fields: [tenantId], references: [id], onDelete: Cascade)
     courseVersions        CourseVersion[]
     latestCourseVersionId String?
+	classRooms ClassRoom[]
     createdAt             DateTime        @default(now())
     updatedAt             DateTime        @updatedAt
     isDeleted             Boolean         @default(false)

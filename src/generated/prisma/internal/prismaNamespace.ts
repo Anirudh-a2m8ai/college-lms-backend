@@ -386,6 +386,12 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   ChapterMap: 'ChapterMap',
   Chapter: 'Chapter',
+  ClassModuleMap: 'ClassModuleMap',
+  ClassChapterMap: 'ClassChapterMap',
+  ClassLessonMap: 'ClassLessonMap',
+  ClassTopicMap: 'ClassTopicMap',
+  ClassSubTopicMap: 'ClassSubTopicMap',
+  ClassRoom: 'ClassRoom',
   CourseVersion: 'CourseVersion',
   Course: 'Course',
   Designation: 'Designation',
@@ -400,8 +406,10 @@ export const ModelName = {
   QuizAttempt: 'QuizAttempt',
   QuizSubmission: 'QuizSubmission',
   Role: 'Role',
+  StudentProfile: 'StudentProfile',
   SubTopics: 'SubTopics',
   subTopicMap: 'subTopicMap',
+  TeacherProfile: 'TeacherProfile',
   Tenant: 'Tenant',
   TopicMap: 'TopicMap',
   Topics: 'Topics',
@@ -426,7 +434,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "chapterMap" | "chapter" | "courseVersion" | "course" | "designation" | "enrollments" | "lessonMap" | "lesson" | "moduleMap" | "module" | "permission" | "quiz" | "quizQuestion" | "quizAttempt" | "quizSubmission" | "role" | "subTopics" | "subTopicMap" | "tenant" | "topicMap" | "topics" | "userPermission" | "userProgress" | "quizProgress" | "user" | "socialLinks" | "userToken"
+    modelProps: "chapterMap" | "chapter" | "classModuleMap" | "classChapterMap" | "classLessonMap" | "classTopicMap" | "classSubTopicMap" | "classRoom" | "courseVersion" | "course" | "designation" | "enrollments" | "lessonMap" | "lesson" | "moduleMap" | "module" | "permission" | "quiz" | "quizQuestion" | "quizAttempt" | "quizSubmission" | "role" | "studentProfile" | "subTopics" | "subTopicMap" | "teacherProfile" | "tenant" | "topicMap" | "topics" | "userPermission" | "userProgress" | "quizProgress" | "user" | "socialLinks" | "userToken"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -575,6 +583,450 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.ChapterCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.ChapterCountAggregateOutputType> | number
+        }
+      }
+    }
+    ClassModuleMap: {
+      payload: Prisma.$ClassModuleMapPayload<ExtArgs>
+      fields: Prisma.ClassModuleMapFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ClassModuleMapFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassModuleMapPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ClassModuleMapFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassModuleMapPayload>
+        }
+        findFirst: {
+          args: Prisma.ClassModuleMapFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassModuleMapPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ClassModuleMapFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassModuleMapPayload>
+        }
+        findMany: {
+          args: Prisma.ClassModuleMapFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassModuleMapPayload>[]
+        }
+        create: {
+          args: Prisma.ClassModuleMapCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassModuleMapPayload>
+        }
+        createMany: {
+          args: Prisma.ClassModuleMapCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ClassModuleMapCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassModuleMapPayload>[]
+        }
+        delete: {
+          args: Prisma.ClassModuleMapDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassModuleMapPayload>
+        }
+        update: {
+          args: Prisma.ClassModuleMapUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassModuleMapPayload>
+        }
+        deleteMany: {
+          args: Prisma.ClassModuleMapDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ClassModuleMapUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ClassModuleMapUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassModuleMapPayload>[]
+        }
+        upsert: {
+          args: Prisma.ClassModuleMapUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassModuleMapPayload>
+        }
+        aggregate: {
+          args: Prisma.ClassModuleMapAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateClassModuleMap>
+        }
+        groupBy: {
+          args: Prisma.ClassModuleMapGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClassModuleMapGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ClassModuleMapCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClassModuleMapCountAggregateOutputType> | number
+        }
+      }
+    }
+    ClassChapterMap: {
+      payload: Prisma.$ClassChapterMapPayload<ExtArgs>
+      fields: Prisma.ClassChapterMapFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ClassChapterMapFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassChapterMapPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ClassChapterMapFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassChapterMapPayload>
+        }
+        findFirst: {
+          args: Prisma.ClassChapterMapFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassChapterMapPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ClassChapterMapFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassChapterMapPayload>
+        }
+        findMany: {
+          args: Prisma.ClassChapterMapFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassChapterMapPayload>[]
+        }
+        create: {
+          args: Prisma.ClassChapterMapCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassChapterMapPayload>
+        }
+        createMany: {
+          args: Prisma.ClassChapterMapCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ClassChapterMapCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassChapterMapPayload>[]
+        }
+        delete: {
+          args: Prisma.ClassChapterMapDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassChapterMapPayload>
+        }
+        update: {
+          args: Prisma.ClassChapterMapUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassChapterMapPayload>
+        }
+        deleteMany: {
+          args: Prisma.ClassChapterMapDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ClassChapterMapUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ClassChapterMapUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassChapterMapPayload>[]
+        }
+        upsert: {
+          args: Prisma.ClassChapterMapUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassChapterMapPayload>
+        }
+        aggregate: {
+          args: Prisma.ClassChapterMapAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateClassChapterMap>
+        }
+        groupBy: {
+          args: Prisma.ClassChapterMapGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClassChapterMapGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ClassChapterMapCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClassChapterMapCountAggregateOutputType> | number
+        }
+      }
+    }
+    ClassLessonMap: {
+      payload: Prisma.$ClassLessonMapPayload<ExtArgs>
+      fields: Prisma.ClassLessonMapFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ClassLessonMapFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassLessonMapPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ClassLessonMapFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassLessonMapPayload>
+        }
+        findFirst: {
+          args: Prisma.ClassLessonMapFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassLessonMapPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ClassLessonMapFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassLessonMapPayload>
+        }
+        findMany: {
+          args: Prisma.ClassLessonMapFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassLessonMapPayload>[]
+        }
+        create: {
+          args: Prisma.ClassLessonMapCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassLessonMapPayload>
+        }
+        createMany: {
+          args: Prisma.ClassLessonMapCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ClassLessonMapCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassLessonMapPayload>[]
+        }
+        delete: {
+          args: Prisma.ClassLessonMapDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassLessonMapPayload>
+        }
+        update: {
+          args: Prisma.ClassLessonMapUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassLessonMapPayload>
+        }
+        deleteMany: {
+          args: Prisma.ClassLessonMapDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ClassLessonMapUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ClassLessonMapUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassLessonMapPayload>[]
+        }
+        upsert: {
+          args: Prisma.ClassLessonMapUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassLessonMapPayload>
+        }
+        aggregate: {
+          args: Prisma.ClassLessonMapAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateClassLessonMap>
+        }
+        groupBy: {
+          args: Prisma.ClassLessonMapGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClassLessonMapGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ClassLessonMapCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClassLessonMapCountAggregateOutputType> | number
+        }
+      }
+    }
+    ClassTopicMap: {
+      payload: Prisma.$ClassTopicMapPayload<ExtArgs>
+      fields: Prisma.ClassTopicMapFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ClassTopicMapFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTopicMapPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ClassTopicMapFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTopicMapPayload>
+        }
+        findFirst: {
+          args: Prisma.ClassTopicMapFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTopicMapPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ClassTopicMapFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTopicMapPayload>
+        }
+        findMany: {
+          args: Prisma.ClassTopicMapFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTopicMapPayload>[]
+        }
+        create: {
+          args: Prisma.ClassTopicMapCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTopicMapPayload>
+        }
+        createMany: {
+          args: Prisma.ClassTopicMapCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ClassTopicMapCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTopicMapPayload>[]
+        }
+        delete: {
+          args: Prisma.ClassTopicMapDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTopicMapPayload>
+        }
+        update: {
+          args: Prisma.ClassTopicMapUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTopicMapPayload>
+        }
+        deleteMany: {
+          args: Prisma.ClassTopicMapDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ClassTopicMapUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ClassTopicMapUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTopicMapPayload>[]
+        }
+        upsert: {
+          args: Prisma.ClassTopicMapUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTopicMapPayload>
+        }
+        aggregate: {
+          args: Prisma.ClassTopicMapAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateClassTopicMap>
+        }
+        groupBy: {
+          args: Prisma.ClassTopicMapGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClassTopicMapGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ClassTopicMapCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClassTopicMapCountAggregateOutputType> | number
+        }
+      }
+    }
+    ClassSubTopicMap: {
+      payload: Prisma.$ClassSubTopicMapPayload<ExtArgs>
+      fields: Prisma.ClassSubTopicMapFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ClassSubTopicMapFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassSubTopicMapPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ClassSubTopicMapFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassSubTopicMapPayload>
+        }
+        findFirst: {
+          args: Prisma.ClassSubTopicMapFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassSubTopicMapPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ClassSubTopicMapFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassSubTopicMapPayload>
+        }
+        findMany: {
+          args: Prisma.ClassSubTopicMapFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassSubTopicMapPayload>[]
+        }
+        create: {
+          args: Prisma.ClassSubTopicMapCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassSubTopicMapPayload>
+        }
+        createMany: {
+          args: Prisma.ClassSubTopicMapCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ClassSubTopicMapCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassSubTopicMapPayload>[]
+        }
+        delete: {
+          args: Prisma.ClassSubTopicMapDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassSubTopicMapPayload>
+        }
+        update: {
+          args: Prisma.ClassSubTopicMapUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassSubTopicMapPayload>
+        }
+        deleteMany: {
+          args: Prisma.ClassSubTopicMapDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ClassSubTopicMapUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ClassSubTopicMapUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassSubTopicMapPayload>[]
+        }
+        upsert: {
+          args: Prisma.ClassSubTopicMapUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassSubTopicMapPayload>
+        }
+        aggregate: {
+          args: Prisma.ClassSubTopicMapAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateClassSubTopicMap>
+        }
+        groupBy: {
+          args: Prisma.ClassSubTopicMapGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClassSubTopicMapGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ClassSubTopicMapCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClassSubTopicMapCountAggregateOutputType> | number
+        }
+      }
+    }
+    ClassRoom: {
+      payload: Prisma.$ClassRoomPayload<ExtArgs>
+      fields: Prisma.ClassRoomFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ClassRoomFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ClassRoomFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomPayload>
+        }
+        findFirst: {
+          args: Prisma.ClassRoomFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ClassRoomFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomPayload>
+        }
+        findMany: {
+          args: Prisma.ClassRoomFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomPayload>[]
+        }
+        create: {
+          args: Prisma.ClassRoomCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomPayload>
+        }
+        createMany: {
+          args: Prisma.ClassRoomCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ClassRoomCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomPayload>[]
+        }
+        delete: {
+          args: Prisma.ClassRoomDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomPayload>
+        }
+        update: {
+          args: Prisma.ClassRoomUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomPayload>
+        }
+        deleteMany: {
+          args: Prisma.ClassRoomDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ClassRoomUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ClassRoomUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomPayload>[]
+        }
+        upsert: {
+          args: Prisma.ClassRoomUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomPayload>
+        }
+        aggregate: {
+          args: Prisma.ClassRoomAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateClassRoom>
+        }
+        groupBy: {
+          args: Prisma.ClassRoomGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClassRoomGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ClassRoomCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClassRoomCountAggregateOutputType> | number
         }
       }
     }
@@ -1614,6 +2066,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    StudentProfile: {
+      payload: Prisma.$StudentProfilePayload<ExtArgs>
+      fields: Prisma.StudentProfileFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.StudentProfileFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudentProfilePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.StudentProfileFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudentProfilePayload>
+        }
+        findFirst: {
+          args: Prisma.StudentProfileFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudentProfilePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.StudentProfileFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudentProfilePayload>
+        }
+        findMany: {
+          args: Prisma.StudentProfileFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudentProfilePayload>[]
+        }
+        create: {
+          args: Prisma.StudentProfileCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudentProfilePayload>
+        }
+        createMany: {
+          args: Prisma.StudentProfileCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.StudentProfileCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudentProfilePayload>[]
+        }
+        delete: {
+          args: Prisma.StudentProfileDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudentProfilePayload>
+        }
+        update: {
+          args: Prisma.StudentProfileUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudentProfilePayload>
+        }
+        deleteMany: {
+          args: Prisma.StudentProfileDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.StudentProfileUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.StudentProfileUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudentProfilePayload>[]
+        }
+        upsert: {
+          args: Prisma.StudentProfileUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StudentProfilePayload>
+        }
+        aggregate: {
+          args: Prisma.StudentProfileAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateStudentProfile>
+        }
+        groupBy: {
+          args: Prisma.StudentProfileGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StudentProfileGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.StudentProfileCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StudentProfileCountAggregateOutputType> | number
+        }
+      }
+    }
     SubTopics: {
       payload: Prisma.$SubTopicsPayload<ExtArgs>
       fields: Prisma.SubTopicsFieldRefs
@@ -1759,6 +2285,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.subTopicMapCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.SubTopicMapCountAggregateOutputType> | number
+        }
+      }
+    }
+    TeacherProfile: {
+      payload: Prisma.$TeacherProfilePayload<ExtArgs>
+      fields: Prisma.TeacherProfileFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TeacherProfileFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherProfilePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TeacherProfileFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherProfilePayload>
+        }
+        findFirst: {
+          args: Prisma.TeacherProfileFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherProfilePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TeacherProfileFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherProfilePayload>
+        }
+        findMany: {
+          args: Prisma.TeacherProfileFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherProfilePayload>[]
+        }
+        create: {
+          args: Prisma.TeacherProfileCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherProfilePayload>
+        }
+        createMany: {
+          args: Prisma.TeacherProfileCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TeacherProfileCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherProfilePayload>[]
+        }
+        delete: {
+          args: Prisma.TeacherProfileDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherProfilePayload>
+        }
+        update: {
+          args: Prisma.TeacherProfileUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherProfilePayload>
+        }
+        deleteMany: {
+          args: Prisma.TeacherProfileDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TeacherProfileUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TeacherProfileUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherProfilePayload>[]
+        }
+        upsert: {
+          args: Prisma.TeacherProfileUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherProfilePayload>
+        }
+        aggregate: {
+          args: Prisma.TeacherProfileAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTeacherProfile>
+        }
+        groupBy: {
+          args: Prisma.TeacherProfileGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TeacherProfileGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TeacherProfileCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TeacherProfileCountAggregateOutputType> | number
         }
       }
     }
@@ -2494,6 +3094,78 @@ export const ChapterScalarFieldEnum = {
 export type ChapterScalarFieldEnum = (typeof ChapterScalarFieldEnum)[keyof typeof ChapterScalarFieldEnum]
 
 
+export const ClassModuleMapScalarFieldEnum = {
+  id: 'id',
+  classRoomId: 'classRoomId',
+  moduleId: 'moduleId',
+  orderIndex: 'orderIndex'
+} as const
+
+export type ClassModuleMapScalarFieldEnum = (typeof ClassModuleMapScalarFieldEnum)[keyof typeof ClassModuleMapScalarFieldEnum]
+
+
+export const ClassChapterMapScalarFieldEnum = {
+  id: 'id',
+  classRoomId: 'classRoomId',
+  chapterId: 'chapterId',
+  moduleId: 'moduleId',
+  orderIndex: 'orderIndex'
+} as const
+
+export type ClassChapterMapScalarFieldEnum = (typeof ClassChapterMapScalarFieldEnum)[keyof typeof ClassChapterMapScalarFieldEnum]
+
+
+export const ClassLessonMapScalarFieldEnum = {
+  id: 'id',
+  classRoomId: 'classRoomId',
+  lessonId: 'lessonId',
+  chapterId: 'chapterId',
+  orderIndex: 'orderIndex'
+} as const
+
+export type ClassLessonMapScalarFieldEnum = (typeof ClassLessonMapScalarFieldEnum)[keyof typeof ClassLessonMapScalarFieldEnum]
+
+
+export const ClassTopicMapScalarFieldEnum = {
+  id: 'id',
+  classRoomId: 'classRoomId',
+  topicId: 'topicId',
+  lessonId: 'lessonId',
+  orderIndex: 'orderIndex'
+} as const
+
+export type ClassTopicMapScalarFieldEnum = (typeof ClassTopicMapScalarFieldEnum)[keyof typeof ClassTopicMapScalarFieldEnum]
+
+
+export const ClassSubTopicMapScalarFieldEnum = {
+  id: 'id',
+  classRoomId: 'classRoomId',
+  subTopicId: 'subTopicId',
+  topicId: 'topicId',
+  orderIndex: 'orderIndex'
+} as const
+
+export type ClassSubTopicMapScalarFieldEnum = (typeof ClassSubTopicMapScalarFieldEnum)[keyof typeof ClassSubTopicMapScalarFieldEnum]
+
+
+export const ClassRoomScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  status: 'status',
+  courseId: 'courseId',
+  userId: 'userId',
+  sourceCourseVersionId: 'sourceCourseVersionId',
+  tenantId: 'tenantId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt',
+  deleteAt: 'deleteAt'
+} as const
+
+export type ClassRoomScalarFieldEnum = (typeof ClassRoomScalarFieldEnum)[keyof typeof ClassRoomScalarFieldEnum]
+
+
 export const CourseVersionScalarFieldEnum = {
   id: 'id',
   versionName: 'versionName',
@@ -2553,13 +3225,13 @@ export type DesignationScalarFieldEnum = (typeof DesignationScalarFieldEnum)[key
 export const EnrollmentsScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  courseVersionId: 'courseVersionId',
   totalSubTopics: 'totalSubTopics',
   totalQuizzes: 'totalQuizzes',
   completedSubTopics: 'completedSubTopics',
   completedQuizzes: 'completedQuizzes',
   LastAccessedSubTopicId: 'LastAccessedSubTopicId',
   tenantId: 'tenantId',
+  classRoomId: 'classRoomId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isDeleted: 'isDeleted',
@@ -2657,6 +3329,7 @@ export const QuizScalarFieldEnum = {
   lessonId: 'lessonId',
   topicId: 'topicId',
   subTopicId: 'subTopicId',
+  classRoomId: 'classRoomId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isDeleted: 'isDeleted',
@@ -2723,6 +3396,22 @@ export const RoleScalarFieldEnum = {
 export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
 
 
+export const StudentProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  grade: 'grade',
+  section: 'section',
+  rollNo: 'rollNo',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt',
+  deleteAt: 'deleteAt'
+} as const
+
+export type StudentProfileScalarFieldEnum = (typeof StudentProfileScalarFieldEnum)[keyof typeof StudentProfileScalarFieldEnum]
+
+
 export const SubTopicsScalarFieldEnum = {
   id: 'id',
   logicalId: 'logicalId',
@@ -2751,6 +3440,20 @@ export const SubTopicMapScalarFieldEnum = {
 } as const
 
 export type SubTopicMapScalarFieldEnum = (typeof SubTopicMapScalarFieldEnum)[keyof typeof SubTopicMapScalarFieldEnum]
+
+
+export const TeacherProfileScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  specialization: 'specialization',
+  userId: 'userId',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt',
+  deleteAt: 'deleteAt'
+} as const
+
+export type TeacherProfileScalarFieldEnum = (typeof TeacherProfileScalarFieldEnum)[keyof typeof TeacherProfileScalarFieldEnum]
 
 
 export const TenantScalarFieldEnum = {
@@ -3007,6 +3710,20 @@ export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
+ * Reference to a field of type 'ClassRoomStatus'
+ */
+export type EnumClassRoomStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ClassRoomStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'ClassRoomStatus[]'
+ */
+export type ListEnumClassRoomStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ClassRoomStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'CourseStatus'
  */
 export type EnumCourseStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CourseStatus'>
@@ -3256,6 +3973,12 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   chapterMap?: Prisma.ChapterMapOmit
   chapter?: Prisma.ChapterOmit
+  classModuleMap?: Prisma.ClassModuleMapOmit
+  classChapterMap?: Prisma.ClassChapterMapOmit
+  classLessonMap?: Prisma.ClassLessonMapOmit
+  classTopicMap?: Prisma.ClassTopicMapOmit
+  classSubTopicMap?: Prisma.ClassSubTopicMapOmit
+  classRoom?: Prisma.ClassRoomOmit
   courseVersion?: Prisma.CourseVersionOmit
   course?: Prisma.CourseOmit
   designation?: Prisma.DesignationOmit
@@ -3270,8 +3993,10 @@ export type GlobalOmitConfig = {
   quizAttempt?: Prisma.QuizAttemptOmit
   quizSubmission?: Prisma.QuizSubmissionOmit
   role?: Prisma.RoleOmit
+  studentProfile?: Prisma.StudentProfileOmit
   subTopics?: Prisma.SubTopicsOmit
   subTopicMap?: Prisma.subTopicMapOmit
+  teacherProfile?: Prisma.TeacherProfileOmit
   tenant?: Prisma.TenantOmit
   topicMap?: Prisma.TopicMapOmit
   topics?: Prisma.TopicsOmit

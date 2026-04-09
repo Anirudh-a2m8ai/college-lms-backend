@@ -9,7 +9,6 @@ model CourseVersion {
   versionName     String
   sourceVersionId String?
   status          CourseStatus
-  enrollments     Enrollments[]
   lessonCount     Int?
   quizCount       Int?
   courseId        String
@@ -22,6 +21,7 @@ model CourseVersion {
   topicMap        TopicMap[]
   subTopicMap     subTopicMap[]
   quizzes         Quiz[]
+	classRooms      ClassRoom[]
   isModified      Boolean       @default(false)
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt

@@ -21,7 +21,7 @@ model Quiz {
 	id                 String         @id @default(uuid())
 	title              String
 	description        String?
-	courseVersionId    String
+	courseVersionId    String?
 	orderIndex         Int 
 	isMandatory        Boolean        @default(true)
 	quizType           QuizType
@@ -36,12 +36,14 @@ model Quiz {
 	lessonId           String?
 	topicId            String?
 	subTopicId         String?
+	classRoomId        String?
 	module             Module? 					@relation(fields: [moduleId], references: [id], onDelete: Cascade) 
 	chapter            Chapter? 				@relation(fields: [chapterId], references: [id], onDelete: Cascade) 
 	lesson             Lesson? 					@relation(fields: [lessonId], references: [id], onDelete: Cascade) 
 	topic              Topics? 					@relation(fields: [topicId], references: [id], onDelete: Cascade) 
 	subTopic           SubTopics? 			@relation(fields: [subTopicId], references: [id], onDelete: Cascade) 
-	courseVersion      CourseVersion 		@relation(fields: [courseVersionId], references: [id], onDelete: Cascade) 
+	courseVersion      CourseVersion? 		@relation(fields: [courseVersionId], references: [id], onDelete: Cascade)
+	classRoom          ClassRoom? 			@relation(fields: [classRoomId], references: [id], onDelete: Cascade)
 	quizQuestions      QuizQuestion[]
 	quizProgress       quizProgress[]
 	createdAt          DateTime 				@default(now())

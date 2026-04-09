@@ -233,6 +233,8 @@ export type TopicsWhereInput = {
   topicMap?: Prisma.TopicMapListRelationFilter
   subTopicMaps?: Prisma.SubTopicMapListRelationFilter
   quizzes?: Prisma.QuizListRelationFilter
+  classTopicMap?: Prisma.ClassTopicMapListRelationFilter
+  classSubTopicMap?: Prisma.ClassSubTopicMapListRelationFilter
 }
 
 export type TopicsOrderByWithRelationInput = {
@@ -250,6 +252,8 @@ export type TopicsOrderByWithRelationInput = {
   topicMap?: Prisma.TopicMapOrderByRelationAggregateInput
   subTopicMaps?: Prisma.subTopicMapOrderByRelationAggregateInput
   quizzes?: Prisma.QuizOrderByRelationAggregateInput
+  classTopicMap?: Prisma.ClassTopicMapOrderByRelationAggregateInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapOrderByRelationAggregateInput
 }
 
 export type TopicsWhereUniqueInput = Prisma.AtLeast<{
@@ -270,6 +274,8 @@ export type TopicsWhereUniqueInput = Prisma.AtLeast<{
   topicMap?: Prisma.TopicMapListRelationFilter
   subTopicMaps?: Prisma.SubTopicMapListRelationFilter
   quizzes?: Prisma.QuizListRelationFilter
+  classTopicMap?: Prisma.ClassTopicMapListRelationFilter
+  classSubTopicMap?: Prisma.ClassSubTopicMapListRelationFilter
 }, "id">
 
 export type TopicsOrderByWithAggregationInput = {
@@ -321,6 +327,8 @@ export type TopicsCreateInput = {
   topicMap?: Prisma.TopicMapCreateNestedManyWithoutTopicInput
   subTopicMaps?: Prisma.subTopicMapCreateNestedManyWithoutTopicInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutTopicInput
+  classTopicMap?: Prisma.ClassTopicMapCreateNestedManyWithoutTopicInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapCreateNestedManyWithoutTopicInput
 }
 
 export type TopicsUncheckedCreateInput = {
@@ -338,6 +346,8 @@ export type TopicsUncheckedCreateInput = {
   topicMap?: Prisma.TopicMapUncheckedCreateNestedManyWithoutTopicInput
   subTopicMaps?: Prisma.subTopicMapUncheckedCreateNestedManyWithoutTopicInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutTopicInput
+  classTopicMap?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutTopicInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutTopicInput
 }
 
 export type TopicsUpdateInput = {
@@ -355,6 +365,8 @@ export type TopicsUpdateInput = {
   topicMap?: Prisma.TopicMapUpdateManyWithoutTopicNestedInput
   subTopicMaps?: Prisma.subTopicMapUpdateManyWithoutTopicNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutTopicNestedInput
+  classTopicMap?: Prisma.ClassTopicMapUpdateManyWithoutTopicNestedInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapUpdateManyWithoutTopicNestedInput
 }
 
 export type TopicsUncheckedUpdateInput = {
@@ -372,6 +384,8 @@ export type TopicsUncheckedUpdateInput = {
   topicMap?: Prisma.TopicMapUncheckedUpdateManyWithoutTopicNestedInput
   subTopicMaps?: Prisma.subTopicMapUncheckedUpdateManyWithoutTopicNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutTopicNestedInput
+  classTopicMap?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutTopicNestedInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutTopicNestedInput
 }
 
 export type TopicsCreateManyInput = {
@@ -416,14 +430,14 @@ export type TopicsUncheckedUpdateManyInput = {
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
-export type TopicsNullableScalarRelationFilter = {
-  is?: Prisma.TopicsWhereInput | null
-  isNot?: Prisma.TopicsWhereInput | null
-}
-
 export type TopicsScalarRelationFilter = {
   is?: Prisma.TopicsWhereInput
   isNot?: Prisma.TopicsWhereInput
+}
+
+export type TopicsNullableScalarRelationFilter = {
+  is?: Prisma.TopicsWhereInput | null
+  isNot?: Prisma.TopicsWhereInput | null
 }
 
 export type TopicsCountOrderByAggregateInput = {
@@ -466,6 +480,34 @@ export type TopicsMinOrderByAggregateInput = {
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   deleteAt?: Prisma.SortOrder
+}
+
+export type TopicsCreateNestedOneWithoutClassTopicMapInput = {
+  create?: Prisma.XOR<Prisma.TopicsCreateWithoutClassTopicMapInput, Prisma.TopicsUncheckedCreateWithoutClassTopicMapInput>
+  connectOrCreate?: Prisma.TopicsCreateOrConnectWithoutClassTopicMapInput
+  connect?: Prisma.TopicsWhereUniqueInput
+}
+
+export type TopicsUpdateOneRequiredWithoutClassTopicMapNestedInput = {
+  create?: Prisma.XOR<Prisma.TopicsCreateWithoutClassTopicMapInput, Prisma.TopicsUncheckedCreateWithoutClassTopicMapInput>
+  connectOrCreate?: Prisma.TopicsCreateOrConnectWithoutClassTopicMapInput
+  upsert?: Prisma.TopicsUpsertWithoutClassTopicMapInput
+  connect?: Prisma.TopicsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TopicsUpdateToOneWithWhereWithoutClassTopicMapInput, Prisma.TopicsUpdateWithoutClassTopicMapInput>, Prisma.TopicsUncheckedUpdateWithoutClassTopicMapInput>
+}
+
+export type TopicsCreateNestedOneWithoutClassSubTopicMapInput = {
+  create?: Prisma.XOR<Prisma.TopicsCreateWithoutClassSubTopicMapInput, Prisma.TopicsUncheckedCreateWithoutClassSubTopicMapInput>
+  connectOrCreate?: Prisma.TopicsCreateOrConnectWithoutClassSubTopicMapInput
+  connect?: Prisma.TopicsWhereUniqueInput
+}
+
+export type TopicsUpdateOneRequiredWithoutClassSubTopicMapNestedInput = {
+  create?: Prisma.XOR<Prisma.TopicsCreateWithoutClassSubTopicMapInput, Prisma.TopicsUncheckedCreateWithoutClassSubTopicMapInput>
+  connectOrCreate?: Prisma.TopicsCreateOrConnectWithoutClassSubTopicMapInput
+  upsert?: Prisma.TopicsUpsertWithoutClassSubTopicMapInput
+  connect?: Prisma.TopicsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TopicsUpdateToOneWithWhereWithoutClassSubTopicMapInput, Prisma.TopicsUpdateWithoutClassSubTopicMapInput>, Prisma.TopicsUncheckedUpdateWithoutClassSubTopicMapInput>
 }
 
 export type TopicsCreateNestedOneWithoutQuizzesInput = {
@@ -512,6 +554,182 @@ export type TopicsUpdateOneRequiredWithoutTopicMapNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TopicsUpdateToOneWithWhereWithoutTopicMapInput, Prisma.TopicsUpdateWithoutTopicMapInput>, Prisma.TopicsUncheckedUpdateWithoutTopicMapInput>
 }
 
+export type TopicsCreateWithoutClassTopicMapInput = {
+  id?: string
+  logicalId?: string
+  title: string
+  overview?: string | null
+  isMandatory?: boolean
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  topicMap?: Prisma.TopicMapCreateNestedManyWithoutTopicInput
+  subTopicMaps?: Prisma.subTopicMapCreateNestedManyWithoutTopicInput
+  quizzes?: Prisma.QuizCreateNestedManyWithoutTopicInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapCreateNestedManyWithoutTopicInput
+}
+
+export type TopicsUncheckedCreateWithoutClassTopicMapInput = {
+  id?: string
+  logicalId?: string
+  title: string
+  overview?: string | null
+  isMandatory?: boolean
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  topicMap?: Prisma.TopicMapUncheckedCreateNestedManyWithoutTopicInput
+  subTopicMaps?: Prisma.subTopicMapUncheckedCreateNestedManyWithoutTopicInput
+  quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutTopicInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutTopicInput
+}
+
+export type TopicsCreateOrConnectWithoutClassTopicMapInput = {
+  where: Prisma.TopicsWhereUniqueInput
+  create: Prisma.XOR<Prisma.TopicsCreateWithoutClassTopicMapInput, Prisma.TopicsUncheckedCreateWithoutClassTopicMapInput>
+}
+
+export type TopicsUpsertWithoutClassTopicMapInput = {
+  update: Prisma.XOR<Prisma.TopicsUpdateWithoutClassTopicMapInput, Prisma.TopicsUncheckedUpdateWithoutClassTopicMapInput>
+  create: Prisma.XOR<Prisma.TopicsCreateWithoutClassTopicMapInput, Prisma.TopicsUncheckedCreateWithoutClassTopicMapInput>
+  where?: Prisma.TopicsWhereInput
+}
+
+export type TopicsUpdateToOneWithWhereWithoutClassTopicMapInput = {
+  where?: Prisma.TopicsWhereInput
+  data: Prisma.XOR<Prisma.TopicsUpdateWithoutClassTopicMapInput, Prisma.TopicsUncheckedUpdateWithoutClassTopicMapInput>
+}
+
+export type TopicsUpdateWithoutClassTopicMapInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  logicalId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  overview?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isMandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  topicMap?: Prisma.TopicMapUpdateManyWithoutTopicNestedInput
+  subTopicMaps?: Prisma.subTopicMapUpdateManyWithoutTopicNestedInput
+  quizzes?: Prisma.QuizUpdateManyWithoutTopicNestedInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapUpdateManyWithoutTopicNestedInput
+}
+
+export type TopicsUncheckedUpdateWithoutClassTopicMapInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  logicalId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  overview?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isMandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  topicMap?: Prisma.TopicMapUncheckedUpdateManyWithoutTopicNestedInput
+  subTopicMaps?: Prisma.subTopicMapUncheckedUpdateManyWithoutTopicNestedInput
+  quizzes?: Prisma.QuizUncheckedUpdateManyWithoutTopicNestedInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutTopicNestedInput
+}
+
+export type TopicsCreateWithoutClassSubTopicMapInput = {
+  id?: string
+  logicalId?: string
+  title: string
+  overview?: string | null
+  isMandatory?: boolean
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  topicMap?: Prisma.TopicMapCreateNestedManyWithoutTopicInput
+  subTopicMaps?: Prisma.subTopicMapCreateNestedManyWithoutTopicInput
+  quizzes?: Prisma.QuizCreateNestedManyWithoutTopicInput
+  classTopicMap?: Prisma.ClassTopicMapCreateNestedManyWithoutTopicInput
+}
+
+export type TopicsUncheckedCreateWithoutClassSubTopicMapInput = {
+  id?: string
+  logicalId?: string
+  title: string
+  overview?: string | null
+  isMandatory?: boolean
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  topicMap?: Prisma.TopicMapUncheckedCreateNestedManyWithoutTopicInput
+  subTopicMaps?: Prisma.subTopicMapUncheckedCreateNestedManyWithoutTopicInput
+  quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutTopicInput
+  classTopicMap?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutTopicInput
+}
+
+export type TopicsCreateOrConnectWithoutClassSubTopicMapInput = {
+  where: Prisma.TopicsWhereUniqueInput
+  create: Prisma.XOR<Prisma.TopicsCreateWithoutClassSubTopicMapInput, Prisma.TopicsUncheckedCreateWithoutClassSubTopicMapInput>
+}
+
+export type TopicsUpsertWithoutClassSubTopicMapInput = {
+  update: Prisma.XOR<Prisma.TopicsUpdateWithoutClassSubTopicMapInput, Prisma.TopicsUncheckedUpdateWithoutClassSubTopicMapInput>
+  create: Prisma.XOR<Prisma.TopicsCreateWithoutClassSubTopicMapInput, Prisma.TopicsUncheckedCreateWithoutClassSubTopicMapInput>
+  where?: Prisma.TopicsWhereInput
+}
+
+export type TopicsUpdateToOneWithWhereWithoutClassSubTopicMapInput = {
+  where?: Prisma.TopicsWhereInput
+  data: Prisma.XOR<Prisma.TopicsUpdateWithoutClassSubTopicMapInput, Prisma.TopicsUncheckedUpdateWithoutClassSubTopicMapInput>
+}
+
+export type TopicsUpdateWithoutClassSubTopicMapInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  logicalId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  overview?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isMandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  topicMap?: Prisma.TopicMapUpdateManyWithoutTopicNestedInput
+  subTopicMaps?: Prisma.subTopicMapUpdateManyWithoutTopicNestedInput
+  quizzes?: Prisma.QuizUpdateManyWithoutTopicNestedInput
+  classTopicMap?: Prisma.ClassTopicMapUpdateManyWithoutTopicNestedInput
+}
+
+export type TopicsUncheckedUpdateWithoutClassSubTopicMapInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  logicalId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  overview?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isMandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  topicMap?: Prisma.TopicMapUncheckedUpdateManyWithoutTopicNestedInput
+  subTopicMaps?: Prisma.subTopicMapUncheckedUpdateManyWithoutTopicNestedInput
+  quizzes?: Prisma.QuizUncheckedUpdateManyWithoutTopicNestedInput
+  classTopicMap?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutTopicNestedInput
+}
+
 export type TopicsCreateWithoutQuizzesInput = {
   id?: string
   logicalId?: string
@@ -526,6 +744,8 @@ export type TopicsCreateWithoutQuizzesInput = {
   deleteAt?: Date | string | null
   topicMap?: Prisma.TopicMapCreateNestedManyWithoutTopicInput
   subTopicMaps?: Prisma.subTopicMapCreateNestedManyWithoutTopicInput
+  classTopicMap?: Prisma.ClassTopicMapCreateNestedManyWithoutTopicInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapCreateNestedManyWithoutTopicInput
 }
 
 export type TopicsUncheckedCreateWithoutQuizzesInput = {
@@ -542,6 +762,8 @@ export type TopicsUncheckedCreateWithoutQuizzesInput = {
   deleteAt?: Date | string | null
   topicMap?: Prisma.TopicMapUncheckedCreateNestedManyWithoutTopicInput
   subTopicMaps?: Prisma.subTopicMapUncheckedCreateNestedManyWithoutTopicInput
+  classTopicMap?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutTopicInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutTopicInput
 }
 
 export type TopicsCreateOrConnectWithoutQuizzesInput = {
@@ -574,6 +796,8 @@ export type TopicsUpdateWithoutQuizzesInput = {
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   topicMap?: Prisma.TopicMapUpdateManyWithoutTopicNestedInput
   subTopicMaps?: Prisma.subTopicMapUpdateManyWithoutTopicNestedInput
+  classTopicMap?: Prisma.ClassTopicMapUpdateManyWithoutTopicNestedInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapUpdateManyWithoutTopicNestedInput
 }
 
 export type TopicsUncheckedUpdateWithoutQuizzesInput = {
@@ -590,6 +814,8 @@ export type TopicsUncheckedUpdateWithoutQuizzesInput = {
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   topicMap?: Prisma.TopicMapUncheckedUpdateManyWithoutTopicNestedInput
   subTopicMaps?: Prisma.subTopicMapUncheckedUpdateManyWithoutTopicNestedInput
+  classTopicMap?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutTopicNestedInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutTopicNestedInput
 }
 
 export type TopicsCreateWithoutSubTopicMapsInput = {
@@ -606,6 +832,8 @@ export type TopicsCreateWithoutSubTopicMapsInput = {
   deleteAt?: Date | string | null
   topicMap?: Prisma.TopicMapCreateNestedManyWithoutTopicInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutTopicInput
+  classTopicMap?: Prisma.ClassTopicMapCreateNestedManyWithoutTopicInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapCreateNestedManyWithoutTopicInput
 }
 
 export type TopicsUncheckedCreateWithoutSubTopicMapsInput = {
@@ -622,6 +850,8 @@ export type TopicsUncheckedCreateWithoutSubTopicMapsInput = {
   deleteAt?: Date | string | null
   topicMap?: Prisma.TopicMapUncheckedCreateNestedManyWithoutTopicInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutTopicInput
+  classTopicMap?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutTopicInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutTopicInput
 }
 
 export type TopicsCreateOrConnectWithoutSubTopicMapsInput = {
@@ -654,6 +884,8 @@ export type TopicsUpdateWithoutSubTopicMapsInput = {
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   topicMap?: Prisma.TopicMapUpdateManyWithoutTopicNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutTopicNestedInput
+  classTopicMap?: Prisma.ClassTopicMapUpdateManyWithoutTopicNestedInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapUpdateManyWithoutTopicNestedInput
 }
 
 export type TopicsUncheckedUpdateWithoutSubTopicMapsInput = {
@@ -670,6 +902,8 @@ export type TopicsUncheckedUpdateWithoutSubTopicMapsInput = {
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   topicMap?: Prisma.TopicMapUncheckedUpdateManyWithoutTopicNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutTopicNestedInput
+  classTopicMap?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutTopicNestedInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutTopicNestedInput
 }
 
 export type TopicsCreateWithoutTopicMapInput = {
@@ -686,6 +920,8 @@ export type TopicsCreateWithoutTopicMapInput = {
   deleteAt?: Date | string | null
   subTopicMaps?: Prisma.subTopicMapCreateNestedManyWithoutTopicInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutTopicInput
+  classTopicMap?: Prisma.ClassTopicMapCreateNestedManyWithoutTopicInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapCreateNestedManyWithoutTopicInput
 }
 
 export type TopicsUncheckedCreateWithoutTopicMapInput = {
@@ -702,6 +938,8 @@ export type TopicsUncheckedCreateWithoutTopicMapInput = {
   deleteAt?: Date | string | null
   subTopicMaps?: Prisma.subTopicMapUncheckedCreateNestedManyWithoutTopicInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutTopicInput
+  classTopicMap?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutTopicInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutTopicInput
 }
 
 export type TopicsCreateOrConnectWithoutTopicMapInput = {
@@ -734,6 +972,8 @@ export type TopicsUpdateWithoutTopicMapInput = {
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   subTopicMaps?: Prisma.subTopicMapUpdateManyWithoutTopicNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutTopicNestedInput
+  classTopicMap?: Prisma.ClassTopicMapUpdateManyWithoutTopicNestedInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapUpdateManyWithoutTopicNestedInput
 }
 
 export type TopicsUncheckedUpdateWithoutTopicMapInput = {
@@ -750,6 +990,8 @@ export type TopicsUncheckedUpdateWithoutTopicMapInput = {
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   subTopicMaps?: Prisma.subTopicMapUncheckedUpdateManyWithoutTopicNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutTopicNestedInput
+  classTopicMap?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutTopicNestedInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutTopicNestedInput
 }
 
 
@@ -761,12 +1003,16 @@ export type TopicsCountOutputType = {
   topicMap: number
   subTopicMaps: number
   quizzes: number
+  classTopicMap: number
+  classSubTopicMap: number
 }
 
 export type TopicsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   topicMap?: boolean | TopicsCountOutputTypeCountTopicMapArgs
   subTopicMaps?: boolean | TopicsCountOutputTypeCountSubTopicMapsArgs
   quizzes?: boolean | TopicsCountOutputTypeCountQuizzesArgs
+  classTopicMap?: boolean | TopicsCountOutputTypeCountClassTopicMapArgs
+  classSubTopicMap?: boolean | TopicsCountOutputTypeCountClassSubTopicMapArgs
 }
 
 /**
@@ -800,6 +1046,20 @@ export type TopicsCountOutputTypeCountQuizzesArgs<ExtArgs extends runtime.Types.
   where?: Prisma.QuizWhereInput
 }
 
+/**
+ * TopicsCountOutputType without action
+ */
+export type TopicsCountOutputTypeCountClassTopicMapArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ClassTopicMapWhereInput
+}
+
+/**
+ * TopicsCountOutputType without action
+ */
+export type TopicsCountOutputTypeCountClassSubTopicMapArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ClassSubTopicMapWhereInput
+}
+
 
 export type TopicsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -816,6 +1076,8 @@ export type TopicsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   topicMap?: boolean | Prisma.Topics$topicMapArgs<ExtArgs>
   subTopicMaps?: boolean | Prisma.Topics$subTopicMapsArgs<ExtArgs>
   quizzes?: boolean | Prisma.Topics$quizzesArgs<ExtArgs>
+  classTopicMap?: boolean | Prisma.Topics$classTopicMapArgs<ExtArgs>
+  classSubTopicMap?: boolean | Prisma.Topics$classSubTopicMapArgs<ExtArgs>
   _count?: boolean | Prisma.TopicsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["topics"]>
 
@@ -866,6 +1128,8 @@ export type TopicsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   topicMap?: boolean | Prisma.Topics$topicMapArgs<ExtArgs>
   subTopicMaps?: boolean | Prisma.Topics$subTopicMapsArgs<ExtArgs>
   quizzes?: boolean | Prisma.Topics$quizzesArgs<ExtArgs>
+  classTopicMap?: boolean | Prisma.Topics$classTopicMapArgs<ExtArgs>
+  classSubTopicMap?: boolean | Prisma.Topics$classSubTopicMapArgs<ExtArgs>
   _count?: boolean | Prisma.TopicsCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TopicsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -877,6 +1141,8 @@ export type $TopicsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     topicMap: Prisma.$TopicMapPayload<ExtArgs>[]
     subTopicMaps: Prisma.$subTopicMapPayload<ExtArgs>[]
     quizzes: Prisma.$QuizPayload<ExtArgs>[]
+    classTopicMap: Prisma.$ClassTopicMapPayload<ExtArgs>[]
+    classSubTopicMap: Prisma.$ClassSubTopicMapPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1287,6 +1553,8 @@ export interface Prisma__TopicsClient<T, Null = never, ExtArgs extends runtime.T
   topicMap<T extends Prisma.Topics$topicMapArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Topics$topicMapArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TopicMapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   subTopicMaps<T extends Prisma.Topics$subTopicMapsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Topics$subTopicMapsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$subTopicMapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   quizzes<T extends Prisma.Topics$quizzesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Topics$quizzesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuizPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  classTopicMap<T extends Prisma.Topics$classTopicMapArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Topics$classTopicMapArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassTopicMapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  classSubTopicMap<T extends Prisma.Topics$classSubTopicMapArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Topics$classSubTopicMapArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassSubTopicMapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1789,6 +2057,54 @@ export type Topics$quizzesArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.QuizScalarFieldEnum | Prisma.QuizScalarFieldEnum[]
+}
+
+/**
+ * Topics.classTopicMap
+ */
+export type Topics$classTopicMapArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ClassTopicMap
+   */
+  select?: Prisma.ClassTopicMapSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ClassTopicMap
+   */
+  omit?: Prisma.ClassTopicMapOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClassTopicMapInclude<ExtArgs> | null
+  where?: Prisma.ClassTopicMapWhereInput
+  orderBy?: Prisma.ClassTopicMapOrderByWithRelationInput | Prisma.ClassTopicMapOrderByWithRelationInput[]
+  cursor?: Prisma.ClassTopicMapWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ClassTopicMapScalarFieldEnum | Prisma.ClassTopicMapScalarFieldEnum[]
+}
+
+/**
+ * Topics.classSubTopicMap
+ */
+export type Topics$classSubTopicMapArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ClassSubTopicMap
+   */
+  select?: Prisma.ClassSubTopicMapSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ClassSubTopicMap
+   */
+  omit?: Prisma.ClassSubTopicMapOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClassSubTopicMapInclude<ExtArgs> | null
+  where?: Prisma.ClassSubTopicMapWhereInput
+  orderBy?: Prisma.ClassSubTopicMapOrderByWithRelationInput | Prisma.ClassSubTopicMapOrderByWithRelationInput[]
+  cursor?: Prisma.ClassSubTopicMapWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ClassSubTopicMapScalarFieldEnum | Prisma.ClassSubTopicMapScalarFieldEnum[]
 }
 
 /**

@@ -1,15 +1,17 @@
 model Module {
-  id          String       @id @default(uuid())
-  logicalId   String       @default(uuid())
-  title       String
-  description String?
-  overview    String?
-  moduleMap   ModuleMap[]
-  chapterMap  ChapterMap[]
-  quizzes     Quiz[]
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-  isDeleted   Boolean      @default(false)
-  deletedAt   DateTime?
-  deleteAt    DateTime?
+  id                String       @id @default(uuid())
+  logicalId         String       @default(uuid())
+  title             String
+  description       String?
+  overview          String?
+  classModuleMap    ClassModuleMap[]
+  moduleMap         ModuleMap[]
+  chapterMap        ChapterMap[]
+  quizzes           Quiz[]
+  classChapterMap   ClassChapterMap[]
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+  isDeleted         Boolean      @default(false)
+  deletedAt         DateTime?
+  deleteAt          DateTime?
 }

@@ -1,18 +1,19 @@
 model SubTopics {
-  id          String        @id @default(uuid())
-  logicalId   String        @default(uuid())
-  title       String
-  isMandatory Boolean       @default(false)
-  content     String?
-  videoUrl    String?
-  examples    Json?
-  image       Json?
-  subTopicMap subTopicMap[]
-  userProcess UserProgress[]
-  quizzes     Quiz[]
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  isDeleted   Boolean       @default(false)
-  deletedAt   DateTime?
-  deleteAt    DateTime?
+  id                String              @id @default(uuid())
+  logicalId         String              @default(uuid())
+  title             String
+  isMandatory       Boolean             @default(false)
+  content           String?
+  videoUrl          String?
+  examples          Json?
+  image             Json?
+  subTopicMap       subTopicMap[]
+  userProcess       UserProgress[]
+  quizzes           Quiz[]
+  classSubTopicMap  ClassSubTopicMap[]
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  isDeleted         Boolean             @default(false)
+  deletedAt         DateTime?
+  deleteAt          DateTime?
 }

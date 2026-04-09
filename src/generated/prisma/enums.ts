@@ -9,6 +9,14 @@
 * 🟢 You can import this file directly.
 */
 
+export const ClassRoomStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type ClassRoomStatus = (typeof ClassRoomStatus)[keyof typeof ClassRoomStatus]
+
+
 export const CourseStatus = {
   DRAFT: 'DRAFT',
   PUBLISHED: 'PUBLISHED',

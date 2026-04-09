@@ -23,6 +23,12 @@ import { EnrollmentsDbService } from './enrollments.db-service';
 import { UserProgressDbService } from './userProgress.db-service';
 import { QuizSubmissionDbService } from './quizSubmission.db-service';
 import { QuizProgressDbService } from './quizProgress.db-service';
+import { ClassRoomDbService } from './classRoom.db-service';
+import { ClassSubTopicMapDbService } from './classSubtopicMap.db-service';
+import { ClassModuleMapDbService } from './classModuleMap.db-service';
+import { ClassChapterMapDbService } from './classChapterMap.db-service';
+import { ClassLessonMapDbService } from './classLessonMap.db-service';
+import { ClassTopicMapDbService } from './classTopicMap.db-service';
 
 @Module({
   providers: [
@@ -50,6 +56,12 @@ import { QuizProgressDbService } from './quizProgress.db-service';
     UserProgressDbService,
     QuizSubmissionDbService,
     QuizProgressDbService,
+    ClassRoomDbService,
+    ClassSubTopicMapDbService,
+    ClassModuleMapDbService,
+    ClassChapterMapDbService,
+    ClassLessonMapDbService,
+    ClassTopicMapDbService,
   ],
   exports: [
     UserDbService,
@@ -76,6 +88,12 @@ import { QuizProgressDbService } from './quizProgress.db-service';
     UserProgressDbService,
     QuizSubmissionDbService,
     QuizProgressDbService,
+    ClassRoomDbService,
+    ClassSubTopicMapDbService,
+    ClassModuleMapDbService,
+    ClassChapterMapDbService,
+    ClassLessonMapDbService,
+    ClassTopicMapDbService,
   ],
 })
 export class DbServiceModule {}

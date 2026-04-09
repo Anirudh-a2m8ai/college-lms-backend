@@ -7,5 +7,5 @@ export class CreateEnrollmentDto {
 
   @IsString()
   @IsNotEmpty()
-  courseVersionId: string;
+  classRoomId: string;
 }
