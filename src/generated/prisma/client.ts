@@ -80,6 +80,11 @@ export type ClassSubTopicMap = Prisma.ClassSubTopicMapModel
  */
 export type ClassRoom = Prisma.ClassRoomModel
 /**
+ * Model ClassRoomProgress
+ * 
+ */
+export type ClassRoomProgress = Prisma.ClassRoomProgressModel
+/**
  * Model CourseVersion
  * 
  */

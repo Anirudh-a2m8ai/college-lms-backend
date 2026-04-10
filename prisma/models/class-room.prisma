@@ -4,27 +4,31 @@ enum ClassRoomStatus {
 }
 
 model ClassRoom {
-  id                    String            @id @default(uuid())
-  name                  String
-	status                ClassRoomStatus
-	courseId              String
-  userId                String
-  sourceCourseVersionId String
-  tenantId              String
-	course                Course            @relation(fields: [courseId], references: [id])
-  user                  User              @relation(fields: [userId], references: [id])
-  sourceCourseVersion   CourseVersion     @relation(fields: [sourceCourseVersionId], references: [id])
-  tenant                Tenant            @relation(fields: [tenantId], references: [id])
-  enrollments           Enrollments[]
-  classModule           ClassModuleMap[]
-  classChapter          ClassChapterMap[]
-  classLesson           ClassLessonMap[]
-  classTopic            ClassTopicMap[]
-  classSubTopic         ClassSubTopicMap[]
-  quizzes               Quiz[]
-  createdAt             DateTime          @default(now())
-  updatedAt             DateTime          @updatedAt
-  isDeleted             Boolean           @default(false)
-  deletedAt             DateTime?
-  deleteAt              DateTime?
+  id                      String            @id @default(uuid())
+  name                    String
+	status                  ClassRoomStatus
+	courseId                String
+  userId                  String
+  sourceCourseVersionId   String
+  tenantId                String
+	lastAccessedSubTopicId  String?
+	course                  Course            @relation(fields: [courseId], references: [id])
+  user                    User              @relation(fields: [userId], references: [id])
+  sourceCourseVersion     CourseVersion     @relation(fields: [sourceCourseVersionId], references: [id])
+  tenant                  Tenant            @relation(fields: [tenantId], references: [id])
+  enrollments             Enrollments[]
+  classModule             ClassModuleMap[]
+  classChapter            ClassChapterMap[]
+  classLesson             ClassLessonMap[]
+  classTopic              ClassTopicMap[]
+  classSubTopic           ClassSubTopicMap[]
+  quizzes                 Quiz[]
+  classRoomProgress       ClassRoomProgress[]
+  startDate               DateTime
+  endDate                 DateTime
+  createdAt               DateTime          @default(now())
+  updatedAt               DateTime          @updatedAt
+  isDeleted               Boolean           @default(false)
+  deletedAt               DateTime?
+  deleteAt                DateTime?
 }

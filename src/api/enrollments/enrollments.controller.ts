@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
 import { EnrollmentsService } from './enrollments.service';
-import { CreateEnrollmentDto } from './dto/create-enrollments.dto';
+import { CreateEnrollmentDto, CreateEnrollmentInCourseVersionDto } from './dto/create-enrollments.dto';
 import { PermissionGuard } from 'src/common/guards/permission.guard';
 import { Permissions } from 'src/common/decorators/permissions.decorator';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
@@ -17,9 +17,20 @@ export class EnrollmentsController {
     return await this.enrollmentsService.create(payload);
   }
 
+  @Permissions('enrollments:create')
+  @Post('courseVersion')
+  async createInCourseVersion(@Body() payload: CreateEnrollmentInCourseVersionDto) {
+    return await this.enrollmentsService.createInCourseVersion(payload);
+  }
+
   @Get('course')
   async getAllEnrollments(@CurrentUser() user: any) {
     return await this.enrollmentsService.getAllEnrollments(user);
+  }
+
+  @Get('courseVersion')
+  async getAllEnrollmentsInCourseVersion(@CurrentUser() user: any) {
+    return await this.enrollmentsService.getAllUserEnrollmentsInCourseVersion(user);
   }
 
   @Get(':enrollmentId')

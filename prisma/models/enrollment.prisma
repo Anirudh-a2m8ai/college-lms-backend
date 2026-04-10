@@ -7,12 +7,16 @@ model Enrollments {
 	completedQuizzes       Int           @default(0)
 	LastAccessedSubTopicId String?
 	tenantId               String
-	classRoomId            String
-	classRoom              ClassRoom     @relation(fields: [classRoomId], references: [id], onDelete: Cascade)
+	courseVersionId        String?
+	classRoomId            String?
+	courseVersion          CourseVersion? @relation(fields: [courseVersionId], references: [id], onDelete: Cascade)
+	classRoom              ClassRoom?     @relation(fields: [classRoomId], references: [id], onDelete: Cascade)
 	user                   User          @relation(fields: [userId], references: [id], onDelete: Cascade)
 	userProgress           UserProgress[]
 	quizProgress           quizProgress[]
 	tenant                 Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+	startDate              DateTime
+	endDate                DateTime
 	createdAt              DateTime      @default(now())
 	updatedAt              DateTime      @updatedAt
 	isDeleted              Boolean       @default(false)

@@ -30,6 +30,12 @@ export class ClassRoomResponseDto {
   @Expose()
   updatedAt: Date;
 
+  @Expose()
+  startDate: Date;
+
+  @Expose()
+  endDate: Date;
+
   @Type(() => ModuleResponseDto)
   @Expose()
   modules: ModuleResponseDto[];

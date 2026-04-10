@@ -59,6 +59,7 @@ export const ModelName = {
   ClassTopicMap: 'ClassTopicMap',
   ClassSubTopicMap: 'ClassSubTopicMap',
   ClassRoom: 'ClassRoom',
+  ClassRoomProgress: 'ClassRoomProgress',
   CourseVersion: 'CourseVersion',
   Course: 'Course',
   Designation: 'Designation',
@@ -193,6 +194,9 @@ export const ClassRoomScalarFieldEnum = {
   userId: 'userId',
   sourceCourseVersionId: 'sourceCourseVersionId',
   tenantId: 'tenantId',
+  lastAccessedSubTopicId: 'lastAccessedSubTopicId',
+  startDate: 'startDate',
+  endDate: 'endDate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isDeleted: 'isDeleted',
@@ -201,6 +205,24 @@ export const ClassRoomScalarFieldEnum = {
 } as const
 
 export type ClassRoomScalarFieldEnum = (typeof ClassRoomScalarFieldEnum)[keyof typeof ClassRoomScalarFieldEnum]
+
+
+export const ClassRoomProgressScalarFieldEnum = {
+  id: 'id',
+  classRoomId: 'classRoomId',
+  subTopicId: 'subTopicId',
+  status: 'status',
+  currentTimeStamp: 'currentTimeStamp',
+  lastAccessedAt: 'lastAccessedAt',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt'
+} as const
+
+export type ClassRoomProgressScalarFieldEnum = (typeof ClassRoomProgressScalarFieldEnum)[keyof typeof ClassRoomProgressScalarFieldEnum]
 
 
 export const CourseVersionScalarFieldEnum = {
@@ -268,7 +290,10 @@ export const EnrollmentsScalarFieldEnum = {
   completedQuizzes: 'completedQuizzes',
   LastAccessedSubTopicId: 'LastAccessedSubTopicId',
   tenantId: 'tenantId',
+  courseVersionId: 'courseVersionId',
   classRoomId: 'classRoomId',
+  startDate: 'startDate',
+  endDate: 'endDate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isDeleted: 'isDeleted',

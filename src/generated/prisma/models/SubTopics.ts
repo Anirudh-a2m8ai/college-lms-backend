@@ -242,6 +242,7 @@ export type SubTopicsWhereInput = {
   userProcess?: Prisma.UserProgressListRelationFilter
   quizzes?: Prisma.QuizListRelationFilter
   classSubTopicMap?: Prisma.ClassSubTopicMapListRelationFilter
+  classRoomProgress?: Prisma.ClassRoomProgressListRelationFilter
 }
 
 export type SubTopicsOrderByWithRelationInput = {
@@ -262,6 +263,7 @@ export type SubTopicsOrderByWithRelationInput = {
   userProcess?: Prisma.UserProgressOrderByRelationAggregateInput
   quizzes?: Prisma.QuizOrderByRelationAggregateInput
   classSubTopicMap?: Prisma.ClassSubTopicMapOrderByRelationAggregateInput
+  classRoomProgress?: Prisma.ClassRoomProgressOrderByRelationAggregateInput
 }
 
 export type SubTopicsWhereUniqueInput = Prisma.AtLeast<{
@@ -285,6 +287,7 @@ export type SubTopicsWhereUniqueInput = Prisma.AtLeast<{
   userProcess?: Prisma.UserProgressListRelationFilter
   quizzes?: Prisma.QuizListRelationFilter
   classSubTopicMap?: Prisma.ClassSubTopicMapListRelationFilter
+  classRoomProgress?: Prisma.ClassRoomProgressListRelationFilter
 }, "id">
 
 export type SubTopicsOrderByWithAggregationInput = {
@@ -343,6 +346,7 @@ export type SubTopicsCreateInput = {
   userProcess?: Prisma.UserProgressCreateNestedManyWithoutSubTopicInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutSubTopicInput
   classSubTopicMap?: Prisma.ClassSubTopicMapCreateNestedManyWithoutSubTopicInput
+  classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutSubTopicInput
 }
 
 export type SubTopicsUncheckedCreateInput = {
@@ -363,6 +367,7 @@ export type SubTopicsUncheckedCreateInput = {
   userProcess?: Prisma.UserProgressUncheckedCreateNestedManyWithoutSubTopicInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutSubTopicInput
   classSubTopicMap?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutSubTopicInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutSubTopicInput
 }
 
 export type SubTopicsUpdateInput = {
@@ -383,6 +388,7 @@ export type SubTopicsUpdateInput = {
   userProcess?: Prisma.UserProgressUpdateManyWithoutSubTopicNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutSubTopicNestedInput
   classSubTopicMap?: Prisma.ClassSubTopicMapUpdateManyWithoutSubTopicNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutSubTopicNestedInput
 }
 
 export type SubTopicsUncheckedUpdateInput = {
@@ -403,6 +409,7 @@ export type SubTopicsUncheckedUpdateInput = {
   userProcess?: Prisma.UserProgressUncheckedUpdateManyWithoutSubTopicNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutSubTopicNestedInput
   classSubTopicMap?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutSubTopicNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutSubTopicNestedInput
 }
 
 export type SubTopicsCreateManyInput = {
@@ -521,6 +528,20 @@ export type SubTopicsUpdateOneRequiredWithoutClassSubTopicMapNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SubTopicsUpdateToOneWithWhereWithoutClassSubTopicMapInput, Prisma.SubTopicsUpdateWithoutClassSubTopicMapInput>, Prisma.SubTopicsUncheckedUpdateWithoutClassSubTopicMapInput>
 }
 
+export type SubTopicsCreateNestedOneWithoutClassRoomProgressInput = {
+  create?: Prisma.XOR<Prisma.SubTopicsCreateWithoutClassRoomProgressInput, Prisma.SubTopicsUncheckedCreateWithoutClassRoomProgressInput>
+  connectOrCreate?: Prisma.SubTopicsCreateOrConnectWithoutClassRoomProgressInput
+  connect?: Prisma.SubTopicsWhereUniqueInput
+}
+
+export type SubTopicsUpdateOneRequiredWithoutClassRoomProgressNestedInput = {
+  create?: Prisma.XOR<Prisma.SubTopicsCreateWithoutClassRoomProgressInput, Prisma.SubTopicsUncheckedCreateWithoutClassRoomProgressInput>
+  connectOrCreate?: Prisma.SubTopicsCreateOrConnectWithoutClassRoomProgressInput
+  upsert?: Prisma.SubTopicsUpsertWithoutClassRoomProgressInput
+  connect?: Prisma.SubTopicsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SubTopicsUpdateToOneWithWhereWithoutClassRoomProgressInput, Prisma.SubTopicsUpdateWithoutClassRoomProgressInput>, Prisma.SubTopicsUncheckedUpdateWithoutClassRoomProgressInput>
+}
+
 export type SubTopicsCreateNestedOneWithoutQuizzesInput = {
   create?: Prisma.XOR<Prisma.SubTopicsCreateWithoutQuizzesInput, Prisma.SubTopicsUncheckedCreateWithoutQuizzesInput>
   connectOrCreate?: Prisma.SubTopicsCreateOrConnectWithoutQuizzesInput
@@ -582,6 +603,7 @@ export type SubTopicsCreateWithoutClassSubTopicMapInput = {
   subTopicMap?: Prisma.subTopicMapCreateNestedManyWithoutSubTopicInput
   userProcess?: Prisma.UserProgressCreateNestedManyWithoutSubTopicInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutSubTopicInput
+  classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutSubTopicInput
 }
 
 export type SubTopicsUncheckedCreateWithoutClassSubTopicMapInput = {
@@ -601,6 +623,7 @@ export type SubTopicsUncheckedCreateWithoutClassSubTopicMapInput = {
   subTopicMap?: Prisma.subTopicMapUncheckedCreateNestedManyWithoutSubTopicInput
   userProcess?: Prisma.UserProgressUncheckedCreateNestedManyWithoutSubTopicInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutSubTopicInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutSubTopicInput
 }
 
 export type SubTopicsCreateOrConnectWithoutClassSubTopicMapInput = {
@@ -636,6 +659,7 @@ export type SubTopicsUpdateWithoutClassSubTopicMapInput = {
   subTopicMap?: Prisma.subTopicMapUpdateManyWithoutSubTopicNestedInput
   userProcess?: Prisma.UserProgressUpdateManyWithoutSubTopicNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutSubTopicNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutSubTopicNestedInput
 }
 
 export type SubTopicsUncheckedUpdateWithoutClassSubTopicMapInput = {
@@ -655,6 +679,103 @@ export type SubTopicsUncheckedUpdateWithoutClassSubTopicMapInput = {
   subTopicMap?: Prisma.subTopicMapUncheckedUpdateManyWithoutSubTopicNestedInput
   userProcess?: Prisma.UserProgressUncheckedUpdateManyWithoutSubTopicNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutSubTopicNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutSubTopicNestedInput
+}
+
+export type SubTopicsCreateWithoutClassRoomProgressInput = {
+  id?: string
+  logicalId?: string
+  title: string
+  isMandatory?: boolean
+  content?: string | null
+  videoUrl?: string | null
+  examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  subTopicMap?: Prisma.subTopicMapCreateNestedManyWithoutSubTopicInput
+  userProcess?: Prisma.UserProgressCreateNestedManyWithoutSubTopicInput
+  quizzes?: Prisma.QuizCreateNestedManyWithoutSubTopicInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapCreateNestedManyWithoutSubTopicInput
+}
+
+export type SubTopicsUncheckedCreateWithoutClassRoomProgressInput = {
+  id?: string
+  logicalId?: string
+  title: string
+  isMandatory?: boolean
+  content?: string | null
+  videoUrl?: string | null
+  examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  subTopicMap?: Prisma.subTopicMapUncheckedCreateNestedManyWithoutSubTopicInput
+  userProcess?: Prisma.UserProgressUncheckedCreateNestedManyWithoutSubTopicInput
+  quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutSubTopicInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutSubTopicInput
+}
+
+export type SubTopicsCreateOrConnectWithoutClassRoomProgressInput = {
+  where: Prisma.SubTopicsWhereUniqueInput
+  create: Prisma.XOR<Prisma.SubTopicsCreateWithoutClassRoomProgressInput, Prisma.SubTopicsUncheckedCreateWithoutClassRoomProgressInput>
+}
+
+export type SubTopicsUpsertWithoutClassRoomProgressInput = {
+  update: Prisma.XOR<Prisma.SubTopicsUpdateWithoutClassRoomProgressInput, Prisma.SubTopicsUncheckedUpdateWithoutClassRoomProgressInput>
+  create: Prisma.XOR<Prisma.SubTopicsCreateWithoutClassRoomProgressInput, Prisma.SubTopicsUncheckedCreateWithoutClassRoomProgressInput>
+  where?: Prisma.SubTopicsWhereInput
+}
+
+export type SubTopicsUpdateToOneWithWhereWithoutClassRoomProgressInput = {
+  where?: Prisma.SubTopicsWhereInput
+  data: Prisma.XOR<Prisma.SubTopicsUpdateWithoutClassRoomProgressInput, Prisma.SubTopicsUncheckedUpdateWithoutClassRoomProgressInput>
+}
+
+export type SubTopicsUpdateWithoutClassRoomProgressInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  logicalId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  isMandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subTopicMap?: Prisma.subTopicMapUpdateManyWithoutSubTopicNestedInput
+  userProcess?: Prisma.UserProgressUpdateManyWithoutSubTopicNestedInput
+  quizzes?: Prisma.QuizUpdateManyWithoutSubTopicNestedInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapUpdateManyWithoutSubTopicNestedInput
+}
+
+export type SubTopicsUncheckedUpdateWithoutClassRoomProgressInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  logicalId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  isMandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  examples?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  image?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subTopicMap?: Prisma.subTopicMapUncheckedUpdateManyWithoutSubTopicNestedInput
+  userProcess?: Prisma.UserProgressUncheckedUpdateManyWithoutSubTopicNestedInput
+  quizzes?: Prisma.QuizUncheckedUpdateManyWithoutSubTopicNestedInput
+  classSubTopicMap?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutSubTopicNestedInput
 }
 
 export type SubTopicsCreateWithoutQuizzesInput = {
@@ -674,6 +795,7 @@ export type SubTopicsCreateWithoutQuizzesInput = {
   subTopicMap?: Prisma.subTopicMapCreateNestedManyWithoutSubTopicInput
   userProcess?: Prisma.UserProgressCreateNestedManyWithoutSubTopicInput
   classSubTopicMap?: Prisma.ClassSubTopicMapCreateNestedManyWithoutSubTopicInput
+  classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutSubTopicInput
 }
 
 export type SubTopicsUncheckedCreateWithoutQuizzesInput = {
@@ -693,6 +815,7 @@ export type SubTopicsUncheckedCreateWithoutQuizzesInput = {
   subTopicMap?: Prisma.subTopicMapUncheckedCreateNestedManyWithoutSubTopicInput
   userProcess?: Prisma.UserProgressUncheckedCreateNestedManyWithoutSubTopicInput
   classSubTopicMap?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutSubTopicInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutSubTopicInput
 }
 
 export type SubTopicsCreateOrConnectWithoutQuizzesInput = {
@@ -728,6 +851,7 @@ export type SubTopicsUpdateWithoutQuizzesInput = {
   subTopicMap?: Prisma.subTopicMapUpdateManyWithoutSubTopicNestedInput
   userProcess?: Prisma.UserProgressUpdateManyWithoutSubTopicNestedInput
   classSubTopicMap?: Prisma.ClassSubTopicMapUpdateManyWithoutSubTopicNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutSubTopicNestedInput
 }
 
 export type SubTopicsUncheckedUpdateWithoutQuizzesInput = {
@@ -747,6 +871,7 @@ export type SubTopicsUncheckedUpdateWithoutQuizzesInput = {
   subTopicMap?: Prisma.subTopicMapUncheckedUpdateManyWithoutSubTopicNestedInput
   userProcess?: Prisma.UserProgressUncheckedUpdateManyWithoutSubTopicNestedInput
   classSubTopicMap?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutSubTopicNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutSubTopicNestedInput
 }
 
 export type SubTopicsCreateWithoutSubTopicMapInput = {
@@ -766,6 +891,7 @@ export type SubTopicsCreateWithoutSubTopicMapInput = {
   userProcess?: Prisma.UserProgressCreateNestedManyWithoutSubTopicInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutSubTopicInput
   classSubTopicMap?: Prisma.ClassSubTopicMapCreateNestedManyWithoutSubTopicInput
+  classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutSubTopicInput
 }
 
 export type SubTopicsUncheckedCreateWithoutSubTopicMapInput = {
@@ -785,6 +911,7 @@ export type SubTopicsUncheckedCreateWithoutSubTopicMapInput = {
   userProcess?: Prisma.UserProgressUncheckedCreateNestedManyWithoutSubTopicInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutSubTopicInput
   classSubTopicMap?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutSubTopicInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutSubTopicInput
 }
 
 export type SubTopicsCreateOrConnectWithoutSubTopicMapInput = {
@@ -820,6 +947,7 @@ export type SubTopicsUpdateWithoutSubTopicMapInput = {
   userProcess?: Prisma.UserProgressUpdateManyWithoutSubTopicNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutSubTopicNestedInput
   classSubTopicMap?: Prisma.ClassSubTopicMapUpdateManyWithoutSubTopicNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutSubTopicNestedInput
 }
 
 export type SubTopicsUncheckedUpdateWithoutSubTopicMapInput = {
@@ -839,6 +967,7 @@ export type SubTopicsUncheckedUpdateWithoutSubTopicMapInput = {
   userProcess?: Prisma.UserProgressUncheckedUpdateManyWithoutSubTopicNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutSubTopicNestedInput
   classSubTopicMap?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutSubTopicNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutSubTopicNestedInput
 }
 
 export type SubTopicsCreateWithoutUserProcessInput = {
@@ -858,6 +987,7 @@ export type SubTopicsCreateWithoutUserProcessInput = {
   subTopicMap?: Prisma.subTopicMapCreateNestedManyWithoutSubTopicInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutSubTopicInput
   classSubTopicMap?: Prisma.ClassSubTopicMapCreateNestedManyWithoutSubTopicInput
+  classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutSubTopicInput
 }
 
 export type SubTopicsUncheckedCreateWithoutUserProcessInput = {
@@ -877,6 +1007,7 @@ export type SubTopicsUncheckedCreateWithoutUserProcessInput = {
   subTopicMap?: Prisma.subTopicMapUncheckedCreateNestedManyWithoutSubTopicInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutSubTopicInput
   classSubTopicMap?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutSubTopicInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutSubTopicInput
 }
 
 export type SubTopicsCreateOrConnectWithoutUserProcessInput = {
@@ -912,6 +1043,7 @@ export type SubTopicsUpdateWithoutUserProcessInput = {
   subTopicMap?: Prisma.subTopicMapUpdateManyWithoutSubTopicNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutSubTopicNestedInput
   classSubTopicMap?: Prisma.ClassSubTopicMapUpdateManyWithoutSubTopicNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutSubTopicNestedInput
 }
 
 export type SubTopicsUncheckedUpdateWithoutUserProcessInput = {
@@ -931,6 +1063,7 @@ export type SubTopicsUncheckedUpdateWithoutUserProcessInput = {
   subTopicMap?: Prisma.subTopicMapUncheckedUpdateManyWithoutSubTopicNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutSubTopicNestedInput
   classSubTopicMap?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutSubTopicNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutSubTopicNestedInput
 }
 
 
@@ -943,6 +1076,7 @@ export type SubTopicsCountOutputType = {
   userProcess: number
   quizzes: number
   classSubTopicMap: number
+  classRoomProgress: number
 }
 
 export type SubTopicsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -950,6 +1084,7 @@ export type SubTopicsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensi
   userProcess?: boolean | SubTopicsCountOutputTypeCountUserProcessArgs
   quizzes?: boolean | SubTopicsCountOutputTypeCountQuizzesArgs
   classSubTopicMap?: boolean | SubTopicsCountOutputTypeCountClassSubTopicMapArgs
+  classRoomProgress?: boolean | SubTopicsCountOutputTypeCountClassRoomProgressArgs
 }
 
 /**
@@ -990,6 +1125,13 @@ export type SubTopicsCountOutputTypeCountClassSubTopicMapArgs<ExtArgs extends ru
   where?: Prisma.ClassSubTopicMapWhereInput
 }
 
+/**
+ * SubTopicsCountOutputType without action
+ */
+export type SubTopicsCountOutputTypeCountClassRoomProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ClassRoomProgressWhereInput
+}
+
 
 export type SubTopicsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1009,6 +1151,7 @@ export type SubTopicsSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   userProcess?: boolean | Prisma.SubTopics$userProcessArgs<ExtArgs>
   quizzes?: boolean | Prisma.SubTopics$quizzesArgs<ExtArgs>
   classSubTopicMap?: boolean | Prisma.SubTopics$classSubTopicMapArgs<ExtArgs>
+  classRoomProgress?: boolean | Prisma.SubTopics$classRoomProgressArgs<ExtArgs>
   _count?: boolean | Prisma.SubTopicsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["subTopics"]>
 
@@ -1066,6 +1209,7 @@ export type SubTopicsInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   userProcess?: boolean | Prisma.SubTopics$userProcessArgs<ExtArgs>
   quizzes?: boolean | Prisma.SubTopics$quizzesArgs<ExtArgs>
   classSubTopicMap?: boolean | Prisma.SubTopics$classSubTopicMapArgs<ExtArgs>
+  classRoomProgress?: boolean | Prisma.SubTopics$classRoomProgressArgs<ExtArgs>
   _count?: boolean | Prisma.SubTopicsCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SubTopicsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1078,6 +1222,7 @@ export type $SubTopicsPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     userProcess: Prisma.$UserProgressPayload<ExtArgs>[]
     quizzes: Prisma.$QuizPayload<ExtArgs>[]
     classSubTopicMap: Prisma.$ClassSubTopicMapPayload<ExtArgs>[]
+    classRoomProgress: Prisma.$ClassRoomProgressPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1491,6 +1636,7 @@ export interface Prisma__SubTopicsClient<T, Null = never, ExtArgs extends runtim
   userProcess<T extends Prisma.SubTopics$userProcessArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SubTopics$userProcessArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   quizzes<T extends Prisma.SubTopics$quizzesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SubTopics$quizzesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuizPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   classSubTopicMap<T extends Prisma.SubTopics$classSubTopicMapArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SubTopics$classSubTopicMapArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassSubTopicMapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  classRoomProgress<T extends Prisma.SubTopics$classRoomProgressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SubTopics$classRoomProgressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassRoomProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2019,6 +2165,30 @@ export type SubTopics$classSubTopicMapArgs<ExtArgs extends runtime.Types.Extensi
   take?: number
   skip?: number
   distinct?: Prisma.ClassSubTopicMapScalarFieldEnum | Prisma.ClassSubTopicMapScalarFieldEnum[]
+}
+
+/**
+ * SubTopics.classRoomProgress
+ */
+export type SubTopics$classRoomProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ClassRoomProgress
+   */
+  select?: Prisma.ClassRoomProgressSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ClassRoomProgress
+   */
+  omit?: Prisma.ClassRoomProgressOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClassRoomProgressInclude<ExtArgs> | null
+  where?: Prisma.ClassRoomProgressWhereInput
+  orderBy?: Prisma.ClassRoomProgressOrderByWithRelationInput | Prisma.ClassRoomProgressOrderByWithRelationInput[]
+  cursor?: Prisma.ClassRoomProgressWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ClassRoomProgressScalarFieldEnum | Prisma.ClassRoomProgressScalarFieldEnum[]
 }
 
 /**

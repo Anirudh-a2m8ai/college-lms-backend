@@ -653,10 +653,6 @@ export type UserProgressUncheckedUpdateManyWithoutSubTopicNestedInput = {
   deleteMany?: Prisma.UserProgressScalarWhereInput | Prisma.UserProgressScalarWhereInput[]
 }
 
-export type EnumProcessStatusFieldUpdateOperationsInput = {
-  set?: $Enums.ProcessStatus
-}
-
 export type UserProgressCreateNestedManyWithoutUserInput = {
   create?: Prisma.XOR<Prisma.UserProgressCreateWithoutUserInput, Prisma.UserProgressUncheckedCreateWithoutUserInput> | Prisma.UserProgressCreateWithoutUserInput[] | Prisma.UserProgressUncheckedCreateWithoutUserInput[]
   connectOrCreate?: Prisma.UserProgressCreateOrConnectWithoutUserInput | Prisma.UserProgressCreateOrConnectWithoutUserInput[]

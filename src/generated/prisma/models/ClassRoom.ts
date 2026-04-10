@@ -32,6 +32,9 @@ export type ClassRoomMinAggregateOutputType = {
   userId: string | null
   sourceCourseVersionId: string | null
   tenantId: string | null
+  lastAccessedSubTopicId: string | null
+  startDate: Date | null
+  endDate: Date | null
   createdAt: Date | null
   updatedAt: Date | null
   isDeleted: boolean | null
@@ -47,6 +50,9 @@ export type ClassRoomMaxAggregateOutputType = {
   userId: string | null
   sourceCourseVersionId: string | null
   tenantId: string | null
+  lastAccessedSubTopicId: string | null
+  startDate: Date | null
+  endDate: Date | null
   createdAt: Date | null
   updatedAt: Date | null
   isDeleted: boolean | null
@@ -62,6 +68,9 @@ export type ClassRoomCountAggregateOutputType = {
   userId: number
   sourceCourseVersionId: number
   tenantId: number
+  lastAccessedSubTopicId: number
+  startDate: number
+  endDate: number
   createdAt: number
   updatedAt: number
   isDeleted: number
@@ -79,6 +88,9 @@ export type ClassRoomMinAggregateInputType = {
   userId?: true
   sourceCourseVersionId?: true
   tenantId?: true
+  lastAccessedSubTopicId?: true
+  startDate?: true
+  endDate?: true
   createdAt?: true
   updatedAt?: true
   isDeleted?: true
@@ -94,6 +106,9 @@ export type ClassRoomMaxAggregateInputType = {
   userId?: true
   sourceCourseVersionId?: true
   tenantId?: true
+  lastAccessedSubTopicId?: true
+  startDate?: true
+  endDate?: true
   createdAt?: true
   updatedAt?: true
   isDeleted?: true
@@ -109,6 +124,9 @@ export type ClassRoomCountAggregateInputType = {
   userId?: true
   sourceCourseVersionId?: true
   tenantId?: true
+  lastAccessedSubTopicId?: true
+  startDate?: true
+  endDate?: true
   createdAt?: true
   updatedAt?: true
   isDeleted?: true
@@ -197,6 +215,9 @@ export type ClassRoomGroupByOutputType = {
   userId: string
   sourceCourseVersionId: string
   tenantId: string
+  lastAccessedSubTopicId: string | null
+  startDate: Date
+  endDate: Date
   createdAt: Date
   updatedAt: Date
   isDeleted: boolean
@@ -233,6 +254,9 @@ export type ClassRoomWhereInput = {
   userId?: Prisma.StringFilter<"ClassRoom"> | string
   sourceCourseVersionId?: Prisma.StringFilter<"ClassRoom"> | string
   tenantId?: Prisma.StringFilter<"ClassRoom"> | string
+  lastAccessedSubTopicId?: Prisma.StringNullableFilter<"ClassRoom"> | string | null
+  startDate?: Prisma.DateTimeFilter<"ClassRoom"> | Date | string
+  endDate?: Prisma.DateTimeFilter<"ClassRoom"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"ClassRoom"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ClassRoom"> | Date | string
   isDeleted?: Prisma.BoolFilter<"ClassRoom"> | boolean
@@ -249,6 +273,7 @@ export type ClassRoomWhereInput = {
   classTopic?: Prisma.ClassTopicMapListRelationFilter
   classSubTopic?: Prisma.ClassSubTopicMapListRelationFilter
   quizzes?: Prisma.QuizListRelationFilter
+  classRoomProgress?: Prisma.ClassRoomProgressListRelationFilter
 }
 
 export type ClassRoomOrderByWithRelationInput = {
@@ -259,6 +284,9 @@ export type ClassRoomOrderByWithRelationInput = {
   userId?: Prisma.SortOrder
   sourceCourseVersionId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
+  lastAccessedSubTopicId?: Prisma.SortOrderInput | Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -275,6 +303,7 @@ export type ClassRoomOrderByWithRelationInput = {
   classTopic?: Prisma.ClassTopicMapOrderByRelationAggregateInput
   classSubTopic?: Prisma.ClassSubTopicMapOrderByRelationAggregateInput
   quizzes?: Prisma.QuizOrderByRelationAggregateInput
+  classRoomProgress?: Prisma.ClassRoomProgressOrderByRelationAggregateInput
 }
 
 export type ClassRoomWhereUniqueInput = Prisma.AtLeast<{
@@ -288,6 +317,9 @@ export type ClassRoomWhereUniqueInput = Prisma.AtLeast<{
   userId?: Prisma.StringFilter<"ClassRoom"> | string
   sourceCourseVersionId?: Prisma.StringFilter<"ClassRoom"> | string
   tenantId?: Prisma.StringFilter<"ClassRoom"> | string
+  lastAccessedSubTopicId?: Prisma.StringNullableFilter<"ClassRoom"> | string | null
+  startDate?: Prisma.DateTimeFilter<"ClassRoom"> | Date | string
+  endDate?: Prisma.DateTimeFilter<"ClassRoom"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"ClassRoom"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ClassRoom"> | Date | string
   isDeleted?: Prisma.BoolFilter<"ClassRoom"> | boolean
@@ -304,6 +336,7 @@ export type ClassRoomWhereUniqueInput = Prisma.AtLeast<{
   classTopic?: Prisma.ClassTopicMapListRelationFilter
   classSubTopic?: Prisma.ClassSubTopicMapListRelationFilter
   quizzes?: Prisma.QuizListRelationFilter
+  classRoomProgress?: Prisma.ClassRoomProgressListRelationFilter
 }, "id">
 
 export type ClassRoomOrderByWithAggregationInput = {
@@ -314,6 +347,9 @@ export type ClassRoomOrderByWithAggregationInput = {
   userId?: Prisma.SortOrder
   sourceCourseVersionId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
+  lastAccessedSubTopicId?: Prisma.SortOrderInput | Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -335,6 +371,9 @@ export type ClassRoomScalarWhereWithAggregatesInput = {
   userId?: Prisma.StringWithAggregatesFilter<"ClassRoom"> | string
   sourceCourseVersionId?: Prisma.StringWithAggregatesFilter<"ClassRoom"> | string
   tenantId?: Prisma.StringWithAggregatesFilter<"ClassRoom"> | string
+  lastAccessedSubTopicId?: Prisma.StringNullableWithAggregatesFilter<"ClassRoom"> | string | null
+  startDate?: Prisma.DateTimeWithAggregatesFilter<"ClassRoom"> | Date | string
+  endDate?: Prisma.DateTimeWithAggregatesFilter<"ClassRoom"> | Date | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ClassRoom"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ClassRoom"> | Date | string
   isDeleted?: Prisma.BoolWithAggregatesFilter<"ClassRoom"> | boolean
@@ -346,6 +385,9 @@ export type ClassRoomCreateInput = {
   id?: string
   name: string
   status: $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -362,6 +404,7 @@ export type ClassRoomCreateInput = {
   classTopic?: Prisma.ClassTopicMapCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateInput = {
@@ -372,6 +415,9 @@ export type ClassRoomUncheckedCreateInput = {
   userId: string
   sourceCourseVersionId: string
   tenantId: string
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -384,12 +430,16 @@ export type ClassRoomUncheckedCreateInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumClassRoomStatusFieldUpdateOperationsInput | $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -406,6 +456,7 @@ export type ClassRoomUpdateInput = {
   classTopic?: Prisma.ClassTopicMapUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateInput = {
@@ -416,6 +467,9 @@ export type ClassRoomUncheckedUpdateInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceCourseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -428,6 +482,7 @@ export type ClassRoomUncheckedUpdateInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomCreateManyInput = {
@@ -438,6 +493,9 @@ export type ClassRoomCreateManyInput = {
   userId: string
   sourceCourseVersionId: string
   tenantId: string
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -449,6 +507,9 @@ export type ClassRoomUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumClassRoomStatusFieldUpdateOperationsInput | $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -464,6 +525,9 @@ export type ClassRoomUncheckedUpdateManyInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceCourseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -484,6 +548,9 @@ export type ClassRoomCountOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   sourceCourseVersionId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
+  lastAccessedSubTopicId?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -499,6 +566,9 @@ export type ClassRoomMaxOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   sourceCourseVersionId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
+  lastAccessedSubTopicId?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -514,6 +584,9 @@ export type ClassRoomMinOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   sourceCourseVersionId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
+  lastAccessedSubTopicId?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -610,6 +683,20 @@ export type EnumClassRoomStatusFieldUpdateOperationsInput = {
   set?: $Enums.ClassRoomStatus
 }
 
+export type ClassRoomCreateNestedOneWithoutClassRoomProgressInput = {
+  create?: Prisma.XOR<Prisma.ClassRoomCreateWithoutClassRoomProgressInput, Prisma.ClassRoomUncheckedCreateWithoutClassRoomProgressInput>
+  connectOrCreate?: Prisma.ClassRoomCreateOrConnectWithoutClassRoomProgressInput
+  connect?: Prisma.ClassRoomWhereUniqueInput
+}
+
+export type ClassRoomUpdateOneRequiredWithoutClassRoomProgressNestedInput = {
+  create?: Prisma.XOR<Prisma.ClassRoomCreateWithoutClassRoomProgressInput, Prisma.ClassRoomUncheckedCreateWithoutClassRoomProgressInput>
+  connectOrCreate?: Prisma.ClassRoomCreateOrConnectWithoutClassRoomProgressInput
+  upsert?: Prisma.ClassRoomUpsertWithoutClassRoomProgressInput
+  connect?: Prisma.ClassRoomWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ClassRoomUpdateToOneWithWhereWithoutClassRoomProgressInput, Prisma.ClassRoomUpdateWithoutClassRoomProgressInput>, Prisma.ClassRoomUncheckedUpdateWithoutClassRoomProgressInput>
+}
+
 export type ClassRoomCreateNestedManyWithoutSourceCourseVersionInput = {
   create?: Prisma.XOR<Prisma.ClassRoomCreateWithoutSourceCourseVersionInput, Prisma.ClassRoomUncheckedCreateWithoutSourceCourseVersionInput> | Prisma.ClassRoomCreateWithoutSourceCourseVersionInput[] | Prisma.ClassRoomUncheckedCreateWithoutSourceCourseVersionInput[]
   connectOrCreate?: Prisma.ClassRoomCreateOrConnectWithoutSourceCourseVersionInput | Prisma.ClassRoomCreateOrConnectWithoutSourceCourseVersionInput[]
@@ -700,10 +787,12 @@ export type ClassRoomCreateNestedOneWithoutEnrollmentsInput = {
   connect?: Prisma.ClassRoomWhereUniqueInput
 }
 
-export type ClassRoomUpdateOneRequiredWithoutEnrollmentsNestedInput = {
+export type ClassRoomUpdateOneWithoutEnrollmentsNestedInput = {
   create?: Prisma.XOR<Prisma.ClassRoomCreateWithoutEnrollmentsInput, Prisma.ClassRoomUncheckedCreateWithoutEnrollmentsInput>
   connectOrCreate?: Prisma.ClassRoomCreateOrConnectWithoutEnrollmentsInput
   upsert?: Prisma.ClassRoomUpsertWithoutEnrollmentsInput
+  disconnect?: Prisma.ClassRoomWhereInput | boolean
+  delete?: Prisma.ClassRoomWhereInput | boolean
   connect?: Prisma.ClassRoomWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ClassRoomUpdateToOneWithWhereWithoutEnrollmentsInput, Prisma.ClassRoomUpdateWithoutEnrollmentsInput>, Prisma.ClassRoomUncheckedUpdateWithoutEnrollmentsInput>
 }
@@ -812,6 +901,9 @@ export type ClassRoomCreateWithoutClassModuleInput = {
   id?: string
   name: string
   status: $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -827,6 +919,7 @@ export type ClassRoomCreateWithoutClassModuleInput = {
   classTopic?: Prisma.ClassTopicMapCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutClassModuleInput = {
@@ -837,6 +930,9 @@ export type ClassRoomUncheckedCreateWithoutClassModuleInput = {
   userId: string
   sourceCourseVersionId: string
   tenantId: string
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -848,6 +944,7 @@ export type ClassRoomUncheckedCreateWithoutClassModuleInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutClassModuleInput = {
@@ -870,6 +967,9 @@ export type ClassRoomUpdateWithoutClassModuleInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumClassRoomStatusFieldUpdateOperationsInput | $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -885,6 +985,7 @@ export type ClassRoomUpdateWithoutClassModuleInput = {
   classTopic?: Prisma.ClassTopicMapUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutClassModuleInput = {
@@ -895,6 +996,9 @@ export type ClassRoomUncheckedUpdateWithoutClassModuleInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceCourseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -906,12 +1010,16 @@ export type ClassRoomUncheckedUpdateWithoutClassModuleInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomCreateWithoutClassChapterInput = {
   id?: string
   name: string
   status: $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -927,6 +1035,7 @@ export type ClassRoomCreateWithoutClassChapterInput = {
   classTopic?: Prisma.ClassTopicMapCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutClassChapterInput = {
@@ -937,6 +1046,9 @@ export type ClassRoomUncheckedCreateWithoutClassChapterInput = {
   userId: string
   sourceCourseVersionId: string
   tenantId: string
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -948,6 +1060,7 @@ export type ClassRoomUncheckedCreateWithoutClassChapterInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutClassChapterInput = {
@@ -970,6 +1083,9 @@ export type ClassRoomUpdateWithoutClassChapterInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumClassRoomStatusFieldUpdateOperationsInput | $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -985,6 +1101,7 @@ export type ClassRoomUpdateWithoutClassChapterInput = {
   classTopic?: Prisma.ClassTopicMapUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutClassChapterInput = {
@@ -995,6 +1112,9 @@ export type ClassRoomUncheckedUpdateWithoutClassChapterInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceCourseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1006,12 +1126,16 @@ export type ClassRoomUncheckedUpdateWithoutClassChapterInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomCreateWithoutClassLessonInput = {
   id?: string
   name: string
   status: $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1027,6 +1151,7 @@ export type ClassRoomCreateWithoutClassLessonInput = {
   classTopic?: Prisma.ClassTopicMapCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutClassLessonInput = {
@@ -1037,6 +1162,9 @@ export type ClassRoomUncheckedCreateWithoutClassLessonInput = {
   userId: string
   sourceCourseVersionId: string
   tenantId: string
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1048,6 +1176,7 @@ export type ClassRoomUncheckedCreateWithoutClassLessonInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutClassLessonInput = {
@@ -1070,6 +1199,9 @@ export type ClassRoomUpdateWithoutClassLessonInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumClassRoomStatusFieldUpdateOperationsInput | $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1085,6 +1217,7 @@ export type ClassRoomUpdateWithoutClassLessonInput = {
   classTopic?: Prisma.ClassTopicMapUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutClassLessonInput = {
@@ -1095,6 +1228,9 @@ export type ClassRoomUncheckedUpdateWithoutClassLessonInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceCourseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1106,12 +1242,16 @@ export type ClassRoomUncheckedUpdateWithoutClassLessonInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomCreateWithoutClassTopicInput = {
   id?: string
   name: string
   status: $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1127,6 +1267,7 @@ export type ClassRoomCreateWithoutClassTopicInput = {
   classLesson?: Prisma.ClassLessonMapCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutClassTopicInput = {
@@ -1137,6 +1278,9 @@ export type ClassRoomUncheckedCreateWithoutClassTopicInput = {
   userId: string
   sourceCourseVersionId: string
   tenantId: string
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1148,6 +1292,7 @@ export type ClassRoomUncheckedCreateWithoutClassTopicInput = {
   classLesson?: Prisma.ClassLessonMapUncheckedCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutClassTopicInput = {
@@ -1170,6 +1315,9 @@ export type ClassRoomUpdateWithoutClassTopicInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumClassRoomStatusFieldUpdateOperationsInput | $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1185,6 +1333,7 @@ export type ClassRoomUpdateWithoutClassTopicInput = {
   classLesson?: Prisma.ClassLessonMapUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutClassTopicInput = {
@@ -1195,6 +1344,9 @@ export type ClassRoomUncheckedUpdateWithoutClassTopicInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceCourseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1206,12 +1358,16 @@ export type ClassRoomUncheckedUpdateWithoutClassTopicInput = {
   classLesson?: Prisma.ClassLessonMapUncheckedUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomCreateWithoutClassSubTopicInput = {
   id?: string
   name: string
   status: $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1227,6 +1383,7 @@ export type ClassRoomCreateWithoutClassSubTopicInput = {
   classLesson?: Prisma.ClassLessonMapCreateNestedManyWithoutClassRoomInput
   classTopic?: Prisma.ClassTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutClassSubTopicInput = {
@@ -1237,6 +1394,9 @@ export type ClassRoomUncheckedCreateWithoutClassSubTopicInput = {
   userId: string
   sourceCourseVersionId: string
   tenantId: string
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1248,6 +1408,7 @@ export type ClassRoomUncheckedCreateWithoutClassSubTopicInput = {
   classLesson?: Prisma.ClassLessonMapUncheckedCreateNestedManyWithoutClassRoomInput
   classTopic?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutClassSubTopicInput = {
@@ -1270,6 +1431,9 @@ export type ClassRoomUpdateWithoutClassSubTopicInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumClassRoomStatusFieldUpdateOperationsInput | $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1285,6 +1449,7 @@ export type ClassRoomUpdateWithoutClassSubTopicInput = {
   classLesson?: Prisma.ClassLessonMapUpdateManyWithoutClassRoomNestedInput
   classTopic?: Prisma.ClassTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutClassSubTopicInput = {
@@ -1295,6 +1460,9 @@ export type ClassRoomUncheckedUpdateWithoutClassSubTopicInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceCourseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1306,12 +1474,132 @@ export type ClassRoomUncheckedUpdateWithoutClassSubTopicInput = {
   classLesson?: Prisma.ClassLessonMapUncheckedUpdateManyWithoutClassRoomNestedInput
   classTopic?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
+}
+
+export type ClassRoomCreateWithoutClassRoomProgressInput = {
+  id?: string
+  name: string
+  status: $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  course: Prisma.CourseCreateNestedOneWithoutClassRoomsInput
+  user: Prisma.UserCreateNestedOneWithoutClassRoomsInput
+  sourceCourseVersion: Prisma.CourseVersionCreateNestedOneWithoutClassRoomsInput
+  tenant: Prisma.TenantCreateNestedOneWithoutClassRoomsInput
+  enrollments?: Prisma.EnrollmentsCreateNestedManyWithoutClassRoomInput
+  classModule?: Prisma.ClassModuleMapCreateNestedManyWithoutClassRoomInput
+  classChapter?: Prisma.ClassChapterMapCreateNestedManyWithoutClassRoomInput
+  classLesson?: Prisma.ClassLessonMapCreateNestedManyWithoutClassRoomInput
+  classTopic?: Prisma.ClassTopicMapCreateNestedManyWithoutClassRoomInput
+  classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
+  quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
+}
+
+export type ClassRoomUncheckedCreateWithoutClassRoomProgressInput = {
+  id?: string
+  name: string
+  status: $Enums.ClassRoomStatus
+  courseId: string
+  userId: string
+  sourceCourseVersionId: string
+  tenantId: string
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  enrollments?: Prisma.EnrollmentsUncheckedCreateNestedManyWithoutClassRoomInput
+  classModule?: Prisma.ClassModuleMapUncheckedCreateNestedManyWithoutClassRoomInput
+  classChapter?: Prisma.ClassChapterMapUncheckedCreateNestedManyWithoutClassRoomInput
+  classLesson?: Prisma.ClassLessonMapUncheckedCreateNestedManyWithoutClassRoomInput
+  classTopic?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
+  classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
+  quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
+}
+
+export type ClassRoomCreateOrConnectWithoutClassRoomProgressInput = {
+  where: Prisma.ClassRoomWhereUniqueInput
+  create: Prisma.XOR<Prisma.ClassRoomCreateWithoutClassRoomProgressInput, Prisma.ClassRoomUncheckedCreateWithoutClassRoomProgressInput>
+}
+
+export type ClassRoomUpsertWithoutClassRoomProgressInput = {
+  update: Prisma.XOR<Prisma.ClassRoomUpdateWithoutClassRoomProgressInput, Prisma.ClassRoomUncheckedUpdateWithoutClassRoomProgressInput>
+  create: Prisma.XOR<Prisma.ClassRoomCreateWithoutClassRoomProgressInput, Prisma.ClassRoomUncheckedCreateWithoutClassRoomProgressInput>
+  where?: Prisma.ClassRoomWhereInput
+}
+
+export type ClassRoomUpdateToOneWithWhereWithoutClassRoomProgressInput = {
+  where?: Prisma.ClassRoomWhereInput
+  data: Prisma.XOR<Prisma.ClassRoomUpdateWithoutClassRoomProgressInput, Prisma.ClassRoomUncheckedUpdateWithoutClassRoomProgressInput>
+}
+
+export type ClassRoomUpdateWithoutClassRoomProgressInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumClassRoomStatusFieldUpdateOperationsInput | $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  course?: Prisma.CourseUpdateOneRequiredWithoutClassRoomsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutClassRoomsNestedInput
+  sourceCourseVersion?: Prisma.CourseVersionUpdateOneRequiredWithoutClassRoomsNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutClassRoomsNestedInput
+  enrollments?: Prisma.EnrollmentsUpdateManyWithoutClassRoomNestedInput
+  classModule?: Prisma.ClassModuleMapUpdateManyWithoutClassRoomNestedInput
+  classChapter?: Prisma.ClassChapterMapUpdateManyWithoutClassRoomNestedInput
+  classLesson?: Prisma.ClassLessonMapUpdateManyWithoutClassRoomNestedInput
+  classTopic?: Prisma.ClassTopicMapUpdateManyWithoutClassRoomNestedInput
+  classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
+  quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
+}
+
+export type ClassRoomUncheckedUpdateWithoutClassRoomProgressInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumClassRoomStatusFieldUpdateOperationsInput | $Enums.ClassRoomStatus
+  courseId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceCourseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollments?: Prisma.EnrollmentsUncheckedUpdateManyWithoutClassRoomNestedInput
+  classModule?: Prisma.ClassModuleMapUncheckedUpdateManyWithoutClassRoomNestedInput
+  classChapter?: Prisma.ClassChapterMapUncheckedUpdateManyWithoutClassRoomNestedInput
+  classLesson?: Prisma.ClassLessonMapUncheckedUpdateManyWithoutClassRoomNestedInput
+  classTopic?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
+  classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
+  quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomCreateWithoutSourceCourseVersionInput = {
   id?: string
   name: string
   status: $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1327,6 +1615,7 @@ export type ClassRoomCreateWithoutSourceCourseVersionInput = {
   classTopic?: Prisma.ClassTopicMapCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutSourceCourseVersionInput = {
@@ -1336,6 +1625,9 @@ export type ClassRoomUncheckedCreateWithoutSourceCourseVersionInput = {
   courseId: string
   userId: string
   tenantId: string
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1348,6 +1640,7 @@ export type ClassRoomUncheckedCreateWithoutSourceCourseVersionInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutSourceCourseVersionInput = {
@@ -1387,6 +1680,9 @@ export type ClassRoomScalarWhereInput = {
   userId?: Prisma.StringFilter<"ClassRoom"> | string
   sourceCourseVersionId?: Prisma.StringFilter<"ClassRoom"> | string
   tenantId?: Prisma.StringFilter<"ClassRoom"> | string
+  lastAccessedSubTopicId?: Prisma.StringNullableFilter<"ClassRoom"> | string | null
+  startDate?: Prisma.DateTimeFilter<"ClassRoom"> | Date | string
+  endDate?: Prisma.DateTimeFilter<"ClassRoom"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"ClassRoom"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ClassRoom"> | Date | string
   isDeleted?: Prisma.BoolFilter<"ClassRoom"> | boolean
@@ -1398,6 +1694,9 @@ export type ClassRoomCreateWithoutCourseInput = {
   id?: string
   name: string
   status: $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1413,6 +1712,7 @@ export type ClassRoomCreateWithoutCourseInput = {
   classTopic?: Prisma.ClassTopicMapCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutCourseInput = {
@@ -1422,6 +1722,9 @@ export type ClassRoomUncheckedCreateWithoutCourseInput = {
   userId: string
   sourceCourseVersionId: string
   tenantId: string
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1434,6 +1737,7 @@ export type ClassRoomUncheckedCreateWithoutCourseInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutCourseInput = {
@@ -1466,6 +1770,9 @@ export type ClassRoomCreateWithoutEnrollmentsInput = {
   id?: string
   name: string
   status: $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1481,6 +1788,7 @@ export type ClassRoomCreateWithoutEnrollmentsInput = {
   classTopic?: Prisma.ClassTopicMapCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutEnrollmentsInput = {
@@ -1491,6 +1799,9 @@ export type ClassRoomUncheckedCreateWithoutEnrollmentsInput = {
   userId: string
   sourceCourseVersionId: string
   tenantId: string
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1502,6 +1813,7 @@ export type ClassRoomUncheckedCreateWithoutEnrollmentsInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutEnrollmentsInput = {
@@ -1524,6 +1836,9 @@ export type ClassRoomUpdateWithoutEnrollmentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumClassRoomStatusFieldUpdateOperationsInput | $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1539,6 +1854,7 @@ export type ClassRoomUpdateWithoutEnrollmentsInput = {
   classTopic?: Prisma.ClassTopicMapUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutEnrollmentsInput = {
@@ -1549,6 +1865,9 @@ export type ClassRoomUncheckedUpdateWithoutEnrollmentsInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceCourseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1560,12 +1879,16 @@ export type ClassRoomUncheckedUpdateWithoutEnrollmentsInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomCreateWithoutQuizzesInput = {
   id?: string
   name: string
   status: $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1581,6 +1904,7 @@ export type ClassRoomCreateWithoutQuizzesInput = {
   classLesson?: Prisma.ClassLessonMapCreateNestedManyWithoutClassRoomInput
   classTopic?: Prisma.ClassTopicMapCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutQuizzesInput = {
@@ -1591,6 +1915,9 @@ export type ClassRoomUncheckedCreateWithoutQuizzesInput = {
   userId: string
   sourceCourseVersionId: string
   tenantId: string
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1602,6 +1929,7 @@ export type ClassRoomUncheckedCreateWithoutQuizzesInput = {
   classLesson?: Prisma.ClassLessonMapUncheckedCreateNestedManyWithoutClassRoomInput
   classTopic?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutQuizzesInput = {
@@ -1624,6 +1952,9 @@ export type ClassRoomUpdateWithoutQuizzesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumClassRoomStatusFieldUpdateOperationsInput | $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1639,6 +1970,7 @@ export type ClassRoomUpdateWithoutQuizzesInput = {
   classLesson?: Prisma.ClassLessonMapUpdateManyWithoutClassRoomNestedInput
   classTopic?: Prisma.ClassTopicMapUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutQuizzesInput = {
@@ -1649,6 +1981,9 @@ export type ClassRoomUncheckedUpdateWithoutQuizzesInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceCourseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1660,12 +1995,16 @@ export type ClassRoomUncheckedUpdateWithoutQuizzesInput = {
   classLesson?: Prisma.ClassLessonMapUncheckedUpdateManyWithoutClassRoomNestedInput
   classTopic?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomCreateWithoutTenantInput = {
   id?: string
   name: string
   status: $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1681,6 +2020,7 @@ export type ClassRoomCreateWithoutTenantInput = {
   classTopic?: Prisma.ClassTopicMapCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutTenantInput = {
@@ -1690,6 +2030,9 @@ export type ClassRoomUncheckedCreateWithoutTenantInput = {
   courseId: string
   userId: string
   sourceCourseVersionId: string
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1702,6 +2045,7 @@ export type ClassRoomUncheckedCreateWithoutTenantInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutTenantInput = {
@@ -1734,6 +2078,9 @@ export type ClassRoomCreateWithoutUserInput = {
   id?: string
   name: string
   status: $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1749,6 +2096,7 @@ export type ClassRoomCreateWithoutUserInput = {
   classTopic?: Prisma.ClassTopicMapCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutUserInput = {
@@ -1758,6 +2106,9 @@ export type ClassRoomUncheckedCreateWithoutUserInput = {
   courseId: string
   sourceCourseVersionId: string
   tenantId: string
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1770,6 +2121,7 @@ export type ClassRoomUncheckedCreateWithoutUserInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutUserInput = {
@@ -1805,6 +2157,9 @@ export type ClassRoomCreateManySourceCourseVersionInput = {
   courseId: string
   userId: string
   tenantId: string
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1816,6 +2171,9 @@ export type ClassRoomUpdateWithoutSourceCourseVersionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumClassRoomStatusFieldUpdateOperationsInput | $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1831,6 +2189,7 @@ export type ClassRoomUpdateWithoutSourceCourseVersionInput = {
   classTopic?: Prisma.ClassTopicMapUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutSourceCourseVersionInput = {
@@ -1840,6 +2199,9 @@ export type ClassRoomUncheckedUpdateWithoutSourceCourseVersionInput = {
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1852,6 +2214,7 @@ export type ClassRoomUncheckedUpdateWithoutSourceCourseVersionInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateManyWithoutSourceCourseVersionInput = {
@@ -1861,6 +2224,9 @@ export type ClassRoomUncheckedUpdateManyWithoutSourceCourseVersionInput = {
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1875,6 +2241,9 @@ export type ClassRoomCreateManyCourseInput = {
   userId: string
   sourceCourseVersionId: string
   tenantId: string
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1886,6 +2255,9 @@ export type ClassRoomUpdateWithoutCourseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumClassRoomStatusFieldUpdateOperationsInput | $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1901,6 +2273,7 @@ export type ClassRoomUpdateWithoutCourseInput = {
   classTopic?: Prisma.ClassTopicMapUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutCourseInput = {
@@ -1910,6 +2283,9 @@ export type ClassRoomUncheckedUpdateWithoutCourseInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceCourseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1922,6 +2298,7 @@ export type ClassRoomUncheckedUpdateWithoutCourseInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateManyWithoutCourseInput = {
@@ -1931,6 +2308,9 @@ export type ClassRoomUncheckedUpdateManyWithoutCourseInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceCourseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1945,6 +2325,9 @@ export type ClassRoomCreateManyTenantInput = {
   courseId: string
   userId: string
   sourceCourseVersionId: string
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1956,6 +2339,9 @@ export type ClassRoomUpdateWithoutTenantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumClassRoomStatusFieldUpdateOperationsInput | $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1971,6 +2357,7 @@ export type ClassRoomUpdateWithoutTenantInput = {
   classTopic?: Prisma.ClassTopicMapUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutTenantInput = {
@@ -1980,6 +2367,9 @@ export type ClassRoomUncheckedUpdateWithoutTenantInput = {
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceCourseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1992,6 +2382,7 @@ export type ClassRoomUncheckedUpdateWithoutTenantInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateManyWithoutTenantInput = {
@@ -2001,6 +2392,9 @@ export type ClassRoomUncheckedUpdateManyWithoutTenantInput = {
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceCourseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2015,6 +2409,9 @@ export type ClassRoomCreateManyUserInput = {
   courseId: string
   sourceCourseVersionId: string
   tenantId: string
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -2026,6 +2423,9 @@ export type ClassRoomUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumClassRoomStatusFieldUpdateOperationsInput | $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2041,6 +2441,7 @@ export type ClassRoomUpdateWithoutUserInput = {
   classTopic?: Prisma.ClassTopicMapUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutUserInput = {
@@ -2050,6 +2451,9 @@ export type ClassRoomUncheckedUpdateWithoutUserInput = {
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceCourseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2062,6 +2466,7 @@ export type ClassRoomUncheckedUpdateWithoutUserInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateManyWithoutUserInput = {
@@ -2071,6 +2476,9 @@ export type ClassRoomUncheckedUpdateManyWithoutUserInput = {
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceCourseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2091,6 +2499,7 @@ export type ClassRoomCountOutputType = {
   classTopic: number
   classSubTopic: number
   quizzes: number
+  classRoomProgress: number
 }
 
 export type ClassRoomCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2101,6 +2510,7 @@ export type ClassRoomCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensi
   classTopic?: boolean | ClassRoomCountOutputTypeCountClassTopicArgs
   classSubTopic?: boolean | ClassRoomCountOutputTypeCountClassSubTopicArgs
   quizzes?: boolean | ClassRoomCountOutputTypeCountQuizzesArgs
+  classRoomProgress?: boolean | ClassRoomCountOutputTypeCountClassRoomProgressArgs
 }
 
 /**
@@ -2162,6 +2572,13 @@ export type ClassRoomCountOutputTypeCountQuizzesArgs<ExtArgs extends runtime.Typ
   where?: Prisma.QuizWhereInput
 }
 
+/**
+ * ClassRoomCountOutputType without action
+ */
+export type ClassRoomCountOutputTypeCountClassRoomProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ClassRoomProgressWhereInput
+}
+
 
 export type ClassRoomSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2171,6 +2588,9 @@ export type ClassRoomSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   userId?: boolean
   sourceCourseVersionId?: boolean
   tenantId?: boolean
+  lastAccessedSubTopicId?: boolean
+  startDate?: boolean
+  endDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isDeleted?: boolean
@@ -2187,6 +2607,7 @@ export type ClassRoomSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   classTopic?: boolean | Prisma.ClassRoom$classTopicArgs<ExtArgs>
   classSubTopic?: boolean | Prisma.ClassRoom$classSubTopicArgs<ExtArgs>
   quizzes?: boolean | Prisma.ClassRoom$quizzesArgs<ExtArgs>
+  classRoomProgress?: boolean | Prisma.ClassRoom$classRoomProgressArgs<ExtArgs>
   _count?: boolean | Prisma.ClassRoomCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["classRoom"]>
 
@@ -2198,6 +2619,9 @@ export type ClassRoomSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   userId?: boolean
   sourceCourseVersionId?: boolean
   tenantId?: boolean
+  lastAccessedSubTopicId?: boolean
+  startDate?: boolean
+  endDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isDeleted?: boolean
@@ -2217,6 +2641,9 @@ export type ClassRoomSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   userId?: boolean
   sourceCourseVersionId?: boolean
   tenantId?: boolean
+  lastAccessedSubTopicId?: boolean
+  startDate?: boolean
+  endDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isDeleted?: boolean
@@ -2236,6 +2663,9 @@ export type ClassRoomSelectScalar = {
   userId?: boolean
   sourceCourseVersionId?: boolean
   tenantId?: boolean
+  lastAccessedSubTopicId?: boolean
+  startDate?: boolean
+  endDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isDeleted?: boolean
@@ -2243,7 +2673,7 @@ export type ClassRoomSelectScalar = {
   deleteAt?: boolean
 }
 
-export type ClassRoomOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "status" | "courseId" | "userId" | "sourceCourseVersionId" | "tenantId" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt" | "deleteAt", ExtArgs["result"]["classRoom"]>
+export type ClassRoomOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "status" | "courseId" | "userId" | "sourceCourseVersionId" | "tenantId" | "lastAccessedSubTopicId" | "startDate" | "endDate" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt" | "deleteAt", ExtArgs["result"]["classRoom"]>
 export type ClassRoomInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   course?: boolean | Prisma.CourseDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -2256,6 +2686,7 @@ export type ClassRoomInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   classTopic?: boolean | Prisma.ClassRoom$classTopicArgs<ExtArgs>
   classSubTopic?: boolean | Prisma.ClassRoom$classSubTopicArgs<ExtArgs>
   quizzes?: boolean | Prisma.ClassRoom$quizzesArgs<ExtArgs>
+  classRoomProgress?: boolean | Prisma.ClassRoom$classRoomProgressArgs<ExtArgs>
   _count?: boolean | Prisma.ClassRoomCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ClassRoomIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2285,6 +2716,7 @@ export type $ClassRoomPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     classTopic: Prisma.$ClassTopicMapPayload<ExtArgs>[]
     classSubTopic: Prisma.$ClassSubTopicMapPayload<ExtArgs>[]
     quizzes: Prisma.$QuizPayload<ExtArgs>[]
+    classRoomProgress: Prisma.$ClassRoomProgressPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2294,6 +2726,9 @@ export type $ClassRoomPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     userId: string
     sourceCourseVersionId: string
     tenantId: string
+    lastAccessedSubTopicId: string | null
+    startDate: Date
+    endDate: Date
     createdAt: Date
     updatedAt: Date
     isDeleted: boolean
@@ -2704,6 +3139,7 @@ export interface Prisma__ClassRoomClient<T, Null = never, ExtArgs extends runtim
   classTopic<T extends Prisma.ClassRoom$classTopicArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClassRoom$classTopicArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassTopicMapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   classSubTopic<T extends Prisma.ClassRoom$classSubTopicArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClassRoom$classSubTopicArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassSubTopicMapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   quizzes<T extends Prisma.ClassRoom$quizzesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClassRoom$quizzesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuizPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  classRoomProgress<T extends Prisma.ClassRoom$classRoomProgressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClassRoom$classRoomProgressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassRoomProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2740,6 +3176,9 @@ export interface ClassRoomFieldRefs {
   readonly userId: Prisma.FieldRef<"ClassRoom", 'String'>
   readonly sourceCourseVersionId: Prisma.FieldRef<"ClassRoom", 'String'>
   readonly tenantId: Prisma.FieldRef<"ClassRoom", 'String'>
+  readonly lastAccessedSubTopicId: Prisma.FieldRef<"ClassRoom", 'String'>
+  readonly startDate: Prisma.FieldRef<"ClassRoom", 'DateTime'>
+  readonly endDate: Prisma.FieldRef<"ClassRoom", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"ClassRoom", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ClassRoom", 'DateTime'>
   readonly isDeleted: Prisma.FieldRef<"ClassRoom", 'Boolean'>
@@ -3311,6 +3750,30 @@ export type ClassRoom$quizzesArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.QuizScalarFieldEnum | Prisma.QuizScalarFieldEnum[]
+}
+
+/**
+ * ClassRoom.classRoomProgress
+ */
+export type ClassRoom$classRoomProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ClassRoomProgress
+   */
+  select?: Prisma.ClassRoomProgressSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ClassRoomProgress
+   */
+  omit?: Prisma.ClassRoomProgressOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClassRoomProgressInclude<ExtArgs> | null
+  where?: Prisma.ClassRoomProgressWhereInput
+  orderBy?: Prisma.ClassRoomProgressOrderByWithRelationInput | Prisma.ClassRoomProgressOrderByWithRelationInput[]
+  cursor?: Prisma.ClassRoomProgressWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ClassRoomProgressScalarFieldEnum | Prisma.ClassRoomProgressScalarFieldEnum[]
 }
 
 /**

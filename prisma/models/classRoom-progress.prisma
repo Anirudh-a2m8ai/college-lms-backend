@@ -1,0 +1,18 @@
+model ClassRoomProgress {
+	id 					       String  				@id @default(uuid())
+	classRoomId        String
+	subTopicId         String
+	status 			       ProcessStatus
+	currentTimeStamp 	 Int
+	lastAccessedAt 	   DateTime
+	startedAt          DateTime
+	completedAt        DateTime?
+	classRoom          ClassRoom      @relation(fields: [classRoomId], references: [id])
+	subTopic    		   SubTopics      @relation(fields: [subTopicId], references: [id])
+	createdAt   		   DateTime       @default(now())
+	updatedAt   		   DateTime       @updatedAt
+	isDeleted   		   Boolean        @default(false)
+	deletedAt 			   DateTime?
+
+  @@unique([classRoomId, subTopicId])
+}

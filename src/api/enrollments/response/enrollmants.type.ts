@@ -1,4 +1,5 @@
 import { Exclude, Expose, Type } from 'class-transformer';
+import { ClassRoomResponseDto } from 'src/api/classRoom/response/classRoom.type';
 import { CourseVersionResponseDto } from 'src/api/course/response/course.type';
 import { UserResponseDto } from 'src/api/user/response/user.type';
 
@@ -40,6 +41,10 @@ export class EnrollmentsResponseDto {
   @Expose()
   @Type(() => CourseVersionResponseDto)
   courseVersion: CourseVersionResponseDto;
+
+  @Expose()
+  @Type(() => ClassRoomResponseDto)
+  classRoom: ClassRoomResponseDto;
 
   @Expose()
   @Type(() => UserResponseDto)

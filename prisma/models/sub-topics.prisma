@@ -11,6 +11,7 @@ model SubTopics {
   userProcess       UserProgress[]
   quizzes           Quiz[]
   classSubTopicMap  ClassSubTopicMap[]
+  classRoomProgress ClassRoomProgress[]
   createdAt         DateTime            @default(now())
   updatedAt         DateTime            @updatedAt
   isDeleted         Boolean             @default(false)

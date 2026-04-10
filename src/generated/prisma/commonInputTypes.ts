@@ -192,6 +192,23 @@ export type EnumClassRoomStatusWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumClassRoomStatusFilter<$PrismaModel>
 }
 
+export type EnumProcessStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.ProcessStatus | Prisma.EnumProcessStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ProcessStatus[] | Prisma.ListEnumProcessStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ProcessStatus[] | Prisma.ListEnumProcessStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumProcessStatusFilter<$PrismaModel> | $Enums.ProcessStatus
+}
+
+export type EnumProcessStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ProcessStatus | Prisma.EnumProcessStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ProcessStatus[] | Prisma.ListEnumProcessStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ProcessStatus[] | Prisma.ListEnumProcessStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumProcessStatusWithAggregatesFilter<$PrismaModel> | $Enums.ProcessStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumProcessStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumProcessStatusFilter<$PrismaModel>
+}
+
 export type EnumCourseStatusFilter<$PrismaModel = never> = {
   equals?: $Enums.CourseStatus | Prisma.EnumCourseStatusFieldRefInput<$PrismaModel>
   in?: $Enums.CourseStatus[] | Prisma.ListEnumCourseStatusFieldRefInput<$PrismaModel>
@@ -450,23 +467,6 @@ export type EnumAccountStatusWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumAccountStatusFilter<$PrismaModel>
 }
 
-export type EnumProcessStatusFilter<$PrismaModel = never> = {
-  equals?: $Enums.ProcessStatus | Prisma.EnumProcessStatusFieldRefInput<$PrismaModel>
-  in?: $Enums.ProcessStatus[] | Prisma.ListEnumProcessStatusFieldRefInput<$PrismaModel>
-  notIn?: $Enums.ProcessStatus[] | Prisma.ListEnumProcessStatusFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumProcessStatusFilter<$PrismaModel> | $Enums.ProcessStatus
-}
-
-export type EnumProcessStatusWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.ProcessStatus | Prisma.EnumProcessStatusFieldRefInput<$PrismaModel>
-  in?: $Enums.ProcessStatus[] | Prisma.ListEnumProcessStatusFieldRefInput<$PrismaModel>
-  notIn?: $Enums.ProcessStatus[] | Prisma.ListEnumProcessStatusFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumProcessStatusWithAggregatesFilter<$PrismaModel> | $Enums.ProcessStatus
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumProcessStatusFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumProcessStatusFilter<$PrismaModel>
-}
-
 export type EnumSocialTypeFilter<$PrismaModel = never> = {
   equals?: $Enums.SocialType | Prisma.EnumSocialTypeFieldRefInput<$PrismaModel>
   in?: $Enums.SocialType[] | Prisma.ListEnumSocialTypeFieldRefInput<$PrismaModel>
@@ -692,6 +692,23 @@ export type NestedEnumClassRoomStatusWithAggregatesFilter<$PrismaModel = never> 
   _max?: Prisma.NestedEnumClassRoomStatusFilter<$PrismaModel>
 }
 
+export type NestedEnumProcessStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.ProcessStatus | Prisma.EnumProcessStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ProcessStatus[] | Prisma.ListEnumProcessStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ProcessStatus[] | Prisma.ListEnumProcessStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumProcessStatusFilter<$PrismaModel> | $Enums.ProcessStatus
+}
+
+export type NestedEnumProcessStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ProcessStatus | Prisma.EnumProcessStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ProcessStatus[] | Prisma.ListEnumProcessStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ProcessStatus[] | Prisma.ListEnumProcessStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumProcessStatusWithAggregatesFilter<$PrismaModel> | $Enums.ProcessStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumProcessStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumProcessStatusFilter<$PrismaModel>
+}
+
 export type NestedEnumCourseStatusFilter<$PrismaModel = never> = {
   equals?: $Enums.CourseStatus | Prisma.EnumCourseStatusFieldRefInput<$PrismaModel>
   in?: $Enums.CourseStatus[] | Prisma.ListEnumCourseStatusFieldRefInput<$PrismaModel>
@@ -883,23 +900,6 @@ export type NestedEnumAccountStatusWithAggregatesFilter<$PrismaModel = never> = 
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumAccountStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumAccountStatusFilter<$PrismaModel>
-}
-
-export type NestedEnumProcessStatusFilter<$PrismaModel = never> = {
-  equals?: $Enums.ProcessStatus | Prisma.EnumProcessStatusFieldRefInput<$PrismaModel>
-  in?: $Enums.ProcessStatus[] | Prisma.ListEnumProcessStatusFieldRefInput<$PrismaModel>
-  notIn?: $Enums.ProcessStatus[] | Prisma.ListEnumProcessStatusFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumProcessStatusFilter<$PrismaModel> | $Enums.ProcessStatus
-}
-
-export type NestedEnumProcessStatusWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.ProcessStatus | Prisma.EnumProcessStatusFieldRefInput<$PrismaModel>
-  in?: $Enums.ProcessStatus[] | Prisma.ListEnumProcessStatusFieldRefInput<$PrismaModel>
-  notIn?: $Enums.ProcessStatus[] | Prisma.ListEnumProcessStatusFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumProcessStatusWithAggregatesFilter<$PrismaModel> | $Enums.ProcessStatus
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumProcessStatusFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumProcessStatusFilter<$PrismaModel>
 }
 
 export type NestedEnumSocialTypeFilter<$PrismaModel = never> = {

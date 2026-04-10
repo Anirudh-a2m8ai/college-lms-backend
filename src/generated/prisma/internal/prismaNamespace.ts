@@ -392,6 +392,7 @@ export const ModelName = {
   ClassTopicMap: 'ClassTopicMap',
   ClassSubTopicMap: 'ClassSubTopicMap',
   ClassRoom: 'ClassRoom',
+  ClassRoomProgress: 'ClassRoomProgress',
   CourseVersion: 'CourseVersion',
   Course: 'Course',
   Designation: 'Designation',
@@ -434,7 +435,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "chapterMap" | "chapter" | "classModuleMap" | "classChapterMap" | "classLessonMap" | "classTopicMap" | "classSubTopicMap" | "classRoom" | "courseVersion" | "course" | "designation" | "enrollments" | "lessonMap" | "lesson" | "moduleMap" | "module" | "permission" | "quiz" | "quizQuestion" | "quizAttempt" | "quizSubmission" | "role" | "studentProfile" | "subTopics" | "subTopicMap" | "teacherProfile" | "tenant" | "topicMap" | "topics" | "userPermission" | "userProgress" | "quizProgress" | "user" | "socialLinks" | "userToken"
+    modelProps: "chapterMap" | "chapter" | "classModuleMap" | "classChapterMap" | "classLessonMap" | "classTopicMap" | "classSubTopicMap" | "classRoom" | "classRoomProgress" | "courseVersion" | "course" | "designation" | "enrollments" | "lessonMap" | "lesson" | "moduleMap" | "module" | "permission" | "quiz" | "quizQuestion" | "quizAttempt" | "quizSubmission" | "role" | "studentProfile" | "subTopics" | "subTopicMap" | "teacherProfile" | "tenant" | "topicMap" | "topics" | "userPermission" | "userProgress" | "quizProgress" | "user" | "socialLinks" | "userToken"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1027,6 +1028,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.ClassRoomCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.ClassRoomCountAggregateOutputType> | number
+        }
+      }
+    }
+    ClassRoomProgress: {
+      payload: Prisma.$ClassRoomProgressPayload<ExtArgs>
+      fields: Prisma.ClassRoomProgressFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ClassRoomProgressFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomProgressPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ClassRoomProgressFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomProgressPayload>
+        }
+        findFirst: {
+          args: Prisma.ClassRoomProgressFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomProgressPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ClassRoomProgressFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomProgressPayload>
+        }
+        findMany: {
+          args: Prisma.ClassRoomProgressFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomProgressPayload>[]
+        }
+        create: {
+          args: Prisma.ClassRoomProgressCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomProgressPayload>
+        }
+        createMany: {
+          args: Prisma.ClassRoomProgressCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ClassRoomProgressCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomProgressPayload>[]
+        }
+        delete: {
+          args: Prisma.ClassRoomProgressDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomProgressPayload>
+        }
+        update: {
+          args: Prisma.ClassRoomProgressUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomProgressPayload>
+        }
+        deleteMany: {
+          args: Prisma.ClassRoomProgressDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ClassRoomProgressUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ClassRoomProgressUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomProgressPayload>[]
+        }
+        upsert: {
+          args: Prisma.ClassRoomProgressUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassRoomProgressPayload>
+        }
+        aggregate: {
+          args: Prisma.ClassRoomProgressAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateClassRoomProgress>
+        }
+        groupBy: {
+          args: Prisma.ClassRoomProgressGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClassRoomProgressGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ClassRoomProgressCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClassRoomProgressCountAggregateOutputType> | number
         }
       }
     }
@@ -3156,6 +3231,9 @@ export const ClassRoomScalarFieldEnum = {
   userId: 'userId',
   sourceCourseVersionId: 'sourceCourseVersionId',
   tenantId: 'tenantId',
+  lastAccessedSubTopicId: 'lastAccessedSubTopicId',
+  startDate: 'startDate',
+  endDate: 'endDate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isDeleted: 'isDeleted',
@@ -3164,6 +3242,24 @@ export const ClassRoomScalarFieldEnum = {
 } as const
 
 export type ClassRoomScalarFieldEnum = (typeof ClassRoomScalarFieldEnum)[keyof typeof ClassRoomScalarFieldEnum]
+
+
+export const ClassRoomProgressScalarFieldEnum = {
+  id: 'id',
+  classRoomId: 'classRoomId',
+  subTopicId: 'subTopicId',
+  status: 'status',
+  currentTimeStamp: 'currentTimeStamp',
+  lastAccessedAt: 'lastAccessedAt',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt'
+} as const
+
+export type ClassRoomProgressScalarFieldEnum = (typeof ClassRoomProgressScalarFieldEnum)[keyof typeof ClassRoomProgressScalarFieldEnum]
 
 
 export const CourseVersionScalarFieldEnum = {
@@ -3231,7 +3327,10 @@ export const EnrollmentsScalarFieldEnum = {
   completedQuizzes: 'completedQuizzes',
   LastAccessedSubTopicId: 'LastAccessedSubTopicId',
   tenantId: 'tenantId',
+  courseVersionId: 'courseVersionId',
   classRoomId: 'classRoomId',
+  startDate: 'startDate',
+  endDate: 'endDate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isDeleted: 'isDeleted',
@@ -3724,6 +3823,20 @@ export type ListEnumClassRoomStatusFieldRefInput<$PrismaModel> = FieldRefInputTy
 
 
 /**
+ * Reference to a field of type 'ProcessStatus'
+ */
+export type EnumProcessStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProcessStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'ProcessStatus[]'
+ */
+export type ListEnumProcessStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProcessStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'CourseStatus'
  */
 export type EnumCourseStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CourseStatus'>
@@ -3832,20 +3945,6 @@ export type EnumAccountStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pr
  * Reference to a field of type 'AccountStatus[]'
  */
 export type ListEnumAccountStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccountStatus[]'>
-    
-
-
-/**
- * Reference to a field of type 'ProcessStatus'
- */
-export type EnumProcessStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProcessStatus'>
-    
-
-
-/**
- * Reference to a field of type 'ProcessStatus[]'
- */
-export type ListEnumProcessStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProcessStatus[]'>
     
 
 
@@ -3979,6 +4078,7 @@ export type GlobalOmitConfig = {
   classTopicMap?: Prisma.ClassTopicMapOmit
   classSubTopicMap?: Prisma.ClassSubTopicMapOmit
   classRoom?: Prisma.ClassRoomOmit
+  classRoomProgress?: Prisma.ClassRoomProgressOmit
   courseVersion?: Prisma.CourseVersionOmit
   course?: Prisma.CourseOmit
   designation?: Prisma.DesignationOmit

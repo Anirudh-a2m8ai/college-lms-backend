@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { EnrollmentsDbService } from 'src/repository/enrollments.db-service';
-import { CreateEnrollmentDto } from './dto/create-enrollments.dto';
+import { CreateEnrollmentDto, CreateEnrollmentInCourseVersionDto } from './dto/create-enrollments.dto';
 import { CourseVersionDbService } from 'src/repository/courseVersion.db-service';
 import { QuizDbService } from 'src/repository/quiz.db-service';
 import { plainToInstance } from 'class-transformer';
@@ -21,6 +21,8 @@ export class EnrollmentsService {
     private readonly quizDbService: QuizDbService,
     private readonly classRoomDbService: ClassRoomDbService,
     private readonly classSubTopicMapDbService: ClassSubTopicMapDbService,
+    private readonly courseVersionDbService: CourseVersionDbService,
+    private readonly subTopicMapDbService: SubTopicMapDbService,
   ) {}
 
   async create(payload: CreateEnrollmentDto) {
@@ -58,6 +60,54 @@ export class EnrollmentsService {
         totalSubTopics: totalSubTopics,
         totalQuizzes: totalQuizzes,
         tenantId: classRoom.tenantId,
+        startDate: classRoom.startDate,
+        endDate: classRoom.endDate,
+      },
+    });
+    const enrollmentResponse = plainToInstance(EnrollmentsResponseDto, enrollment);
+    return {
+      message: 'Enrollment created successfully',
+      data: enrollmentResponse,
+    };
+  }
+
+  async createInCourseVersion(payload: CreateEnrollmentInCourseVersionDto) {
+    const existingEnrollment = await this.enrollmentsDbService.findFirst({
+      where: {
+        userId: payload.userId,
+        courseVersionId: payload.courseVersionId,
+      },
+    });
+    if (existingEnrollment) {
+      throw new BadRequestException('Enrollment already exists');
+    }
+    const courseVersion = await this.courseVersionDbService.findUnique({
+      where: {
+        id: payload.courseVersionId,
+      },
+    });
+    if (!courseVersion) {
+      throw new BadRequestException('Course version not found');
+    }
+    const totalSubTopics = await this.subTopicMapDbService.count({
+      where: {
+        courseVersionId: payload.courseVersionId,
+      },
+    });
+    const totalQuizzes = await this.quizDbService.count({
+      where: {
+        courseVersionId: courseVersion.id,
+      },
+    });
+    const enrollment = await this.enrollmentsDbService.create({
+      data: {
+        userId: payload.userId,
+        courseVersionId: payload.courseVersionId,
+        totalSubTopics: totalSubTopics,
+        totalQuizzes: totalQuizzes,
+        tenantId: courseVersion.tenantId,
+        startDate: payload.startDate,
+        endDate: payload.endDate,
       },
     });
     const enrollmentResponse = plainToInstance(EnrollmentsResponseDto, enrollment);
@@ -71,9 +121,34 @@ export class EnrollmentsService {
     const enrollments = await this.enrollmentsDbService.findMany({
       where: {
         userId: user.userId,
+        classRoomId: {
+          not: null,
+        },
       },
       include: {
         classRoom: {
+          include: {
+            course: true,
+          },
+        },
+      },
+    });
+    const enrollmentResponse = plainToInstance(EnrollmentsResponseDto, enrollments);
+    return {
+      data: enrollmentResponse,
+    };
+  }
+
+  async getAllUserEnrollmentsInCourseVersion(user: any) {
+    const enrollments = await this.enrollmentsDbService.findMany({
+      where: {
+        userId: user.userId,
+        courseVersionId: {
+          not: null,
+        },
+      },
+      include: {
+        courseVersion: {
           include: {
             course: true,
           },
@@ -127,6 +202,11 @@ export class EnrollmentsService {
       },
       include: {
         classRoom: {
+          include: {
+            course: true,
+          },
+        },
+        courseVersion: {
           include: {
             course: true,
           },
