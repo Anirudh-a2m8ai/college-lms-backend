@@ -55,6 +55,8 @@ export type QuizMinAggregateOutputType = {
   passPercentage: number | null
   timeLimitInSeconds: number | null
   noOfAttempt: number | null
+  status: $Enums.QuizStatus | null
+  deadLine: Date | null
   moduleId: string | null
   chapterId: string | null
   lessonId: string | null
@@ -81,6 +83,8 @@ export type QuizMaxAggregateOutputType = {
   passPercentage: number | null
   timeLimitInSeconds: number | null
   noOfAttempt: number | null
+  status: $Enums.QuizStatus | null
+  deadLine: Date | null
   moduleId: string | null
   chapterId: string | null
   lessonId: string | null
@@ -108,6 +112,8 @@ export type QuizCountAggregateOutputType = {
   timeLimitInSeconds: number
   questionPattern: number
   noOfAttempt: number
+  status: number
+  deadLine: number
   moduleId: number
   chapterId: number
   lessonId: number
@@ -152,6 +158,8 @@ export type QuizMinAggregateInputType = {
   passPercentage?: true
   timeLimitInSeconds?: true
   noOfAttempt?: true
+  status?: true
+  deadLine?: true
   moduleId?: true
   chapterId?: true
   lessonId?: true
@@ -178,6 +186,8 @@ export type QuizMaxAggregateInputType = {
   passPercentage?: true
   timeLimitInSeconds?: true
   noOfAttempt?: true
+  status?: true
+  deadLine?: true
   moduleId?: true
   chapterId?: true
   lessonId?: true
@@ -205,6 +215,8 @@ export type QuizCountAggregateInputType = {
   timeLimitInSeconds?: true
   questionPattern?: true
   noOfAttempt?: true
+  status?: true
+  deadLine?: true
   moduleId?: true
   chapterId?: true
   lessonId?: true
@@ -319,6 +331,8 @@ export type QuizGroupByOutputType = {
   timeLimitInSeconds: number
   questionPattern: runtime.JsonValue | null
   noOfAttempt: number
+  status: $Enums.QuizStatus | null
+  deadLine: Date | null
   moduleId: string | null
   chapterId: string | null
   lessonId: string | null
@@ -369,6 +383,8 @@ export type QuizWhereInput = {
   timeLimitInSeconds?: Prisma.IntFilter<"Quiz"> | number
   questionPattern?: Prisma.JsonNullableFilter<"Quiz">
   noOfAttempt?: Prisma.IntFilter<"Quiz"> | number
+  status?: Prisma.EnumQuizStatusNullableFilter<"Quiz"> | $Enums.QuizStatus | null
+  deadLine?: Prisma.DateTimeNullableFilter<"Quiz"> | Date | string | null
   moduleId?: Prisma.StringNullableFilter<"Quiz"> | string | null
   chapterId?: Prisma.StringNullableFilter<"Quiz"> | string | null
   lessonId?: Prisma.StringNullableFilter<"Quiz"> | string | null
@@ -405,6 +421,8 @@ export type QuizOrderByWithRelationInput = {
   timeLimitInSeconds?: Prisma.SortOrder
   questionPattern?: Prisma.SortOrderInput | Prisma.SortOrder
   noOfAttempt?: Prisma.SortOrder
+  status?: Prisma.SortOrderInput | Prisma.SortOrder
+  deadLine?: Prisma.SortOrderInput | Prisma.SortOrder
   moduleId?: Prisma.SortOrderInput | Prisma.SortOrder
   chapterId?: Prisma.SortOrderInput | Prisma.SortOrder
   lessonId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -444,6 +462,8 @@ export type QuizWhereUniqueInput = Prisma.AtLeast<{
   timeLimitInSeconds?: Prisma.IntFilter<"Quiz"> | number
   questionPattern?: Prisma.JsonNullableFilter<"Quiz">
   noOfAttempt?: Prisma.IntFilter<"Quiz"> | number
+  status?: Prisma.EnumQuizStatusNullableFilter<"Quiz"> | $Enums.QuizStatus | null
+  deadLine?: Prisma.DateTimeNullableFilter<"Quiz"> | Date | string | null
   moduleId?: Prisma.StringNullableFilter<"Quiz"> | string | null
   chapterId?: Prisma.StringNullableFilter<"Quiz"> | string | null
   lessonId?: Prisma.StringNullableFilter<"Quiz"> | string | null
@@ -480,6 +500,8 @@ export type QuizOrderByWithAggregationInput = {
   timeLimitInSeconds?: Prisma.SortOrder
   questionPattern?: Prisma.SortOrderInput | Prisma.SortOrder
   noOfAttempt?: Prisma.SortOrder
+  status?: Prisma.SortOrderInput | Prisma.SortOrder
+  deadLine?: Prisma.SortOrderInput | Prisma.SortOrder
   moduleId?: Prisma.SortOrderInput | Prisma.SortOrder
   chapterId?: Prisma.SortOrderInput | Prisma.SortOrder
   lessonId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -515,6 +537,8 @@ export type QuizScalarWhereWithAggregatesInput = {
   timeLimitInSeconds?: Prisma.IntWithAggregatesFilter<"Quiz"> | number
   questionPattern?: Prisma.JsonNullableWithAggregatesFilter<"Quiz">
   noOfAttempt?: Prisma.IntWithAggregatesFilter<"Quiz"> | number
+  status?: Prisma.EnumQuizStatusNullableWithAggregatesFilter<"Quiz"> | $Enums.QuizStatus | null
+  deadLine?: Prisma.DateTimeNullableWithAggregatesFilter<"Quiz"> | Date | string | null
   moduleId?: Prisma.StringNullableWithAggregatesFilter<"Quiz"> | string | null
   chapterId?: Prisma.StringNullableWithAggregatesFilter<"Quiz"> | string | null
   lessonId?: Prisma.StringNullableWithAggregatesFilter<"Quiz"> | string | null
@@ -541,6 +565,8 @@ export type QuizCreateInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -571,6 +597,8 @@ export type QuizUncheckedCreateInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   moduleId?: string | null
   chapterId?: string | null
   lessonId?: string | null
@@ -599,6 +627,8 @@ export type QuizUpdateInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -629,6 +659,8 @@ export type QuizUncheckedUpdateInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   moduleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chapterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lessonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -658,6 +690,8 @@ export type QuizCreateManyInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   moduleId?: string | null
   chapterId?: string | null
   lessonId?: string | null
@@ -684,6 +718,8 @@ export type QuizUpdateManyMutationInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -705,6 +741,8 @@ export type QuizUncheckedUpdateManyInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   moduleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chapterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lessonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -742,6 +780,8 @@ export type QuizCountOrderByAggregateInput = {
   timeLimitInSeconds?: Prisma.SortOrder
   questionPattern?: Prisma.SortOrder
   noOfAttempt?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  deadLine?: Prisma.SortOrder
   moduleId?: Prisma.SortOrder
   chapterId?: Prisma.SortOrder
   lessonId?: Prisma.SortOrder
@@ -776,6 +816,8 @@ export type QuizMaxOrderByAggregateInput = {
   passPercentage?: Prisma.SortOrder
   timeLimitInSeconds?: Prisma.SortOrder
   noOfAttempt?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  deadLine?: Prisma.SortOrder
   moduleId?: Prisma.SortOrder
   chapterId?: Prisma.SortOrder
   lessonId?: Prisma.SortOrder
@@ -802,6 +844,8 @@ export type QuizMinOrderByAggregateInput = {
   passPercentage?: Prisma.SortOrder
   timeLimitInSeconds?: Prisma.SortOrder
   noOfAttempt?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  deadLine?: Prisma.SortOrder
   moduleId?: Prisma.SortOrder
   chapterId?: Prisma.SortOrder
   lessonId?: Prisma.SortOrder
@@ -1046,6 +1090,10 @@ export type NullableEnumQuizDifficultyFieldUpdateOperationsInput = {
   set?: $Enums.QuizDifficulty | null
 }
 
+export type NullableEnumQuizStatusFieldUpdateOperationsInput = {
+  set?: $Enums.QuizStatus | null
+}
+
 export type QuizCreateNestedOneWithoutQuizQuestionsInput = {
   create?: Prisma.XOR<Prisma.QuizCreateWithoutQuizQuestionsInput, Prisma.QuizUncheckedCreateWithoutQuizQuestionsInput>
   connectOrCreate?: Prisma.QuizCreateOrConnectWithoutQuizQuestionsInput
@@ -1171,6 +1219,8 @@ export type QuizCreateWithoutChapterInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1200,6 +1250,8 @@ export type QuizUncheckedCreateWithoutChapterInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   moduleId?: string | null
   lessonId?: string | null
   topicId?: string | null
@@ -1257,6 +1309,8 @@ export type QuizScalarWhereInput = {
   timeLimitInSeconds?: Prisma.IntFilter<"Quiz"> | number
   questionPattern?: Prisma.JsonNullableFilter<"Quiz">
   noOfAttempt?: Prisma.IntFilter<"Quiz"> | number
+  status?: Prisma.EnumQuizStatusNullableFilter<"Quiz"> | $Enums.QuizStatus | null
+  deadLine?: Prisma.DateTimeNullableFilter<"Quiz"> | Date | string | null
   moduleId?: Prisma.StringNullableFilter<"Quiz"> | string | null
   chapterId?: Prisma.StringNullableFilter<"Quiz"> | string | null
   lessonId?: Prisma.StringNullableFilter<"Quiz"> | string | null
@@ -1283,6 +1337,8 @@ export type QuizCreateWithoutClassRoomInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1312,6 +1368,8 @@ export type QuizUncheckedCreateWithoutClassRoomInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   moduleId?: string | null
   chapterId?: string | null
   lessonId?: string | null
@@ -1365,6 +1423,8 @@ export type QuizCreateWithoutCourseVersionInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1393,6 +1453,8 @@ export type QuizUncheckedCreateWithoutCourseVersionInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   moduleId?: string | null
   chapterId?: string | null
   lessonId?: string | null
@@ -1447,6 +1509,8 @@ export type QuizCreateWithoutLessonInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1476,6 +1540,8 @@ export type QuizUncheckedCreateWithoutLessonInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   moduleId?: string | null
   chapterId?: string | null
   topicId?: string | null
@@ -1529,6 +1595,8 @@ export type QuizCreateWithoutModuleInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1558,6 +1626,8 @@ export type QuizUncheckedCreateWithoutModuleInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   chapterId?: string | null
   lessonId?: string | null
   topicId?: string | null
@@ -1611,6 +1681,8 @@ export type QuizCreateWithoutQuizQuestionsInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1640,6 +1712,8 @@ export type QuizUncheckedCreateWithoutQuizQuestionsInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   moduleId?: string | null
   chapterId?: string | null
   lessonId?: string | null
@@ -1683,6 +1757,8 @@ export type QuizUpdateWithoutQuizQuestionsInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1712,6 +1788,8 @@ export type QuizUncheckedUpdateWithoutQuizQuestionsInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   moduleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chapterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lessonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1739,6 +1817,8 @@ export type QuizCreateWithoutSubTopicInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1768,6 +1848,8 @@ export type QuizUncheckedCreateWithoutSubTopicInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   moduleId?: string | null
   chapterId?: string | null
   lessonId?: string | null
@@ -1821,6 +1903,8 @@ export type QuizCreateWithoutTopicInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1850,6 +1934,8 @@ export type QuizUncheckedCreateWithoutTopicInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   moduleId?: string | null
   chapterId?: string | null
   lessonId?: string | null
@@ -1903,6 +1989,8 @@ export type QuizCreateWithoutQuizProgressInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -1932,6 +2020,8 @@ export type QuizUncheckedCreateWithoutQuizProgressInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   moduleId?: string | null
   chapterId?: string | null
   lessonId?: string | null
@@ -1975,6 +2065,8 @@ export type QuizUpdateWithoutQuizProgressInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2004,6 +2096,8 @@ export type QuizUncheckedUpdateWithoutQuizProgressInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   moduleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chapterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lessonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2032,6 +2126,8 @@ export type QuizCreateManyChapterInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   moduleId?: string | null
   lessonId?: string | null
   topicId?: string | null
@@ -2057,6 +2153,8 @@ export type QuizUpdateWithoutChapterInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2086,6 +2184,8 @@ export type QuizUncheckedUpdateWithoutChapterInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   moduleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lessonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   topicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2114,6 +2214,8 @@ export type QuizUncheckedUpdateManyWithoutChapterInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   moduleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lessonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   topicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2140,6 +2242,8 @@ export type QuizCreateManyClassRoomInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   moduleId?: string | null
   chapterId?: string | null
   lessonId?: string | null
@@ -2165,6 +2269,8 @@ export type QuizUpdateWithoutClassRoomInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2194,6 +2300,8 @@ export type QuizUncheckedUpdateWithoutClassRoomInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   moduleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chapterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lessonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2222,6 +2330,8 @@ export type QuizUncheckedUpdateManyWithoutClassRoomInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   moduleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chapterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lessonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2247,6 +2357,8 @@ export type QuizCreateManyCourseVersionInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   moduleId?: string | null
   chapterId?: string | null
   lessonId?: string | null
@@ -2273,6 +2385,8 @@ export type QuizUpdateWithoutCourseVersionInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2301,6 +2415,8 @@ export type QuizUncheckedUpdateWithoutCourseVersionInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   moduleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chapterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lessonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2329,6 +2445,8 @@ export type QuizUncheckedUpdateManyWithoutCourseVersionInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   moduleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chapterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lessonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2356,6 +2474,8 @@ export type QuizCreateManyLessonInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   moduleId?: string | null
   chapterId?: string | null
   topicId?: string | null
@@ -2381,6 +2501,8 @@ export type QuizUpdateWithoutLessonInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2410,6 +2532,8 @@ export type QuizUncheckedUpdateWithoutLessonInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   moduleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chapterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   topicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2438,6 +2562,8 @@ export type QuizUncheckedUpdateManyWithoutLessonInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   moduleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chapterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   topicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2464,6 +2590,8 @@ export type QuizCreateManyModuleInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   chapterId?: string | null
   lessonId?: string | null
   topicId?: string | null
@@ -2489,6 +2617,8 @@ export type QuizUpdateWithoutModuleInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2518,6 +2648,8 @@ export type QuizUncheckedUpdateWithoutModuleInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   chapterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lessonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   topicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2546,6 +2678,8 @@ export type QuizUncheckedUpdateManyWithoutModuleInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   chapterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lessonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   topicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2572,6 +2706,8 @@ export type QuizCreateManySubTopicInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   moduleId?: string | null
   chapterId?: string | null
   lessonId?: string | null
@@ -2597,6 +2733,8 @@ export type QuizUpdateWithoutSubTopicInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2626,6 +2764,8 @@ export type QuizUncheckedUpdateWithoutSubTopicInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   moduleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chapterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lessonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2654,6 +2794,8 @@ export type QuizUncheckedUpdateManyWithoutSubTopicInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   moduleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chapterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lessonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2680,6 +2822,8 @@ export type QuizCreateManyTopicInput = {
   timeLimitInSeconds: number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt: number
+  status?: $Enums.QuizStatus | null
+  deadLine?: Date | string | null
   moduleId?: string | null
   chapterId?: string | null
   lessonId?: string | null
@@ -2705,6 +2849,8 @@ export type QuizUpdateWithoutTopicInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2734,6 +2880,8 @@ export type QuizUncheckedUpdateWithoutTopicInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   moduleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chapterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lessonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2762,6 +2910,8 @@ export type QuizUncheckedUpdateManyWithoutTopicInput = {
   timeLimitInSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   questionPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   noOfAttempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableEnumQuizStatusFieldUpdateOperationsInput | $Enums.QuizStatus | null
+  deadLine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   moduleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chapterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lessonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2828,6 +2978,8 @@ export type QuizSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   timeLimitInSeconds?: boolean
   questionPattern?: boolean
   noOfAttempt?: boolean
+  status?: boolean
+  deadLine?: boolean
   moduleId?: boolean
   chapterId?: boolean
   lessonId?: boolean
@@ -2865,6 +3017,8 @@ export type QuizSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   timeLimitInSeconds?: boolean
   questionPattern?: boolean
   noOfAttempt?: boolean
+  status?: boolean
+  deadLine?: boolean
   moduleId?: boolean
   chapterId?: boolean
   lessonId?: boolean
@@ -2899,6 +3053,8 @@ export type QuizSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   timeLimitInSeconds?: boolean
   questionPattern?: boolean
   noOfAttempt?: boolean
+  status?: boolean
+  deadLine?: boolean
   moduleId?: boolean
   chapterId?: boolean
   lessonId?: boolean
@@ -2933,6 +3089,8 @@ export type QuizSelectScalar = {
   timeLimitInSeconds?: boolean
   questionPattern?: boolean
   noOfAttempt?: boolean
+  status?: boolean
+  deadLine?: boolean
   moduleId?: boolean
   chapterId?: boolean
   lessonId?: boolean
@@ -2946,7 +3104,7 @@ export type QuizSelectScalar = {
   deleteAt?: boolean
 }
 
-export type QuizOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "courseVersionId" | "orderIndex" | "isMandatory" | "quizType" | "noOfQuestions" | "difficulty" | "passPercentage" | "timeLimitInSeconds" | "questionPattern" | "noOfAttempt" | "moduleId" | "chapterId" | "lessonId" | "topicId" | "subTopicId" | "classRoomId" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt" | "deleteAt", ExtArgs["result"]["quiz"]>
+export type QuizOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "courseVersionId" | "orderIndex" | "isMandatory" | "quizType" | "noOfQuestions" | "difficulty" | "passPercentage" | "timeLimitInSeconds" | "questionPattern" | "noOfAttempt" | "status" | "deadLine" | "moduleId" | "chapterId" | "lessonId" | "topicId" | "subTopicId" | "classRoomId" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt" | "deleteAt", ExtArgs["result"]["quiz"]>
 export type QuizInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   module?: boolean | Prisma.Quiz$moduleArgs<ExtArgs>
   chapter?: boolean | Prisma.Quiz$chapterArgs<ExtArgs>
@@ -3005,6 +3163,8 @@ export type $QuizPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     timeLimitInSeconds: number
     questionPattern: runtime.JsonValue | null
     noOfAttempt: number
+    status: $Enums.QuizStatus | null
+    deadLine: Date | null
     moduleId: string | null
     chapterId: string | null
     lessonId: string | null
@@ -3461,6 +3621,8 @@ export interface QuizFieldRefs {
   readonly timeLimitInSeconds: Prisma.FieldRef<"Quiz", 'Int'>
   readonly questionPattern: Prisma.FieldRef<"Quiz", 'Json'>
   readonly noOfAttempt: Prisma.FieldRef<"Quiz", 'Int'>
+  readonly status: Prisma.FieldRef<"Quiz", 'QuizStatus'>
+  readonly deadLine: Prisma.FieldRef<"Quiz", 'DateTime'>
   readonly moduleId: Prisma.FieldRef<"Quiz", 'String'>
   readonly chapterId: Prisma.FieldRef<"Quiz", 'String'>
   readonly lessonId: Prisma.FieldRef<"Quiz", 'String'>

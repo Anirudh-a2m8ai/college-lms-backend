@@ -386,6 +386,8 @@ export const QuizScalarFieldEnum = {
   timeLimitInSeconds: 'timeLimitInSeconds',
   questionPattern: 'questionPattern',
   noOfAttempt: 'noOfAttempt',
+  status: 'status',
+  deadLine: 'deadLine',
   moduleId: 'moduleId',
   chapterId: 'chapterId',
   lessonId: 'lessonId',

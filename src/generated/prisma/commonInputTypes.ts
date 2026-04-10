@@ -308,6 +308,13 @@ export type JsonNullableFilterBase<$PrismaModel = never> = {
   not?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | Prisma.JsonNullValueFilter
 }
 
+export type EnumQuizStatusNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.QuizStatus | Prisma.EnumQuizStatusFieldRefInput<$PrismaModel> | null
+  in?: $Enums.QuizStatus[] | Prisma.ListEnumQuizStatusFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.QuizStatus[] | Prisma.ListEnumQuizStatusFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumQuizStatusNullableFilter<$PrismaModel> | $Enums.QuizStatus | null
+}
+
 export type EnumQuizTypeWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.QuizType | Prisma.EnumQuizTypeFieldRefInput<$PrismaModel>
   in?: $Enums.QuizType[] | Prisma.ListEnumQuizTypeFieldRefInput<$PrismaModel>
@@ -353,6 +360,16 @@ export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedJsonNullableFilter<$PrismaModel>
   _max?: Prisma.NestedJsonNullableFilter<$PrismaModel>
+}
+
+export type EnumQuizStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.QuizStatus | Prisma.EnumQuizStatusFieldRefInput<$PrismaModel> | null
+  in?: $Enums.QuizStatus[] | Prisma.ListEnumQuizStatusFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.QuizStatus[] | Prisma.ListEnumQuizStatusFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumQuizStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.QuizStatus | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumQuizStatusNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumQuizStatusNullableFilter<$PrismaModel>
 }
 
 export type EnumQuizQuestionTypeFilter<$PrismaModel = never> = {
@@ -784,6 +801,13 @@ export type NestedEnumQuizDifficultyNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumQuizDifficultyNullableFilter<$PrismaModel> | $Enums.QuizDifficulty | null
 }
 
+export type NestedEnumQuizStatusNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.QuizStatus | Prisma.EnumQuizStatusFieldRefInput<$PrismaModel> | null
+  in?: $Enums.QuizStatus[] | Prisma.ListEnumQuizStatusFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.QuizStatus[] | Prisma.ListEnumQuizStatusFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumQuizStatusNullableFilter<$PrismaModel> | $Enums.QuizStatus | null
+}
+
 export type NestedEnumQuizTypeWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.QuizType | Prisma.EnumQuizTypeFieldRefInput<$PrismaModel>
   in?: $Enums.QuizType[] | Prisma.ListEnumQuizTypeFieldRefInput<$PrismaModel>
@@ -826,6 +850,16 @@ export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
   gt?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
   gte?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
   not?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | Prisma.JsonNullValueFilter
+}
+
+export type NestedEnumQuizStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.QuizStatus | Prisma.EnumQuizStatusFieldRefInput<$PrismaModel> | null
+  in?: $Enums.QuizStatus[] | Prisma.ListEnumQuizStatusFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.QuizStatus[] | Prisma.ListEnumQuizStatusFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumQuizStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.QuizStatus | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumQuizStatusNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumQuizStatusNullableFilter<$PrismaModel>
 }
 
 export type NestedEnumQuizQuestionTypeFilter<$PrismaModel = never> = {

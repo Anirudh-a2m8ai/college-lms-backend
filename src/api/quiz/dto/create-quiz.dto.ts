@@ -2,6 +2,7 @@ import { Type } from 'class-transformer';
 import {
   IsArray,
   IsBoolean,
+  IsDate,
   IsEnum,
   IsInt,
   IsJSON,
@@ -15,7 +16,7 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { Prisma } from 'src/generated/prisma/client';
-import { QuizDifficulty, QuizQuestionType, QuizType } from 'src/generated/prisma/enums';
+import { QuizDifficulty, QuizQuestionType, QuizStatus, QuizType } from 'src/generated/prisma/enums';
 
 export class QuestionPatternDto {
   @IsInt()
@@ -103,6 +104,14 @@ export class CreateQuizDto {
   @IsNumber()
   @IsNotEmpty()
   orderIndex: number;
+
+  @IsOptional()
+  @IsEnum(QuizStatus)
+  status: QuizStatus;
+
+  @IsOptional()
+  @IsDate()
+  deadLine: Date;
 
   @IsOptional()
   @ValidateNested()

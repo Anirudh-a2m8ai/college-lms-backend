@@ -17,6 +17,11 @@ enum QuizQuestionType {
 	SHORT_ANSWER
 }
 
+enum QuizStatus {
+	ENABLED
+	DISABLED
+}
+
 model Quiz {
 	id                 String         @id @default(uuid())
 	title              String
@@ -31,6 +36,8 @@ model Quiz {
 	timeLimitInSeconds Int
 	questionPattern    Json?
 	noOfAttempt        Int
+	status             QuizStatus?
+	deadLine           DateTime?
 	moduleId           String?
 	chapterId          String?
 	lessonId           String?

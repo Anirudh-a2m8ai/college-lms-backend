@@ -3423,6 +3423,8 @@ export const QuizScalarFieldEnum = {
   timeLimitInSeconds: 'timeLimitInSeconds',
   questionPattern: 'questionPattern',
   noOfAttempt: 'noOfAttempt',
+  status: 'status',
+  deadLine: 'deadLine',
   moduleId: 'moduleId',
   chapterId: 'chapterId',
   lessonId: 'lessonId',
@@ -3903,6 +3905,20 @@ export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'J
  * Reference to a field of type 'QueryMode'
  */
 export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+/**
+ * Reference to a field of type 'QuizStatus'
+ */
+export type EnumQuizStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QuizStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'QuizStatus[]'
+ */
+export type ListEnumQuizStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QuizStatus[]'>
     
 
 

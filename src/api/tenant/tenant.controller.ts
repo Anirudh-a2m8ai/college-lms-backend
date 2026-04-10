@@ -30,6 +30,12 @@ export class TenantController {
     return this.tenantService.findAll(query, body, user);
   }
 
+  @Permissions('tenant:read')
+  @Get('all')
+  async findAllTenants() {
+    return this.tenantService.findAllTenants();
+  }
+
   @Permissions('tenant:edit')
   @Patch('/:id')
   async update(@Param('id') id: string, @Body() payload: UpdateTenantDto) {

@@ -62,4 +62,31 @@ export class ClassRoomProgressService {
       data: classRoomProgressResponse,
     };
   }
+
+  async getClassRoomProgress(classRoomId: string) {
+    const classRoomProgress = await this.classRoomProgressDbService.findMany({
+      where: {
+        classRoomId,
+      },
+    });
+    const classRoomProgressResponse = plainToInstance(ClassRoomProgressResponseDto, classRoomProgress);
+    return {
+      message: 'ClassRoom progress fetched successfully',
+      data: classRoomProgressResponse,
+    };
+  }
+
+  async get(subTopicId: string, classRoomId: string) {
+    const classRoomProgress = await this.classRoomProgressDbService.findFirst({
+      where: {
+        subTopicId,
+        classRoomId,
+      },
+    });
+    const classRoomProgressResponse = plainToInstance(ClassRoomProgressResponseDto, classRoomProgress);
+    return {
+      message: 'ClassRoom progress fetched successfully',
+      data: classRoomProgressResponse,
+    };
+  }
 }

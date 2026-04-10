@@ -62,6 +62,14 @@ export const QuizQuestionType = {
 export type QuizQuestionType = (typeof QuizQuestionType)[keyof typeof QuizQuestionType]
 
 
+export const QuizStatus = {
+  ENABLED: 'ENABLED',
+  DISABLED: 'DISABLED'
+} as const
+
+export type QuizStatus = (typeof QuizStatus)[keyof typeof QuizStatus]
+
+
 export const ProcessStatus = {
   NOT_STARTED: 'NOT_STARTED',
   IN_PROGRESS: 'IN_PROGRESS',

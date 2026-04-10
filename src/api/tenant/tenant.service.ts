@@ -86,6 +86,18 @@ export class TenantService {
     return PaginationResponse(sendData);
   }
 
+  async findAllTenants() {
+    const tenants = await this.tenantDbService.findMany({
+      where: {
+        isDeleted: false,
+      },
+    });
+    const tenantResponse = plainToInstance(TenantResponse, tenants);
+    return {
+      data: tenantResponse,
+    };
+  }
+
   async update(id: string, payload: UpdateTenantDto) {
     const existingTenant = await this.tenantDbService.findUnique({
       where: {
