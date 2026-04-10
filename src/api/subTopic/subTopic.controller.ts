@@ -8,6 +8,7 @@ import {
   CompleteMultipartUploadDto,
   ConfirmUploadDto,
   CreateSubTopicDto,
+  CreateSubTopicInClassRoomDto,
   GetUploadPartUrlDto,
   GetUploadUrlDto,
   UpdateSubTopicDto,
@@ -76,5 +77,17 @@ export class SubTopicController {
   @Post('multipart/abort')
   abortMultipartUpload(@Body() abortMultipartUploadDto: AbortMultipartUploadDto) {
     return this.subTopicService.abortMultipartUpload(abortMultipartUploadDto);
+  }
+
+  @Permissions('course:read')
+  @Get('classRoom')
+  async findAllInClassRoom(@Query('classRoomId') classRoomId: string) {
+    return await this.subTopicService.findAllSubTopicsInClassRoom(classRoomId);
+  }
+
+  @Permissions('course:create')
+  @Post('classRoom')
+  async createInClassRoom(@Body() payload: CreateSubTopicInClassRoomDto, @CurrentUser() user: any) {
+    return await this.subTopicService.createInClassRoom(payload, user);
   }
 }

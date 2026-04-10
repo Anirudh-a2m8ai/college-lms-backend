@@ -10,15 +10,15 @@ import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 export class ClassRoomController {
   constructor(private readonly classRoomService: ClassRoomService) {}
 
-	@Permissions('class-room:create')
+  @Permissions('classRoom:create')
   @Post()
   async create(@Body() payload: CreateClassRoomDto, @CurrentUser() user: any) {
     return this.classRoomService.create(payload, user);
   }
 
-	@Permissions('class-room:read')
-	@Get(':/id')
-	async get(@Param('id') id: string, @CurrentUser() user: any) {
-		return this.classRoomService.get(id, user);
-	}
+  @Permissions('classRoom:read')
+  @Get(':id')
+  async get(@Param('id') id: string, @CurrentUser() user: any) {
+    return this.classRoomService.get(id, user);
+  }
 }

@@ -55,3 +55,30 @@ export class UpdateChapterDto {
   @IsNotEmpty()
   orderIndex: number;
 }
+
+export class CreateChapterInClassRoomDto {
+  @IsString()
+  @IsNotEmpty()
+  title: string;
+
+  @IsString()
+  @IsOptional()
+  description: string;
+
+  @IsString()
+  @IsOptional()
+  overview: string;
+
+  @IsString()
+  @IsNotEmpty()
+  moduleId: string;
+
+  @IsString()
+  @IsNotEmpty()
+  classRoomId: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  orderIndex: number;
+}
+

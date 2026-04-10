@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ClassRoomController } from './classRoom.controll';
 import { ClassRoomService } from './classRoom.service';
-import { ClassRoomDbService } from 'src/repository/classRoom.db-service';
+import { DbServiceModule } from 'src/repository/db-service.module';
 
 @Module({
-  imports: [ClassRoomDbService],
+  imports: [DbServiceModule],
   controllers: [ClassRoomController],
   providers: [ClassRoomService],
 })

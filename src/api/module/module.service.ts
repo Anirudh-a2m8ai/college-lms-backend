@@ -1,11 +1,12 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { ModuleDbService } from 'src/repository/module.db-service';
-import { CreateModuleDto, UpdateModuleDto } from './dto/create-module.dto';
+import { CreateModuleDto, CreateModuleInClassRoomDto, UpdateModuleDto } from './dto/create-module.dto';
 import { ModuleMapDbService } from 'src/repository/moduleMap.db-service';
 import { plainToInstance } from 'class-transformer';
 import { ModuleResponseDto } from './response/module.type';
 import { ChapterMapDbService } from 'src/repository/chapterMap.db-service';
-import { Module, ModuleMap } from 'src/generated/prisma/client';
+import { ClassModuleMap, Module, ModuleMap } from 'src/generated/prisma/client';
+import { ClassModuleMapDbService } from 'src/repository/classModuleMap.db-service';
 
 @Injectable()
 export class ModuleService {
@@ -13,6 +14,7 @@ export class ModuleService {
     private readonly moduleDbService: ModuleDbService,
     private readonly moduleMapDbService: ModuleMapDbService,
     private readonly chapterMapDbService: ChapterMapDbService,
+    private readonly classModuleMapDbService: ClassModuleMapDbService,
   ) {}
 
   async create(payload: CreateModuleDto, user: any) {
@@ -141,6 +143,62 @@ export class ModuleService {
     );
     return {
       message: 'Modules fetched successfully',
+      data: moduleResponse,
+    };
+  }
+
+  async findAllModulesInClassRoom(classRoomId: string) {
+    const moduleMap = (await this.classModuleMapDbService.findMany({
+      where: {
+        classRoomId,
+      },
+      include: {
+        module: true,
+      },
+    })) as (ClassModuleMap & { module: Module })[];
+    const moduleResponse = plainToInstance(
+      ModuleResponseDto,
+      moduleMap.map((item) => {
+        const moduleResponse = plainToInstance(ModuleResponseDto, item.module);
+        moduleResponse.orderIndex = item.orderIndex;
+        return moduleResponse;
+      }),
+    );
+    return {
+      message: 'Modules fetched successfully',
+      data: moduleResponse,
+    };
+  }
+
+  async createInClassRoom(payload: CreateModuleInClassRoomDto, user: any) {
+    const existingModule = await this.moduleDbService.findFirst({
+      where: {
+        title: payload.title,
+        description: payload.description,
+        overview: payload.overview,
+      },
+    });
+    if (existingModule) {
+      throw new BadRequestException('Module already exists');
+    }
+    const module = await this.moduleDbService.create({
+      data: {
+        title: payload.title,
+        description: payload.description,
+        overview: payload.overview,
+      },
+    });
+    await this.classModuleMapDbService.create({
+      data: {
+        moduleId: module.id,
+        classRoomId: payload.classRoomId,
+        orderIndex: payload.orderIndex,
+      },
+    });
+    const moduleResponse = plainToInstance(ModuleResponseDto, module);
+    moduleResponse.orderIndex = payload.orderIndex;
+    return {
+      message: 'Module created successfully',
       data: moduleResponse,
     };
   }

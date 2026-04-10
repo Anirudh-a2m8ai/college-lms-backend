@@ -63,8 +63,9 @@ export class ClassRoomDbService {
         if (moduleMaps.length) {
           await tx.classModuleMap.createMany({
             data: moduleMaps.map((moduleMap) => ({
-              ...moduleMap,
+              moduleId: moduleMap.moduleId,
               classRoomId: classRoomId,
+              orderIndex: moduleMap.orderIndex,
             })),
           });
         }
@@ -72,8 +73,10 @@ export class ClassRoomDbService {
         if (chapterMaps.length) {
           await tx.classChapterMap.createMany({
             data: chapterMaps.map((chapterMap) => ({
-              ...chapterMap,
+              chapterId: chapterMap.chapterId,
               classRoomId: classRoomId,
+              moduleId: chapterMap.moduleId,
+              orderIndex: chapterMap.orderIndex,
             })),
           });
         }
@@ -81,8 +84,10 @@ export class ClassRoomDbService {
         if (lessonMaps.length) {
           await tx.classLessonMap.createMany({
             data: lessonMaps.map((lessonMap) => ({
-              ...lessonMap,
+              lessonId: lessonMap.lessonId,
               classRoomId: classRoomId,
+              chapterId: lessonMap.chapterId,
+              orderIndex: lessonMap.orderIndex,
             })),
           });
         }
@@ -90,8 +95,10 @@ export class ClassRoomDbService {
         if (topicMaps.length) {
           await tx.classTopicMap.createMany({
             data: topicMaps.map((topicMap) => ({
-              ...topicMap,
+              topicId: topicMap.topicId,
               classRoomId: classRoomId,
+              lessonId: topicMap.lessonId,
+              orderIndex: topicMap.orderIndex,
             })),
           });
         }
@@ -99,8 +106,10 @@ export class ClassRoomDbService {
         if (subTopicMaps.length) {
           await tx.classSubTopicMap.createMany({
             data: subTopicMaps.map((subTopicMap) => ({
-              ...subTopicMap,
+              subTopicId: subTopicMap.subTopicId,
               classRoomId: classRoomId,
+              topicId: subTopicMap.topicId,
+              orderIndex: subTopicMap.orderIndex,
             })),
           });
         }
@@ -166,7 +175,7 @@ export class ClassRoomDbService {
           topicByLesson.get(t.lessonId).push({
             ...t.topic,
             orderIndex: t.orderIndex,
-            subTopics: subTopicByTopic.get(t.topicId) || [],
+            subTopic: subTopicByTopic.get(t.topicId) || [],
           });
         }
 
@@ -177,7 +186,7 @@ export class ClassRoomDbService {
           lessonByChapter.get(l.chapterId).push({
             ...l.lesson,
             orderIndex: l.orderIndex,
-            topics: topicByLesson.get(l.lessonId) || [],
+            topic: topicByLesson.get(l.lessonId) || [],
           });
         }
 
@@ -188,14 +197,14 @@ export class ClassRoomDbService {
           chapterByModule.get(c.moduleId).push({
             ...c.chapter,
             orderIndex: c.orderIndex,
-            lessons: lessonByChapter.get(c.chapterId) || [],
+            lesson: lessonByChapter.get(c.chapterId) || [],
           });
         }
 
         const moduleData = modules.map((m) => ({
           ...m.module,
           orderIndex: m.orderIndex,
-          chapters: chapterByModule.get(m.module.id) || [],
+          chapter: chapterByModule.get(m.module.id) || [],
         }));
 
         return moduleData;

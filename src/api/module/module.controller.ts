@@ -4,7 +4,7 @@ import { PermissionGuard } from 'src/common/guards/permission.guard';
 import { Permissions } from 'src/common/decorators/permissions.decorator';
 import { Body } from '@nestjs/common';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
-import { CreateModuleDto, UpdateModuleDto } from './dto/create-module.dto';
+import { CreateModuleDto, CreateModuleInClassRoomDto, UpdateModuleDto } from './dto/create-module.dto';
 
 @Controller('module')
 @UseGuards(PermissionGuard)
@@ -27,5 +27,17 @@ export class ModuleController {
   @Permissions('course:read')
   async findAll(@Query('courseVersionId') courseVersionId: string) {
     return await this.moduleService.findAllModulesInCourseVersion(courseVersionId);
+  }
+
+  @Get('classRoom')
+  @Permissions('course:read')
+  async findAllInClassRoom(@Query('classRoomId') classRoomId: string) {
+    return await this.moduleService.findAllModulesInClassRoom(classRoomId);
+  }
+
+  @Post('classRoom')
+  @Permissions('course:create')
+  async createInClassRoom(@Body() payload: CreateModuleInClassRoomDto, @CurrentUser() user: any) {
+    return await this.moduleService.createInClassRoom(payload, user);
   }
 }

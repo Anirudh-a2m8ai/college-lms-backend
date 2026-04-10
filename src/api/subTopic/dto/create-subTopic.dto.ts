@@ -1,4 +1,4 @@
-import { IsArray, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsArray, IsNotEmpty, IsNumber, IsObject, IsOptional, IsString } from 'class-validator';
 
 export class CreateSubTopicDto {
   @IsString()
@@ -12,6 +12,18 @@ export class CreateSubTopicDto {
   @IsString()
   @IsNotEmpty()
   courseVersionId: string;
+
+  @IsString()
+  @IsOptional()
+  content: string;
+
+  @IsOptional()
+  @IsObject()
+  examples: Record<string, any>;
+
+  @IsOptional()
+  @IsObject()
+  image: Record<string, any>;
 
   @IsNumber()
   @IsNotEmpty()
@@ -105,3 +117,34 @@ export class AbortMultipartUploadDto {
   @IsNotEmpty()
   uploadId: string;
 }
+
+export class CreateSubTopicInClassRoomDto {
+  @IsString()
+  @IsNotEmpty()
+  title: string;
+
+  @IsString()
+  @IsNotEmpty()
+  topicId: string;
+
+  @IsString()
+  @IsNotEmpty()
+  classRoomId: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  orderIndex: number;
+
+  @IsString()
+  @IsOptional()
+  content: string;
+
+  @IsOptional()
+  @IsObject()
+  examples: Record<string, any>;
+
+  @IsOptional()
+  @IsObject()
+  image: Record<string, any>;
+}
+

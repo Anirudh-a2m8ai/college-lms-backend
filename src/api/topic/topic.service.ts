@@ -2,15 +2,17 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { plainToInstance } from 'class-transformer';
 import { TopicMapDbService } from 'src/repository/topicMap.db-service';
 import { TopicDbService } from 'src/repository/topic.db-service';
-import { CreateTopicDto, UpdateTopicDto } from './dto/create-topic.dto';
+import { CreateTopicDto, CreateTopicInClassRoomDto, UpdateTopicDto } from './dto/create-topic.dto';
 import { TopicResponseDto } from './response/topic.type';
-import { TopicMap, Topics } from 'src/generated/prisma/client';
+import { ClassTopicMap, TopicMap, Topics } from 'src/generated/prisma/client';
+import { ClassTopicMapDbService } from 'src/repository/classTopicMap.db-service';
 
 @Injectable()
 export class TopicService {
   constructor(
     private readonly topicDbService: TopicDbService,
     private readonly topicMapDbService: TopicMapDbService,
+    private readonly classTopicMapDbService: ClassTopicMapDbService,
   ) {}
 
   async create(payload: CreateTopicDto, user: any) {
@@ -133,6 +135,64 @@ export class TopicService {
     );
     return {
       message: 'Topics fetched successfully',
+      data: topicResponse,
+    };
+  }
+
+  async findAllTopicsInClassRoom(classRoomId: string) {
+    const topicMap = (await this.classTopicMapDbService.findMany({
+      where: {
+        classRoomId,
+      },
+      include: {
+        topic: true,
+      },
+    })) as (ClassTopicMap & { topic: Topics })[];
+    const topicResponse = plainToInstance(
+      TopicResponseDto,
+      topicMap.map((item) => {
+        const topicResponse = plainToInstance(TopicResponseDto, item.topic);
+        topicResponse.orderIndex = item.orderIndex;
+        return topicResponse;
+      }),
+    );
+    return {
+      message: 'Topics fetched successfully',
+      data: topicResponse,
+    };
+  }
+
+  async createInClassRoom(payload: CreateTopicInClassRoomDto, user: any) {
+    const existingTopicIndex = await this.classTopicMapDbService.findFirst({
+      where: {
+        classRoomId: payload.classRoomId,
+        lessonId: payload.lessonId,
+        orderIndex: payload.orderIndex,
+      },
+    });
+    if (existingTopicIndex) {
+      throw new BadRequestException('Topic index already exists');
+    }
+    const topic = await this.topicDbService.create({
+      data: {
+        title: payload.title,
+        description: payload.description,
+        overview: payload.overview,
+      },
+    });
+    await this.classTopicMapDbService.create({
+      data: {
+        topicId: topic.id,
+        lessonId: payload.lessonId,
+        classRoomId: payload.classRoomId,
+        orderIndex: payload.orderIndex,
+      },
+    });
+    const topicResponse = plainToInstance(TopicResponseDto, topic);
+    topicResponse.orderIndex = payload.orderIndex;
+    topicResponse.lessonId = payload.lessonId;
+    return {
+      message: 'Topic created successfully',
       data: topicResponse,
     };
   }

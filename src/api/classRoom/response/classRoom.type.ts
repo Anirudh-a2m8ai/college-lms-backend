@@ -32,5 +32,5 @@ export class ClassRoomResponseDto {
 
   @Type(() => ModuleResponseDto)
   @Expose()
-  module: ModuleResponseDto[];
+  modules: ModuleResponseDto[];
 }

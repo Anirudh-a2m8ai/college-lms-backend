@@ -55,3 +55,29 @@ export class UpdateTopicDto {
   @IsNotEmpty()
   orderIndex: number;
 }
+
+export class CreateTopicInClassRoomDto {
+  @IsString()
+  @IsNotEmpty()
+  title: string;
+
+  @IsString()
+  @IsOptional()
+  description: string;
+
+  @IsString()
+  @IsOptional()
+  overview: string;
+
+  @IsString()
+  @IsNotEmpty()
+  lessonId: string;
+
+  @IsString()
+  @IsNotEmpty()
+  classRoomId: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  orderIndex: number;
+}

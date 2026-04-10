@@ -4,7 +4,7 @@ import { Permissions } from 'src/common/decorators/permissions.decorator';
 import { Body } from '@nestjs/common';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { TopicService } from './topic.service';
-import { CreateTopicDto, UpdateTopicDto } from './dto/create-topic.dto';
+import { CreateTopicDto, CreateTopicInClassRoomDto, UpdateTopicDto } from './dto/create-topic.dto';
 
 @Controller('topic')
 @UseGuards(PermissionGuard)
@@ -27,5 +27,17 @@ export class TopicController {
   @Get('lesson')
   async findAll(@Query('lessonId') lessonId: string, @Query('courseVersionId') courseVersionId: string) {
     return await this.topicService.findAllTopicsInLesson(lessonId, courseVersionId);
+  }
+
+  @Get('classRoom')
+  @Permissions('course:read')
+  async findAllInClassRoom(@Query('classRoomId') classRoomId: string) {
+    return await this.topicService.findAllTopicsInClassRoom(classRoomId);
+  }
+
+  @Post('classRoom')
+  @Permissions('course:create')
+  async createInClassRoom(@Body() payload: CreateTopicInClassRoomDto, @CurrentUser() user: any) {
+    return await this.topicService.createInClassRoom(payload, user);
   }
 }

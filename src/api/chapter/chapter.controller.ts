@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { ChapterService } from './chapter.service';
-import { CreateChapterDto, UpdateChapterDto } from './dto/create-chapter.dto';
+import { CreateChapterDto, CreateChapterInClassRoomDto, UpdateChapterDto } from './dto/create-chapter.dto';
 import { PermissionGuard } from 'src/common/guards/permission.guard';
 import { Permissions } from 'src/common/decorators/permissions.decorator';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
@@ -26,5 +26,17 @@ export class ChapterController {
   @Get('module')
   async findAll(@Query('moduleId') moduleId: string, @Query('courseVersionId') courseVersionId: string) {
     return await this.chapterService.findAllChaptersInModule(moduleId, courseVersionId);
+  }
+
+  @Permissions('course:read')
+  @Get('classRoom')
+  async findAllInClassRoom(@Query('classRoomId') classRoomId: string) {
+    return await this.chapterService.findAllChaptersInClassRoom(classRoomId);
+  }
+
+  @Permissions('course:create')
+  @Post('classRoom')
+  async createInClassRoom(@Body() payload: CreateChapterInClassRoomDto, @CurrentUser() user: any) {
+    return await this.chapterService.createInClassRoom(payload, user);
   }
 }

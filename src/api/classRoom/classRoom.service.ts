@@ -37,22 +37,23 @@ export class ClassRoomService {
     };
   }
 
-	async get(id: string, user: any) {
-		const classRoom = await this.classRoomDbService.findUnique({
-			where: {
-				id,
-			},
-		});
-		if (!classRoom) {
+  async get(id: string, user: any) {
+    const classRoom = await this.classRoomDbService.findUnique({
+      where: {
+        id,
+      },
+    });
+    if (!classRoom) {
       throw new NotFoundException('Class room not found');
-		}
+    }
     const classRoomContent = await this.classRoomDbService.getClassRoom(id);
     const classRoomMap = {
       ...classRoom,
-      classRoomContent,
-    }
-    
-		const classRoomResponse = plainToInstance(ClassRoomResponseDto, classRoomMap);
-		return classRoomResponse;
-	}
+      modules: classRoomContent,
+    };
+    console.log(classRoomContent);
+
+    const classRoomResponse = plainToInstance(ClassRoomResponseDto, classRoomMap);
+    return classRoomResponse;
+  }
 }

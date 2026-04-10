@@ -1,11 +1,12 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { ChapterDbService } from 'src/repository/chapter.db-service';
 import { ChapterMapDbService } from 'src/repository/chapterMap.db-service';
-import { CreateChapterDto, UpdateChapterDto } from './dto/create-chapter.dto';
+import { CreateChapterDto, CreateChapterInClassRoomDto, UpdateChapterDto } from './dto/create-chapter.dto';
 import { plainToInstance } from 'class-transformer';
 import { ChapterResponseDto } from './response/chapter.type';
 import { LessonMapDbService } from 'src/repository/lessonMap.db-service';
-import { Chapter, ChapterMap } from 'src/generated/prisma/client';
+import { Chapter, ChapterMap, ClassChapterMap } from 'src/generated/prisma/client';
+import { ClassChapterMapDbService } from 'src/repository/classChapterMap.db-service';
 
 @Injectable()
 export class ChapterService {
@@ -13,6 +14,7 @@ export class ChapterService {
     private readonly chapterDbService: ChapterDbService,
     private readonly chapterMapDbService: ChapterMapDbService,
     private readonly lessonMapDbService: LessonMapDbService,
+    private readonly classRoomChapterMapDbService: ClassChapterMapDbService,
   ) {}
 
   async create(payload: CreateChapterDto, user: any) {
@@ -142,6 +144,64 @@ export class ChapterService {
     );
     return {
       message: 'Chapters fetched successfully',
+      data: chapterResponse,
+    };
+  }
+
+  async findAllChaptersInClassRoom(classRoomId: string) {
+    const chapterMap = (await this.classRoomChapterMapDbService.findMany({
+      where: {
+        classRoomId,
+      },
+      include: {
+        chapter: true,
+      },
+    })) as (ClassChapterMap & { chapter: Chapter })[];
+    const chapterResponse = plainToInstance(
+      ChapterResponseDto,
+      chapterMap.map((item) => {
+        const chapterResponse = plainToInstance(ChapterResponseDto, item.chapter);
+        chapterResponse.orderIndex = item.orderIndex;
+        return chapterResponse;
+      }),
+    );
+    return {
+      message: 'Chapters fetched successfully',
+      data: chapterResponse,
+    };
+  }
+
+  async createInClassRoom(payload: CreateChapterInClassRoomDto, user: any) {
+    const existingChapterIndex = await this.classRoomChapterMapDbService.findFirst({
+      where: {
+        classRoomId: payload.classRoomId,
+        orderIndex: payload.orderIndex,
+        moduleId: payload.moduleId,
+      },
+    });
+    if (existingChapterIndex) {
+      throw new BadRequestException('Chapter index already exists');
+    }
+    const chapter = await this.chapterDbService.create({
+      data: {
+        title: payload.title,
+        description: payload.description,
+        overview: payload.overview,
+      },
+    });
+    await this.classRoomChapterMapDbService.create({
+      data: {
+        chapterId: chapter.id,
+        classRoomId: payload.classRoomId,
+        moduleId: payload.moduleId,
+        orderIndex: payload.orderIndex,
+      },
+    });
+    const chapterResponse = plainToInstance(ChapterResponseDto, chapter);
+    chapterResponse.orderIndex = payload.orderIndex;
+    chapterResponse.moduleId = payload.moduleId;
+    return {
+      message: 'Chapter created successfully',
       data: chapterResponse,
     };
   }

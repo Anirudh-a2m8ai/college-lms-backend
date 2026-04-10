@@ -27,3 +27,26 @@ export class UpdateModuleDto extends CreateModuleDto {
   @IsNotEmpty()
   id: string;
 }
+
+export class CreateModuleInClassRoomDto {
+  @IsString()
+  @IsNotEmpty()
+  title: string;
+
+  @IsString()
+  @IsOptional()
+  description: string;
+
+  @IsString()
+  @IsOptional()
+  overview: string;
+
+  @IsString()
+  @IsNotEmpty()
+  classRoomId: string;
+
+  @IsNumber()
+  @IsOptional()
+  orderIndex: number;
+}
+
