@@ -25,9 +25,23 @@ export class QuizService {
         id: payload.courseVersionId,
       },
     });
+    if (!payload.courseVersionId && !payload.classRoomId) {
+      throw new BadRequestException('Course version or class room not found');
+    }
     const existingQuizIndex = await this.quizDbService.findFirst({
       where: {
         courseVersionId: payload.courseVersionId,
+        orderIndex: payload.orderIndex,
+        moduleId: payload.moduleId,
+        chapterId: payload.chapterId,
+        lessonId: payload.lessonId,
+        topicId: payload.topicId,
+        subTopicId: payload.subTopicId,
+      },
+    });
+    const existingClassRoomQuizIndex = await this.quizDbService.findFirst({
+      where: {
+        classRoomId: payload.classRoomId,
         orderIndex: payload.orderIndex,
         moduleId: payload.moduleId,
         chapterId: payload.chapterId,
@@ -41,6 +55,9 @@ export class QuizService {
     }
     if (!courseVersion) {
       throw new BadRequestException('Course version not found');
+    }
+    if (existingClassRoomQuizIndex) {
+      throw new BadRequestException('Quiz index already exists in class room');
     }
     this.validateQuizParent({
       moduleId: payload.moduleId,
@@ -63,6 +80,7 @@ export class QuizService {
         noOfQuestions: payload.noOfQuestions,
         orderIndex: payload.orderIndex,
         courseVersionId: payload.courseVersionId,
+        classRoomId: payload.classRoomId,
         moduleId: payload.moduleId,
         chapterId: payload.chapterId,
         lessonId: payload.lessonId,

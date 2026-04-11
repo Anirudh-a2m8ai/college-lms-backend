@@ -219,4 +219,45 @@ export class EnrollmentsService {
       data: enrollmentResponse,
     };
   }
+
+  async createBulk(payload: CreateEnrollmentDto[]) {
+    const classRoom = await this.classRoomDbService.findUnique({
+      where: {
+        id: payload[0].classRoomId,
+      },
+    });
+    if (!classRoom) {
+      throw new BadRequestException('Class room not found');
+    }
+    const totalSubTopics = await this.classSubTopicMapDbService.count({
+      where: {
+        classRoomId: payload[0].classRoomId,
+      },
+    });
+    const totalQuizzes = await this.quizDbService.count({
+      where: {
+        classRoomId: classRoom.id,
+      },
+    });
+    const enrollments = await this.enrollmentsDbService.createMany({
+      data: payload.map((item) => {
+        return {
+          userId: item.userId,
+          classRoomId: item.classRoomId,
+          totalSubTopics: totalSubTopics,
+          totalQuizzes: totalQuizzes,
+          tenantId: classRoom.tenantId,
+          startDate: classRoom.startDate,
+          endDate: classRoom.endDate,
+        };
+      }),
+    });
+    const enrollmentResponse = plainToInstance(EnrollmentsResponseDto, enrollments, {
+      excludeExtraneousValues: true,
+    });
+    return {
+      message: 'Enrollment created successfully',
+      data: enrollmentResponse,
+    };
+  }
 }

@@ -18,6 +18,12 @@ export class EnrollmentsController {
   }
 
   @Permissions('enrollments:create')
+  @Post('bulk')
+  async createBulk(@Body() payload: CreateEnrollmentDto[]) {
+    return await this.enrollmentsService.createBulk(payload);
+  }
+
+  @Permissions('enrollments:create')
   @Post('courseVersion')
   async createInCourseVersion(@Body() payload: CreateEnrollmentInCourseVersionDto) {
     return await this.enrollmentsService.createInCourseVersion(payload);

@@ -98,8 +98,12 @@ export class CreateQuizDto {
   moduleId: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   courseVersionId: string;
+
+  @IsString()
+  @IsOptional()
+  classRoomId: string;
 
   @IsNumber()
   @IsNotEmpty()
