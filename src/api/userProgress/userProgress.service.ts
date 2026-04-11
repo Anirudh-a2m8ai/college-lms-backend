@@ -5,12 +5,14 @@ import { EnrollmentsDbService } from 'src/repository/enrollments.db-service';
 import { ProcessStatus } from 'src/generated/prisma/enums';
 import { plainToInstance } from 'class-transformer';
 import { UserProgressResponseDto } from './response/userProgress.type';
+import { ClassRoomProgressDbService } from 'src/repository/classRoomProgress.db-service';
 
 @Injectable()
 export class UserProgressService {
   constructor(
     private readonly userProgressDbService: UserProgressDbService,
     private readonly enrollmentDbService: EnrollmentsDbService,
+    private readonly classRoomProgressDbService: ClassRoomProgressDbService,
   ) {}
 
   async create(payload: CreateUserProgressDto, user: any) {
@@ -22,6 +24,18 @@ export class UserProgressService {
     });
     if (!enrollment) {
       throw new NotFoundException('Enrollment not found');
+    }
+    if (enrollment.classRoomId && payload.status === ProcessStatus.COMPLETED) {
+      const classRoomProgress = await this.classRoomProgressDbService.findFirst({
+        where: {
+          classRoomId: enrollment.classRoomId,
+          subTopicId: payload.subTopicId,
+        }
+      })
+
+      if(!classRoomProgress || classRoomProgress.status !== ProcessStatus.COMPLETED){
+        throw new NotFoundException('ClassRoom is not completed')
+      }
     }
     const userProgress = await this.userProgressDbService.upsert({
       where: {

@@ -7,6 +7,8 @@ import { QuizResponseDto } from './response/quiz.type';
 import { QuizQuestionDbService } from 'src/repository/quiz-question.db-service';
 import { QuizQuestionResponseDto } from './response/quiz-question.type';
 import { QuizSubmissionDbService } from 'src/repository/quizSubmission.db-service';
+import { UpdateQuizDto } from './dto/update-quiz.dto';
+import { QuizStatus } from 'src/generated/prisma/enums';
 
 @Injectable()
 export class QuizService {
@@ -66,6 +68,8 @@ export class QuizService {
         lessonId: payload.lessonId,
         topicId: payload.topicId,
         subTopicId: payload.subTopicId,
+        status: payload.status,
+        deadLine: payload.deadLine,
       },
     });
     await this.courseVersionDbService.update({
@@ -137,6 +141,14 @@ export class QuizService {
       throw new NotFoundException(`Quiz not found for ${payload.quizId}`);
     }
 
+    if (quiz?.deadLine && quiz.deadLine < new Date()) {
+      throw new BadRequestException('Quiz is closed');
+    }
+
+    if (quiz.status !== QuizStatus.ENABLED) {
+      throw new BadRequestException('Quiz is not enabled');
+    }
+
     const questionIds = payload.quizSubmission.map((submission) => submission.quizQuestionId);
     const questions = await this.quizQuestionDbService.findMany({
       where: {
@@ -159,5 +171,23 @@ export class QuizService {
     });
 
     return quizSubmission;
+  }
+
+  async update(id: string, payload: UpdateQuizDto) {
+    const existingQuiz = await this.quizDbService.findUnique({
+      where: { id },
+    });
+    if (!existingQuiz) {
+      throw new NotFoundException('Quiz not found');
+    }
+    const quiz = await this.quizDbService.update({
+      where: { id },
+      data: payload,
+    });
+    const quizResponse = plainToInstance(QuizResponseDto, quiz);
+    return {
+      quiz: quizResponse,
+      message: 'Quiz updated successfully',
+    };
   }
 }

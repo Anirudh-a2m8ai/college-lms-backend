@@ -1,9 +1,10 @@
-import { Body, Controller, Param, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { QuizService } from './quiz.service';
 import { PermissionGuard } from 'src/common/guards/permission.guard';
 import { Permissions } from 'src/common/decorators/permissions.decorator';
 import { CreateQuizDto, CreateQuizQuestionDto, CreateQuizSubmissionDto } from './dto/create-quiz.dto';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
+import { UpdateQuizDto } from './dto/update-quiz.dto';
 
 @Controller('quiz')
 @UseGuards(PermissionGuard)
@@ -25,5 +26,11 @@ export class QuizController {
   @Post('submission')
   async createSubmission(@Body() payload: CreateQuizSubmissionDto, @CurrentUser() user: any) {
     return this.quizService.createQuizSubmission(payload, user);
+  }
+
+  @Permissions('course:edit')
+  @Patch(':quizId')
+  async update(@Param('quizId') quizId: string, @Body() payload: UpdateQuizDto) {
+    return this.quizService.update(quizId, payload);
   }
 }
