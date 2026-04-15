@@ -24,6 +24,7 @@ model ClassRoom {
   classSubTopic           ClassSubTopicMap[]
   quizzes                 Quiz[]
   classRoomProgress       ClassRoomProgress[]
+  liveClasses             LiveClass[]
   startDate               DateTime
   endDate                 DateTime
   createdAt               DateTime          @default(now())

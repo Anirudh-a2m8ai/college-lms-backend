@@ -274,6 +274,7 @@ export type ClassRoomWhereInput = {
   classSubTopic?: Prisma.ClassSubTopicMapListRelationFilter
   quizzes?: Prisma.QuizListRelationFilter
   classRoomProgress?: Prisma.ClassRoomProgressListRelationFilter
+  liveClasses?: Prisma.LiveClassListRelationFilter
 }
 
 export type ClassRoomOrderByWithRelationInput = {
@@ -304,6 +305,7 @@ export type ClassRoomOrderByWithRelationInput = {
   classSubTopic?: Prisma.ClassSubTopicMapOrderByRelationAggregateInput
   quizzes?: Prisma.QuizOrderByRelationAggregateInput
   classRoomProgress?: Prisma.ClassRoomProgressOrderByRelationAggregateInput
+  liveClasses?: Prisma.LiveClassOrderByRelationAggregateInput
 }
 
 export type ClassRoomWhereUniqueInput = Prisma.AtLeast<{
@@ -337,6 +339,7 @@ export type ClassRoomWhereUniqueInput = Prisma.AtLeast<{
   classSubTopic?: Prisma.ClassSubTopicMapListRelationFilter
   quizzes?: Prisma.QuizListRelationFilter
   classRoomProgress?: Prisma.ClassRoomProgressListRelationFilter
+  liveClasses?: Prisma.LiveClassListRelationFilter
 }, "id">
 
 export type ClassRoomOrderByWithAggregationInput = {
@@ -405,6 +408,7 @@ export type ClassRoomCreateInput = {
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateInput = {
@@ -431,6 +435,7 @@ export type ClassRoomUncheckedCreateInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUpdateInput = {
@@ -457,6 +462,7 @@ export type ClassRoomUpdateInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateInput = {
@@ -483,6 +489,7 @@ export type ClassRoomUncheckedUpdateInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomCreateManyInput = {
@@ -797,6 +804,20 @@ export type ClassRoomUpdateOneWithoutEnrollmentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ClassRoomUpdateToOneWithWhereWithoutEnrollmentsInput, Prisma.ClassRoomUpdateWithoutEnrollmentsInput>, Prisma.ClassRoomUncheckedUpdateWithoutEnrollmentsInput>
 }
 
+export type ClassRoomCreateNestedOneWithoutLiveClassesInput = {
+  create?: Prisma.XOR<Prisma.ClassRoomCreateWithoutLiveClassesInput, Prisma.ClassRoomUncheckedCreateWithoutLiveClassesInput>
+  connectOrCreate?: Prisma.ClassRoomCreateOrConnectWithoutLiveClassesInput
+  connect?: Prisma.ClassRoomWhereUniqueInput
+}
+
+export type ClassRoomUpdateOneRequiredWithoutLiveClassesNestedInput = {
+  create?: Prisma.XOR<Prisma.ClassRoomCreateWithoutLiveClassesInput, Prisma.ClassRoomUncheckedCreateWithoutLiveClassesInput>
+  connectOrCreate?: Prisma.ClassRoomCreateOrConnectWithoutLiveClassesInput
+  upsert?: Prisma.ClassRoomUpsertWithoutLiveClassesInput
+  connect?: Prisma.ClassRoomWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ClassRoomUpdateToOneWithWhereWithoutLiveClassesInput, Prisma.ClassRoomUpdateWithoutLiveClassesInput>, Prisma.ClassRoomUncheckedUpdateWithoutLiveClassesInput>
+}
+
 export type ClassRoomCreateNestedOneWithoutQuizzesInput = {
   create?: Prisma.XOR<Prisma.ClassRoomCreateWithoutQuizzesInput, Prisma.ClassRoomUncheckedCreateWithoutQuizzesInput>
   connectOrCreate?: Prisma.ClassRoomCreateOrConnectWithoutQuizzesInput
@@ -920,6 +941,7 @@ export type ClassRoomCreateWithoutClassModuleInput = {
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutClassModuleInput = {
@@ -945,6 +967,7 @@ export type ClassRoomUncheckedCreateWithoutClassModuleInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutClassModuleInput = {
@@ -986,6 +1009,7 @@ export type ClassRoomUpdateWithoutClassModuleInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutClassModuleInput = {
@@ -1011,6 +1035,7 @@ export type ClassRoomUncheckedUpdateWithoutClassModuleInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomCreateWithoutClassChapterInput = {
@@ -1036,6 +1061,7 @@ export type ClassRoomCreateWithoutClassChapterInput = {
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutClassChapterInput = {
@@ -1061,6 +1087,7 @@ export type ClassRoomUncheckedCreateWithoutClassChapterInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutClassChapterInput = {
@@ -1102,6 +1129,7 @@ export type ClassRoomUpdateWithoutClassChapterInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutClassChapterInput = {
@@ -1127,6 +1155,7 @@ export type ClassRoomUncheckedUpdateWithoutClassChapterInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomCreateWithoutClassLessonInput = {
@@ -1152,6 +1181,7 @@ export type ClassRoomCreateWithoutClassLessonInput = {
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutClassLessonInput = {
@@ -1177,6 +1207,7 @@ export type ClassRoomUncheckedCreateWithoutClassLessonInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutClassLessonInput = {
@@ -1218,6 +1249,7 @@ export type ClassRoomUpdateWithoutClassLessonInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutClassLessonInput = {
@@ -1243,6 +1275,7 @@ export type ClassRoomUncheckedUpdateWithoutClassLessonInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomCreateWithoutClassTopicInput = {
@@ -1268,6 +1301,7 @@ export type ClassRoomCreateWithoutClassTopicInput = {
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutClassTopicInput = {
@@ -1293,6 +1327,7 @@ export type ClassRoomUncheckedCreateWithoutClassTopicInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutClassTopicInput = {
@@ -1334,6 +1369,7 @@ export type ClassRoomUpdateWithoutClassTopicInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutClassTopicInput = {
@@ -1359,6 +1395,7 @@ export type ClassRoomUncheckedUpdateWithoutClassTopicInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomCreateWithoutClassSubTopicInput = {
@@ -1384,6 +1421,7 @@ export type ClassRoomCreateWithoutClassSubTopicInput = {
   classTopic?: Prisma.ClassTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutClassSubTopicInput = {
@@ -1409,6 +1447,7 @@ export type ClassRoomUncheckedCreateWithoutClassSubTopicInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutClassSubTopicInput = {
@@ -1450,6 +1489,7 @@ export type ClassRoomUpdateWithoutClassSubTopicInput = {
   classTopic?: Prisma.ClassTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutClassSubTopicInput = {
@@ -1475,6 +1515,7 @@ export type ClassRoomUncheckedUpdateWithoutClassSubTopicInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomCreateWithoutClassRoomProgressInput = {
@@ -1500,6 +1541,7 @@ export type ClassRoomCreateWithoutClassRoomProgressInput = {
   classTopic?: Prisma.ClassTopicMapCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutClassRoomProgressInput = {
@@ -1525,6 +1567,7 @@ export type ClassRoomUncheckedCreateWithoutClassRoomProgressInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutClassRoomProgressInput = {
@@ -1566,6 +1609,7 @@ export type ClassRoomUpdateWithoutClassRoomProgressInput = {
   classTopic?: Prisma.ClassTopicMapUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutClassRoomProgressInput = {
@@ -1591,6 +1635,7 @@ export type ClassRoomUncheckedUpdateWithoutClassRoomProgressInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomCreateWithoutSourceCourseVersionInput = {
@@ -1616,6 +1661,7 @@ export type ClassRoomCreateWithoutSourceCourseVersionInput = {
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutSourceCourseVersionInput = {
@@ -1641,6 +1687,7 @@ export type ClassRoomUncheckedCreateWithoutSourceCourseVersionInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutSourceCourseVersionInput = {
@@ -1713,6 +1760,7 @@ export type ClassRoomCreateWithoutCourseInput = {
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutCourseInput = {
@@ -1738,6 +1786,7 @@ export type ClassRoomUncheckedCreateWithoutCourseInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutCourseInput = {
@@ -1789,6 +1838,7 @@ export type ClassRoomCreateWithoutEnrollmentsInput = {
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutEnrollmentsInput = {
@@ -1814,6 +1864,7 @@ export type ClassRoomUncheckedCreateWithoutEnrollmentsInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutEnrollmentsInput = {
@@ -1855,6 +1906,7 @@ export type ClassRoomUpdateWithoutEnrollmentsInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutEnrollmentsInput = {
@@ -1873,6 +1925,127 @@ export type ClassRoomUncheckedUpdateWithoutEnrollmentsInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  classModule?: Prisma.ClassModuleMapUncheckedUpdateManyWithoutClassRoomNestedInput
+  classChapter?: Prisma.ClassChapterMapUncheckedUpdateManyWithoutClassRoomNestedInput
+  classLesson?: Prisma.ClassLessonMapUncheckedUpdateManyWithoutClassRoomNestedInput
+  classTopic?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
+  classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
+  quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutClassRoomNestedInput
+}
+
+export type ClassRoomCreateWithoutLiveClassesInput = {
+  id?: string
+  name: string
+  status: $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  course: Prisma.CourseCreateNestedOneWithoutClassRoomsInput
+  user: Prisma.UserCreateNestedOneWithoutClassRoomsInput
+  sourceCourseVersion: Prisma.CourseVersionCreateNestedOneWithoutClassRoomsInput
+  tenant: Prisma.TenantCreateNestedOneWithoutClassRoomsInput
+  enrollments?: Prisma.EnrollmentsCreateNestedManyWithoutClassRoomInput
+  classModule?: Prisma.ClassModuleMapCreateNestedManyWithoutClassRoomInput
+  classChapter?: Prisma.ClassChapterMapCreateNestedManyWithoutClassRoomInput
+  classLesson?: Prisma.ClassLessonMapCreateNestedManyWithoutClassRoomInput
+  classTopic?: Prisma.ClassTopicMapCreateNestedManyWithoutClassRoomInput
+  classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
+  quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
+}
+
+export type ClassRoomUncheckedCreateWithoutLiveClassesInput = {
+  id?: string
+  name: string
+  status: $Enums.ClassRoomStatus
+  courseId: string
+  userId: string
+  sourceCourseVersionId: string
+  tenantId: string
+  lastAccessedSubTopicId?: string | null
+  startDate: Date | string
+  endDate: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  enrollments?: Prisma.EnrollmentsUncheckedCreateNestedManyWithoutClassRoomInput
+  classModule?: Prisma.ClassModuleMapUncheckedCreateNestedManyWithoutClassRoomInput
+  classChapter?: Prisma.ClassChapterMapUncheckedCreateNestedManyWithoutClassRoomInput
+  classLesson?: Prisma.ClassLessonMapUncheckedCreateNestedManyWithoutClassRoomInput
+  classTopic?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
+  classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
+  quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
+  classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
+}
+
+export type ClassRoomCreateOrConnectWithoutLiveClassesInput = {
+  where: Prisma.ClassRoomWhereUniqueInput
+  create: Prisma.XOR<Prisma.ClassRoomCreateWithoutLiveClassesInput, Prisma.ClassRoomUncheckedCreateWithoutLiveClassesInput>
+}
+
+export type ClassRoomUpsertWithoutLiveClassesInput = {
+  update: Prisma.XOR<Prisma.ClassRoomUpdateWithoutLiveClassesInput, Prisma.ClassRoomUncheckedUpdateWithoutLiveClassesInput>
+  create: Prisma.XOR<Prisma.ClassRoomCreateWithoutLiveClassesInput, Prisma.ClassRoomUncheckedCreateWithoutLiveClassesInput>
+  where?: Prisma.ClassRoomWhereInput
+}
+
+export type ClassRoomUpdateToOneWithWhereWithoutLiveClassesInput = {
+  where?: Prisma.ClassRoomWhereInput
+  data: Prisma.XOR<Prisma.ClassRoomUpdateWithoutLiveClassesInput, Prisma.ClassRoomUncheckedUpdateWithoutLiveClassesInput>
+}
+
+export type ClassRoomUpdateWithoutLiveClassesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumClassRoomStatusFieldUpdateOperationsInput | $Enums.ClassRoomStatus
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  course?: Prisma.CourseUpdateOneRequiredWithoutClassRoomsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutClassRoomsNestedInput
+  sourceCourseVersion?: Prisma.CourseVersionUpdateOneRequiredWithoutClassRoomsNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutClassRoomsNestedInput
+  enrollments?: Prisma.EnrollmentsUpdateManyWithoutClassRoomNestedInput
+  classModule?: Prisma.ClassModuleMapUpdateManyWithoutClassRoomNestedInput
+  classChapter?: Prisma.ClassChapterMapUpdateManyWithoutClassRoomNestedInput
+  classLesson?: Prisma.ClassLessonMapUpdateManyWithoutClassRoomNestedInput
+  classTopic?: Prisma.ClassTopicMapUpdateManyWithoutClassRoomNestedInput
+  classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
+  quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
+  classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
+}
+
+export type ClassRoomUncheckedUpdateWithoutLiveClassesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumClassRoomStatusFieldUpdateOperationsInput | $Enums.ClassRoomStatus
+  courseId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceCourseVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastAccessedSubTopicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollments?: Prisma.EnrollmentsUncheckedUpdateManyWithoutClassRoomNestedInput
   classModule?: Prisma.ClassModuleMapUncheckedUpdateManyWithoutClassRoomNestedInput
   classChapter?: Prisma.ClassChapterMapUncheckedUpdateManyWithoutClassRoomNestedInput
   classLesson?: Prisma.ClassLessonMapUncheckedUpdateManyWithoutClassRoomNestedInput
@@ -1905,6 +2078,7 @@ export type ClassRoomCreateWithoutQuizzesInput = {
   classTopic?: Prisma.ClassTopicMapCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutQuizzesInput = {
@@ -1930,6 +2104,7 @@ export type ClassRoomUncheckedCreateWithoutQuizzesInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutQuizzesInput = {
@@ -1971,6 +2146,7 @@ export type ClassRoomUpdateWithoutQuizzesInput = {
   classTopic?: Prisma.ClassTopicMapUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutQuizzesInput = {
@@ -1996,6 +2172,7 @@ export type ClassRoomUncheckedUpdateWithoutQuizzesInput = {
   classTopic?: Prisma.ClassTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomCreateWithoutTenantInput = {
@@ -2021,6 +2198,7 @@ export type ClassRoomCreateWithoutTenantInput = {
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutTenantInput = {
@@ -2046,6 +2224,7 @@ export type ClassRoomUncheckedCreateWithoutTenantInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutTenantInput = {
@@ -2097,6 +2276,7 @@ export type ClassRoomCreateWithoutUserInput = {
   classSubTopic?: Prisma.ClassSubTopicMapCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomUncheckedCreateWithoutUserInput = {
@@ -2122,6 +2302,7 @@ export type ClassRoomUncheckedCreateWithoutUserInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedCreateNestedManyWithoutClassRoomInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutClassRoomInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedCreateNestedManyWithoutClassRoomInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutClassRoomInput
 }
 
 export type ClassRoomCreateOrConnectWithoutUserInput = {
@@ -2190,6 +2371,7 @@ export type ClassRoomUpdateWithoutSourceCourseVersionInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutSourceCourseVersionInput = {
@@ -2215,6 +2397,7 @@ export type ClassRoomUncheckedUpdateWithoutSourceCourseVersionInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateManyWithoutSourceCourseVersionInput = {
@@ -2274,6 +2457,7 @@ export type ClassRoomUpdateWithoutCourseInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutCourseInput = {
@@ -2299,6 +2483,7 @@ export type ClassRoomUncheckedUpdateWithoutCourseInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateManyWithoutCourseInput = {
@@ -2358,6 +2543,7 @@ export type ClassRoomUpdateWithoutTenantInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutTenantInput = {
@@ -2383,6 +2569,7 @@ export type ClassRoomUncheckedUpdateWithoutTenantInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateManyWithoutTenantInput = {
@@ -2442,6 +2629,7 @@ export type ClassRoomUpdateWithoutUserInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateWithoutUserInput = {
@@ -2467,6 +2655,7 @@ export type ClassRoomUncheckedUpdateWithoutUserInput = {
   classSubTopic?: Prisma.ClassSubTopicMapUncheckedUpdateManyWithoutClassRoomNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutClassRoomNestedInput
   classRoomProgress?: Prisma.ClassRoomProgressUncheckedUpdateManyWithoutClassRoomNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutClassRoomNestedInput
 }
 
 export type ClassRoomUncheckedUpdateManyWithoutUserInput = {
@@ -2500,6 +2689,7 @@ export type ClassRoomCountOutputType = {
   classSubTopic: number
   quizzes: number
   classRoomProgress: number
+  liveClasses: number
 }
 
 export type ClassRoomCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2511,6 +2701,7 @@ export type ClassRoomCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensi
   classSubTopic?: boolean | ClassRoomCountOutputTypeCountClassSubTopicArgs
   quizzes?: boolean | ClassRoomCountOutputTypeCountQuizzesArgs
   classRoomProgress?: boolean | ClassRoomCountOutputTypeCountClassRoomProgressArgs
+  liveClasses?: boolean | ClassRoomCountOutputTypeCountLiveClassesArgs
 }
 
 /**
@@ -2579,6 +2770,13 @@ export type ClassRoomCountOutputTypeCountClassRoomProgressArgs<ExtArgs extends r
   where?: Prisma.ClassRoomProgressWhereInput
 }
 
+/**
+ * ClassRoomCountOutputType without action
+ */
+export type ClassRoomCountOutputTypeCountLiveClassesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LiveClassWhereInput
+}
+
 
 export type ClassRoomSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2608,6 +2806,7 @@ export type ClassRoomSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   classSubTopic?: boolean | Prisma.ClassRoom$classSubTopicArgs<ExtArgs>
   quizzes?: boolean | Prisma.ClassRoom$quizzesArgs<ExtArgs>
   classRoomProgress?: boolean | Prisma.ClassRoom$classRoomProgressArgs<ExtArgs>
+  liveClasses?: boolean | Prisma.ClassRoom$liveClassesArgs<ExtArgs>
   _count?: boolean | Prisma.ClassRoomCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["classRoom"]>
 
@@ -2687,6 +2886,7 @@ export type ClassRoomInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   classSubTopic?: boolean | Prisma.ClassRoom$classSubTopicArgs<ExtArgs>
   quizzes?: boolean | Prisma.ClassRoom$quizzesArgs<ExtArgs>
   classRoomProgress?: boolean | Prisma.ClassRoom$classRoomProgressArgs<ExtArgs>
+  liveClasses?: boolean | Prisma.ClassRoom$liveClassesArgs<ExtArgs>
   _count?: boolean | Prisma.ClassRoomCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ClassRoomIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2717,6 +2917,7 @@ export type $ClassRoomPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     classSubTopic: Prisma.$ClassSubTopicMapPayload<ExtArgs>[]
     quizzes: Prisma.$QuizPayload<ExtArgs>[]
     classRoomProgress: Prisma.$ClassRoomProgressPayload<ExtArgs>[]
+    liveClasses: Prisma.$LiveClassPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3140,6 +3341,7 @@ export interface Prisma__ClassRoomClient<T, Null = never, ExtArgs extends runtim
   classSubTopic<T extends Prisma.ClassRoom$classSubTopicArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClassRoom$classSubTopicArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassSubTopicMapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   quizzes<T extends Prisma.ClassRoom$quizzesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClassRoom$quizzesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuizPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   classRoomProgress<T extends Prisma.ClassRoom$classRoomProgressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClassRoom$classRoomProgressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassRoomProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  liveClasses<T extends Prisma.ClassRoom$liveClassesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClassRoom$liveClassesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LiveClassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3774,6 +3976,30 @@ export type ClassRoom$classRoomProgressArgs<ExtArgs extends runtime.Types.Extens
   take?: number
   skip?: number
   distinct?: Prisma.ClassRoomProgressScalarFieldEnum | Prisma.ClassRoomProgressScalarFieldEnum[]
+}
+
+/**
+ * ClassRoom.liveClasses
+ */
+export type ClassRoom$liveClassesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LiveClass
+   */
+  select?: Prisma.LiveClassSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LiveClass
+   */
+  omit?: Prisma.LiveClassOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LiveClassInclude<ExtArgs> | null
+  where?: Prisma.LiveClassWhereInput
+  orderBy?: Prisma.LiveClassOrderByWithRelationInput | Prisma.LiveClassOrderByWithRelationInput[]
+  cursor?: Prisma.LiveClassWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LiveClassScalarFieldEnum | Prisma.LiveClassScalarFieldEnum[]
 }
 
 /**

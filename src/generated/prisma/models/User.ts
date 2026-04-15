@@ -398,6 +398,7 @@ export type UserWhereInput = {
   classRooms?: Prisma.ClassRoomListRelationFilter
   studentProfile?: Prisma.StudentProfileListRelationFilter
   teacherProfile?: Prisma.TeacherProfileListRelationFilter
+  liveClasses?: Prisma.LiveClassListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -437,6 +438,7 @@ export type UserOrderByWithRelationInput = {
   classRooms?: Prisma.ClassRoomOrderByRelationAggregateInput
   studentProfile?: Prisma.StudentProfileOrderByRelationAggregateInput
   teacherProfile?: Prisma.TeacherProfileOrderByRelationAggregateInput
+  liveClasses?: Prisma.LiveClassOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -479,6 +481,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   classRooms?: Prisma.ClassRoomListRelationFilter
   studentProfile?: Prisma.StudentProfileListRelationFilter
   teacherProfile?: Prisma.TeacherProfileListRelationFilter
+  liveClasses?: Prisma.LiveClassListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -583,6 +586,7 @@ export type UserCreateInput = {
   classRooms?: Prisma.ClassRoomCreateNestedManyWithoutUserInput
   studentProfile?: Prisma.StudentProfileCreateNestedManyWithoutUserInput
   teacherProfile?: Prisma.TeacherProfileCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutHostInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -621,6 +625,7 @@ export type UserUncheckedCreateInput = {
   classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutUserInput
   studentProfile?: Prisma.StudentProfileUncheckedCreateNestedManyWithoutUserInput
   teacherProfile?: Prisma.TeacherProfileUncheckedCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutHostInput
 }
 
 export type UserUpdateInput = {
@@ -659,6 +664,7 @@ export type UserUpdateInput = {
   classRooms?: Prisma.ClassRoomUpdateManyWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUpdateManyWithoutUserNestedInput
   teacherProfile?: Prisma.TeacherProfileUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutHostNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -697,6 +703,7 @@ export type UserUncheckedUpdateInput = {
   classRooms?: Prisma.ClassRoomUncheckedUpdateManyWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUncheckedUpdateManyWithoutUserNestedInput
   teacherProfile?: Prisma.TeacherProfileUncheckedUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutHostNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -925,6 +932,20 @@ export type UserUpdateOneRequiredWithoutEnrollmentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutEnrollmentsInput, Prisma.UserUpdateWithoutEnrollmentsInput>, Prisma.UserUncheckedUpdateWithoutEnrollmentsInput>
 }
 
+export type UserCreateNestedOneWithoutLiveClassesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLiveClassesInput, Prisma.UserUncheckedCreateWithoutLiveClassesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLiveClassesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutLiveClassesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLiveClassesInput, Prisma.UserUncheckedCreateWithoutLiveClassesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLiveClassesInput
+  upsert?: Prisma.UserUpsertWithoutLiveClassesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLiveClassesInput, Prisma.UserUpdateWithoutLiveClassesInput>, Prisma.UserUncheckedUpdateWithoutLiveClassesInput>
+}
+
 export type UserCreateNestedManyWithoutRoleInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutRoleInput, Prisma.UserUncheckedCreateWithoutRoleInput> | Prisma.UserCreateWithoutRoleInput[] | Prisma.UserUncheckedCreateWithoutRoleInput[]
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoleInput | Prisma.UserCreateOrConnectWithoutRoleInput[]
@@ -1124,6 +1145,7 @@ export type UserCreateWithoutClassRoomsInput = {
   userProgress?: Prisma.UserProgressCreateNestedManyWithoutUserInput
   studentProfile?: Prisma.StudentProfileCreateNestedManyWithoutUserInput
   teacherProfile?: Prisma.TeacherProfileCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutHostInput
 }
 
 export type UserUncheckedCreateWithoutClassRoomsInput = {
@@ -1161,6 +1183,7 @@ export type UserUncheckedCreateWithoutClassRoomsInput = {
   userProgress?: Prisma.UserProgressUncheckedCreateNestedManyWithoutUserInput
   studentProfile?: Prisma.StudentProfileUncheckedCreateNestedManyWithoutUserInput
   teacherProfile?: Prisma.TeacherProfileUncheckedCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutHostInput
 }
 
 export type UserCreateOrConnectWithoutClassRoomsInput = {
@@ -1214,6 +1237,7 @@ export type UserUpdateWithoutClassRoomsInput = {
   userProgress?: Prisma.UserProgressUpdateManyWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUpdateManyWithoutUserNestedInput
   teacherProfile?: Prisma.TeacherProfileUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutHostNestedInput
 }
 
 export type UserUncheckedUpdateWithoutClassRoomsInput = {
@@ -1251,6 +1275,7 @@ export type UserUncheckedUpdateWithoutClassRoomsInput = {
   userProgress?: Prisma.UserProgressUncheckedUpdateManyWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUncheckedUpdateManyWithoutUserNestedInput
   teacherProfile?: Prisma.TeacherProfileUncheckedUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutHostNestedInput
 }
 
 export type UserCreateWithoutEnrollmentsInput = {
@@ -1288,6 +1313,7 @@ export type UserCreateWithoutEnrollmentsInput = {
   classRooms?: Prisma.ClassRoomCreateNestedManyWithoutUserInput
   studentProfile?: Prisma.StudentProfileCreateNestedManyWithoutUserInput
   teacherProfile?: Prisma.TeacherProfileCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutHostInput
 }
 
 export type UserUncheckedCreateWithoutEnrollmentsInput = {
@@ -1325,6 +1351,7 @@ export type UserUncheckedCreateWithoutEnrollmentsInput = {
   classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutUserInput
   studentProfile?: Prisma.StudentProfileUncheckedCreateNestedManyWithoutUserInput
   teacherProfile?: Prisma.TeacherProfileUncheckedCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutHostInput
 }
 
 export type UserCreateOrConnectWithoutEnrollmentsInput = {
@@ -1378,6 +1405,7 @@ export type UserUpdateWithoutEnrollmentsInput = {
   classRooms?: Prisma.ClassRoomUpdateManyWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUpdateManyWithoutUserNestedInput
   teacherProfile?: Prisma.TeacherProfileUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutHostNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEnrollmentsInput = {
@@ -1409,6 +1437,175 @@ export type UserUncheckedUpdateWithoutEnrollmentsInput = {
   deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   socialLinks?: Prisma.SocialLinksUncheckedUpdateManyWithoutUserNestedInput
   userToken?: Prisma.UserTokenUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  role?: Prisma.RoleUncheckedUpdateManyWithoutUsersNestedInput
+  userProgress?: Prisma.UserProgressUncheckedUpdateManyWithoutUserNestedInput
+  classRooms?: Prisma.ClassRoomUncheckedUpdateManyWithoutUserNestedInput
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateManyWithoutUserNestedInput
+  teacherProfile?: Prisma.TeacherProfileUncheckedUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutHostNestedInput
+}
+
+export type UserCreateWithoutLiveClassesInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  username?: string | null
+  profilePicture?: string | null
+  passwordHash: string
+  isPasswordChanged?: boolean
+  isEmailVerified?: boolean
+  isPhoneVerified?: boolean
+  twoFactorEnabled?: boolean
+  lastLogin?: Date | string
+  failedLoginAttempts?: number
+  otp?: number | null
+  otpExpiresAt?: Date | string | null
+  status: $Enums.AccountStatus
+  bio?: string | null
+  timezone?: Date | string | null
+  language?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  socialLinks?: Prisma.SocialLinksCreateNestedManyWithoutUserInput
+  userToken?: Prisma.UserTokenCreateNestedManyWithoutUserInput
+  enrollments?: Prisma.EnrollmentsCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  tenant?: Prisma.TenantCreateNestedOneWithoutUsersInput
+  role?: Prisma.RoleCreateNestedManyWithoutUsersInput
+  userProgress?: Prisma.UserProgressCreateNestedManyWithoutUserInput
+  classRooms?: Prisma.ClassRoomCreateNestedManyWithoutUserInput
+  studentProfile?: Prisma.StudentProfileCreateNestedManyWithoutUserInput
+  teacherProfile?: Prisma.TeacherProfileCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutLiveClassesInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  tenantId?: string | null
+  email: string
+  phone: string
+  username?: string | null
+  profilePicture?: string | null
+  passwordHash: string
+  isPasswordChanged?: boolean
+  isEmailVerified?: boolean
+  isPhoneVerified?: boolean
+  twoFactorEnabled?: boolean
+  lastLogin?: Date | string
+  failedLoginAttempts?: number
+  otp?: number | null
+  otpExpiresAt?: Date | string | null
+  status: $Enums.AccountStatus
+  bio?: string | null
+  timezone?: Date | string | null
+  language?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  socialLinks?: Prisma.SocialLinksUncheckedCreateNestedManyWithoutUserInput
+  userToken?: Prisma.UserTokenUncheckedCreateNestedManyWithoutUserInput
+  enrollments?: Prisma.EnrollmentsUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  role?: Prisma.RoleUncheckedCreateNestedManyWithoutUsersInput
+  userProgress?: Prisma.UserProgressUncheckedCreateNestedManyWithoutUserInput
+  classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutUserInput
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedManyWithoutUserInput
+  teacherProfile?: Prisma.TeacherProfileUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutLiveClassesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutLiveClassesInput, Prisma.UserUncheckedCreateWithoutLiveClassesInput>
+}
+
+export type UserUpsertWithoutLiveClassesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutLiveClassesInput, Prisma.UserUncheckedUpdateWithoutLiveClassesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutLiveClassesInput, Prisma.UserUncheckedCreateWithoutLiveClassesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutLiveClassesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutLiveClassesInput, Prisma.UserUncheckedUpdateWithoutLiveClassesInput>
+}
+
+export type UserUpdateWithoutLiveClassesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profilePicture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPasswordChanged?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isEmailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPhoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  otp?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  otpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  language?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  socialLinks?: Prisma.SocialLinksUpdateManyWithoutUserNestedInput
+  userToken?: Prisma.UserTokenUpdateManyWithoutUserNestedInput
+  enrollments?: Prisma.EnrollmentsUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  tenant?: Prisma.TenantUpdateOneWithoutUsersNestedInput
+  role?: Prisma.RoleUpdateManyWithoutUsersNestedInput
+  userProgress?: Prisma.UserProgressUpdateManyWithoutUserNestedInput
+  classRooms?: Prisma.ClassRoomUpdateManyWithoutUserNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateManyWithoutUserNestedInput
+  teacherProfile?: Prisma.TeacherProfileUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutLiveClassesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profilePicture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPasswordChanged?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isEmailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPhoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  otp?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  otpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  language?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  socialLinks?: Prisma.SocialLinksUncheckedUpdateManyWithoutUserNestedInput
+  userToken?: Prisma.UserTokenUncheckedUpdateManyWithoutUserNestedInput
+  enrollments?: Prisma.EnrollmentsUncheckedUpdateManyWithoutUserNestedInput
   userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
   role?: Prisma.RoleUncheckedUpdateManyWithoutUsersNestedInput
   userProgress?: Prisma.UserProgressUncheckedUpdateManyWithoutUserNestedInput
@@ -1452,6 +1649,7 @@ export type UserCreateWithoutRoleInput = {
   classRooms?: Prisma.ClassRoomCreateNestedManyWithoutUserInput
   studentProfile?: Prisma.StudentProfileCreateNestedManyWithoutUserInput
   teacherProfile?: Prisma.TeacherProfileCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutHostInput
 }
 
 export type UserUncheckedCreateWithoutRoleInput = {
@@ -1489,6 +1687,7 @@ export type UserUncheckedCreateWithoutRoleInput = {
   classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutUserInput
   studentProfile?: Prisma.StudentProfileUncheckedCreateNestedManyWithoutUserInput
   teacherProfile?: Prisma.TeacherProfileUncheckedCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutHostInput
 }
 
 export type UserCreateOrConnectWithoutRoleInput = {
@@ -1579,6 +1778,7 @@ export type UserCreateWithoutStudentProfileInput = {
   userProgress?: Prisma.UserProgressCreateNestedManyWithoutUserInput
   classRooms?: Prisma.ClassRoomCreateNestedManyWithoutUserInput
   teacherProfile?: Prisma.TeacherProfileCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutHostInput
 }
 
 export type UserUncheckedCreateWithoutStudentProfileInput = {
@@ -1616,6 +1816,7 @@ export type UserUncheckedCreateWithoutStudentProfileInput = {
   userProgress?: Prisma.UserProgressUncheckedCreateNestedManyWithoutUserInput
   classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutUserInput
   teacherProfile?: Prisma.TeacherProfileUncheckedCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutHostInput
 }
 
 export type UserCreateOrConnectWithoutStudentProfileInput = {
@@ -1669,6 +1870,7 @@ export type UserUpdateWithoutStudentProfileInput = {
   userProgress?: Prisma.UserProgressUpdateManyWithoutUserNestedInput
   classRooms?: Prisma.ClassRoomUpdateManyWithoutUserNestedInput
   teacherProfile?: Prisma.TeacherProfileUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutHostNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStudentProfileInput = {
@@ -1706,6 +1908,7 @@ export type UserUncheckedUpdateWithoutStudentProfileInput = {
   userProgress?: Prisma.UserProgressUncheckedUpdateManyWithoutUserNestedInput
   classRooms?: Prisma.ClassRoomUncheckedUpdateManyWithoutUserNestedInput
   teacherProfile?: Prisma.TeacherProfileUncheckedUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutHostNestedInput
 }
 
 export type UserCreateWithoutTeacherProfileInput = {
@@ -1743,6 +1946,7 @@ export type UserCreateWithoutTeacherProfileInput = {
   userProgress?: Prisma.UserProgressCreateNestedManyWithoutUserInput
   classRooms?: Prisma.ClassRoomCreateNestedManyWithoutUserInput
   studentProfile?: Prisma.StudentProfileCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutHostInput
 }
 
 export type UserUncheckedCreateWithoutTeacherProfileInput = {
@@ -1780,6 +1984,7 @@ export type UserUncheckedCreateWithoutTeacherProfileInput = {
   userProgress?: Prisma.UserProgressUncheckedCreateNestedManyWithoutUserInput
   classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutUserInput
   studentProfile?: Prisma.StudentProfileUncheckedCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutHostInput
 }
 
 export type UserCreateOrConnectWithoutTeacherProfileInput = {
@@ -1833,6 +2038,7 @@ export type UserUpdateWithoutTeacherProfileInput = {
   userProgress?: Prisma.UserProgressUpdateManyWithoutUserNestedInput
   classRooms?: Prisma.ClassRoomUpdateManyWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutHostNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTeacherProfileInput = {
@@ -1870,6 +2076,7 @@ export type UserUncheckedUpdateWithoutTeacherProfileInput = {
   userProgress?: Prisma.UserProgressUncheckedUpdateManyWithoutUserNestedInput
   classRooms?: Prisma.ClassRoomUncheckedUpdateManyWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUncheckedUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutHostNestedInput
 }
 
 export type UserCreateWithoutTenantInput = {
@@ -1907,6 +2114,7 @@ export type UserCreateWithoutTenantInput = {
   classRooms?: Prisma.ClassRoomCreateNestedManyWithoutUserInput
   studentProfile?: Prisma.StudentProfileCreateNestedManyWithoutUserInput
   teacherProfile?: Prisma.TeacherProfileCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutHostInput
 }
 
 export type UserUncheckedCreateWithoutTenantInput = {
@@ -1944,6 +2152,7 @@ export type UserUncheckedCreateWithoutTenantInput = {
   classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutUserInput
   studentProfile?: Prisma.StudentProfileUncheckedCreateNestedManyWithoutUserInput
   teacherProfile?: Prisma.TeacherProfileUncheckedCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutHostInput
 }
 
 export type UserCreateOrConnectWithoutTenantInput = {
@@ -2007,6 +2216,7 @@ export type UserCreateWithoutUserPermissionsInput = {
   classRooms?: Prisma.ClassRoomCreateNestedManyWithoutUserInput
   studentProfile?: Prisma.StudentProfileCreateNestedManyWithoutUserInput
   teacherProfile?: Prisma.TeacherProfileCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutHostInput
 }
 
 export type UserUncheckedCreateWithoutUserPermissionsInput = {
@@ -2044,6 +2254,7 @@ export type UserUncheckedCreateWithoutUserPermissionsInput = {
   classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutUserInput
   studentProfile?: Prisma.StudentProfileUncheckedCreateNestedManyWithoutUserInput
   teacherProfile?: Prisma.TeacherProfileUncheckedCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutHostInput
 }
 
 export type UserCreateOrConnectWithoutUserPermissionsInput = {
@@ -2097,6 +2308,7 @@ export type UserUpdateWithoutUserPermissionsInput = {
   classRooms?: Prisma.ClassRoomUpdateManyWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUpdateManyWithoutUserNestedInput
   teacherProfile?: Prisma.TeacherProfileUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutHostNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUserPermissionsInput = {
@@ -2134,6 +2346,7 @@ export type UserUncheckedUpdateWithoutUserPermissionsInput = {
   classRooms?: Prisma.ClassRoomUncheckedUpdateManyWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUncheckedUpdateManyWithoutUserNestedInput
   teacherProfile?: Prisma.TeacherProfileUncheckedUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutHostNestedInput
 }
 
 export type UserCreateWithoutUserProgressInput = {
@@ -2171,6 +2384,7 @@ export type UserCreateWithoutUserProgressInput = {
   classRooms?: Prisma.ClassRoomCreateNestedManyWithoutUserInput
   studentProfile?: Prisma.StudentProfileCreateNestedManyWithoutUserInput
   teacherProfile?: Prisma.TeacherProfileCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutHostInput
 }
 
 export type UserUncheckedCreateWithoutUserProgressInput = {
@@ -2208,6 +2422,7 @@ export type UserUncheckedCreateWithoutUserProgressInput = {
   classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutUserInput
   studentProfile?: Prisma.StudentProfileUncheckedCreateNestedManyWithoutUserInput
   teacherProfile?: Prisma.TeacherProfileUncheckedCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutHostInput
 }
 
 export type UserCreateOrConnectWithoutUserProgressInput = {
@@ -2261,6 +2476,7 @@ export type UserUpdateWithoutUserProgressInput = {
   classRooms?: Prisma.ClassRoomUpdateManyWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUpdateManyWithoutUserNestedInput
   teacherProfile?: Prisma.TeacherProfileUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutHostNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUserProgressInput = {
@@ -2298,6 +2514,7 @@ export type UserUncheckedUpdateWithoutUserProgressInput = {
   classRooms?: Prisma.ClassRoomUncheckedUpdateManyWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUncheckedUpdateManyWithoutUserNestedInput
   teacherProfile?: Prisma.TeacherProfileUncheckedUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutHostNestedInput
 }
 
 export type UserCreateWithoutSocialLinksInput = {
@@ -2335,6 +2552,7 @@ export type UserCreateWithoutSocialLinksInput = {
   classRooms?: Prisma.ClassRoomCreateNestedManyWithoutUserInput
   studentProfile?: Prisma.StudentProfileCreateNestedManyWithoutUserInput
   teacherProfile?: Prisma.TeacherProfileCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutHostInput
 }
 
 export type UserUncheckedCreateWithoutSocialLinksInput = {
@@ -2372,6 +2590,7 @@ export type UserUncheckedCreateWithoutSocialLinksInput = {
   classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutUserInput
   studentProfile?: Prisma.StudentProfileUncheckedCreateNestedManyWithoutUserInput
   teacherProfile?: Prisma.TeacherProfileUncheckedCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutHostInput
 }
 
 export type UserCreateOrConnectWithoutSocialLinksInput = {
@@ -2425,6 +2644,7 @@ export type UserUpdateWithoutSocialLinksInput = {
   classRooms?: Prisma.ClassRoomUpdateManyWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUpdateManyWithoutUserNestedInput
   teacherProfile?: Prisma.TeacherProfileUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutHostNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSocialLinksInput = {
@@ -2462,6 +2682,7 @@ export type UserUncheckedUpdateWithoutSocialLinksInput = {
   classRooms?: Prisma.ClassRoomUncheckedUpdateManyWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUncheckedUpdateManyWithoutUserNestedInput
   teacherProfile?: Prisma.TeacherProfileUncheckedUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutHostNestedInput
 }
 
 export type UserCreateWithoutUserTokenInput = {
@@ -2499,6 +2720,7 @@ export type UserCreateWithoutUserTokenInput = {
   classRooms?: Prisma.ClassRoomCreateNestedManyWithoutUserInput
   studentProfile?: Prisma.StudentProfileCreateNestedManyWithoutUserInput
   teacherProfile?: Prisma.TeacherProfileCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassCreateNestedManyWithoutHostInput
 }
 
 export type UserUncheckedCreateWithoutUserTokenInput = {
@@ -2536,6 +2758,7 @@ export type UserUncheckedCreateWithoutUserTokenInput = {
   classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutUserInput
   studentProfile?: Prisma.StudentProfileUncheckedCreateNestedManyWithoutUserInput
   teacherProfile?: Prisma.TeacherProfileUncheckedCreateNestedManyWithoutUserInput
+  liveClasses?: Prisma.LiveClassUncheckedCreateNestedManyWithoutHostInput
 }
 
 export type UserCreateOrConnectWithoutUserTokenInput = {
@@ -2589,6 +2812,7 @@ export type UserUpdateWithoutUserTokenInput = {
   classRooms?: Prisma.ClassRoomUpdateManyWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUpdateManyWithoutUserNestedInput
   teacherProfile?: Prisma.TeacherProfileUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutHostNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUserTokenInput = {
@@ -2626,6 +2850,7 @@ export type UserUncheckedUpdateWithoutUserTokenInput = {
   classRooms?: Prisma.ClassRoomUncheckedUpdateManyWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUncheckedUpdateManyWithoutUserNestedInput
   teacherProfile?: Prisma.TeacherProfileUncheckedUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutHostNestedInput
 }
 
 export type UserUpdateWithoutRoleInput = {
@@ -2663,6 +2888,7 @@ export type UserUpdateWithoutRoleInput = {
   classRooms?: Prisma.ClassRoomUpdateManyWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUpdateManyWithoutUserNestedInput
   teacherProfile?: Prisma.TeacherProfileUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutHostNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRoleInput = {
@@ -2700,6 +2926,7 @@ export type UserUncheckedUpdateWithoutRoleInput = {
   classRooms?: Prisma.ClassRoomUncheckedUpdateManyWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUncheckedUpdateManyWithoutUserNestedInput
   teacherProfile?: Prisma.TeacherProfileUncheckedUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutHostNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutRoleInput = {
@@ -2794,6 +3021,7 @@ export type UserUpdateWithoutTenantInput = {
   classRooms?: Prisma.ClassRoomUpdateManyWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUpdateManyWithoutUserNestedInput
   teacherProfile?: Prisma.TeacherProfileUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUpdateManyWithoutHostNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTenantInput = {
@@ -2831,6 +3059,7 @@ export type UserUncheckedUpdateWithoutTenantInput = {
   classRooms?: Prisma.ClassRoomUncheckedUpdateManyWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUncheckedUpdateManyWithoutUserNestedInput
   teacherProfile?: Prisma.TeacherProfileUncheckedUpdateManyWithoutUserNestedInput
+  liveClasses?: Prisma.LiveClassUncheckedUpdateManyWithoutHostNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutTenantInput = {
@@ -2876,6 +3105,7 @@ export type UserCountOutputType = {
   classRooms: number
   studentProfile: number
   teacherProfile: number
+  liveClasses: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2888,6 +3118,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   classRooms?: boolean | UserCountOutputTypeCountClassRoomsArgs
   studentProfile?: boolean | UserCountOutputTypeCountStudentProfileArgs
   teacherProfile?: boolean | UserCountOutputTypeCountTeacherProfileArgs
+  liveClasses?: boolean | UserCountOutputTypeCountLiveClassesArgs
 }
 
 /**
@@ -2963,6 +3194,13 @@ export type UserCountOutputTypeCountTeacherProfileArgs<ExtArgs extends runtime.T
   where?: Prisma.TeacherProfileWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountLiveClassesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LiveClassWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -3001,6 +3239,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   classRooms?: boolean | Prisma.User$classRoomsArgs<ExtArgs>
   studentProfile?: boolean | Prisma.User$studentProfileArgs<ExtArgs>
   teacherProfile?: boolean | Prisma.User$teacherProfileArgs<ExtArgs>
+  liveClasses?: boolean | Prisma.User$liveClassesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -3105,6 +3344,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   classRooms?: boolean | Prisma.User$classRoomsArgs<ExtArgs>
   studentProfile?: boolean | Prisma.User$studentProfileArgs<ExtArgs>
   teacherProfile?: boolean | Prisma.User$teacherProfileArgs<ExtArgs>
+  liveClasses?: boolean | Prisma.User$liveClassesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3127,6 +3367,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     classRooms: Prisma.$ClassRoomPayload<ExtArgs>[]
     studentProfile: Prisma.$StudentProfilePayload<ExtArgs>[]
     teacherProfile: Prisma.$TeacherProfilePayload<ExtArgs>[]
+    liveClasses: Prisma.$LiveClassPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3559,6 +3800,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   classRooms<T extends Prisma.User$classRoomsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$classRoomsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassRoomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   studentProfile<T extends Prisma.User$studentProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$studentProfileArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   teacherProfile<T extends Prisma.User$teacherProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$teacherProfileArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeacherProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  liveClasses<T extends Prisma.User$liveClassesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$liveClassesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LiveClassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4247,6 +4489,30 @@ export type User$teacherProfileArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.TeacherProfileScalarFieldEnum | Prisma.TeacherProfileScalarFieldEnum[]
+}
+
+/**
+ * User.liveClasses
+ */
+export type User$liveClassesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LiveClass
+   */
+  select?: Prisma.LiveClassSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LiveClass
+   */
+  omit?: Prisma.LiveClassOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LiveClassInclude<ExtArgs> | null
+  where?: Prisma.LiveClassWhereInput
+  orderBy?: Prisma.LiveClassOrderByWithRelationInput | Prisma.LiveClassOrderByWithRelationInput[]
+  cursor?: Prisma.LiveClassWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LiveClassScalarFieldEnum | Prisma.LiveClassScalarFieldEnum[]
 }
 
 /**

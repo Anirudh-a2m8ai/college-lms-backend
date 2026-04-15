@@ -1,0 +1,20 @@
+enum LiveClassStatus {
+	PENDING
+	COMPLETED
+	CANCELLED
+}
+
+model LiveClass {
+	id 			 		 String  		     @id @default(uuid())
+	startTime    DateTime
+	endTime      DateTime
+	classRoomId  String
+	status       LiveClassStatus @default(PENDING)
+	hostId       String
+	classRoom    ClassRoom       @relation(fields: [classRoomId], references: [id])
+	host         User            @relation(fields: [hostId], references: [id])
+	createdAt    DateTime        @default(now())
+	updatedAt    DateTime        @updatedAt
+	isDeleted    Boolean         @default(false)
+	deletedAt    DateTime?
+}

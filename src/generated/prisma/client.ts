@@ -115,6 +115,11 @@ export type lessonMap = Prisma.lessonMapModel
  */
 export type Lesson = Prisma.LessonModel
 /**
+ * Model LiveClass
+ * 
+ */
+export type LiveClass = Prisma.LiveClassModel
+/**
  * Model ModuleMap
  * 
  */

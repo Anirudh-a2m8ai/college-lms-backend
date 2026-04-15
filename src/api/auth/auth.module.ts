@@ -26,6 +26,6 @@ import { DbServiceModule } from 'src/repository/db-service.module';
 
   providers: [AuthService, AuthStrategy],
 
-  exports: [JwtModule],
+  exports: [JwtModule, PassportModule, AuthStrategy],
 })
 export class AuthModule {}

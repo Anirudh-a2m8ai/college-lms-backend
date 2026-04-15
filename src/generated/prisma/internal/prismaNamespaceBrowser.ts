@@ -66,6 +66,7 @@ export const ModelName = {
   Enrollments: 'Enrollments',
   lessonMap: 'lessonMap',
   Lesson: 'Lesson',
+  LiveClass: 'LiveClass',
   ModuleMap: 'ModuleMap',
   Module: 'Module',
   Permission: 'Permission',
@@ -329,6 +330,22 @@ export const LessonScalarFieldEnum = {
 } as const
 
 export type LessonScalarFieldEnum = (typeof LessonScalarFieldEnum)[keyof typeof LessonScalarFieldEnum]
+
+
+export const LiveClassScalarFieldEnum = {
+  id: 'id',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  classRoomId: 'classRoomId',
+  status: 'status',
+  hostId: 'hostId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt'
+} as const
+
+export type LiveClassScalarFieldEnum = (typeof LiveClassScalarFieldEnum)[keyof typeof LiveClassScalarFieldEnum]
 
 
 export const ModuleMapScalarFieldEnum = {

@@ -399,6 +399,7 @@ export const ModelName = {
   Enrollments: 'Enrollments',
   lessonMap: 'lessonMap',
   Lesson: 'Lesson',
+  LiveClass: 'LiveClass',
   ModuleMap: 'ModuleMap',
   Module: 'Module',
   Permission: 'Permission',
@@ -435,7 +436,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "chapterMap" | "chapter" | "classModuleMap" | "classChapterMap" | "classLessonMap" | "classTopicMap" | "classSubTopicMap" | "classRoom" | "classRoomProgress" | "courseVersion" | "course" | "designation" | "enrollments" | "lessonMap" | "lesson" | "moduleMap" | "module" | "permission" | "quiz" | "quizQuestion" | "quizAttempt" | "quizSubmission" | "role" | "studentProfile" | "subTopics" | "subTopicMap" | "teacherProfile" | "tenant" | "topicMap" | "topics" | "userPermission" | "userProgress" | "quizProgress" | "user" | "socialLinks" | "userToken"
+    modelProps: "chapterMap" | "chapter" | "classModuleMap" | "classChapterMap" | "classLessonMap" | "classTopicMap" | "classSubTopicMap" | "classRoom" | "classRoomProgress" | "courseVersion" | "course" | "designation" | "enrollments" | "lessonMap" | "lesson" | "liveClass" | "moduleMap" | "module" | "permission" | "quiz" | "quizQuestion" | "quizAttempt" | "quizSubmission" | "role" | "studentProfile" | "subTopics" | "subTopicMap" | "teacherProfile" | "tenant" | "topicMap" | "topics" | "userPermission" | "userProgress" | "quizProgress" | "user" | "socialLinks" | "userToken"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1546,6 +1547,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.LessonCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.LessonCountAggregateOutputType> | number
+        }
+      }
+    }
+    LiveClass: {
+      payload: Prisma.$LiveClassPayload<ExtArgs>
+      fields: Prisma.LiveClassFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LiveClassFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LiveClassPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LiveClassFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LiveClassPayload>
+        }
+        findFirst: {
+          args: Prisma.LiveClassFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LiveClassPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LiveClassFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LiveClassPayload>
+        }
+        findMany: {
+          args: Prisma.LiveClassFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LiveClassPayload>[]
+        }
+        create: {
+          args: Prisma.LiveClassCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LiveClassPayload>
+        }
+        createMany: {
+          args: Prisma.LiveClassCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LiveClassCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LiveClassPayload>[]
+        }
+        delete: {
+          args: Prisma.LiveClassDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LiveClassPayload>
+        }
+        update: {
+          args: Prisma.LiveClassUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LiveClassPayload>
+        }
+        deleteMany: {
+          args: Prisma.LiveClassDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LiveClassUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LiveClassUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LiveClassPayload>[]
+        }
+        upsert: {
+          args: Prisma.LiveClassUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LiveClassPayload>
+        }
+        aggregate: {
+          args: Prisma.LiveClassAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLiveClass>
+        }
+        groupBy: {
+          args: Prisma.LiveClassGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LiveClassGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LiveClassCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LiveClassCountAggregateOutputType> | number
         }
       }
     }
@@ -3368,6 +3443,22 @@ export const LessonScalarFieldEnum = {
 export type LessonScalarFieldEnum = (typeof LessonScalarFieldEnum)[keyof typeof LessonScalarFieldEnum]
 
 
+export const LiveClassScalarFieldEnum = {
+  id: 'id',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  classRoomId: 'classRoomId',
+  status: 'status',
+  hostId: 'hostId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt'
+} as const
+
+export type LiveClassScalarFieldEnum = (typeof LiveClassScalarFieldEnum)[keyof typeof LiveClassScalarFieldEnum]
+
+
 export const ModuleMapScalarFieldEnum = {
   id: 'id',
   orderIndex: 'orderIndex',
@@ -3867,6 +3958,20 @@ export type ListEnumCourseTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$P
 
 
 /**
+ * Reference to a field of type 'LiveClassStatus'
+ */
+export type EnumLiveClassStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LiveClassStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'LiveClassStatus[]'
+ */
+export type ListEnumLiveClassStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LiveClassStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'QuizType'
  */
 export type EnumQuizTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QuizType'>
@@ -4101,6 +4206,7 @@ export type GlobalOmitConfig = {
   enrollments?: Prisma.EnrollmentsOmit
   lessonMap?: Prisma.lessonMapOmit
   lesson?: Prisma.LessonOmit
+  liveClass?: Prisma.LiveClassOmit
   moduleMap?: Prisma.ModuleMapOmit
   module?: Prisma.ModuleOmit
   permission?: Prisma.PermissionOmit

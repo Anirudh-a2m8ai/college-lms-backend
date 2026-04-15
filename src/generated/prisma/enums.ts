@@ -34,6 +34,15 @@ export const CourseType = {
 export type CourseType = (typeof CourseType)[keyof typeof CourseType]
 
 
+export const LiveClassStatus = {
+  PENDING: 'PENDING',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type LiveClassStatus = (typeof LiveClassStatus)[keyof typeof LiveClassStatus]
+
+
 export const QuizType = {
   MANUAL: 'MANUAL',
   AI_GENERATED: 'AI_GENERATED'

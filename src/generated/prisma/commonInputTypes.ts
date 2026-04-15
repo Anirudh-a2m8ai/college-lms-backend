@@ -270,6 +270,23 @@ export type EnumCourseTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumCourseTypeNullableFilter<$PrismaModel>
 }
 
+export type EnumLiveClassStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.LiveClassStatus | Prisma.EnumLiveClassStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LiveClassStatus[] | Prisma.ListEnumLiveClassStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LiveClassStatus[] | Prisma.ListEnumLiveClassStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLiveClassStatusFilter<$PrismaModel> | $Enums.LiveClassStatus
+}
+
+export type EnumLiveClassStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LiveClassStatus | Prisma.EnumLiveClassStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LiveClassStatus[] | Prisma.ListEnumLiveClassStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LiveClassStatus[] | Prisma.ListEnumLiveClassStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLiveClassStatusWithAggregatesFilter<$PrismaModel> | $Enums.LiveClassStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLiveClassStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLiveClassStatusFilter<$PrismaModel>
+}
+
 export type EnumQuizTypeFilter<$PrismaModel = never> = {
   equals?: $Enums.QuizType | Prisma.EnumQuizTypeFieldRefInput<$PrismaModel>
   in?: $Enums.QuizType[] | Prisma.ListEnumQuizTypeFieldRefInput<$PrismaModel>
@@ -785,6 +802,23 @@ export type NestedEnumCourseTypeNullableWithAggregatesFilter<$PrismaModel = neve
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedEnumCourseTypeNullableFilter<$PrismaModel>
   _max?: Prisma.NestedEnumCourseTypeNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumLiveClassStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.LiveClassStatus | Prisma.EnumLiveClassStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LiveClassStatus[] | Prisma.ListEnumLiveClassStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LiveClassStatus[] | Prisma.ListEnumLiveClassStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLiveClassStatusFilter<$PrismaModel> | $Enums.LiveClassStatus
+}
+
+export type NestedEnumLiveClassStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LiveClassStatus | Prisma.EnumLiveClassStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LiveClassStatus[] | Prisma.ListEnumLiveClassStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LiveClassStatus[] | Prisma.ListEnumLiveClassStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLiveClassStatusWithAggregatesFilter<$PrismaModel> | $Enums.LiveClassStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLiveClassStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLiveClassStatusFilter<$PrismaModel>
 }
 
 export type NestedEnumQuizTypeFilter<$PrismaModel = never> = {

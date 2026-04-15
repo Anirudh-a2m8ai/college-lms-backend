@@ -30,6 +30,7 @@ import { ClassChapterMapDbService } from './classChapterMap.db-service';
 import { ClassLessonMapDbService } from './classLessonMap.db-service';
 import { ClassTopicMapDbService } from './classTopicMap.db-service';
 import { ClassRoomProgressDbService } from './classRoomProgress.db-service';
+import { LiveClassDbService } from './liveClass.db-service';
 
 @Module({
   providers: [
@@ -64,6 +65,7 @@ import { ClassRoomProgressDbService } from './classRoomProgress.db-service';
     ClassLessonMapDbService,
     ClassTopicMapDbService,
     ClassRoomProgressDbService,
+    LiveClassDbService,
   ],
   exports: [
     UserDbService,
@@ -97,6 +99,7 @@ import { ClassRoomProgressDbService } from './classRoomProgress.db-service';
     ClassLessonMapDbService,
     ClassTopicMapDbService,
     ClassRoomProgressDbService,
+    LiveClassDbService,
   ],
 })
 export class DbServiceModule {}

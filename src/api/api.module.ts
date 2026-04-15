@@ -18,6 +18,7 @@ import { QuizModule } from './quiz/quiz.module';
 import { UserProgressModule } from './userProgress/userProgress.module';
 import { QuizProgressModule } from './quizProgress/quizProgress.module';
 import { ClassRoomModule } from './classRoom/classRoom.module';
+import { LiveClassModule } from './liveClass/liveClass.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { ClassRoomModule } from './classRoom/classRoom.module';
     UserProgressModule,
     QuizProgressModule,
     ClassRoomModule,
+    LiveClassModule,
   ],
   providers: [
     {

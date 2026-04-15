@@ -59,6 +59,7 @@ model User {
 	classRooms          ClassRoom[]
   studentProfile      StudentProfile[]
 	teacherProfile      TeacherProfile[]
+  liveClasses         LiveClass[]
   createdAt           DateTime         @default(now())
   updatedAt           DateTime         @updatedAt
   isDeleted           Boolean          @default(false)
