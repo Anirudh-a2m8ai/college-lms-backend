@@ -109,4 +109,10 @@ export class UserController {
   async list(@Query() query: SearchInputDto, @Body() body: any, @CurrentUser() user: any) {
     return this.userService.findAll(query, body, user);
   }
+
+  @Permissions('user:read')
+  @Post('listByRole')
+  async listByRole(@Body() body: any, @CurrentUser() user: any) {
+    return this.userService.findAllUsersByRole(body.role, user);
+  }
 }

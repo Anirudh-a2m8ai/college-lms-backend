@@ -261,18 +261,34 @@ export class EnrollmentsService {
     };
   }
 
-  async getEnrolledClassList(user) {
-    const enrolledClasses = await this.enrollmentsDbService.findMany({
-      where: {
-        userId: user.userId,
-        AND: [{ classRoomId: { not: null } }, { classRoomId: { not: '' } }],
-      },
-      include: {
-        classRoom: true,
-      },
-    });
+  async getEnrolledClassList(query: SearchInputDto, body: any, user: any) {
+    const pagination = PaginationMapper(query);
+    const orderBy = OrderMapper(query);
 
-    const enrolledClassResponse = plainToInstance(EnrollmentsResponseDto, enrolledClasses, {
+    let filterInput = body?.filter ? { ...body.filter } : {};
+
+    if (user.tenantId) {
+      filterInput.tenantId = user.tenantId;
+    }
+
+    filterInput.userId = user.userId;
+    filterInput.classRoomId = { not: null };
+    filterInput.classRoomId = { not: '' };
+
+    const where = FilterMapper(filterInput, query);
+
+    const [data, total] = await Promise.all([
+      this.enrollmentsDbService.findMany({
+        where,
+        skip: pagination.skip,
+        take: pagination.take,
+        orderBy,
+        include: { user: true, classRoom: true },
+      }),
+      this.enrollmentsDbService.count({ where }),
+    ]);
+
+    const enrolledClassResponse = plainToInstance(EnrollmentsResponseDto, data, {
       excludeExtraneousValues: true,
     });
 

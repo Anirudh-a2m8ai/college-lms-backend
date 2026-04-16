@@ -49,8 +49,8 @@ export class EnrollmentsController {
     return await this.enrollmentsService.listAll(query, body, user);
   }
 
-  @Get("/classRoom")
-  async enrolledClassList(@CurrentUser() user: any) {
-    return await this.enrollmentsService.getEnrolledClassList(user)
+  @Post('/classRoom')
+  async enrolledClassList(@Query() query: SearchInputDto, @Body() body: any, @CurrentUser() user: any) {
+    return await this.enrollmentsService.getEnrolledClassList(query, body, user);
   }
 }

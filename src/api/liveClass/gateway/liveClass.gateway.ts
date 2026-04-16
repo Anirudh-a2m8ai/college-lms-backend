@@ -4,98 +4,241 @@ import {
   SubscribeMessage,
   ConnectedSocket,
   MessageBody,
-  WsException,
+  OnGatewayDisconnect,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
-import { WsAccessTokenGuard } from '../../../common/guards/ws-access-token.guard';
-import { LiveClassService } from '../liveClass.service';
-import { BaseGateway } from 'src/common/gateways/base.gateway';
 import { UseFilters, UseGuards } from '@nestjs/common';
-import * as socketType from 'src/common/types/socket.type';
+import { WsAccessTokenGuard } from '../../../common/guards/ws-access-token.guard';
 import { WsExceptionFilter } from 'src/common/filters/ws-exception.filter';
-import { RedisService } from 'src/redis/redis.service';
+import * as socketType from 'src/common/types/socket.type';
 
 @WebSocketGateway({
   cors: { origin: '*' },
 })
 @UseGuards(WsAccessTokenGuard)
 @UseFilters(WsExceptionFilter)
-export class LiveClassGateway extends BaseGateway {
+export class LiveClassGateway implements OnGatewayDisconnect {
   @WebSocketServer()
   server: Server;
 
-  constructor(
-    private readonly service: LiveClassService,
-    private readonly redisService: RedisService,
-  ) {
-    super();
-  }
+  private classHosts = new Map<string, string>();
+
+  private classMessages = new Map<string, any[]>();
+
+  private classPolls = new Map<
+    string,
+    {
+      pollId: string;
+      question: string;
+      options: { id: string; text: string; votes: number }[];
+      voters: Set<string>;
+      isActive: boolean;
+    }
+  >();
 
   @SubscribeMessage('class:join')
   async handleJoin(@ConnectedSocket() client: socketType.AuthenticatedSocket, @MessageBody() classId: string) {
     const user = client.data.user;
-    const userId = user.userId;
-    const roomName = `class-${classId}`;
-    const userSetKey = `class:${classId}:userIds`;
-    const userHashKey = `class:${classId}:users`;
+    const role = user.role;
 
-    await this.service.joinLiveClass(classId, userId);
+    const roomName = `class-${classId}`;
 
     client.join(roomName);
-
     client.data.classId = classId;
 
-    await this.redisService.addToSet(userSetKey, userId);
+    if (role === 'instructor') {
+      this.classHosts.set(classId, client.id);
+    }
 
-    await this.redisService.setHash(userHashKey, userId, JSON.stringify(user));
+    if (role === 'student') {
+      const hostSocketId = this.classHosts.get(classId);
+      if (hostSocketId) {
+        this.server.to(hostSocketId).emit('webrtc:student-joined', {
+          studentSocketId: client.id,
+          user,
+        });
+      }
+    }
 
-    await this.redisService.setExpiry(userSetKey, 7200);
-    await this.redisService.setExpiry(userHashKey, 7200);
+    const messages = this.classMessages.get(classId) || [];
+    client.emit('chat:history', messages);
 
-    const usersObj = await this.redisService.getAllHash(userHashKey);
+    const poll = this.classPolls.get(classId);
+    if (poll) {
+      client.emit('poll:state', poll);
+    }
 
-    const users = Object.values(usersObj).map((u) => JSON.parse(u));
-
-    console.log(`User ${userId} joined ${roomName}`);
+    const sockets = await this.server.in(roomName).fetchSockets();
+    const users = sockets.map((s) => s.data.user);
 
     this.server.to(roomName).emit('class:users', users);
   }
 
   @SubscribeMessage('class:leave')
   async handleLeave(@ConnectedSocket() client: socketType.AuthenticatedSocket, @MessageBody() classId: string) {
-    const user = client.data.user;
-    const userId = user?.userId;
-
-    if (!userId) return;
-
     const roomName = `class-${classId}`;
-
-    const userSetKey = `class:${classId}:userIds`;
-    const userHashKey = `class:${classId}:users`;
 
     client.leave(roomName);
 
-    await this.redisService.removeFromSet(userSetKey, userId);
+    if (client.data.user.role === 'student') {
+      const hostSocketId = this.classHosts.get(classId);
+      if (hostSocketId) {
+        this.server.to(hostSocketId).emit('webrtc:student-left', {
+          studentSocketId: client.id,
+        });
+      }
+    }
 
-    await this.redisService.deleteFromHash(userHashKey, userId);
-
-    const usersObj = await this.redisService.getAllHash(userHashKey);
-
-    const users = Object.values(usersObj).map((u) => JSON.parse(u));
-
-    console.log(`User ${userId} left ${roomName}`);
+    const sockets = await this.server.in(roomName).fetchSockets();
+    const users = sockets.map((s) => s.data.user);
 
     this.server.to(roomName).emit('class:users', users);
   }
 
   @SubscribeMessage('chat:send')
-  async handleSendMessage(
+  handleSendMessage(
     @ConnectedSocket() client: socketType.AuthenticatedSocket,
     @MessageBody() payload: { classId: string; message: string },
   ) {
     const user = client.data.user;
 
-    this.server.to(`class-${payload.classId}`).emit('chat:message', payload.message);
+    const msg = {
+      userId: user.userId,
+      message: payload.message,
+      timestamp: new Date(),
+    };
+
+    if (!this.classMessages.has(payload.classId)) {
+      this.classMessages.set(payload.classId, []);
+    }
+
+    const messages = this.classMessages.get(payload.classId)!;
+
+    messages.push(msg);
+
+    if (messages.length > 100) {
+      messages.shift();
+    }
+
+    this.server.to(`class-${payload.classId}`).emit('chat:message', msg);
+  }
+
+  @SubscribeMessage('poll:create')
+  handleCreatePoll(@MessageBody() payload: { classId: string; question: string; options: string[] }) {
+    const poll = {
+      pollId: crypto.randomUUID(),
+      question: payload.question,
+      options: payload.options.map((opt) => ({
+        id: crypto.randomUUID(),
+        text: opt,
+        votes: 0,
+      })),
+      voters: new Set<string>(),
+      isActive: true,
+    };
+
+    this.classPolls.set(payload.classId, poll);
+
+    this.server.to(`class-${payload.classId}`).emit('poll:created', poll);
+  }
+
+  @SubscribeMessage('poll:vote')
+  handleVote(
+    @ConnectedSocket() client: socketType.AuthenticatedSocket,
+    @MessageBody() payload: { classId: string; optionId: string },
+  ) {
+    const user = client.data.user;
+    const poll = this.classPolls.get(payload.classId);
+
+    if (!poll || !poll.isActive) return;
+
+    if (poll.voters.has(user.userId)) return;
+
+    const option = poll.options.find((o) => o.id === payload.optionId);
+    if (!option) return;
+
+    option.votes += 1;
+    poll.voters.add(user.userId);
+
+    this.server.to(`class-${payload.classId}`).emit('poll:updated', poll);
+  }
+
+  @SubscribeMessage('poll:end')
+  handleEndPoll(@MessageBody() payload: { classId: string }) {
+    const poll = this.classPolls.get(payload.classId);
+    if (!poll) return;
+
+    poll.isActive = false;
+
+    this.server.to(`class-${payload.classId}`).emit('poll:ended', poll);
+  }
+
+  @SubscribeMessage('webrtc:offer')
+  handleOffer(@ConnectedSocket() client: Socket, @MessageBody() payload: { target: string; offer: any }) {
+    this.server.to(payload.target).emit('webrtc:offer', {
+      offer: payload.offer,
+      from: client.id,
+    });
+  }
+
+  @SubscribeMessage('webrtc:answer')
+  handleAnswer(@ConnectedSocket() client: Socket, @MessageBody() payload: { target: string; answer: any }) {
+    this.server.to(payload.target).emit('webrtc:answer', {
+      answer: payload.answer,
+      from: client.id,
+    });
+  }
+
+  @SubscribeMessage('webrtc:ice-candidate')
+  handleIceCandidate(@ConnectedSocket() client: Socket, @MessageBody() payload: { target: string; candidate: any }) {
+    this.server.to(payload.target).emit('webrtc:ice-candidate', {
+      candidate: payload.candidate,
+      from: client.id,
+    });
+  }
+
+  @SubscribeMessage('webrtc:unmute-student')
+  handleUnmute(@MessageBody() payload: { studentSocketId: string }) {
+    this.server.to(payload.studentSocketId).emit('webrtc:unmute-request');
+  }
+  @SubscribeMessage('class:end')
+  handleEndClass(@MessageBody() payload: { classId: string }) {
+    const roomName = `class-${payload.classId}`;
+
+    this.server.to(roomName).emit('class:ended');
+    this.classHosts.delete(payload.classId);
+    this.classMessages.delete(payload.classId);
+    this.classPolls.delete(payload.classId);
+  }
+
+  async handleDisconnect(client: Socket) {
+    const classId = client.data?.classId;
+    const role = client.data?.role;
+
+    if (!classId) return;
+
+    const roomName = `class-${classId}`;
+
+    if (role === 'host') {
+      this.server.to(roomName).emit('class:ended');
+      this.classHosts.delete(classId);
+      this.classMessages.delete(classId);
+      this.classPolls.delete(classId);
+    }
+
+    if (role === 'student') {
+      const hostSocketId = this.classHosts.get(classId);
+      if (hostSocketId) {
+        this.server.to(hostSocketId).emit('webrtc:student-left', {
+          studentSocketId: client.id,
+        });
+      }
+    }
+
+    const sockets = await this.server.in(roomName).fetchSockets();
+    const users = sockets.map((s) => s.data.user);
+
+    this.server.to(roomName).emit('class:users', users);
   }
 
   @SubscribeMessage('change-view')
@@ -104,7 +247,6 @@ export class LiveClassGateway extends BaseGateway {
     @MessageBody() payload: { classId: string; view: string },
   ) {
     const user = client.data.user;
-
     this.server.to(`class-${payload.classId}`).emit('view-changed', payload.view);
   }
 
@@ -114,7 +256,6 @@ export class LiveClassGateway extends BaseGateway {
     @MessageBody() payload: { classId: string; lessonId: string },
   ) {
     const user = client.data.user;
-
     this.server.to(`class-${payload.classId}`).emit('lesson-changed', payload.lessonId);
   }
 
@@ -124,7 +265,6 @@ export class LiveClassGateway extends BaseGateway {
     @MessageBody() payload: { classId: string; stroke: any },
   ) {
     const user = client.data.user;
-
     this.server.to(`class-${payload.classId}`).emit('new-stroke', payload.stroke);
   }
 
@@ -134,28 +274,7 @@ export class LiveClassGateway extends BaseGateway {
     @MessageBody() payload: { classId: string },
   ) {
     const user = client.data.user;
-
     this.server.to(`class-${payload.classId}`).emit('board-cleared');
-  }
-
-  @SubscribeMessage('create-poll')
-  async handleCreatePoll(
-    @ConnectedSocket() client: socketType.AuthenticatedSocket,
-    @MessageBody() payload: { classId: string; poll: any },
-  ) {
-    const user = client.data.user;
-
-    this.server.to(`class-${payload.classId}`).emit('poll-created', payload.poll);
-  }
-
-  @SubscribeMessage('cast-vote')
-  async handleCastVote(
-    @ConnectedSocket() client: socketType.AuthenticatedSocket,
-    @MessageBody() payload: { classId: string; vote: any },
-  ) {
-    const user = client.data.user;
-
-    this.server.to(`class-${payload.classId}`).emit('vote-cast', payload.vote);
   }
 
   @SubscribeMessage('content-highlight')
@@ -164,7 +283,6 @@ export class LiveClassGateway extends BaseGateway {
     @MessageBody() payload: { classId: string; content: any },
   ) {
     const user = client.data.user;
-
     this.server.to(`class-${payload.classId}`).emit('content-highlighted', payload.content);
   }
 
@@ -174,7 +292,6 @@ export class LiveClassGateway extends BaseGateway {
     @MessageBody() payload: { classId: string; isRaised: boolean },
   ) {
     const user = client.data.user;
-
     this.server.to(`class-${payload.classId}`).emit('raise-hand', payload);
   }
 }
