@@ -292,9 +292,12 @@ export class EnrollmentsService {
       excludeExtraneousValues: true,
     });
 
-    return {
-      message: 'Enrolled class list fetched successfully',
+    const sendData = {
       data: enrolledClassResponse,
+      total,
+      pagination,
     };
+
+    return PaginationResponse(sendData);
   }
 }

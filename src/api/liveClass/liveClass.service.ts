@@ -41,7 +41,7 @@ export class LiveClassService {
     if (user.role === 'student') {
       return this.enrolledLiveClasses(query, body, user);
     }
-    if (user.role === 'teacher') {
+    if (user.role === 'instructor') {
       return this.hostLiveClassList(query, body, user);
     }
     const pagination = PaginationMapper(query);
