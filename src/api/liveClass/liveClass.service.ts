@@ -179,4 +179,36 @@ export class LiveClassService {
 
     return true;
   }
+
+  async classRoomLiveClasses(query: SearchInputDto, body: any, user: any) {
+    const pagination = PaginationMapper(query);
+    const orderBy = OrderMapper(query);
+
+    let filterInput = body?.filter ? { ...body.filter } : {};
+
+    filterInput.classRoomId = body.classRoomId;
+
+    const where = FilterMapper(filterInput, query);
+
+    const [data, total] = await Promise.all([
+      this.liveClassDbService.findMany({
+        where,
+        skip: pagination.skip,
+        take: pagination.take,
+        orderBy,
+        include: { classRoom: true },
+      }),
+      this.liveClassDbService.count({ where }),
+    ]);
+
+    const sendData = {
+      data: plainToInstance(LiveClassResponseDto, data, {
+        excludeExtraneousValues: true,
+      }),
+      total,
+      pagination,
+    };
+
+    return PaginationResponse(sendData);
+  }
 }

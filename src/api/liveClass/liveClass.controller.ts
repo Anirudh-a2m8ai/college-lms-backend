@@ -19,20 +19,25 @@ export class LiveClassController {
 
   @Permissions('liveClass:read')
   @Post('findAllLiveClass')
-  async findAll(@Query() query: SearchInputDto, @Body() body: any , @CurrentUser() user: any) {
+  async findAll(@Query() query: SearchInputDto, @Body() body: any, @CurrentUser() user: any) {
     return await this.liveClassService.findAllLiveClass(query, body, user);
   }
 
   @Permissions('liveClass:read')
   @Post('enrolledLiveClasses')
-  async enrolledLiveClasses(@Query() query: SearchInputDto, @Body() body: any , @CurrentUser() user: any) {
+  async enrolledLiveClasses(@Query() query: SearchInputDto, @Body() body: any, @CurrentUser() user: any) {
     return await this.liveClassService.enrolledLiveClasses(query, body, user);
   }
 
   @Permissions('liveClass:read')
   @Post('hostLiveClassList')
-  async hostLiveClassList(@Query() query: SearchInputDto, @Body() body: any , @CurrentUser() user: any) {
+  async hostLiveClassList(@Query() query: SearchInputDto, @Body() body: any, @CurrentUser() user: any) {
     return await this.liveClassService.hostLiveClassList(query, body, user);
   }
-	
+
+  @Permissions('liveClass:read')
+  @Post('classRoom')
+  async classRoomLiveClasses(@Query() query: SearchInputDto, @Body() body: any, @CurrentUser() user: any) {
+    return await this.liveClassService.classRoomLiveClasses(query, body, user);
+  }
 }
