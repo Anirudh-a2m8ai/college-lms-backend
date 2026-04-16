@@ -4,6 +4,11 @@ import { CreateLiveClassDto, StartLiveClassDto } from './dto/liveClass.dto';
 import { plainToInstance } from 'class-transformer';
 import { LiveClassResponseDto } from './response/liveClass.type';
 import { EnrollmentsDbService } from 'src/repository/enrollments.db-service';
+import { SearchInputDto } from 'src/utils/search/search.input.dto';
+import { PaginationMapper } from 'src/utils/search/pagination.mapper';
+import { OrderMapper } from 'src/utils/search/order.mapper';
+import { FilterMapper } from 'src/utils/search/filter.mapper';
+import { PaginationResponse } from 'src/utils/search/pagination.response';
 
 const now = new Date();
 const ONE_HOUR = 60 * 60 * 1000;
@@ -32,25 +37,125 @@ export class LiveClassService {
     };
   }
 
-  async findAllLiveClass(user: any) {
-    const liveClasses = await this.liveClassDbService.findMany({
+  async findAllLiveClass(query: SearchInputDto, body: any, user: any) {
+    const pagination = PaginationMapper(query);
+    const orderBy = OrderMapper(query);
+
+    let filterInput = body?.filter ? { ...body.filter } : {};
+
+    if (user.tenantId) {
+      filterInput.tenantId = user.tenantId;
+    }
+
+    const where = FilterMapper(filterInput, query);
+
+    const [data, total] = await Promise.all([
+      this.liveClassDbService.findMany({
+        where,
+        skip: pagination.skip,
+        take: pagination.take,
+        orderBy,
+        include: { classRoom: true },
+      }),
+      this.liveClassDbService.count({ where }),
+    ]);
+
+    const sendData = {
+      data: plainToInstance(LiveClassResponseDto, data, {
+        excludeExtraneousValues: true,
+      }),
+      total,
+      pagination,
+    };
+
+    return PaginationResponse(sendData);
+  }
+
+  async enrolledLiveClasses(query: SearchInputDto, body: any, user: any) {
+    const userClassRoom = await this.enrollmentsDbService.findMany({
       where: {
-        isDeleted: false,
-        status: {
-          not: 'COMPLETED',
-        },
-        endTime: {
-          gte: new Date(now.getTime() - ONE_HOUR),
-        },
+        userId: user.id,
       },
     });
+    const pagination = PaginationMapper(query);
+    const orderBy = OrderMapper(query);
 
-    const liveClassResponse = plainToInstance(LiveClassResponseDto, liveClasses);
+    let filterInput = body?.filter ? { ...body.filter } : {};
 
-    return {
-      message: 'Live classes fetched successfully',
-      data: liveClassResponse,
+    if (user.tenantId) {
+      filterInput.tenantId = user.tenantId;
+    }
+
+    filterInput.status = {
+      not: 'COMPLETED',
     };
+
+    filterInput.endTime = {
+      gte: new Date(now.getTime() - ONE_HOUR),
+    };
+
+    filterInput.classRoomId = {
+      in: userClassRoom.map((item) => item.classRoomId).filter((id) => id !== null),
+    };
+
+    const where = FilterMapper(filterInput, query);
+
+    const [data, total] = await Promise.all([
+      this.liveClassDbService.findMany({
+        where,
+        skip: pagination.skip,
+        take: pagination.take,
+        orderBy,
+        include: { classRoom: true },
+      }),
+      this.liveClassDbService.count({ where }),
+    ]);
+
+    const sendData = {
+      data: plainToInstance(LiveClassResponseDto, data, {
+        excludeExtraneousValues: true,
+      }),
+      total,
+      pagination,
+    };
+
+    return PaginationResponse(sendData);
+  }
+
+  async hostLiveClassList(query: SearchInputDto, body: any, user: any) {
+    const pagination = PaginationMapper(query);
+    const orderBy = OrderMapper(query);
+
+    let filterInput = body?.filter ? { ...body.filter } : {};
+
+    if (user.tenantId) {
+      filterInput.tenantId = user.tenantId;
+    }
+
+    filterInput.hostId = user.userId;
+
+    const where = FilterMapper(filterInput, query);
+
+    const [data, total] = await Promise.all([
+      this.liveClassDbService.findMany({
+        where,
+        skip: pagination.skip,
+        take: pagination.take,
+        orderBy,
+        include: { classRoom: true },
+      }),
+      this.liveClassDbService.count({ where }),
+    ]);
+
+    const sendData = {
+      data: plainToInstance(LiveClassResponseDto, data, {
+        excludeExtraneousValues: true,
+      }),
+      total,
+      pagination,
+    };
+
+    return PaginationResponse(sendData);
   }
 
   async joinLiveClass(userId: string, liveClassId: string) {
@@ -74,10 +179,10 @@ export class LiveClassService {
       },
     });
 
-		if (!userClassRoom) {
-			throw new UnauthorizedException('User not authorized user')
-		}
+    if (!userClassRoom) {
+      throw new UnauthorizedException('User not authorized user');
+    }
 
-		return true;
+    return true;
   }
 }

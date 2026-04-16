@@ -257,6 +257,7 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     @MessageBody() payload: { classId: string; view: string },
   ) {
     const user = client.data.user;
+    if (user.userId !== this.classHosts.get(payload.classId)) return;
     const state = this.getOrCreateState(payload.classId);
     state.view = payload.view;
     this.server.to(`class-${payload.classId}`).emit('view-changed', payload.view);
@@ -268,6 +269,7 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     @MessageBody() payload: { classId: string; lessonId: string },
   ) {
     const user = client.data.user;
+    if (user.userId !== this.classHosts.get(payload.classId)) return;
     const state = this.getOrCreateState(payload.classId);
     state.lessonId = payload.lessonId;
     this.server.to(`class-${payload.classId}`).emit('lesson-changed', payload.lessonId);
@@ -279,6 +281,7 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     @MessageBody() payload: { classId: string; stroke: any },
   ) {
     const user = client.data.user;
+    if (user.userId !== this.classHosts.get(payload.classId)) return;
     const state = this.getOrCreateState(payload.classId);
     state.strokes.push(payload.stroke);
     this.server.to(`class-${payload.classId}`).emit('new-stroke', payload.stroke);
@@ -290,6 +293,7 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     @MessageBody() payload: { classId: string },
   ) {
     const user = client.data.user;
+    if (user.userId !== this.classHosts.get(payload.classId)) return;
     const state = this.getOrCreateState(payload.classId);
     state.strokes = [];
     state.highlights = [];
@@ -302,6 +306,7 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     @MessageBody() payload: { classId: string; content: any },
   ) {
     const user = client.data.user;
+    if (user.userId !== this.classHosts.get(payload.classId)) return;
     this.server.to(`class-${payload.classId}`).emit('content-highlighted', payload.content);
   }
 
