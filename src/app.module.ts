@@ -10,6 +10,7 @@ import { BullModule } from '@nestjs/bullmq';
 import { ConfigService } from '@nestjs/config';
 import { QueueModule } from './queue/queue.module';
 import { AwsModule } from './aws/aws.module';
+import { RedisModule } from './redis/redis.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { AwsModule } from './aws/aws.module';
     ApiModule,
     DbServiceModule,
     AwsModule,
+    RedisModule,
   ],
   controllers: [AppController],
   providers: [AppService],

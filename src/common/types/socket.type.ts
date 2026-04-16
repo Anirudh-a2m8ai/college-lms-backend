@@ -11,5 +11,6 @@ export interface AuthUser {
 export interface AuthenticatedSocket extends Socket {
   data: {
     user: AuthUser;
+    classId: string;
   };
 }

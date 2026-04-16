@@ -260,4 +260,25 @@ export class EnrollmentsService {
       data: enrollmentResponse,
     };
   }
+
+  async getEnrolledClassList(user) {
+    const enrolledClasses = await this.enrollmentsDbService.findMany({
+      where: {
+        userId: user.userId,
+        AND: [{ classRoomId: { not: null } }, { classRoomId: { not: '' } }],
+      },
+      include: {
+        classRoom: true,
+      },
+    });
+
+    const enrolledClassResponse = plainToInstance(EnrollmentsResponseDto, enrolledClasses, {
+      excludeExtraneousValues: true,
+    });
+
+    return {
+      message: 'Enrolled class list fetched successfully',
+      data: enrolledClassResponse,
+    };
+  }
 }
