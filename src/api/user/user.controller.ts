@@ -49,7 +49,6 @@ export class UserController {
   @Public()
   @Post('set-password')
   async setPassword(@Body() payload: SetUserPasswordDto, @Query('token') token: string) {
-    console.log(token);
     return await this.userService.setPassword(payload, token);
   }
 

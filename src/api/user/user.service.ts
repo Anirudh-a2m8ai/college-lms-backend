@@ -188,7 +188,6 @@ export class UserService {
     }
 
     const filePath = this.saveFile(file);
-    console.log(filePath);
 
     const job = await this.queueService.addBulkUploadJob(filePath);
 

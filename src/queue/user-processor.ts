@@ -33,8 +33,6 @@ export class UserProcessor extends WorkerHost {
       const isCSV = filePath.endsWith('.csv');
 
       if (isCSV) {
-        console.log('Csv');
-
         await new Promise((resolve, reject) => {
           const stream = fsSync.createReadStream(filePath).pipe(csv());
 

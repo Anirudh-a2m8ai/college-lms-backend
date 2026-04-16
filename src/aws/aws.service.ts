@@ -20,13 +20,11 @@ export class AwsService {
 
   async getPresignedUrl(fileKey: string, contentType: string) {
     try {
-      console.log(this.configService.get<string>('aws.bucketName'));
       const command = new PutObjectCommand({
         Bucket: this.configService.get<string>('aws.bucketName'),
         Key: fileKey,
         ContentType: contentType,
       });
-      console.log(command);
       const url = await getSignedUrl(this.s3, command, {
         expiresIn: 3600,
         unhoistableHeaders: new Set(['x-amz-checksum-crc32']),

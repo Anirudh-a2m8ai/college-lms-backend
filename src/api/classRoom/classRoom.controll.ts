@@ -28,4 +28,7 @@ export class ClassRoomController {
   async list(@Query() query: SearchInputDto, @Body() body: any, @CurrentUser() user: any) {
     return this.classRoomService.list(query, body, user);
   }
+
+  @Permissions('classRoom:read')
+  @Post('')
 }

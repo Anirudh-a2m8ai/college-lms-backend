@@ -110,7 +110,6 @@ export class QuizService {
     if (!quiz) {
       throw new NotFoundException('Quiz not found');
     }
-    console.log(payload.length);
     if (payload.length !== quiz.noOfQuestions) {
       throw new BadRequestException(
         `Quiz must contain exactly ${quiz.noOfQuestions} questions. Received ${payload.length}.`,

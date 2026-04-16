@@ -58,7 +58,6 @@ export class ClassRoomService {
       ...classRoom,
       modules: classRoomContent,
     };
-    console.log(classRoomContent);
 
     const classRoomResponse = plainToInstance(ClassRoomResponseDto, classRoomMap);
     return classRoomResponse;
