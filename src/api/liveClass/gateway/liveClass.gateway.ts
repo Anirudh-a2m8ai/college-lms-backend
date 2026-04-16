@@ -36,6 +36,16 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     }
   >();
 
+  private classState = new Map<
+    string,
+    {
+      view?: string;
+      lessonId?: string;
+      strokes: any[];
+      highlights: any[];
+    }
+  >();
+
   @SubscribeMessage('class:join')
   async handleJoin(@ConnectedSocket() client: socketType.AuthenticatedSocket, @MessageBody() classId: string) {
     const user = client.data.user;
@@ -247,6 +257,8 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     @MessageBody() payload: { classId: string; view: string },
   ) {
     const user = client.data.user;
+    const state = this.getOrCreateState(payload.classId);
+    state.view = payload.view;
     this.server.to(`class-${payload.classId}`).emit('view-changed', payload.view);
   }
 
@@ -256,6 +268,8 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     @MessageBody() payload: { classId: string; lessonId: string },
   ) {
     const user = client.data.user;
+    const state = this.getOrCreateState(payload.classId);
+    state.lessonId = payload.lessonId;
     this.server.to(`class-${payload.classId}`).emit('lesson-changed', payload.lessonId);
   }
 
@@ -265,6 +279,8 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     @MessageBody() payload: { classId: string; stroke: any },
   ) {
     const user = client.data.user;
+    const state = this.getOrCreateState(payload.classId);
+    state.strokes.push(payload.stroke);
     this.server.to(`class-${payload.classId}`).emit('new-stroke', payload.stroke);
   }
 
@@ -274,6 +290,9 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     @MessageBody() payload: { classId: string },
   ) {
     const user = client.data.user;
+    const state = this.getOrCreateState(payload.classId);
+    state.strokes = [];
+    state.highlights = [];
     this.server.to(`class-${payload.classId}`).emit('board-cleared');
   }
 
@@ -293,5 +312,15 @@ export class LiveClassGateway implements OnGatewayDisconnect {
   ) {
     const user = client.data.user;
     this.server.to(`class-${payload.classId}`).emit('raise-hand', payload);
+  }
+
+  private getOrCreateState(classId: string) {
+    if (!this.classState.has(classId)) {
+      this.classState.set(classId, {
+        strokes: [],
+        highlights: [],
+      });
+    }
+    return this.classState.get(classId)!;
   }
 }
