@@ -8,10 +8,14 @@ import { PaginationMapper } from 'src/utils/search/pagination.mapper';
 import { OrderMapper } from 'src/utils/search/order.mapper';
 import { FilterMapper } from 'src/utils/search/filter.mapper';
 import { PaginationResponse } from 'src/utils/search/pagination.response';
+import { UserDbService } from 'src/repository/user.db-service';
 
 @Injectable()
 export class ClassRoomService {
-  constructor(private readonly classRoomDbService: ClassRoomDbService) {}
+  constructor(
+    private readonly classRoomDbService: ClassRoomDbService,
+    private readonly userDbService: UserDbService,
+  ) {}
 
   async create(payload: CreateClassRoomDto, user: any) {
     const existingClassRoom = await this.classRoomDbService.findFirst({
@@ -90,6 +94,39 @@ export class ClassRoomService {
         orderBy,
       }),
       this.classRoomDbService.count({ where }),
+    ]);
+
+    const sendData = {
+      data: plainToInstance(ClassRoomResponseDto, data, {
+        excludeExtraneousValues: true,
+      }),
+      total,
+      pagination,
+    };
+
+    return PaginationResponse(sendData);
+  }
+
+  async enrolledUsers(query: SearchInputDto, body: any, user: any) {
+    if (user.role === 'student') {
+      throw new UnauthorizedException('You are not authorized to access this resource');
+    }
+    const pagination = PaginationMapper(query);
+    const orderBy = OrderMapper(query);
+
+    let filterInput = body?.filter ? { ...body.filter } : {};
+    filterInput.enrollments.some.classRoomId = body.classRoomId;
+
+    const where = FilterMapper(filterInput, query);
+
+    const [data, total] = await Promise.all([
+      this.userDbService.findMany({
+        where,
+        skip: pagination.skip,
+        take: pagination.take,
+        orderBy,
+      }),
+      this.userDbService.count({ where }),
     ]);
 
     const sendData = {

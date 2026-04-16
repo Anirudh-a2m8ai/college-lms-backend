@@ -30,5 +30,8 @@ export class ClassRoomController {
   }
 
   @Permissions('classRoom:read')
-  @Post('')
+  @Post('enrolledUsers')
+  async enrolledUsers(@Query() query: SearchInputDto, @Body() body: any, @CurrentUser() user: any) {
+    return this.classRoomService.enrolledUsers(query, body, user);
+  }
 }
