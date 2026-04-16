@@ -38,6 +38,12 @@ export class LiveClassService {
   }
 
   async findAllLiveClass(query: SearchInputDto, body: any, user: any) {
+    if (user.role === 'student') {
+      return this.enrolledLiveClasses(query, body, user);
+    }
+    if (user.role === 'teacher') {
+      return this.hostLiveClassList(query, body, user);
+    }
     const pagination = PaginationMapper(query);
     const orderBy = OrderMapper(query);
 
