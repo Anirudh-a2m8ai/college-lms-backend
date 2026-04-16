@@ -49,10 +49,6 @@ export class LiveClassService {
 
     let filterInput = body?.filter ? { ...body.filter } : {};
 
-    if (user.tenantId) {
-      filterInput.tenantId = user.tenantId;
-    }
-
     const where = FilterMapper(filterInput, query);
 
     const [data, total] = await Promise.all([
@@ -87,10 +83,6 @@ export class LiveClassService {
     const orderBy = OrderMapper(query);
 
     let filterInput = body?.filter ? { ...body.filter } : {};
-
-    if (user.tenantId) {
-      filterInput.tenantId = user.tenantId;
-    }
 
     filterInput.status = {
       not: 'COMPLETED',
@@ -133,10 +125,6 @@ export class LiveClassService {
     const orderBy = OrderMapper(query);
 
     let filterInput = body?.filter ? { ...body.filter } : {};
-
-    if (user.tenantId) {
-      filterInput.tenantId = user.tenantId;
-    }
 
     filterInput.hostId = user.userId;
 
