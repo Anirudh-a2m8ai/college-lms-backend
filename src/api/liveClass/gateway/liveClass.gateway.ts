@@ -23,7 +23,13 @@ export class LiveClassGateway implements OnGatewayDisconnect {
   @WebSocketServer()
   server: Server;
 
-  private classHosts = new Map<string, string>();
+  private classHosts = new Map<
+    string,
+    {
+      socketId: string;
+      userId: string;
+    }
+  >();
 
   private classMessages = new Map<string, any[]>();
 
@@ -64,13 +70,16 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     client.data.classId = payload.classId;
 
     if (role === 'instructor') {
-      this.classHosts.set(payload.classId, client.id);
+      this.classHosts.set(payload.classId, {
+        socketId: client.id,
+        userId: user.userId,
+      });
     }
 
     if (role === 'student') {
-      const hostSocketId = this.classHosts.get(payload.classId);
-      if (hostSocketId) {
-        this.server.to(hostSocketId).emit('webrtc:student-joined', {
+      const host = this.classHosts.get(payload.classId);
+      if (host) {
+        this.server.to(host.socketId).emit('webrtc:student-joined', {
           studentSocketId: client.id,
           user,
         });
@@ -96,15 +105,18 @@ export class LiveClassGateway implements OnGatewayDisconnect {
   }
 
   @SubscribeMessage('class:leave')
-  async handleLeave(@ConnectedSocket() client: socketType.AuthenticatedSocket, @MessageBody() classId: string) {
-    const roomName = `class-${classId}`;
+  async handleLeave(
+    @ConnectedSocket() client: socketType.AuthenticatedSocket,
+    @MessageBody() payload: { classId: string },
+  ) {
+    const roomName = `class-${payload.classId}`;
 
     client.leave(roomName);
 
     if (client.data.user.role === 'student') {
-      const hostSocketId = this.classHosts.get(classId);
-      if (hostSocketId) {
-        this.server.to(hostSocketId).emit('webrtc:student-left', {
+      const host = this.classHosts.get(payload.classId);
+      if (host) {
+        this.server.to(host.socketId).emit('webrtc:student-left', {
           studentSocketId: client.id,
         });
       }
@@ -122,6 +134,7 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     @MessageBody() payload: { classId: string; message: string },
   ) {
     const user = client.data.user;
+    const roomName = `class-${payload.classId}`;
 
     const msg = {
       userId: user.userId,
@@ -141,11 +154,12 @@ export class LiveClassGateway implements OnGatewayDisconnect {
       messages.shift();
     }
 
-    this.server.to(`class-${payload.classId}`).emit('chat:message', msg);
+    this.server.to(roomName).emit('chat:message', msg);
   }
 
   @SubscribeMessage('poll:create')
   handleCreatePoll(@MessageBody() payload: { classId: string; question: string; options: string[] }) {
+    const roomName = `class-${payload.classId}`;
     const poll = {
       pollId: crypto.randomUUID(),
       question: payload.question,
@@ -160,7 +174,7 @@ export class LiveClassGateway implements OnGatewayDisconnect {
 
     this.classPolls.set(payload.classId, poll);
 
-    this.server.to(`class-${payload.classId}`).emit('poll:created', poll);
+    this.server.to(roomName).emit('poll:created', poll);
   }
 
   @SubscribeMessage('poll:vote')
@@ -169,6 +183,7 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     @MessageBody() payload: { classId: string; optionId: string },
   ) {
     const user = client.data.user;
+    const roomName = `class-${payload.classId}`;
     const poll = this.classPolls.get(payload.classId);
 
     if (!poll || !poll.isActive) return;
@@ -181,17 +196,18 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     option.votes += 1;
     poll.voters.add(user.userId);
 
-    this.server.to(`class-${payload.classId}`).emit('poll:updated', poll);
+    this.server.to(roomName).emit('poll:updated', poll);
   }
 
   @SubscribeMessage('poll:end')
   handleEndPoll(@MessageBody() payload: { classId: string }) {
+    const roomName = `class-${payload.classId}`;
     const poll = this.classPolls.get(payload.classId);
     if (!poll) return;
 
     poll.isActive = false;
 
-    this.server.to(`class-${payload.classId}`).emit('poll:ended', poll);
+    this.server.to(roomName).emit('poll:ended', poll);
   }
 
   @SubscribeMessage('webrtc:offer')
@@ -248,9 +264,9 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     }
 
     if (role === 'student') {
-      const hostSocketId = this.classHosts.get(classId);
-      if (hostSocketId) {
-        this.server.to(hostSocketId).emit('webrtc:student-left', {
+      const host = this.classHosts.get(classId);
+      if (host) {
+        this.server.to(host.socketId).emit('webrtc:student-left', {
           studentSocketId: client.id,
         });
       }
@@ -268,10 +284,11 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     @MessageBody() payload: { classId: string; view: string },
   ) {
     const user = client.data.user;
-    if (user.userId !== this.classHosts.get(payload.classId)) return;
+    const roomName = `class-${payload.classId}`;
+    if (user.userId !== this.classHosts.get(payload.classId)?.userId) return;
     const state = this.getOrCreateState(payload.classId);
     state.view = payload.view;
-    this.server.to(`class-${payload.classId}`).emit('view-changed', payload.view);
+    this.server.to(roomName).emit('view-changed', payload.view);
   }
 
   @SubscribeMessage('change-lesson')
@@ -280,10 +297,11 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     @MessageBody() payload: { classId: string; lessonId: string },
   ) {
     const user = client.data.user;
-    if (user.userId !== this.classHosts.get(payload.classId)) return;
+    const roomName = `class-${payload.classId}`;
+    if (user.userId !== this.classHosts.get(payload.classId)?.userId) return;
     const state = this.getOrCreateState(payload.classId);
     state.lessonId = payload.lessonId;
-    this.server.to(`class-${payload.classId}`).emit('lesson-changed', payload.lessonId);
+    this.server.to(roomName).emit('lesson-changed', payload.lessonId);
   }
 
   @SubscribeMessage('draw-stroke')
@@ -292,10 +310,11 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     @MessageBody() payload: { classId: string; stroke: any },
   ) {
     const user = client.data.user;
-    if (user.userId !== this.classHosts.get(payload.classId)) return;
+    const roomName = `class-${payload.classId}`;
+    if (user.userId !== this.classHosts.get(payload.classId)?.userId) return;
     const state = this.getOrCreateState(payload.classId);
     state.strokes.push(payload.stroke);
-    this.server.to(`class-${payload.classId}`).emit('new-stroke', payload.stroke);
+    this.server.to(roomName).emit('new-stroke', payload.stroke);
   }
 
   @SubscribeMessage('clear-board')
@@ -304,11 +323,12 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     @MessageBody() payload: { classId: string },
   ) {
     const user = client.data.user;
-    if (user.userId !== this.classHosts.get(payload.classId)) return;
+    const roomName = `class-${payload.classId}`;
+    if (user.userId !== this.classHosts.get(payload.classId)?.userId) return;
     const state = this.getOrCreateState(payload.classId);
     state.strokes = [];
     state.highlights = [];
-    this.server.to(`class-${payload.classId}`).emit('board-cleared');
+    this.server.to(roomName).emit('board-cleared');
   }
 
   @SubscribeMessage('content-highlight')
@@ -317,8 +337,9 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     @MessageBody() payload: { classId: string; content: any },
   ) {
     const user = client.data.user;
-    if (user.userId !== this.classHosts.get(payload.classId)) return;
-    this.server.to(`class-${payload.classId}`).emit('content-highlighted', payload.content);
+    const roomName = `class-${payload.classId}`;
+    if (user.userId !== this.classHosts.get(payload.classId)?.userId) return;
+    this.server.to(roomName).emit('content-highlighted', payload.content);
   }
 
   @SubscribeMessage('raise-hand')
@@ -327,7 +348,8 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     @MessageBody() payload: { classId: string; isRaised: boolean },
   ) {
     const user = client.data.user;
-    this.server.to(`class-${payload.classId}`).emit('raise-hand', payload);
+    const roomName = `class-${payload.classId}`;
+    this.server.to(roomName).emit('raise-hand', payload);
   }
 
   private getOrCreateState(classId: string) {
