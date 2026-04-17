@@ -152,7 +152,8 @@ export class LiveClassService {
     return PaginationResponse(sendData);
   }
 
-  async joinLiveClass(userId: string, liveClassId: string) {
+  async verifyUser(userId: string, liveClassId: string) {
+    console.log('liveClassId', liveClassId);
     const liveClass = await this.liveClassDbService.findUnique({
       where: {
         id: liveClassId,
@@ -162,8 +163,14 @@ export class LiveClassService {
       },
     });
 
+    console.log(liveClass);
+
     if (!liveClass) {
       throw new NotFoundException('Live class not found');
+    }
+
+    if (liveClass.hostId === userId) {
+      return true;
     }
 
     const userClassRoom = await this.enrollmentsDbService.findFirst({

@@ -5,7 +5,6 @@ export interface AuthUser {
   email: string;
   role: string;
   tenantId: string;
-  permissions: string[];
 }
 
 export interface AuthenticatedSocket extends Socket {

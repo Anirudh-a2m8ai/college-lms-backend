@@ -11,6 +11,7 @@ import { UseFilters, UseGuards } from '@nestjs/common';
 import { WsAccessTokenGuard } from '../../../common/guards/ws-access-token.guard';
 import { WsExceptionFilter } from 'src/common/filters/ws-exception.filter';
 import * as socketType from 'src/common/types/socket.type';
+import { LiveClassService } from '../liveClass.service';
 
 @WebSocketGateway({
   cors: { origin: '*' },
@@ -18,6 +19,7 @@ import * as socketType from 'src/common/types/socket.type';
 @UseGuards(WsAccessTokenGuard)
 @UseFilters(WsExceptionFilter)
 export class LiveClassGateway implements OnGatewayDisconnect {
+  constructor(private readonly liveClassService: LiveClassService) {}
   @WebSocketServer()
   server: Server;
 
@@ -47,21 +49,26 @@ export class LiveClassGateway implements OnGatewayDisconnect {
   >();
 
   @SubscribeMessage('class:join')
-  async handleJoin(@ConnectedSocket() client: socketType.AuthenticatedSocket, @MessageBody() classId: string) {
+  async handleJoin(
+    @ConnectedSocket() client: socketType.AuthenticatedSocket,
+    @MessageBody() payload: { classId: string },
+  ) {
     const user = client.data.user;
     const role = user.role;
 
-    const roomName = `class-${classId}`;
+    const roomName = `class-${payload.classId}`;
+
+    await this.liveClassService.verifyUser(user.userId, payload.classId);
 
     client.join(roomName);
-    client.data.classId = classId;
+    client.data.classId = payload.classId;
 
     if (role === 'instructor') {
-      this.classHosts.set(classId, client.id);
+      this.classHosts.set(payload.classId, client.id);
     }
 
     if (role === 'student') {
-      const hostSocketId = this.classHosts.get(classId);
+      const hostSocketId = this.classHosts.get(payload.classId);
       if (hostSocketId) {
         this.server.to(hostSocketId).emit('webrtc:student-joined', {
           studentSocketId: client.id,
@@ -70,18 +77,22 @@ export class LiveClassGateway implements OnGatewayDisconnect {
       }
     }
 
-    const messages = this.classMessages.get(classId) || [];
+    const messages = this.classMessages.get(payload.classId) || [];
     client.emit('chat:history', messages);
 
-    const poll = this.classPolls.get(classId);
+    const poll = this.classPolls.get(payload.classId);
     if (poll) {
       client.emit('poll:state', poll);
     }
 
     const sockets = await this.server.in(roomName).fetchSockets();
     const users = sockets.map((s) => s.data.user);
+    const usersList = users.map((user) => {
+      delete user.permissions;
+      return user;
+    });
 
-    this.server.to(roomName).emit('class:users', users);
+    this.server.to(roomName).emit('class:users', usersList);
   }
 
   @SubscribeMessage('class:leave')
