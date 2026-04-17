@@ -9,6 +9,7 @@ import { OrderMapper } from 'src/utils/search/order.mapper';
 import { FilterMapper } from 'src/utils/search/filter.mapper';
 import { PaginationResponse } from 'src/utils/search/pagination.response';
 import { UserDbService } from 'src/repository/user.db-service';
+import { UserResponseDto } from '../user/response/user.type';
 
 @Injectable()
 export class ClassRoomService {
@@ -115,7 +116,16 @@ export class ClassRoomService {
     const orderBy = OrderMapper(query);
 
     let filterInput = body?.filter ? { ...body.filter } : {};
-    filterInput.enrollments.some.classRoomId = body.classRoomId;
+    if (!filterInput.enrollments) {
+      filterInput.enrollments = {};
+    }
+
+    if (!filterInput.enrollments.some) {
+      filterInput.enrollments.some = {};
+    }
+
+    filterInput.enrollments.some.classRoomId = filterInput.classRoomId;
+    delete filterInput.classRoomId;
 
     const where = FilterMapper(filterInput, query);
 
@@ -130,7 +140,7 @@ export class ClassRoomService {
     ]);
 
     const sendData = {
-      data: plainToInstance(ClassRoomResponseDto, data, {
+      data: plainToInstance(UserResponseDto, data, {
         excludeExtraneousValues: true,
       }),
       total,
