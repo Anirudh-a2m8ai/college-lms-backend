@@ -25,6 +25,7 @@ model ClassRoom {
   quizzes                 Quiz[]
   classRoomProgress       ClassRoomProgress[]
   liveClasses             LiveClass[]
+  exams                   Exam[]
   startDate               DateTime
   endDate                 DateTime
   createdAt               DateTime          @default(now())

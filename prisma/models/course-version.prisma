@@ -23,6 +23,7 @@ model CourseVersion {
   quizzes         Quiz[]
 	classRooms      ClassRoom[]
   enrollments     Enrollments[]
+  exams           Exam[]
   isModified      Boolean       @default(false)
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt

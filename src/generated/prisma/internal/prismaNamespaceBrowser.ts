@@ -64,6 +64,11 @@ export const ModelName = {
   Course: 'Course',
   Designation: 'Designation',
   Enrollments: 'Enrollments',
+  Exam: 'Exam',
+  ExamQuestion: 'ExamQuestion',
+  ExamAttempt: 'ExamAttempt',
+  ExamResult: 'ExamResult',
+  Proctoring: 'Proctoring',
   lessonMap: 'lessonMap',
   Lesson: 'Lesson',
   LiveClass: 'LiveClass',
@@ -303,6 +308,86 @@ export const EnrollmentsScalarFieldEnum = {
 } as const
 
 export type EnrollmentsScalarFieldEnum = (typeof EnrollmentsScalarFieldEnum)[keyof typeof EnrollmentsScalarFieldEnum]
+
+
+export const ExamScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  passPercentage: 'passPercentage',
+  timeLimit: 'timeLimit',
+  difficulty: 'difficulty',
+  status: 'status',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  shuffleQuestions: 'shuffleQuestions',
+  shuffleOptions: 'shuffleOptions',
+  courseVersionId: 'courseVersionId',
+  classRoomId: 'classRoomId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ExamScalarFieldEnum = (typeof ExamScalarFieldEnum)[keyof typeof ExamScalarFieldEnum]
+
+
+export const ExamQuestionScalarFieldEnum = {
+  id: 'id',
+  examId: 'examId',
+  question: 'question',
+  questionType: 'questionType',
+  options: 'options',
+  correctAnswer: 'correctAnswer',
+  marks: 'marks',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ExamQuestionScalarFieldEnum = (typeof ExamQuestionScalarFieldEnum)[keyof typeof ExamQuestionScalarFieldEnum]
+
+
+export const ExamAttemptScalarFieldEnum = {
+  id: 'id',
+  examId: 'examId',
+  userId: 'userId',
+  answers: 'answers',
+  startedAt: 'startedAt',
+  submittedAt: 'submittedAt',
+  status: 'status',
+  lastSavedAt: 'lastSavedAt',
+  timeTaken: 'timeTaken'
+} as const
+
+export type ExamAttemptScalarFieldEnum = (typeof ExamAttemptScalarFieldEnum)[keyof typeof ExamAttemptScalarFieldEnum]
+
+
+export const ExamResultScalarFieldEnum = {
+  id: 'id',
+  examId: 'examId',
+  userId: 'userId',
+  score: 'score',
+  percentage: 'percentage',
+  published: 'published',
+  status: 'status',
+  version: 'version',
+  isLatest: 'isLatest',
+  evaluatedAt: 'evaluatedAt',
+  evaluation: 'evaluation'
+} as const
+
+export type ExamResultScalarFieldEnum = (typeof ExamResultScalarFieldEnum)[keyof typeof ExamResultScalarFieldEnum]
+
+
+export const ProctoringScalarFieldEnum = {
+  id: 'id',
+  examAttemptId: 'examAttemptId',
+  userId: 'userId',
+  proctoring: 'proctoring',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProctoringScalarFieldEnum = (typeof ProctoringScalarFieldEnum)[keyof typeof ProctoringScalarFieldEnum]
 
 
 export const LessonMapScalarFieldEnum = {
@@ -695,19 +780,19 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const NullableJsonNullValueInput = {
   DbNull: DbNull,
   JsonNull: JsonNull
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
-
-
-export const JsonNullValueInput = {
-  JsonNull: JsonNull
-} as const
-
-export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {

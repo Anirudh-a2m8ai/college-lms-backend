@@ -51,6 +51,7 @@ export class LiveClassGateway implements OnGatewayDisconnect {
       lessonId?: string;
       strokes: any[];
       highlights: any[];
+      isFullScreen?: boolean;
     }
   >();
 
@@ -350,6 +351,19 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     const user = client.data.user;
     const roomName = `class-${payload.classId}`;
     this.server.to(roomName).emit('raise-hand', payload);
+  }
+
+  @SubscribeMessage('class:fullScreen')
+  async handleFullScreen(
+    @ConnectedSocket() client: socketType.AuthenticatedSocket,
+    @MessageBody() payload: { classId: string; isFullScreen: boolean },
+  ) {
+    const roomName = `class-${payload.classId}`;
+    const user = client.data.user;
+    if (user.userId !== this.classHosts.get(payload.classId)?.userId) return;
+    const state = this.getOrCreateState(payload.classId);
+    state.isFullScreen = payload.isFullScreen;
+    this.server.to(roomName).emit('class:fullScreen', payload);
   }
 
   private getOrCreateState(classId: string) {

@@ -1,0 +1,102 @@
+enum ExamStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum ExamDifficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum AttemptStatus {
+  IN_PROGRESS
+  SUBMITTED
+  AUTO_SUBMITTED
+}
+
+enum ResultStatus {
+  PASSED
+  FAILED
+  ABSENT
+}
+
+model Exam {
+  id               String   @id @default(uuid())
+  title            String
+  description      String
+  passPercentage   Int?
+  timeLimit        Int
+  difficulty       ExamDifficulty?
+  status           ExamStatus
+  startDate        DateTime
+  endDate          DateTime
+  shuffleQuestions Boolean @default(false)
+  shuffleOptions   Boolean @default(false)
+  courseVersionId  String
+  classRoomId      String
+  courseVersion    CourseVersion @relation(fields: [courseVersionId], references: [id])
+  classRoom        ClassRoom     @relation(fields: [classRoomId], references: [id])
+  questions        ExamQuestion[]
+  attempts         ExamAttempt[]
+  results          ExamResult[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model ExamQuestion {
+  id            String   @id @default(uuid())
+  examId        String
+  question      String
+  questionType  QuizQuestionType
+  options       String[]
+  correctAnswer Json
+  marks         Int
+  exam          Exam     @relation(fields: [examId], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model ExamAttempt {
+  id          String   @id @default(uuid())
+  examId      String
+  userId      String
+  answers     Json
+  startedAt   DateTime
+  submittedAt DateTime?
+  status      AttemptStatus
+	proctoring  Proctoring[]
+  lastSavedAt DateTime?
+  timeTaken   Int?
+  exam        Exam     @relation(fields: [examId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
+  @@unique([examId, userId])
+}
+
+model ExamResult {
+  id          String   @id @default(uuid())
+  examId      String
+  userId      String
+  score       Int
+  percentage  Int
+	published   Boolean  @default(false)
+  status      ResultStatus
+  version     Int      @default(1)
+  isLatest    Boolean  @default(true)
+  evaluatedAt DateTime @default(now())
+  evaluation  Json?
+  exam        Exam     @relation(fields: [examId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
+  @@index([examId, userId, isLatest])
+}
+
+model Proctoring {
+	id             String   @id @default(uuid())
+	examAttemptId  String
+	userId         String
+	proctoring     Json
+	examAttempt    ExamAttempt @relation(fields: [examAttemptId], references: [id])
+	user           User     @relation(fields: [userId], references: [id])
+	createdAt      DateTime @default(now())
+	updatedAt      DateTime @updatedAt
+}

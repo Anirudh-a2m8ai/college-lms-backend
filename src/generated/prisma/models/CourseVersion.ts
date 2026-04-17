@@ -302,6 +302,7 @@ export type CourseVersionWhereInput = {
   quizzes?: Prisma.QuizListRelationFilter
   classRooms?: Prisma.ClassRoomListRelationFilter
   enrollments?: Prisma.EnrollmentsListRelationFilter
+  exams?: Prisma.ExamListRelationFilter
 }
 
 export type CourseVersionOrderByWithRelationInput = {
@@ -329,6 +330,7 @@ export type CourseVersionOrderByWithRelationInput = {
   quizzes?: Prisma.QuizOrderByRelationAggregateInput
   classRooms?: Prisma.ClassRoomOrderByRelationAggregateInput
   enrollments?: Prisma.EnrollmentsOrderByRelationAggregateInput
+  exams?: Prisma.ExamOrderByRelationAggregateInput
 }
 
 export type CourseVersionWhereUniqueInput = Prisma.AtLeast<{
@@ -359,6 +361,7 @@ export type CourseVersionWhereUniqueInput = Prisma.AtLeast<{
   quizzes?: Prisma.QuizListRelationFilter
   classRooms?: Prisma.ClassRoomListRelationFilter
   enrollments?: Prisma.EnrollmentsListRelationFilter
+  exams?: Prisma.ExamListRelationFilter
 }, "id">
 
 export type CourseVersionOrderByWithAggregationInput = {
@@ -426,6 +429,7 @@ export type CourseVersionCreateInput = {
   quizzes?: Prisma.QuizCreateNestedManyWithoutCourseVersionInput
   classRooms?: Prisma.ClassRoomCreateNestedManyWithoutSourceCourseVersionInput
   enrollments?: Prisma.EnrollmentsCreateNestedManyWithoutCourseVersionInput
+  exams?: Prisma.ExamCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionUncheckedCreateInput = {
@@ -451,6 +455,7 @@ export type CourseVersionUncheckedCreateInput = {
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutCourseVersionInput
   classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutSourceCourseVersionInput
   enrollments?: Prisma.EnrollmentsUncheckedCreateNestedManyWithoutCourseVersionInput
+  exams?: Prisma.ExamUncheckedCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionUpdateInput = {
@@ -476,6 +481,7 @@ export type CourseVersionUpdateInput = {
   quizzes?: Prisma.QuizUpdateManyWithoutCourseVersionNestedInput
   classRooms?: Prisma.ClassRoomUpdateManyWithoutSourceCourseVersionNestedInput
   enrollments?: Prisma.EnrollmentsUpdateManyWithoutCourseVersionNestedInput
+  exams?: Prisma.ExamUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionUncheckedUpdateInput = {
@@ -501,6 +507,7 @@ export type CourseVersionUncheckedUpdateInput = {
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutCourseVersionNestedInput
   classRooms?: Prisma.ClassRoomUncheckedUpdateManyWithoutSourceCourseVersionNestedInput
   enrollments?: Prisma.EnrollmentsUncheckedUpdateManyWithoutCourseVersionNestedInput
+  exams?: Prisma.ExamUncheckedUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionCreateManyInput = {
@@ -731,6 +738,20 @@ export type CourseVersionUpdateOneWithoutEnrollmentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CourseVersionUpdateToOneWithWhereWithoutEnrollmentsInput, Prisma.CourseVersionUpdateWithoutEnrollmentsInput>, Prisma.CourseVersionUncheckedUpdateWithoutEnrollmentsInput>
 }
 
+export type CourseVersionCreateNestedOneWithoutExamsInput = {
+  create?: Prisma.XOR<Prisma.CourseVersionCreateWithoutExamsInput, Prisma.CourseVersionUncheckedCreateWithoutExamsInput>
+  connectOrCreate?: Prisma.CourseVersionCreateOrConnectWithoutExamsInput
+  connect?: Prisma.CourseVersionWhereUniqueInput
+}
+
+export type CourseVersionUpdateOneRequiredWithoutExamsNestedInput = {
+  create?: Prisma.XOR<Prisma.CourseVersionCreateWithoutExamsInput, Prisma.CourseVersionUncheckedCreateWithoutExamsInput>
+  connectOrCreate?: Prisma.CourseVersionCreateOrConnectWithoutExamsInput
+  upsert?: Prisma.CourseVersionUpsertWithoutExamsInput
+  connect?: Prisma.CourseVersionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CourseVersionUpdateToOneWithWhereWithoutExamsInput, Prisma.CourseVersionUpdateWithoutExamsInput>, Prisma.CourseVersionUncheckedUpdateWithoutExamsInput>
+}
+
 export type CourseVersionCreateNestedOneWithoutLessonMapInput = {
   create?: Prisma.XOR<Prisma.CourseVersionCreateWithoutLessonMapInput, Prisma.CourseVersionUncheckedCreateWithoutLessonMapInput>
   connectOrCreate?: Prisma.CourseVersionCreateOrConnectWithoutLessonMapInput
@@ -867,6 +888,7 @@ export type CourseVersionCreateWithoutChapterMapInput = {
   quizzes?: Prisma.QuizCreateNestedManyWithoutCourseVersionInput
   classRooms?: Prisma.ClassRoomCreateNestedManyWithoutSourceCourseVersionInput
   enrollments?: Prisma.EnrollmentsCreateNestedManyWithoutCourseVersionInput
+  exams?: Prisma.ExamCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionUncheckedCreateWithoutChapterMapInput = {
@@ -891,6 +913,7 @@ export type CourseVersionUncheckedCreateWithoutChapterMapInput = {
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutCourseVersionInput
   classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutSourceCourseVersionInput
   enrollments?: Prisma.EnrollmentsUncheckedCreateNestedManyWithoutCourseVersionInput
+  exams?: Prisma.ExamUncheckedCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionCreateOrConnectWithoutChapterMapInput = {
@@ -931,6 +954,7 @@ export type CourseVersionUpdateWithoutChapterMapInput = {
   quizzes?: Prisma.QuizUpdateManyWithoutCourseVersionNestedInput
   classRooms?: Prisma.ClassRoomUpdateManyWithoutSourceCourseVersionNestedInput
   enrollments?: Prisma.EnrollmentsUpdateManyWithoutCourseVersionNestedInput
+  exams?: Prisma.ExamUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionUncheckedUpdateWithoutChapterMapInput = {
@@ -955,6 +979,7 @@ export type CourseVersionUncheckedUpdateWithoutChapterMapInput = {
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutCourseVersionNestedInput
   classRooms?: Prisma.ClassRoomUncheckedUpdateManyWithoutSourceCourseVersionNestedInput
   enrollments?: Prisma.EnrollmentsUncheckedUpdateManyWithoutCourseVersionNestedInput
+  exams?: Prisma.ExamUncheckedUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionCreateWithoutClassRoomsInput = {
@@ -979,6 +1004,7 @@ export type CourseVersionCreateWithoutClassRoomsInput = {
   subTopicMap?: Prisma.subTopicMapCreateNestedManyWithoutCourseVersionInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutCourseVersionInput
   enrollments?: Prisma.EnrollmentsCreateNestedManyWithoutCourseVersionInput
+  exams?: Prisma.ExamCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionUncheckedCreateWithoutClassRoomsInput = {
@@ -1003,6 +1029,7 @@ export type CourseVersionUncheckedCreateWithoutClassRoomsInput = {
   subTopicMap?: Prisma.subTopicMapUncheckedCreateNestedManyWithoutCourseVersionInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutCourseVersionInput
   enrollments?: Prisma.EnrollmentsUncheckedCreateNestedManyWithoutCourseVersionInput
+  exams?: Prisma.ExamUncheckedCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionCreateOrConnectWithoutClassRoomsInput = {
@@ -1043,6 +1070,7 @@ export type CourseVersionUpdateWithoutClassRoomsInput = {
   subTopicMap?: Prisma.subTopicMapUpdateManyWithoutCourseVersionNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutCourseVersionNestedInput
   enrollments?: Prisma.EnrollmentsUpdateManyWithoutCourseVersionNestedInput
+  exams?: Prisma.ExamUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionUncheckedUpdateWithoutClassRoomsInput = {
@@ -1067,6 +1095,7 @@ export type CourseVersionUncheckedUpdateWithoutClassRoomsInput = {
   subTopicMap?: Prisma.subTopicMapUncheckedUpdateManyWithoutCourseVersionNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutCourseVersionNestedInput
   enrollments?: Prisma.EnrollmentsUncheckedUpdateManyWithoutCourseVersionNestedInput
+  exams?: Prisma.ExamUncheckedUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionCreateWithoutCourseInput = {
@@ -1091,6 +1120,7 @@ export type CourseVersionCreateWithoutCourseInput = {
   quizzes?: Prisma.QuizCreateNestedManyWithoutCourseVersionInput
   classRooms?: Prisma.ClassRoomCreateNestedManyWithoutSourceCourseVersionInput
   enrollments?: Prisma.EnrollmentsCreateNestedManyWithoutCourseVersionInput
+  exams?: Prisma.ExamCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionUncheckedCreateWithoutCourseInput = {
@@ -1115,6 +1145,7 @@ export type CourseVersionUncheckedCreateWithoutCourseInput = {
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutCourseVersionInput
   classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutSourceCourseVersionInput
   enrollments?: Prisma.EnrollmentsUncheckedCreateNestedManyWithoutCourseVersionInput
+  exams?: Prisma.ExamUncheckedCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionCreateOrConnectWithoutCourseInput = {
@@ -1185,6 +1216,7 @@ export type CourseVersionCreateWithoutEnrollmentsInput = {
   subTopicMap?: Prisma.subTopicMapCreateNestedManyWithoutCourseVersionInput
   quizzes?: Prisma.QuizCreateNestedManyWithoutCourseVersionInput
   classRooms?: Prisma.ClassRoomCreateNestedManyWithoutSourceCourseVersionInput
+  exams?: Prisma.ExamCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionUncheckedCreateWithoutEnrollmentsInput = {
@@ -1209,6 +1241,7 @@ export type CourseVersionUncheckedCreateWithoutEnrollmentsInput = {
   subTopicMap?: Prisma.subTopicMapUncheckedCreateNestedManyWithoutCourseVersionInput
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutCourseVersionInput
   classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutSourceCourseVersionInput
+  exams?: Prisma.ExamUncheckedCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionCreateOrConnectWithoutEnrollmentsInput = {
@@ -1249,6 +1282,7 @@ export type CourseVersionUpdateWithoutEnrollmentsInput = {
   subTopicMap?: Prisma.subTopicMapUpdateManyWithoutCourseVersionNestedInput
   quizzes?: Prisma.QuizUpdateManyWithoutCourseVersionNestedInput
   classRooms?: Prisma.ClassRoomUpdateManyWithoutSourceCourseVersionNestedInput
+  exams?: Prisma.ExamUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionUncheckedUpdateWithoutEnrollmentsInput = {
@@ -1273,6 +1307,123 @@ export type CourseVersionUncheckedUpdateWithoutEnrollmentsInput = {
   subTopicMap?: Prisma.subTopicMapUncheckedUpdateManyWithoutCourseVersionNestedInput
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutCourseVersionNestedInput
   classRooms?: Prisma.ClassRoomUncheckedUpdateManyWithoutSourceCourseVersionNestedInput
+  exams?: Prisma.ExamUncheckedUpdateManyWithoutCourseVersionNestedInput
+}
+
+export type CourseVersionCreateWithoutExamsInput = {
+  id?: string
+  versionName: string
+  sourceVersionId?: string | null
+  status: $Enums.CourseStatus
+  lessonCount?: number | null
+  quizCount?: number | null
+  isModified?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  course: Prisma.CourseCreateNestedOneWithoutCourseVersionsInput
+  tenant: Prisma.TenantCreateNestedOneWithoutCourseVersionsInput
+  moduleMap?: Prisma.ModuleMapCreateNestedManyWithoutCourseVersionInput
+  chapterMap?: Prisma.ChapterMapCreateNestedManyWithoutCourseVersionInput
+  lessonMap?: Prisma.lessonMapCreateNestedManyWithoutCourseVersionInput
+  topicMap?: Prisma.TopicMapCreateNestedManyWithoutCourseVersionInput
+  subTopicMap?: Prisma.subTopicMapCreateNestedManyWithoutCourseVersionInput
+  quizzes?: Prisma.QuizCreateNestedManyWithoutCourseVersionInput
+  classRooms?: Prisma.ClassRoomCreateNestedManyWithoutSourceCourseVersionInput
+  enrollments?: Prisma.EnrollmentsCreateNestedManyWithoutCourseVersionInput
+}
+
+export type CourseVersionUncheckedCreateWithoutExamsInput = {
+  id?: string
+  versionName: string
+  sourceVersionId?: string | null
+  status: $Enums.CourseStatus
+  lessonCount?: number | null
+  quizCount?: number | null
+  courseId: string
+  tenantId: string
+  isModified?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  deleteAt?: Date | string | null
+  moduleMap?: Prisma.ModuleMapUncheckedCreateNestedManyWithoutCourseVersionInput
+  chapterMap?: Prisma.ChapterMapUncheckedCreateNestedManyWithoutCourseVersionInput
+  lessonMap?: Prisma.lessonMapUncheckedCreateNestedManyWithoutCourseVersionInput
+  topicMap?: Prisma.TopicMapUncheckedCreateNestedManyWithoutCourseVersionInput
+  subTopicMap?: Prisma.subTopicMapUncheckedCreateNestedManyWithoutCourseVersionInput
+  quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutCourseVersionInput
+  classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutSourceCourseVersionInput
+  enrollments?: Prisma.EnrollmentsUncheckedCreateNestedManyWithoutCourseVersionInput
+}
+
+export type CourseVersionCreateOrConnectWithoutExamsInput = {
+  where: Prisma.CourseVersionWhereUniqueInput
+  create: Prisma.XOR<Prisma.CourseVersionCreateWithoutExamsInput, Prisma.CourseVersionUncheckedCreateWithoutExamsInput>
+}
+
+export type CourseVersionUpsertWithoutExamsInput = {
+  update: Prisma.XOR<Prisma.CourseVersionUpdateWithoutExamsInput, Prisma.CourseVersionUncheckedUpdateWithoutExamsInput>
+  create: Prisma.XOR<Prisma.CourseVersionCreateWithoutExamsInput, Prisma.CourseVersionUncheckedCreateWithoutExamsInput>
+  where?: Prisma.CourseVersionWhereInput
+}
+
+export type CourseVersionUpdateToOneWithWhereWithoutExamsInput = {
+  where?: Prisma.CourseVersionWhereInput
+  data: Prisma.XOR<Prisma.CourseVersionUpdateWithoutExamsInput, Prisma.CourseVersionUncheckedUpdateWithoutExamsInput>
+}
+
+export type CourseVersionUpdateWithoutExamsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  versionName?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  course?: Prisma.CourseUpdateOneRequiredWithoutCourseVersionsNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutCourseVersionsNestedInput
+  moduleMap?: Prisma.ModuleMapUpdateManyWithoutCourseVersionNestedInput
+  chapterMap?: Prisma.ChapterMapUpdateManyWithoutCourseVersionNestedInput
+  lessonMap?: Prisma.lessonMapUpdateManyWithoutCourseVersionNestedInput
+  topicMap?: Prisma.TopicMapUpdateManyWithoutCourseVersionNestedInput
+  subTopicMap?: Prisma.subTopicMapUpdateManyWithoutCourseVersionNestedInput
+  quizzes?: Prisma.QuizUpdateManyWithoutCourseVersionNestedInput
+  classRooms?: Prisma.ClassRoomUpdateManyWithoutSourceCourseVersionNestedInput
+  enrollments?: Prisma.EnrollmentsUpdateManyWithoutCourseVersionNestedInput
+}
+
+export type CourseVersionUncheckedUpdateWithoutExamsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  versionName?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCourseStatusFieldUpdateOperationsInput | $Enums.CourseStatus
+  lessonCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quizCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  courseId?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  isModified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  moduleMap?: Prisma.ModuleMapUncheckedUpdateManyWithoutCourseVersionNestedInput
+  chapterMap?: Prisma.ChapterMapUncheckedUpdateManyWithoutCourseVersionNestedInput
+  lessonMap?: Prisma.lessonMapUncheckedUpdateManyWithoutCourseVersionNestedInput
+  topicMap?: Prisma.TopicMapUncheckedUpdateManyWithoutCourseVersionNestedInput
+  subTopicMap?: Prisma.subTopicMapUncheckedUpdateManyWithoutCourseVersionNestedInput
+  quizzes?: Prisma.QuizUncheckedUpdateManyWithoutCourseVersionNestedInput
+  classRooms?: Prisma.ClassRoomUncheckedUpdateManyWithoutSourceCourseVersionNestedInput
+  enrollments?: Prisma.EnrollmentsUncheckedUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionCreateWithoutLessonMapInput = {
@@ -1297,6 +1448,7 @@ export type CourseVersionCreateWithoutLessonMapInput = {
   quizzes?: Prisma.QuizCreateNestedManyWithoutCourseVersionInput
   classRooms?: Prisma.ClassRoomCreateNestedManyWithoutSourceCourseVersionInput
   enrollments?: Prisma.EnrollmentsCreateNestedManyWithoutCourseVersionInput
+  exams?: Prisma.ExamCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionUncheckedCreateWithoutLessonMapInput = {
@@ -1321,6 +1473,7 @@ export type CourseVersionUncheckedCreateWithoutLessonMapInput = {
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutCourseVersionInput
   classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutSourceCourseVersionInput
   enrollments?: Prisma.EnrollmentsUncheckedCreateNestedManyWithoutCourseVersionInput
+  exams?: Prisma.ExamUncheckedCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionCreateOrConnectWithoutLessonMapInput = {
@@ -1361,6 +1514,7 @@ export type CourseVersionUpdateWithoutLessonMapInput = {
   quizzes?: Prisma.QuizUpdateManyWithoutCourseVersionNestedInput
   classRooms?: Prisma.ClassRoomUpdateManyWithoutSourceCourseVersionNestedInput
   enrollments?: Prisma.EnrollmentsUpdateManyWithoutCourseVersionNestedInput
+  exams?: Prisma.ExamUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionUncheckedUpdateWithoutLessonMapInput = {
@@ -1385,6 +1539,7 @@ export type CourseVersionUncheckedUpdateWithoutLessonMapInput = {
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutCourseVersionNestedInput
   classRooms?: Prisma.ClassRoomUncheckedUpdateManyWithoutSourceCourseVersionNestedInput
   enrollments?: Prisma.EnrollmentsUncheckedUpdateManyWithoutCourseVersionNestedInput
+  exams?: Prisma.ExamUncheckedUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionCreateWithoutModuleMapInput = {
@@ -1409,6 +1564,7 @@ export type CourseVersionCreateWithoutModuleMapInput = {
   quizzes?: Prisma.QuizCreateNestedManyWithoutCourseVersionInput
   classRooms?: Prisma.ClassRoomCreateNestedManyWithoutSourceCourseVersionInput
   enrollments?: Prisma.EnrollmentsCreateNestedManyWithoutCourseVersionInput
+  exams?: Prisma.ExamCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionUncheckedCreateWithoutModuleMapInput = {
@@ -1433,6 +1589,7 @@ export type CourseVersionUncheckedCreateWithoutModuleMapInput = {
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutCourseVersionInput
   classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutSourceCourseVersionInput
   enrollments?: Prisma.EnrollmentsUncheckedCreateNestedManyWithoutCourseVersionInput
+  exams?: Prisma.ExamUncheckedCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionCreateOrConnectWithoutModuleMapInput = {
@@ -1473,6 +1630,7 @@ export type CourseVersionUpdateWithoutModuleMapInput = {
   quizzes?: Prisma.QuizUpdateManyWithoutCourseVersionNestedInput
   classRooms?: Prisma.ClassRoomUpdateManyWithoutSourceCourseVersionNestedInput
   enrollments?: Prisma.EnrollmentsUpdateManyWithoutCourseVersionNestedInput
+  exams?: Prisma.ExamUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionUncheckedUpdateWithoutModuleMapInput = {
@@ -1497,6 +1655,7 @@ export type CourseVersionUncheckedUpdateWithoutModuleMapInput = {
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutCourseVersionNestedInput
   classRooms?: Prisma.ClassRoomUncheckedUpdateManyWithoutSourceCourseVersionNestedInput
   enrollments?: Prisma.EnrollmentsUncheckedUpdateManyWithoutCourseVersionNestedInput
+  exams?: Prisma.ExamUncheckedUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionCreateWithoutQuizzesInput = {
@@ -1521,6 +1680,7 @@ export type CourseVersionCreateWithoutQuizzesInput = {
   subTopicMap?: Prisma.subTopicMapCreateNestedManyWithoutCourseVersionInput
   classRooms?: Prisma.ClassRoomCreateNestedManyWithoutSourceCourseVersionInput
   enrollments?: Prisma.EnrollmentsCreateNestedManyWithoutCourseVersionInput
+  exams?: Prisma.ExamCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionUncheckedCreateWithoutQuizzesInput = {
@@ -1545,6 +1705,7 @@ export type CourseVersionUncheckedCreateWithoutQuizzesInput = {
   subTopicMap?: Prisma.subTopicMapUncheckedCreateNestedManyWithoutCourseVersionInput
   classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutSourceCourseVersionInput
   enrollments?: Prisma.EnrollmentsUncheckedCreateNestedManyWithoutCourseVersionInput
+  exams?: Prisma.ExamUncheckedCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionCreateOrConnectWithoutQuizzesInput = {
@@ -1585,6 +1746,7 @@ export type CourseVersionUpdateWithoutQuizzesInput = {
   subTopicMap?: Prisma.subTopicMapUpdateManyWithoutCourseVersionNestedInput
   classRooms?: Prisma.ClassRoomUpdateManyWithoutSourceCourseVersionNestedInput
   enrollments?: Prisma.EnrollmentsUpdateManyWithoutCourseVersionNestedInput
+  exams?: Prisma.ExamUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionUncheckedUpdateWithoutQuizzesInput = {
@@ -1609,6 +1771,7 @@ export type CourseVersionUncheckedUpdateWithoutQuizzesInput = {
   subTopicMap?: Prisma.subTopicMapUncheckedUpdateManyWithoutCourseVersionNestedInput
   classRooms?: Prisma.ClassRoomUncheckedUpdateManyWithoutSourceCourseVersionNestedInput
   enrollments?: Prisma.EnrollmentsUncheckedUpdateManyWithoutCourseVersionNestedInput
+  exams?: Prisma.ExamUncheckedUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionCreateWithoutSubTopicMapInput = {
@@ -1633,6 +1796,7 @@ export type CourseVersionCreateWithoutSubTopicMapInput = {
   quizzes?: Prisma.QuizCreateNestedManyWithoutCourseVersionInput
   classRooms?: Prisma.ClassRoomCreateNestedManyWithoutSourceCourseVersionInput
   enrollments?: Prisma.EnrollmentsCreateNestedManyWithoutCourseVersionInput
+  exams?: Prisma.ExamCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionUncheckedCreateWithoutSubTopicMapInput = {
@@ -1657,6 +1821,7 @@ export type CourseVersionUncheckedCreateWithoutSubTopicMapInput = {
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutCourseVersionInput
   classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutSourceCourseVersionInput
   enrollments?: Prisma.EnrollmentsUncheckedCreateNestedManyWithoutCourseVersionInput
+  exams?: Prisma.ExamUncheckedCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionCreateOrConnectWithoutSubTopicMapInput = {
@@ -1697,6 +1862,7 @@ export type CourseVersionUpdateWithoutSubTopicMapInput = {
   quizzes?: Prisma.QuizUpdateManyWithoutCourseVersionNestedInput
   classRooms?: Prisma.ClassRoomUpdateManyWithoutSourceCourseVersionNestedInput
   enrollments?: Prisma.EnrollmentsUpdateManyWithoutCourseVersionNestedInput
+  exams?: Prisma.ExamUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionUncheckedUpdateWithoutSubTopicMapInput = {
@@ -1721,6 +1887,7 @@ export type CourseVersionUncheckedUpdateWithoutSubTopicMapInput = {
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutCourseVersionNestedInput
   classRooms?: Prisma.ClassRoomUncheckedUpdateManyWithoutSourceCourseVersionNestedInput
   enrollments?: Prisma.EnrollmentsUncheckedUpdateManyWithoutCourseVersionNestedInput
+  exams?: Prisma.ExamUncheckedUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionCreateWithoutTenantInput = {
@@ -1745,6 +1912,7 @@ export type CourseVersionCreateWithoutTenantInput = {
   quizzes?: Prisma.QuizCreateNestedManyWithoutCourseVersionInput
   classRooms?: Prisma.ClassRoomCreateNestedManyWithoutSourceCourseVersionInput
   enrollments?: Prisma.EnrollmentsCreateNestedManyWithoutCourseVersionInput
+  exams?: Prisma.ExamCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionUncheckedCreateWithoutTenantInput = {
@@ -1769,6 +1937,7 @@ export type CourseVersionUncheckedCreateWithoutTenantInput = {
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutCourseVersionInput
   classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutSourceCourseVersionInput
   enrollments?: Prisma.EnrollmentsUncheckedCreateNestedManyWithoutCourseVersionInput
+  exams?: Prisma.ExamUncheckedCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionCreateOrConnectWithoutTenantInput = {
@@ -1819,6 +1988,7 @@ export type CourseVersionCreateWithoutTopicMapInput = {
   quizzes?: Prisma.QuizCreateNestedManyWithoutCourseVersionInput
   classRooms?: Prisma.ClassRoomCreateNestedManyWithoutSourceCourseVersionInput
   enrollments?: Prisma.EnrollmentsCreateNestedManyWithoutCourseVersionInput
+  exams?: Prisma.ExamCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionUncheckedCreateWithoutTopicMapInput = {
@@ -1843,6 +2013,7 @@ export type CourseVersionUncheckedCreateWithoutTopicMapInput = {
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutCourseVersionInput
   classRooms?: Prisma.ClassRoomUncheckedCreateNestedManyWithoutSourceCourseVersionInput
   enrollments?: Prisma.EnrollmentsUncheckedCreateNestedManyWithoutCourseVersionInput
+  exams?: Prisma.ExamUncheckedCreateNestedManyWithoutCourseVersionInput
 }
 
 export type CourseVersionCreateOrConnectWithoutTopicMapInput = {
@@ -1883,6 +2054,7 @@ export type CourseVersionUpdateWithoutTopicMapInput = {
   quizzes?: Prisma.QuizUpdateManyWithoutCourseVersionNestedInput
   classRooms?: Prisma.ClassRoomUpdateManyWithoutSourceCourseVersionNestedInput
   enrollments?: Prisma.EnrollmentsUpdateManyWithoutCourseVersionNestedInput
+  exams?: Prisma.ExamUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionUncheckedUpdateWithoutTopicMapInput = {
@@ -1907,6 +2079,7 @@ export type CourseVersionUncheckedUpdateWithoutTopicMapInput = {
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutCourseVersionNestedInput
   classRooms?: Prisma.ClassRoomUncheckedUpdateManyWithoutSourceCourseVersionNestedInput
   enrollments?: Prisma.EnrollmentsUncheckedUpdateManyWithoutCourseVersionNestedInput
+  exams?: Prisma.ExamUncheckedUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionCreateManyCourseInput = {
@@ -1947,6 +2120,7 @@ export type CourseVersionUpdateWithoutCourseInput = {
   quizzes?: Prisma.QuizUpdateManyWithoutCourseVersionNestedInput
   classRooms?: Prisma.ClassRoomUpdateManyWithoutSourceCourseVersionNestedInput
   enrollments?: Prisma.EnrollmentsUpdateManyWithoutCourseVersionNestedInput
+  exams?: Prisma.ExamUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionUncheckedUpdateWithoutCourseInput = {
@@ -1971,6 +2145,7 @@ export type CourseVersionUncheckedUpdateWithoutCourseInput = {
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutCourseVersionNestedInput
   classRooms?: Prisma.ClassRoomUncheckedUpdateManyWithoutSourceCourseVersionNestedInput
   enrollments?: Prisma.EnrollmentsUncheckedUpdateManyWithoutCourseVersionNestedInput
+  exams?: Prisma.ExamUncheckedUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionUncheckedUpdateManyWithoutCourseInput = {
@@ -2027,6 +2202,7 @@ export type CourseVersionUpdateWithoutTenantInput = {
   quizzes?: Prisma.QuizUpdateManyWithoutCourseVersionNestedInput
   classRooms?: Prisma.ClassRoomUpdateManyWithoutSourceCourseVersionNestedInput
   enrollments?: Prisma.EnrollmentsUpdateManyWithoutCourseVersionNestedInput
+  exams?: Prisma.ExamUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionUncheckedUpdateWithoutTenantInput = {
@@ -2051,6 +2227,7 @@ export type CourseVersionUncheckedUpdateWithoutTenantInput = {
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutCourseVersionNestedInput
   classRooms?: Prisma.ClassRoomUncheckedUpdateManyWithoutSourceCourseVersionNestedInput
   enrollments?: Prisma.EnrollmentsUncheckedUpdateManyWithoutCourseVersionNestedInput
+  exams?: Prisma.ExamUncheckedUpdateManyWithoutCourseVersionNestedInput
 }
 
 export type CourseVersionUncheckedUpdateManyWithoutTenantInput = {
@@ -2083,6 +2260,7 @@ export type CourseVersionCountOutputType = {
   quizzes: number
   classRooms: number
   enrollments: number
+  exams: number
 }
 
 export type CourseVersionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2094,6 +2272,7 @@ export type CourseVersionCountOutputTypeSelect<ExtArgs extends runtime.Types.Ext
   quizzes?: boolean | CourseVersionCountOutputTypeCountQuizzesArgs
   classRooms?: boolean | CourseVersionCountOutputTypeCountClassRoomsArgs
   enrollments?: boolean | CourseVersionCountOutputTypeCountEnrollmentsArgs
+  exams?: boolean | CourseVersionCountOutputTypeCountExamsArgs
 }
 
 /**
@@ -2162,6 +2341,13 @@ export type CourseVersionCountOutputTypeCountEnrollmentsArgs<ExtArgs extends run
   where?: Prisma.EnrollmentsWhereInput
 }
 
+/**
+ * CourseVersionCountOutputType without action
+ */
+export type CourseVersionCountOutputTypeCountExamsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ExamWhereInput
+}
+
 
 export type CourseVersionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2188,6 +2374,7 @@ export type CourseVersionSelect<ExtArgs extends runtime.Types.Extensions.Interna
   quizzes?: boolean | Prisma.CourseVersion$quizzesArgs<ExtArgs>
   classRooms?: boolean | Prisma.CourseVersion$classRoomsArgs<ExtArgs>
   enrollments?: boolean | Prisma.CourseVersion$enrollmentsArgs<ExtArgs>
+  exams?: boolean | Prisma.CourseVersion$examsArgs<ExtArgs>
   _count?: boolean | Prisma.CourseVersionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["courseVersion"]>
 
@@ -2258,6 +2445,7 @@ export type CourseVersionInclude<ExtArgs extends runtime.Types.Extensions.Intern
   quizzes?: boolean | Prisma.CourseVersion$quizzesArgs<ExtArgs>
   classRooms?: boolean | Prisma.CourseVersion$classRoomsArgs<ExtArgs>
   enrollments?: boolean | Prisma.CourseVersion$enrollmentsArgs<ExtArgs>
+  exams?: boolean | Prisma.CourseVersion$examsArgs<ExtArgs>
   _count?: boolean | Prisma.CourseVersionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CourseVersionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2282,6 +2470,7 @@ export type $CourseVersionPayload<ExtArgs extends runtime.Types.Extensions.Inter
     quizzes: Prisma.$QuizPayload<ExtArgs>[]
     classRooms: Prisma.$ClassRoomPayload<ExtArgs>[]
     enrollments: Prisma.$EnrollmentsPayload<ExtArgs>[]
+    exams: Prisma.$ExamPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2702,6 +2891,7 @@ export interface Prisma__CourseVersionClient<T, Null = never, ExtArgs extends ru
   quizzes<T extends Prisma.CourseVersion$quizzesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CourseVersion$quizzesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuizPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   classRooms<T extends Prisma.CourseVersion$classRoomsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CourseVersion$classRoomsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassRoomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   enrollments<T extends Prisma.CourseVersion$enrollmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CourseVersion$enrollmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EnrollmentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  exams<T extends Prisma.CourseVersion$examsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CourseVersion$examsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3335,6 +3525,30 @@ export type CourseVersion$enrollmentsArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.EnrollmentsScalarFieldEnum | Prisma.EnrollmentsScalarFieldEnum[]
+}
+
+/**
+ * CourseVersion.exams
+ */
+export type CourseVersion$examsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Exam
+   */
+  select?: Prisma.ExamSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Exam
+   */
+  omit?: Prisma.ExamOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExamInclude<ExtArgs> | null
+  where?: Prisma.ExamWhereInput
+  orderBy?: Prisma.ExamOrderByWithRelationInput | Prisma.ExamOrderByWithRelationInput[]
+  cursor?: Prisma.ExamWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ExamScalarFieldEnum | Prisma.ExamScalarFieldEnum[]
 }
 
 /**

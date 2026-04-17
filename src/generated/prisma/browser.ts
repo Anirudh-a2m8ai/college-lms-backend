@@ -83,6 +83,31 @@ export type Designation = Prisma.DesignationModel
  */
 export type Enrollments = Prisma.EnrollmentsModel
 /**
+ * Model Exam
+ * 
+ */
+export type Exam = Prisma.ExamModel
+/**
+ * Model ExamQuestion
+ * 
+ */
+export type ExamQuestion = Prisma.ExamQuestionModel
+/**
+ * Model ExamAttempt
+ * 
+ */
+export type ExamAttempt = Prisma.ExamAttemptModel
+/**
+ * Model ExamResult
+ * 
+ */
+export type ExamResult = Prisma.ExamResultModel
+/**
+ * Model Proctoring
+ * 
+ */
+export type Proctoring = Prisma.ProctoringModel
+/**
  * Model lessonMap
  * 
  */

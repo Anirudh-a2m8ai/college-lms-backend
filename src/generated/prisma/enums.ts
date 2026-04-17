@@ -34,6 +34,41 @@ export const CourseType = {
 export type CourseType = (typeof CourseType)[keyof typeof CourseType]
 
 
+export const ExamStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type ExamStatus = (typeof ExamStatus)[keyof typeof ExamStatus]
+
+
+export const ExamDifficulty = {
+  EASY: 'EASY',
+  MEDIUM: 'MEDIUM',
+  HARD: 'HARD'
+} as const
+
+export type ExamDifficulty = (typeof ExamDifficulty)[keyof typeof ExamDifficulty]
+
+
+export const AttemptStatus = {
+  IN_PROGRESS: 'IN_PROGRESS',
+  SUBMITTED: 'SUBMITTED',
+  AUTO_SUBMITTED: 'AUTO_SUBMITTED'
+} as const
+
+export type AttemptStatus = (typeof AttemptStatus)[keyof typeof AttemptStatus]
+
+
+export const ResultStatus = {
+  PASSED: 'PASSED',
+  FAILED: 'FAILED',
+  ABSENT: 'ABSENT'
+} as const
+
+export type ResultStatus = (typeof ResultStatus)[keyof typeof ResultStatus]
+
+
 export const LiveClassStatus = {
   PENDING: 'PENDING',
   COMPLETED: 'COMPLETED',
