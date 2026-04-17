@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { RoleDbService } from 'src/repository/role.db-service';
-import { CreateRoleDto } from './dto/create-role.dto';
+import { CreateRoleDto, RolePermissionDto } from './dto/create-role.dto';
 import { plainToInstance } from 'class-transformer';
 import { RoleResponseDto } from './response/role.type';
 import { UpdateRoleDto } from './dto/update-role.dto';
@@ -97,6 +97,25 @@ export class RoleService {
 
     return {
       message: 'Role deleted successfully',
+    };
+  }
+
+  async permissionToRole(body: RolePermissionDto) {
+    const role = await this.roleDbService.update({
+      where: {
+        id: body.roleId,
+      },
+      data: {
+        permissions: {
+          connect: body.permissions.map((permission: string) => ({
+            id: permission,
+          })),
+        },
+      },
+    });
+
+    return {
+      message: 'Permission added to role successfully',
     };
   }
 }

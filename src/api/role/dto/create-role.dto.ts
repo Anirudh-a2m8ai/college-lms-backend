@@ -9,3 +9,13 @@ export class CreateRoleDto {
   @IsNotEmpty()
   permissions: string[];
 }
+
+export class RolePermissionDto {
+  @IsString()
+  @IsNotEmpty()
+  roleId: string;
+
+  @IsArray()
+  @IsNotEmpty()
+  permissions: string[];
+}
