@@ -18,6 +18,7 @@ model Tenant {
   courseVersions  CourseVersion[]
   enrollments     Enrollments[]
   classRooms      ClassRoom[]
+  exams           Exam[]
   hMac            String?
   createdAt       DateTime        @default(now())
   updatedAt       DateTime        @updatedAt

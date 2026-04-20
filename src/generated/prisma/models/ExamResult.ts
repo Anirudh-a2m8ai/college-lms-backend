@@ -49,6 +49,7 @@ export type ExamResultMinAggregateOutputType = {
   version: number | null
   isLatest: boolean | null
   evaluatedAt: Date | null
+  enrollmentId: string | null
 }
 
 export type ExamResultMaxAggregateOutputType = {
@@ -62,6 +63,7 @@ export type ExamResultMaxAggregateOutputType = {
   version: number | null
   isLatest: boolean | null
   evaluatedAt: Date | null
+  enrollmentId: string | null
 }
 
 export type ExamResultCountAggregateOutputType = {
@@ -76,6 +78,7 @@ export type ExamResultCountAggregateOutputType = {
   isLatest: number
   evaluatedAt: number
   evaluation: number
+  enrollmentId: number
   _all: number
 }
 
@@ -103,6 +106,7 @@ export type ExamResultMinAggregateInputType = {
   version?: true
   isLatest?: true
   evaluatedAt?: true
+  enrollmentId?: true
 }
 
 export type ExamResultMaxAggregateInputType = {
@@ -116,6 +120,7 @@ export type ExamResultMaxAggregateInputType = {
   version?: true
   isLatest?: true
   evaluatedAt?: true
+  enrollmentId?: true
 }
 
 export type ExamResultCountAggregateInputType = {
@@ -130,6 +135,7 @@ export type ExamResultCountAggregateInputType = {
   isLatest?: true
   evaluatedAt?: true
   evaluation?: true
+  enrollmentId?: true
   _all?: true
 }
 
@@ -231,6 +237,7 @@ export type ExamResultGroupByOutputType = {
   isLatest: boolean
   evaluatedAt: Date
   evaluation: runtime.JsonValue | null
+  enrollmentId: string
   _count: ExamResultCountAggregateOutputType | null
   _avg: ExamResultAvgAggregateOutputType | null
   _sum: ExamResultSumAggregateOutputType | null
@@ -268,6 +275,8 @@ export type ExamResultWhereInput = {
   isLatest?: Prisma.BoolFilter<"ExamResult"> | boolean
   evaluatedAt?: Prisma.DateTimeFilter<"ExamResult"> | Date | string
   evaluation?: Prisma.JsonNullableFilter<"ExamResult">
+  enrollmentId?: Prisma.StringFilter<"ExamResult"> | string
+  enrollment?: Prisma.XOR<Prisma.EnrollmentsScalarRelationFilter, Prisma.EnrollmentsWhereInput>
   exam?: Prisma.XOR<Prisma.ExamScalarRelationFilter, Prisma.ExamWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
@@ -284,6 +293,8 @@ export type ExamResultOrderByWithRelationInput = {
   isLatest?: Prisma.SortOrder
   evaluatedAt?: Prisma.SortOrder
   evaluation?: Prisma.SortOrderInput | Prisma.SortOrder
+  enrollmentId?: Prisma.SortOrder
+  enrollment?: Prisma.EnrollmentsOrderByWithRelationInput
   exam?: Prisma.ExamOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
 }
@@ -303,6 +314,8 @@ export type ExamResultWhereUniqueInput = Prisma.AtLeast<{
   isLatest?: Prisma.BoolFilter<"ExamResult"> | boolean
   evaluatedAt?: Prisma.DateTimeFilter<"ExamResult"> | Date | string
   evaluation?: Prisma.JsonNullableFilter<"ExamResult">
+  enrollmentId?: Prisma.StringFilter<"ExamResult"> | string
+  enrollment?: Prisma.XOR<Prisma.EnrollmentsScalarRelationFilter, Prisma.EnrollmentsWhereInput>
   exam?: Prisma.XOR<Prisma.ExamScalarRelationFilter, Prisma.ExamWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
@@ -319,6 +332,7 @@ export type ExamResultOrderByWithAggregationInput = {
   isLatest?: Prisma.SortOrder
   evaluatedAt?: Prisma.SortOrder
   evaluation?: Prisma.SortOrderInput | Prisma.SortOrder
+  enrollmentId?: Prisma.SortOrder
   _count?: Prisma.ExamResultCountOrderByAggregateInput
   _avg?: Prisma.ExamResultAvgOrderByAggregateInput
   _max?: Prisma.ExamResultMaxOrderByAggregateInput
@@ -341,6 +355,7 @@ export type ExamResultScalarWhereWithAggregatesInput = {
   isLatest?: Prisma.BoolWithAggregatesFilter<"ExamResult"> | boolean
   evaluatedAt?: Prisma.DateTimeWithAggregatesFilter<"ExamResult"> | Date | string
   evaluation?: Prisma.JsonNullableWithAggregatesFilter<"ExamResult">
+  enrollmentId?: Prisma.StringWithAggregatesFilter<"ExamResult"> | string
 }
 
 export type ExamResultCreateInput = {
@@ -353,6 +368,7 @@ export type ExamResultCreateInput = {
   isLatest?: boolean
   evaluatedAt?: Date | string
   evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  enrollment: Prisma.EnrollmentsCreateNestedOneWithoutExamResultInput
   exam: Prisma.ExamCreateNestedOneWithoutResultsInput
   user: Prisma.UserCreateNestedOneWithoutExamResultsInput
 }
@@ -369,6 +385,7 @@ export type ExamResultUncheckedCreateInput = {
   isLatest?: boolean
   evaluatedAt?: Date | string
   evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  enrollmentId: string
 }
 
 export type ExamResultUpdateInput = {
@@ -381,6 +398,7 @@ export type ExamResultUpdateInput = {
   isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
   evaluatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  enrollment?: Prisma.EnrollmentsUpdateOneRequiredWithoutExamResultNestedInput
   exam?: Prisma.ExamUpdateOneRequiredWithoutResultsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutExamResultsNestedInput
 }
@@ -397,6 +415,7 @@ export type ExamResultUncheckedUpdateInput = {
   isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
   evaluatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  enrollmentId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ExamResultCreateManyInput = {
@@ -411,6 +430,7 @@ export type ExamResultCreateManyInput = {
   isLatest?: boolean
   evaluatedAt?: Date | string
   evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  enrollmentId: string
 }
 
 export type ExamResultUpdateManyMutationInput = {
@@ -437,6 +457,7 @@ export type ExamResultUncheckedUpdateManyInput = {
   isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
   evaluatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  enrollmentId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ExamResultListRelationFilter = {
@@ -461,6 +482,7 @@ export type ExamResultCountOrderByAggregateInput = {
   isLatest?: Prisma.SortOrder
   evaluatedAt?: Prisma.SortOrder
   evaluation?: Prisma.SortOrder
+  enrollmentId?: Prisma.SortOrder
 }
 
 export type ExamResultAvgOrderByAggregateInput = {
@@ -480,6 +502,7 @@ export type ExamResultMaxOrderByAggregateInput = {
   version?: Prisma.SortOrder
   isLatest?: Prisma.SortOrder
   evaluatedAt?: Prisma.SortOrder
+  enrollmentId?: Prisma.SortOrder
 }
 
 export type ExamResultMinOrderByAggregateInput = {
@@ -493,12 +516,55 @@ export type ExamResultMinOrderByAggregateInput = {
   version?: Prisma.SortOrder
   isLatest?: Prisma.SortOrder
   evaluatedAt?: Prisma.SortOrder
+  enrollmentId?: Prisma.SortOrder
 }
 
 export type ExamResultSumOrderByAggregateInput = {
   score?: Prisma.SortOrder
   percentage?: Prisma.SortOrder
   version?: Prisma.SortOrder
+}
+
+export type ExamResultCreateNestedManyWithoutEnrollmentInput = {
+  create?: Prisma.XOR<Prisma.ExamResultCreateWithoutEnrollmentInput, Prisma.ExamResultUncheckedCreateWithoutEnrollmentInput> | Prisma.ExamResultCreateWithoutEnrollmentInput[] | Prisma.ExamResultUncheckedCreateWithoutEnrollmentInput[]
+  connectOrCreate?: Prisma.ExamResultCreateOrConnectWithoutEnrollmentInput | Prisma.ExamResultCreateOrConnectWithoutEnrollmentInput[]
+  createMany?: Prisma.ExamResultCreateManyEnrollmentInputEnvelope
+  connect?: Prisma.ExamResultWhereUniqueInput | Prisma.ExamResultWhereUniqueInput[]
+}
+
+export type ExamResultUncheckedCreateNestedManyWithoutEnrollmentInput = {
+  create?: Prisma.XOR<Prisma.ExamResultCreateWithoutEnrollmentInput, Prisma.ExamResultUncheckedCreateWithoutEnrollmentInput> | Prisma.ExamResultCreateWithoutEnrollmentInput[] | Prisma.ExamResultUncheckedCreateWithoutEnrollmentInput[]
+  connectOrCreate?: Prisma.ExamResultCreateOrConnectWithoutEnrollmentInput | Prisma.ExamResultCreateOrConnectWithoutEnrollmentInput[]
+  createMany?: Prisma.ExamResultCreateManyEnrollmentInputEnvelope
+  connect?: Prisma.ExamResultWhereUniqueInput | Prisma.ExamResultWhereUniqueInput[]
+}
+
+export type ExamResultUpdateManyWithoutEnrollmentNestedInput = {
+  create?: Prisma.XOR<Prisma.ExamResultCreateWithoutEnrollmentInput, Prisma.ExamResultUncheckedCreateWithoutEnrollmentInput> | Prisma.ExamResultCreateWithoutEnrollmentInput[] | Prisma.ExamResultUncheckedCreateWithoutEnrollmentInput[]
+  connectOrCreate?: Prisma.ExamResultCreateOrConnectWithoutEnrollmentInput | Prisma.ExamResultCreateOrConnectWithoutEnrollmentInput[]
+  upsert?: Prisma.ExamResultUpsertWithWhereUniqueWithoutEnrollmentInput | Prisma.ExamResultUpsertWithWhereUniqueWithoutEnrollmentInput[]
+  createMany?: Prisma.ExamResultCreateManyEnrollmentInputEnvelope
+  set?: Prisma.ExamResultWhereUniqueInput | Prisma.ExamResultWhereUniqueInput[]
+  disconnect?: Prisma.ExamResultWhereUniqueInput | Prisma.ExamResultWhereUniqueInput[]
+  delete?: Prisma.ExamResultWhereUniqueInput | Prisma.ExamResultWhereUniqueInput[]
+  connect?: Prisma.ExamResultWhereUniqueInput | Prisma.ExamResultWhereUniqueInput[]
+  update?: Prisma.ExamResultUpdateWithWhereUniqueWithoutEnrollmentInput | Prisma.ExamResultUpdateWithWhereUniqueWithoutEnrollmentInput[]
+  updateMany?: Prisma.ExamResultUpdateManyWithWhereWithoutEnrollmentInput | Prisma.ExamResultUpdateManyWithWhereWithoutEnrollmentInput[]
+  deleteMany?: Prisma.ExamResultScalarWhereInput | Prisma.ExamResultScalarWhereInput[]
+}
+
+export type ExamResultUncheckedUpdateManyWithoutEnrollmentNestedInput = {
+  create?: Prisma.XOR<Prisma.ExamResultCreateWithoutEnrollmentInput, Prisma.ExamResultUncheckedCreateWithoutEnrollmentInput> | Prisma.ExamResultCreateWithoutEnrollmentInput[] | Prisma.ExamResultUncheckedCreateWithoutEnrollmentInput[]
+  connectOrCreate?: Prisma.ExamResultCreateOrConnectWithoutEnrollmentInput | Prisma.ExamResultCreateOrConnectWithoutEnrollmentInput[]
+  upsert?: Prisma.ExamResultUpsertWithWhereUniqueWithoutEnrollmentInput | Prisma.ExamResultUpsertWithWhereUniqueWithoutEnrollmentInput[]
+  createMany?: Prisma.ExamResultCreateManyEnrollmentInputEnvelope
+  set?: Prisma.ExamResultWhereUniqueInput | Prisma.ExamResultWhereUniqueInput[]
+  disconnect?: Prisma.ExamResultWhereUniqueInput | Prisma.ExamResultWhereUniqueInput[]
+  delete?: Prisma.ExamResultWhereUniqueInput | Prisma.ExamResultWhereUniqueInput[]
+  connect?: Prisma.ExamResultWhereUniqueInput | Prisma.ExamResultWhereUniqueInput[]
+  update?: Prisma.ExamResultUpdateWithWhereUniqueWithoutEnrollmentInput | Prisma.ExamResultUpdateWithWhereUniqueWithoutEnrollmentInput[]
+  updateMany?: Prisma.ExamResultUpdateManyWithWhereWithoutEnrollmentInput | Prisma.ExamResultUpdateManyWithWhereWithoutEnrollmentInput[]
+  deleteMany?: Prisma.ExamResultScalarWhereInput | Prisma.ExamResultScalarWhereInput[]
 }
 
 export type ExamResultCreateNestedManyWithoutExamInput = {
@@ -589,6 +655,78 @@ export type ExamResultUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.ExamResultScalarWhereInput | Prisma.ExamResultScalarWhereInput[]
 }
 
+export type ExamResultCreateWithoutEnrollmentInput = {
+  id?: string
+  score: number
+  percentage: number
+  published?: boolean
+  status: $Enums.ResultStatus
+  version?: number
+  isLatest?: boolean
+  evaluatedAt?: Date | string
+  evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  exam: Prisma.ExamCreateNestedOneWithoutResultsInput
+  user: Prisma.UserCreateNestedOneWithoutExamResultsInput
+}
+
+export type ExamResultUncheckedCreateWithoutEnrollmentInput = {
+  id?: string
+  examId: string
+  userId: string
+  score: number
+  percentage: number
+  published?: boolean
+  status: $Enums.ResultStatus
+  version?: number
+  isLatest?: boolean
+  evaluatedAt?: Date | string
+  evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+}
+
+export type ExamResultCreateOrConnectWithoutEnrollmentInput = {
+  where: Prisma.ExamResultWhereUniqueInput
+  create: Prisma.XOR<Prisma.ExamResultCreateWithoutEnrollmentInput, Prisma.ExamResultUncheckedCreateWithoutEnrollmentInput>
+}
+
+export type ExamResultCreateManyEnrollmentInputEnvelope = {
+  data: Prisma.ExamResultCreateManyEnrollmentInput | Prisma.ExamResultCreateManyEnrollmentInput[]
+  skipDuplicates?: boolean
+}
+
+export type ExamResultUpsertWithWhereUniqueWithoutEnrollmentInput = {
+  where: Prisma.ExamResultWhereUniqueInput
+  update: Prisma.XOR<Prisma.ExamResultUpdateWithoutEnrollmentInput, Prisma.ExamResultUncheckedUpdateWithoutEnrollmentInput>
+  create: Prisma.XOR<Prisma.ExamResultCreateWithoutEnrollmentInput, Prisma.ExamResultUncheckedCreateWithoutEnrollmentInput>
+}
+
+export type ExamResultUpdateWithWhereUniqueWithoutEnrollmentInput = {
+  where: Prisma.ExamResultWhereUniqueInput
+  data: Prisma.XOR<Prisma.ExamResultUpdateWithoutEnrollmentInput, Prisma.ExamResultUncheckedUpdateWithoutEnrollmentInput>
+}
+
+export type ExamResultUpdateManyWithWhereWithoutEnrollmentInput = {
+  where: Prisma.ExamResultScalarWhereInput
+  data: Prisma.XOR<Prisma.ExamResultUpdateManyMutationInput, Prisma.ExamResultUncheckedUpdateManyWithoutEnrollmentInput>
+}
+
+export type ExamResultScalarWhereInput = {
+  AND?: Prisma.ExamResultScalarWhereInput | Prisma.ExamResultScalarWhereInput[]
+  OR?: Prisma.ExamResultScalarWhereInput[]
+  NOT?: Prisma.ExamResultScalarWhereInput | Prisma.ExamResultScalarWhereInput[]
+  id?: Prisma.StringFilter<"ExamResult"> | string
+  examId?: Prisma.StringFilter<"ExamResult"> | string
+  userId?: Prisma.StringFilter<"ExamResult"> | string
+  score?: Prisma.IntFilter<"ExamResult"> | number
+  percentage?: Prisma.IntFilter<"ExamResult"> | number
+  published?: Prisma.BoolFilter<"ExamResult"> | boolean
+  status?: Prisma.EnumResultStatusFilter<"ExamResult"> | $Enums.ResultStatus
+  version?: Prisma.IntFilter<"ExamResult"> | number
+  isLatest?: Prisma.BoolFilter<"ExamResult"> | boolean
+  evaluatedAt?: Prisma.DateTimeFilter<"ExamResult"> | Date | string
+  evaluation?: Prisma.JsonNullableFilter<"ExamResult">
+  enrollmentId?: Prisma.StringFilter<"ExamResult"> | string
+}
+
 export type ExamResultCreateWithoutExamInput = {
   id?: string
   score: number
@@ -599,6 +737,7 @@ export type ExamResultCreateWithoutExamInput = {
   isLatest?: boolean
   evaluatedAt?: Date | string
   evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  enrollment: Prisma.EnrollmentsCreateNestedOneWithoutExamResultInput
   user: Prisma.UserCreateNestedOneWithoutExamResultsInput
 }
 
@@ -613,6 +752,7 @@ export type ExamResultUncheckedCreateWithoutExamInput = {
   isLatest?: boolean
   evaluatedAt?: Date | string
   evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  enrollmentId: string
 }
 
 export type ExamResultCreateOrConnectWithoutExamInput = {
@@ -641,23 +781,6 @@ export type ExamResultUpdateManyWithWhereWithoutExamInput = {
   data: Prisma.XOR<Prisma.ExamResultUpdateManyMutationInput, Prisma.ExamResultUncheckedUpdateManyWithoutExamInput>
 }
 
-export type ExamResultScalarWhereInput = {
-  AND?: Prisma.ExamResultScalarWhereInput | Prisma.ExamResultScalarWhereInput[]
-  OR?: Prisma.ExamResultScalarWhereInput[]
-  NOT?: Prisma.ExamResultScalarWhereInput | Prisma.ExamResultScalarWhereInput[]
-  id?: Prisma.StringFilter<"ExamResult"> | string
-  examId?: Prisma.StringFilter<"ExamResult"> | string
-  userId?: Prisma.StringFilter<"ExamResult"> | string
-  score?: Prisma.IntFilter<"ExamResult"> | number
-  percentage?: Prisma.IntFilter<"ExamResult"> | number
-  published?: Prisma.BoolFilter<"ExamResult"> | boolean
-  status?: Prisma.EnumResultStatusFilter<"ExamResult"> | $Enums.ResultStatus
-  version?: Prisma.IntFilter<"ExamResult"> | number
-  isLatest?: Prisma.BoolFilter<"ExamResult"> | boolean
-  evaluatedAt?: Prisma.DateTimeFilter<"ExamResult"> | Date | string
-  evaluation?: Prisma.JsonNullableFilter<"ExamResult">
-}
-
 export type ExamResultCreateWithoutUserInput = {
   id?: string
   score: number
@@ -668,6 +791,7 @@ export type ExamResultCreateWithoutUserInput = {
   isLatest?: boolean
   evaluatedAt?: Date | string
   evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  enrollment: Prisma.EnrollmentsCreateNestedOneWithoutExamResultInput
   exam: Prisma.ExamCreateNestedOneWithoutResultsInput
 }
 
@@ -682,6 +806,7 @@ export type ExamResultUncheckedCreateWithoutUserInput = {
   isLatest?: boolean
   evaluatedAt?: Date | string
   evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  enrollmentId: string
 }
 
 export type ExamResultCreateOrConnectWithoutUserInput = {
@@ -710,6 +835,62 @@ export type ExamResultUpdateManyWithWhereWithoutUserInput = {
   data: Prisma.XOR<Prisma.ExamResultUpdateManyMutationInput, Prisma.ExamResultUncheckedUpdateManyWithoutUserInput>
 }
 
+export type ExamResultCreateManyEnrollmentInput = {
+  id?: string
+  examId: string
+  userId: string
+  score: number
+  percentage: number
+  published?: boolean
+  status: $Enums.ResultStatus
+  version?: number
+  isLatest?: boolean
+  evaluatedAt?: Date | string
+  evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+}
+
+export type ExamResultUpdateWithoutEnrollmentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  score?: Prisma.IntFieldUpdateOperationsInput | number
+  percentage?: Prisma.IntFieldUpdateOperationsInput | number
+  published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumResultStatusFieldUpdateOperationsInput | $Enums.ResultStatus
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  evaluatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  exam?: Prisma.ExamUpdateOneRequiredWithoutResultsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutExamResultsNestedInput
+}
+
+export type ExamResultUncheckedUpdateWithoutEnrollmentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  examId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  score?: Prisma.IntFieldUpdateOperationsInput | number
+  percentage?: Prisma.IntFieldUpdateOperationsInput | number
+  published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumResultStatusFieldUpdateOperationsInput | $Enums.ResultStatus
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  evaluatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+}
+
+export type ExamResultUncheckedUpdateManyWithoutEnrollmentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  examId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  score?: Prisma.IntFieldUpdateOperationsInput | number
+  percentage?: Prisma.IntFieldUpdateOperationsInput | number
+  published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumResultStatusFieldUpdateOperationsInput | $Enums.ResultStatus
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  evaluatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+}
+
 export type ExamResultCreateManyExamInput = {
   id?: string
   userId: string
@@ -721,6 +902,7 @@ export type ExamResultCreateManyExamInput = {
   isLatest?: boolean
   evaluatedAt?: Date | string
   evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  enrollmentId: string
 }
 
 export type ExamResultUpdateWithoutExamInput = {
@@ -733,6 +915,7 @@ export type ExamResultUpdateWithoutExamInput = {
   isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
   evaluatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  enrollment?: Prisma.EnrollmentsUpdateOneRequiredWithoutExamResultNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutExamResultsNestedInput
 }
 
@@ -747,6 +930,7 @@ export type ExamResultUncheckedUpdateWithoutExamInput = {
   isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
   evaluatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  enrollmentId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ExamResultUncheckedUpdateManyWithoutExamInput = {
@@ -760,6 +944,7 @@ export type ExamResultUncheckedUpdateManyWithoutExamInput = {
   isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
   evaluatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  enrollmentId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ExamResultCreateManyUserInput = {
@@ -773,6 +958,7 @@ export type ExamResultCreateManyUserInput = {
   isLatest?: boolean
   evaluatedAt?: Date | string
   evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  enrollmentId: string
 }
 
 export type ExamResultUpdateWithoutUserInput = {
@@ -785,6 +971,7 @@ export type ExamResultUpdateWithoutUserInput = {
   isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
   evaluatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  enrollment?: Prisma.EnrollmentsUpdateOneRequiredWithoutExamResultNestedInput
   exam?: Prisma.ExamUpdateOneRequiredWithoutResultsNestedInput
 }
 
@@ -799,6 +986,7 @@ export type ExamResultUncheckedUpdateWithoutUserInput = {
   isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
   evaluatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  enrollmentId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ExamResultUncheckedUpdateManyWithoutUserInput = {
@@ -812,6 +1000,7 @@ export type ExamResultUncheckedUpdateManyWithoutUserInput = {
   isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
   evaluatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   evaluation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  enrollmentId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -828,6 +1017,8 @@ export type ExamResultSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   isLatest?: boolean
   evaluatedAt?: boolean
   evaluation?: boolean
+  enrollmentId?: boolean
+  enrollment?: boolean | Prisma.EnrollmentsDefaultArgs<ExtArgs>
   exam?: boolean | Prisma.ExamDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["examResult"]>
@@ -844,6 +1035,8 @@ export type ExamResultSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   isLatest?: boolean
   evaluatedAt?: boolean
   evaluation?: boolean
+  enrollmentId?: boolean
+  enrollment?: boolean | Prisma.EnrollmentsDefaultArgs<ExtArgs>
   exam?: boolean | Prisma.ExamDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["examResult"]>
@@ -860,6 +1053,8 @@ export type ExamResultSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   isLatest?: boolean
   evaluatedAt?: boolean
   evaluation?: boolean
+  enrollmentId?: boolean
+  enrollment?: boolean | Prisma.EnrollmentsDefaultArgs<ExtArgs>
   exam?: boolean | Prisma.ExamDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["examResult"]>
@@ -876,18 +1071,22 @@ export type ExamResultSelectScalar = {
   isLatest?: boolean
   evaluatedAt?: boolean
   evaluation?: boolean
+  enrollmentId?: boolean
 }
 
-export type ExamResultOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "examId" | "userId" | "score" | "percentage" | "published" | "status" | "version" | "isLatest" | "evaluatedAt" | "evaluation", ExtArgs["result"]["examResult"]>
+export type ExamResultOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "examId" | "userId" | "score" | "percentage" | "published" | "status" | "version" | "isLatest" | "evaluatedAt" | "evaluation" | "enrollmentId", ExtArgs["result"]["examResult"]>
 export type ExamResultInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  enrollment?: boolean | Prisma.EnrollmentsDefaultArgs<ExtArgs>
   exam?: boolean | Prisma.ExamDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type ExamResultIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  enrollment?: boolean | Prisma.EnrollmentsDefaultArgs<ExtArgs>
   exam?: boolean | Prisma.ExamDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type ExamResultIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  enrollment?: boolean | Prisma.EnrollmentsDefaultArgs<ExtArgs>
   exam?: boolean | Prisma.ExamDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -895,6 +1094,7 @@ export type ExamResultIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 export type $ExamResultPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ExamResult"
   objects: {
+    enrollment: Prisma.$EnrollmentsPayload<ExtArgs>
     exam: Prisma.$ExamPayload<ExtArgs>
     user: Prisma.$UserPayload<ExtArgs>
   }
@@ -910,6 +1110,7 @@ export type $ExamResultPayload<ExtArgs extends runtime.Types.Extensions.Internal
     isLatest: boolean
     evaluatedAt: Date
     evaluation: runtime.JsonValue | null
+    enrollmentId: string
   }, ExtArgs["result"]["examResult"]>
   composites: {}
 }
@@ -1304,6 +1505,7 @@ readonly fields: ExamResultFieldRefs;
  */
 export interface Prisma__ExamResultClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  enrollment<T extends Prisma.EnrollmentsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EnrollmentsDefaultArgs<ExtArgs>>): Prisma.Prisma__EnrollmentsClient<runtime.Types.Result.GetResult<Prisma.$EnrollmentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   exam<T extends Prisma.ExamDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ExamDefaultArgs<ExtArgs>>): Prisma.Prisma__ExamClient<runtime.Types.Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1346,6 +1548,7 @@ export interface ExamResultFieldRefs {
   readonly isLatest: Prisma.FieldRef<"ExamResult", 'Boolean'>
   readonly evaluatedAt: Prisma.FieldRef<"ExamResult", 'DateTime'>
   readonly evaluation: Prisma.FieldRef<"ExamResult", 'Json'>
+  readonly enrollmentId: Prisma.FieldRef<"ExamResult", 'String'>
 }
     
 

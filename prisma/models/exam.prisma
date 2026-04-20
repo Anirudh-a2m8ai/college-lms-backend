@@ -31,10 +31,10 @@ model Exam {
   status           ExamStatus
   startDate        DateTime
   endDate          DateTime
-  shuffleQuestions Boolean @default(false)
-  shuffleOptions   Boolean @default(false)
   courseVersionId  String
   classRoomId      String
+  tenantId         String
+  tenant           Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   courseVersion    CourseVersion @relation(fields: [courseVersionId], references: [id])
   classRoom        ClassRoom     @relation(fields: [classRoomId], references: [id])
   questions        ExamQuestion[]
@@ -64,8 +64,10 @@ model ExamAttempt {
   answers     Json
   startedAt   DateTime
   submittedAt DateTime?
+  enrollmentId String
   status      AttemptStatus
 	proctoring  Proctoring[]
+  enrollment  Enrollments @relation(fields: [enrollmentId], references: [id])
   lastSavedAt DateTime?
   timeTaken   Int?
   exam        Exam     @relation(fields: [examId], references: [id])
@@ -85,6 +87,8 @@ model ExamResult {
   isLatest    Boolean  @default(true)
   evaluatedAt DateTime @default(now())
   evaluation  Json?
+  enrollmentId String
+  enrollment  Enrollments @relation(fields: [enrollmentId], references: [id])
   exam        Exam     @relation(fields: [examId], references: [id])
   user        User     @relation(fields: [userId], references: [id])
   @@index([examId, userId, isLatest])

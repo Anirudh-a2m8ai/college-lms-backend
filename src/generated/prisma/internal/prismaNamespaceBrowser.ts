@@ -320,10 +320,9 @@ export const ExamScalarFieldEnum = {
   status: 'status',
   startDate: 'startDate',
   endDate: 'endDate',
-  shuffleQuestions: 'shuffleQuestions',
-  shuffleOptions: 'shuffleOptions',
   courseVersionId: 'courseVersionId',
   classRoomId: 'classRoomId',
+  tenantId: 'tenantId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -353,6 +352,7 @@ export const ExamAttemptScalarFieldEnum = {
   answers: 'answers',
   startedAt: 'startedAt',
   submittedAt: 'submittedAt',
+  enrollmentId: 'enrollmentId',
   status: 'status',
   lastSavedAt: 'lastSavedAt',
   timeTaken: 'timeTaken'
@@ -372,7 +372,8 @@ export const ExamResultScalarFieldEnum = {
   version: 'version',
   isLatest: 'isLatest',
   evaluatedAt: 'evaluatedAt',
-  evaluation: 'evaluation'
+  evaluation: 'evaluation',
+  enrollmentId: 'enrollmentId'
 } as const
 
 export type ExamResultScalarFieldEnum = (typeof ExamResultScalarFieldEnum)[keyof typeof ExamResultScalarFieldEnum]

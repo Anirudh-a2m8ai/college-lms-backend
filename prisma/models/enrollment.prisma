@@ -22,4 +22,6 @@ model Enrollments {
 	isDeleted              Boolean       @default(false)
 	deletedAt              DateTime?
 	deleteAt               DateTime?
+	examAttempt            ExamAttempt[]
+	examResult             ExamResult[]
 }

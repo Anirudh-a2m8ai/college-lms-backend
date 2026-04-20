@@ -40,6 +40,7 @@ export type ExamAttemptMinAggregateOutputType = {
   userId: string | null
   startedAt: Date | null
   submittedAt: Date | null
+  enrollmentId: string | null
   status: $Enums.AttemptStatus | null
   lastSavedAt: Date | null
   timeTaken: number | null
@@ -51,6 +52,7 @@ export type ExamAttemptMaxAggregateOutputType = {
   userId: string | null
   startedAt: Date | null
   submittedAt: Date | null
+  enrollmentId: string | null
   status: $Enums.AttemptStatus | null
   lastSavedAt: Date | null
   timeTaken: number | null
@@ -63,6 +65,7 @@ export type ExamAttemptCountAggregateOutputType = {
   answers: number
   startedAt: number
   submittedAt: number
+  enrollmentId: number
   status: number
   lastSavedAt: number
   timeTaken: number
@@ -84,6 +87,7 @@ export type ExamAttemptMinAggregateInputType = {
   userId?: true
   startedAt?: true
   submittedAt?: true
+  enrollmentId?: true
   status?: true
   lastSavedAt?: true
   timeTaken?: true
@@ -95,6 +99,7 @@ export type ExamAttemptMaxAggregateInputType = {
   userId?: true
   startedAt?: true
   submittedAt?: true
+  enrollmentId?: true
   status?: true
   lastSavedAt?: true
   timeTaken?: true
@@ -107,6 +112,7 @@ export type ExamAttemptCountAggregateInputType = {
   answers?: true
   startedAt?: true
   submittedAt?: true
+  enrollmentId?: true
   status?: true
   lastSavedAt?: true
   timeTaken?: true
@@ -206,6 +212,7 @@ export type ExamAttemptGroupByOutputType = {
   answers: runtime.JsonValue
   startedAt: Date
   submittedAt: Date | null
+  enrollmentId: string
   status: $Enums.AttemptStatus
   lastSavedAt: Date | null
   timeTaken: number | null
@@ -241,10 +248,12 @@ export type ExamAttemptWhereInput = {
   answers?: Prisma.JsonFilter<"ExamAttempt">
   startedAt?: Prisma.DateTimeFilter<"ExamAttempt"> | Date | string
   submittedAt?: Prisma.DateTimeNullableFilter<"ExamAttempt"> | Date | string | null
+  enrollmentId?: Prisma.StringFilter<"ExamAttempt"> | string
   status?: Prisma.EnumAttemptStatusFilter<"ExamAttempt"> | $Enums.AttemptStatus
   lastSavedAt?: Prisma.DateTimeNullableFilter<"ExamAttempt"> | Date | string | null
   timeTaken?: Prisma.IntNullableFilter<"ExamAttempt"> | number | null
   proctoring?: Prisma.ProctoringListRelationFilter
+  enrollment?: Prisma.XOR<Prisma.EnrollmentsScalarRelationFilter, Prisma.EnrollmentsWhereInput>
   exam?: Prisma.XOR<Prisma.ExamScalarRelationFilter, Prisma.ExamWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
@@ -256,10 +265,12 @@ export type ExamAttemptOrderByWithRelationInput = {
   answers?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   submittedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  enrollmentId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   lastSavedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   timeTaken?: Prisma.SortOrderInput | Prisma.SortOrder
   proctoring?: Prisma.ProctoringOrderByRelationAggregateInput
+  enrollment?: Prisma.EnrollmentsOrderByWithRelationInput
   exam?: Prisma.ExamOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
 }
@@ -275,10 +286,12 @@ export type ExamAttemptWhereUniqueInput = Prisma.AtLeast<{
   answers?: Prisma.JsonFilter<"ExamAttempt">
   startedAt?: Prisma.DateTimeFilter<"ExamAttempt"> | Date | string
   submittedAt?: Prisma.DateTimeNullableFilter<"ExamAttempt"> | Date | string | null
+  enrollmentId?: Prisma.StringFilter<"ExamAttempt"> | string
   status?: Prisma.EnumAttemptStatusFilter<"ExamAttempt"> | $Enums.AttemptStatus
   lastSavedAt?: Prisma.DateTimeNullableFilter<"ExamAttempt"> | Date | string | null
   timeTaken?: Prisma.IntNullableFilter<"ExamAttempt"> | number | null
   proctoring?: Prisma.ProctoringListRelationFilter
+  enrollment?: Prisma.XOR<Prisma.EnrollmentsScalarRelationFilter, Prisma.EnrollmentsWhereInput>
   exam?: Prisma.XOR<Prisma.ExamScalarRelationFilter, Prisma.ExamWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "examId_userId">
@@ -290,6 +303,7 @@ export type ExamAttemptOrderByWithAggregationInput = {
   answers?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   submittedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  enrollmentId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   lastSavedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   timeTaken?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -310,6 +324,7 @@ export type ExamAttemptScalarWhereWithAggregatesInput = {
   answers?: Prisma.JsonWithAggregatesFilter<"ExamAttempt">
   startedAt?: Prisma.DateTimeWithAggregatesFilter<"ExamAttempt"> | Date | string
   submittedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"ExamAttempt"> | Date | string | null
+  enrollmentId?: Prisma.StringWithAggregatesFilter<"ExamAttempt"> | string
   status?: Prisma.EnumAttemptStatusWithAggregatesFilter<"ExamAttempt"> | $Enums.AttemptStatus
   lastSavedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"ExamAttempt"> | Date | string | null
   timeTaken?: Prisma.IntNullableWithAggregatesFilter<"ExamAttempt"> | number | null
@@ -324,6 +339,7 @@ export type ExamAttemptCreateInput = {
   lastSavedAt?: Date | string | null
   timeTaken?: number | null
   proctoring?: Prisma.ProctoringCreateNestedManyWithoutExamAttemptInput
+  enrollment: Prisma.EnrollmentsCreateNestedOneWithoutExamAttemptInput
   exam: Prisma.ExamCreateNestedOneWithoutAttemptsInput
   user: Prisma.UserCreateNestedOneWithoutExamAttemptsInput
 }
@@ -335,6 +351,7 @@ export type ExamAttemptUncheckedCreateInput = {
   answers: Prisma.JsonNullValueInput | runtime.InputJsonValue
   startedAt: Date | string
   submittedAt?: Date | string | null
+  enrollmentId: string
   status: $Enums.AttemptStatus
   lastSavedAt?: Date | string | null
   timeTaken?: number | null
@@ -350,6 +367,7 @@ export type ExamAttemptUpdateInput = {
   lastSavedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   timeTaken?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   proctoring?: Prisma.ProctoringUpdateManyWithoutExamAttemptNestedInput
+  enrollment?: Prisma.EnrollmentsUpdateOneRequiredWithoutExamAttemptNestedInput
   exam?: Prisma.ExamUpdateOneRequiredWithoutAttemptsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutExamAttemptsNestedInput
 }
@@ -361,6 +379,7 @@ export type ExamAttemptUncheckedUpdateInput = {
   answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   lastSavedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   timeTaken?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -374,6 +393,7 @@ export type ExamAttemptCreateManyInput = {
   answers: Prisma.JsonNullValueInput | runtime.InputJsonValue
   startedAt: Date | string
   submittedAt?: Date | string | null
+  enrollmentId: string
   status: $Enums.AttemptStatus
   lastSavedAt?: Date | string | null
   timeTaken?: number | null
@@ -396,6 +416,7 @@ export type ExamAttemptUncheckedUpdateManyInput = {
   answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   lastSavedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   timeTaken?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -423,6 +444,7 @@ export type ExamAttemptCountOrderByAggregateInput = {
   answers?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   submittedAt?: Prisma.SortOrder
+  enrollmentId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   lastSavedAt?: Prisma.SortOrder
   timeTaken?: Prisma.SortOrder
@@ -438,6 +460,7 @@ export type ExamAttemptMaxOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   submittedAt?: Prisma.SortOrder
+  enrollmentId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   lastSavedAt?: Prisma.SortOrder
   timeTaken?: Prisma.SortOrder
@@ -449,6 +472,7 @@ export type ExamAttemptMinOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   submittedAt?: Prisma.SortOrder
+  enrollmentId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   lastSavedAt?: Prisma.SortOrder
   timeTaken?: Prisma.SortOrder
@@ -461,6 +485,48 @@ export type ExamAttemptSumOrderByAggregateInput = {
 export type ExamAttemptScalarRelationFilter = {
   is?: Prisma.ExamAttemptWhereInput
   isNot?: Prisma.ExamAttemptWhereInput
+}
+
+export type ExamAttemptCreateNestedManyWithoutEnrollmentInput = {
+  create?: Prisma.XOR<Prisma.ExamAttemptCreateWithoutEnrollmentInput, Prisma.ExamAttemptUncheckedCreateWithoutEnrollmentInput> | Prisma.ExamAttemptCreateWithoutEnrollmentInput[] | Prisma.ExamAttemptUncheckedCreateWithoutEnrollmentInput[]
+  connectOrCreate?: Prisma.ExamAttemptCreateOrConnectWithoutEnrollmentInput | Prisma.ExamAttemptCreateOrConnectWithoutEnrollmentInput[]
+  createMany?: Prisma.ExamAttemptCreateManyEnrollmentInputEnvelope
+  connect?: Prisma.ExamAttemptWhereUniqueInput | Prisma.ExamAttemptWhereUniqueInput[]
+}
+
+export type ExamAttemptUncheckedCreateNestedManyWithoutEnrollmentInput = {
+  create?: Prisma.XOR<Prisma.ExamAttemptCreateWithoutEnrollmentInput, Prisma.ExamAttemptUncheckedCreateWithoutEnrollmentInput> | Prisma.ExamAttemptCreateWithoutEnrollmentInput[] | Prisma.ExamAttemptUncheckedCreateWithoutEnrollmentInput[]
+  connectOrCreate?: Prisma.ExamAttemptCreateOrConnectWithoutEnrollmentInput | Prisma.ExamAttemptCreateOrConnectWithoutEnrollmentInput[]
+  createMany?: Prisma.ExamAttemptCreateManyEnrollmentInputEnvelope
+  connect?: Prisma.ExamAttemptWhereUniqueInput | Prisma.ExamAttemptWhereUniqueInput[]
+}
+
+export type ExamAttemptUpdateManyWithoutEnrollmentNestedInput = {
+  create?: Prisma.XOR<Prisma.ExamAttemptCreateWithoutEnrollmentInput, Prisma.ExamAttemptUncheckedCreateWithoutEnrollmentInput> | Prisma.ExamAttemptCreateWithoutEnrollmentInput[] | Prisma.ExamAttemptUncheckedCreateWithoutEnrollmentInput[]
+  connectOrCreate?: Prisma.ExamAttemptCreateOrConnectWithoutEnrollmentInput | Prisma.ExamAttemptCreateOrConnectWithoutEnrollmentInput[]
+  upsert?: Prisma.ExamAttemptUpsertWithWhereUniqueWithoutEnrollmentInput | Prisma.ExamAttemptUpsertWithWhereUniqueWithoutEnrollmentInput[]
+  createMany?: Prisma.ExamAttemptCreateManyEnrollmentInputEnvelope
+  set?: Prisma.ExamAttemptWhereUniqueInput | Prisma.ExamAttemptWhereUniqueInput[]
+  disconnect?: Prisma.ExamAttemptWhereUniqueInput | Prisma.ExamAttemptWhereUniqueInput[]
+  delete?: Prisma.ExamAttemptWhereUniqueInput | Prisma.ExamAttemptWhereUniqueInput[]
+  connect?: Prisma.ExamAttemptWhereUniqueInput | Prisma.ExamAttemptWhereUniqueInput[]
+  update?: Prisma.ExamAttemptUpdateWithWhereUniqueWithoutEnrollmentInput | Prisma.ExamAttemptUpdateWithWhereUniqueWithoutEnrollmentInput[]
+  updateMany?: Prisma.ExamAttemptUpdateManyWithWhereWithoutEnrollmentInput | Prisma.ExamAttemptUpdateManyWithWhereWithoutEnrollmentInput[]
+  deleteMany?: Prisma.ExamAttemptScalarWhereInput | Prisma.ExamAttemptScalarWhereInput[]
+}
+
+export type ExamAttemptUncheckedUpdateManyWithoutEnrollmentNestedInput = {
+  create?: Prisma.XOR<Prisma.ExamAttemptCreateWithoutEnrollmentInput, Prisma.ExamAttemptUncheckedCreateWithoutEnrollmentInput> | Prisma.ExamAttemptCreateWithoutEnrollmentInput[] | Prisma.ExamAttemptUncheckedCreateWithoutEnrollmentInput[]
+  connectOrCreate?: Prisma.ExamAttemptCreateOrConnectWithoutEnrollmentInput | Prisma.ExamAttemptCreateOrConnectWithoutEnrollmentInput[]
+  upsert?: Prisma.ExamAttemptUpsertWithWhereUniqueWithoutEnrollmentInput | Prisma.ExamAttemptUpsertWithWhereUniqueWithoutEnrollmentInput[]
+  createMany?: Prisma.ExamAttemptCreateManyEnrollmentInputEnvelope
+  set?: Prisma.ExamAttemptWhereUniqueInput | Prisma.ExamAttemptWhereUniqueInput[]
+  disconnect?: Prisma.ExamAttemptWhereUniqueInput | Prisma.ExamAttemptWhereUniqueInput[]
+  delete?: Prisma.ExamAttemptWhereUniqueInput | Prisma.ExamAttemptWhereUniqueInput[]
+  connect?: Prisma.ExamAttemptWhereUniqueInput | Prisma.ExamAttemptWhereUniqueInput[]
+  update?: Prisma.ExamAttemptUpdateWithWhereUniqueWithoutEnrollmentInput | Prisma.ExamAttemptUpdateWithWhereUniqueWithoutEnrollmentInput[]
+  updateMany?: Prisma.ExamAttemptUpdateManyWithWhereWithoutEnrollmentInput | Prisma.ExamAttemptUpdateManyWithWhereWithoutEnrollmentInput[]
+  deleteMany?: Prisma.ExamAttemptScalarWhereInput | Prisma.ExamAttemptScalarWhereInput[]
 }
 
 export type ExamAttemptCreateNestedManyWithoutExamInput = {
@@ -565,6 +631,74 @@ export type ExamAttemptUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.ExamAttemptScalarWhereInput | Prisma.ExamAttemptScalarWhereInput[]
 }
 
+export type ExamAttemptCreateWithoutEnrollmentInput = {
+  id?: string
+  answers: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  startedAt: Date | string
+  submittedAt?: Date | string | null
+  status: $Enums.AttemptStatus
+  lastSavedAt?: Date | string | null
+  timeTaken?: number | null
+  proctoring?: Prisma.ProctoringCreateNestedManyWithoutExamAttemptInput
+  exam: Prisma.ExamCreateNestedOneWithoutAttemptsInput
+  user: Prisma.UserCreateNestedOneWithoutExamAttemptsInput
+}
+
+export type ExamAttemptUncheckedCreateWithoutEnrollmentInput = {
+  id?: string
+  examId: string
+  userId: string
+  answers: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  startedAt: Date | string
+  submittedAt?: Date | string | null
+  status: $Enums.AttemptStatus
+  lastSavedAt?: Date | string | null
+  timeTaken?: number | null
+  proctoring?: Prisma.ProctoringUncheckedCreateNestedManyWithoutExamAttemptInput
+}
+
+export type ExamAttemptCreateOrConnectWithoutEnrollmentInput = {
+  where: Prisma.ExamAttemptWhereUniqueInput
+  create: Prisma.XOR<Prisma.ExamAttemptCreateWithoutEnrollmentInput, Prisma.ExamAttemptUncheckedCreateWithoutEnrollmentInput>
+}
+
+export type ExamAttemptCreateManyEnrollmentInputEnvelope = {
+  data: Prisma.ExamAttemptCreateManyEnrollmentInput | Prisma.ExamAttemptCreateManyEnrollmentInput[]
+  skipDuplicates?: boolean
+}
+
+export type ExamAttemptUpsertWithWhereUniqueWithoutEnrollmentInput = {
+  where: Prisma.ExamAttemptWhereUniqueInput
+  update: Prisma.XOR<Prisma.ExamAttemptUpdateWithoutEnrollmentInput, Prisma.ExamAttemptUncheckedUpdateWithoutEnrollmentInput>
+  create: Prisma.XOR<Prisma.ExamAttemptCreateWithoutEnrollmentInput, Prisma.ExamAttemptUncheckedCreateWithoutEnrollmentInput>
+}
+
+export type ExamAttemptUpdateWithWhereUniqueWithoutEnrollmentInput = {
+  where: Prisma.ExamAttemptWhereUniqueInput
+  data: Prisma.XOR<Prisma.ExamAttemptUpdateWithoutEnrollmentInput, Prisma.ExamAttemptUncheckedUpdateWithoutEnrollmentInput>
+}
+
+export type ExamAttemptUpdateManyWithWhereWithoutEnrollmentInput = {
+  where: Prisma.ExamAttemptScalarWhereInput
+  data: Prisma.XOR<Prisma.ExamAttemptUpdateManyMutationInput, Prisma.ExamAttemptUncheckedUpdateManyWithoutEnrollmentInput>
+}
+
+export type ExamAttemptScalarWhereInput = {
+  AND?: Prisma.ExamAttemptScalarWhereInput | Prisma.ExamAttemptScalarWhereInput[]
+  OR?: Prisma.ExamAttemptScalarWhereInput[]
+  NOT?: Prisma.ExamAttemptScalarWhereInput | Prisma.ExamAttemptScalarWhereInput[]
+  id?: Prisma.StringFilter<"ExamAttempt"> | string
+  examId?: Prisma.StringFilter<"ExamAttempt"> | string
+  userId?: Prisma.StringFilter<"ExamAttempt"> | string
+  answers?: Prisma.JsonFilter<"ExamAttempt">
+  startedAt?: Prisma.DateTimeFilter<"ExamAttempt"> | Date | string
+  submittedAt?: Prisma.DateTimeNullableFilter<"ExamAttempt"> | Date | string | null
+  enrollmentId?: Prisma.StringFilter<"ExamAttempt"> | string
+  status?: Prisma.EnumAttemptStatusFilter<"ExamAttempt"> | $Enums.AttemptStatus
+  lastSavedAt?: Prisma.DateTimeNullableFilter<"ExamAttempt"> | Date | string | null
+  timeTaken?: Prisma.IntNullableFilter<"ExamAttempt"> | number | null
+}
+
 export type ExamAttemptCreateWithoutExamInput = {
   id?: string
   answers: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -574,6 +708,7 @@ export type ExamAttemptCreateWithoutExamInput = {
   lastSavedAt?: Date | string | null
   timeTaken?: number | null
   proctoring?: Prisma.ProctoringCreateNestedManyWithoutExamAttemptInput
+  enrollment: Prisma.EnrollmentsCreateNestedOneWithoutExamAttemptInput
   user: Prisma.UserCreateNestedOneWithoutExamAttemptsInput
 }
 
@@ -583,6 +718,7 @@ export type ExamAttemptUncheckedCreateWithoutExamInput = {
   answers: Prisma.JsonNullValueInput | runtime.InputJsonValue
   startedAt: Date | string
   submittedAt?: Date | string | null
+  enrollmentId: string
   status: $Enums.AttemptStatus
   lastSavedAt?: Date | string | null
   timeTaken?: number | null
@@ -615,21 +751,6 @@ export type ExamAttemptUpdateManyWithWhereWithoutExamInput = {
   data: Prisma.XOR<Prisma.ExamAttemptUpdateManyMutationInput, Prisma.ExamAttemptUncheckedUpdateManyWithoutExamInput>
 }
 
-export type ExamAttemptScalarWhereInput = {
-  AND?: Prisma.ExamAttemptScalarWhereInput | Prisma.ExamAttemptScalarWhereInput[]
-  OR?: Prisma.ExamAttemptScalarWhereInput[]
-  NOT?: Prisma.ExamAttemptScalarWhereInput | Prisma.ExamAttemptScalarWhereInput[]
-  id?: Prisma.StringFilter<"ExamAttempt"> | string
-  examId?: Prisma.StringFilter<"ExamAttempt"> | string
-  userId?: Prisma.StringFilter<"ExamAttempt"> | string
-  answers?: Prisma.JsonFilter<"ExamAttempt">
-  startedAt?: Prisma.DateTimeFilter<"ExamAttempt"> | Date | string
-  submittedAt?: Prisma.DateTimeNullableFilter<"ExamAttempt"> | Date | string | null
-  status?: Prisma.EnumAttemptStatusFilter<"ExamAttempt"> | $Enums.AttemptStatus
-  lastSavedAt?: Prisma.DateTimeNullableFilter<"ExamAttempt"> | Date | string | null
-  timeTaken?: Prisma.IntNullableFilter<"ExamAttempt"> | number | null
-}
-
 export type ExamAttemptCreateWithoutProctoringInput = {
   id?: string
   answers: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -638,6 +759,7 @@ export type ExamAttemptCreateWithoutProctoringInput = {
   status: $Enums.AttemptStatus
   lastSavedAt?: Date | string | null
   timeTaken?: number | null
+  enrollment: Prisma.EnrollmentsCreateNestedOneWithoutExamAttemptInput
   exam: Prisma.ExamCreateNestedOneWithoutAttemptsInput
   user: Prisma.UserCreateNestedOneWithoutExamAttemptsInput
 }
@@ -649,6 +771,7 @@ export type ExamAttemptUncheckedCreateWithoutProctoringInput = {
   answers: Prisma.JsonNullValueInput | runtime.InputJsonValue
   startedAt: Date | string
   submittedAt?: Date | string | null
+  enrollmentId: string
   status: $Enums.AttemptStatus
   lastSavedAt?: Date | string | null
   timeTaken?: number | null
@@ -678,6 +801,7 @@ export type ExamAttemptUpdateWithoutProctoringInput = {
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   lastSavedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   timeTaken?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  enrollment?: Prisma.EnrollmentsUpdateOneRequiredWithoutExamAttemptNestedInput
   exam?: Prisma.ExamUpdateOneRequiredWithoutAttemptsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutExamAttemptsNestedInput
 }
@@ -689,6 +813,7 @@ export type ExamAttemptUncheckedUpdateWithoutProctoringInput = {
   answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   lastSavedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   timeTaken?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -703,6 +828,7 @@ export type ExamAttemptCreateWithoutUserInput = {
   lastSavedAt?: Date | string | null
   timeTaken?: number | null
   proctoring?: Prisma.ProctoringCreateNestedManyWithoutExamAttemptInput
+  enrollment: Prisma.EnrollmentsCreateNestedOneWithoutExamAttemptInput
   exam: Prisma.ExamCreateNestedOneWithoutAttemptsInput
 }
 
@@ -712,6 +838,7 @@ export type ExamAttemptUncheckedCreateWithoutUserInput = {
   answers: Prisma.JsonNullValueInput | runtime.InputJsonValue
   startedAt: Date | string
   submittedAt?: Date | string | null
+  enrollmentId: string
   status: $Enums.AttemptStatus
   lastSavedAt?: Date | string | null
   timeTaken?: number | null
@@ -744,12 +871,63 @@ export type ExamAttemptUpdateManyWithWhereWithoutUserInput = {
   data: Prisma.XOR<Prisma.ExamAttemptUpdateManyMutationInput, Prisma.ExamAttemptUncheckedUpdateManyWithoutUserInput>
 }
 
+export type ExamAttemptCreateManyEnrollmentInput = {
+  id?: string
+  examId: string
+  userId: string
+  answers: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  startedAt: Date | string
+  submittedAt?: Date | string | null
+  status: $Enums.AttemptStatus
+  lastSavedAt?: Date | string | null
+  timeTaken?: number | null
+}
+
+export type ExamAttemptUpdateWithoutEnrollmentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+  lastSavedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  timeTaken?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  proctoring?: Prisma.ProctoringUpdateManyWithoutExamAttemptNestedInput
+  exam?: Prisma.ExamUpdateOneRequiredWithoutAttemptsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutExamAttemptsNestedInput
+}
+
+export type ExamAttemptUncheckedUpdateWithoutEnrollmentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  examId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+  lastSavedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  timeTaken?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  proctoring?: Prisma.ProctoringUncheckedUpdateManyWithoutExamAttemptNestedInput
+}
+
+export type ExamAttemptUncheckedUpdateManyWithoutEnrollmentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  examId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+  lastSavedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  timeTaken?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+}
+
 export type ExamAttemptCreateManyExamInput = {
   id?: string
   userId: string
   answers: Prisma.JsonNullValueInput | runtime.InputJsonValue
   startedAt: Date | string
   submittedAt?: Date | string | null
+  enrollmentId: string
   status: $Enums.AttemptStatus
   lastSavedAt?: Date | string | null
   timeTaken?: number | null
@@ -764,6 +942,7 @@ export type ExamAttemptUpdateWithoutExamInput = {
   lastSavedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   timeTaken?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   proctoring?: Prisma.ProctoringUpdateManyWithoutExamAttemptNestedInput
+  enrollment?: Prisma.EnrollmentsUpdateOneRequiredWithoutExamAttemptNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutExamAttemptsNestedInput
 }
 
@@ -773,6 +952,7 @@ export type ExamAttemptUncheckedUpdateWithoutExamInput = {
   answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   lastSavedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   timeTaken?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -785,6 +965,7 @@ export type ExamAttemptUncheckedUpdateManyWithoutExamInput = {
   answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   lastSavedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   timeTaken?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -796,6 +977,7 @@ export type ExamAttemptCreateManyUserInput = {
   answers: Prisma.JsonNullValueInput | runtime.InputJsonValue
   startedAt: Date | string
   submittedAt?: Date | string | null
+  enrollmentId: string
   status: $Enums.AttemptStatus
   lastSavedAt?: Date | string | null
   timeTaken?: number | null
@@ -810,6 +992,7 @@ export type ExamAttemptUpdateWithoutUserInput = {
   lastSavedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   timeTaken?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   proctoring?: Prisma.ProctoringUpdateManyWithoutExamAttemptNestedInput
+  enrollment?: Prisma.EnrollmentsUpdateOneRequiredWithoutExamAttemptNestedInput
   exam?: Prisma.ExamUpdateOneRequiredWithoutAttemptsNestedInput
 }
 
@@ -819,6 +1002,7 @@ export type ExamAttemptUncheckedUpdateWithoutUserInput = {
   answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   lastSavedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   timeTaken?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -831,6 +1015,7 @@ export type ExamAttemptUncheckedUpdateManyWithoutUserInput = {
   answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   lastSavedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   timeTaken?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -874,10 +1059,12 @@ export type ExamAttemptSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   answers?: boolean
   startedAt?: boolean
   submittedAt?: boolean
+  enrollmentId?: boolean
   status?: boolean
   lastSavedAt?: boolean
   timeTaken?: boolean
   proctoring?: boolean | Prisma.ExamAttempt$proctoringArgs<ExtArgs>
+  enrollment?: boolean | Prisma.EnrollmentsDefaultArgs<ExtArgs>
   exam?: boolean | Prisma.ExamDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.ExamAttemptCountOutputTypeDefaultArgs<ExtArgs>
@@ -890,9 +1077,11 @@ export type ExamAttemptSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   answers?: boolean
   startedAt?: boolean
   submittedAt?: boolean
+  enrollmentId?: boolean
   status?: boolean
   lastSavedAt?: boolean
   timeTaken?: boolean
+  enrollment?: boolean | Prisma.EnrollmentsDefaultArgs<ExtArgs>
   exam?: boolean | Prisma.ExamDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["examAttempt"]>
@@ -904,9 +1093,11 @@ export type ExamAttemptSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   answers?: boolean
   startedAt?: boolean
   submittedAt?: boolean
+  enrollmentId?: boolean
   status?: boolean
   lastSavedAt?: boolean
   timeTaken?: boolean
+  enrollment?: boolean | Prisma.EnrollmentsDefaultArgs<ExtArgs>
   exam?: boolean | Prisma.ExamDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["examAttempt"]>
@@ -918,23 +1109,27 @@ export type ExamAttemptSelectScalar = {
   answers?: boolean
   startedAt?: boolean
   submittedAt?: boolean
+  enrollmentId?: boolean
   status?: boolean
   lastSavedAt?: boolean
   timeTaken?: boolean
 }
 
-export type ExamAttemptOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "examId" | "userId" | "answers" | "startedAt" | "submittedAt" | "status" | "lastSavedAt" | "timeTaken", ExtArgs["result"]["examAttempt"]>
+export type ExamAttemptOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "examId" | "userId" | "answers" | "startedAt" | "submittedAt" | "enrollmentId" | "status" | "lastSavedAt" | "timeTaken", ExtArgs["result"]["examAttempt"]>
 export type ExamAttemptInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proctoring?: boolean | Prisma.ExamAttempt$proctoringArgs<ExtArgs>
+  enrollment?: boolean | Prisma.EnrollmentsDefaultArgs<ExtArgs>
   exam?: boolean | Prisma.ExamDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.ExamAttemptCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ExamAttemptIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  enrollment?: boolean | Prisma.EnrollmentsDefaultArgs<ExtArgs>
   exam?: boolean | Prisma.ExamDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type ExamAttemptIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  enrollment?: boolean | Prisma.EnrollmentsDefaultArgs<ExtArgs>
   exam?: boolean | Prisma.ExamDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -943,6 +1138,7 @@ export type $ExamAttemptPayload<ExtArgs extends runtime.Types.Extensions.Interna
   name: "ExamAttempt"
   objects: {
     proctoring: Prisma.$ProctoringPayload<ExtArgs>[]
+    enrollment: Prisma.$EnrollmentsPayload<ExtArgs>
     exam: Prisma.$ExamPayload<ExtArgs>
     user: Prisma.$UserPayload<ExtArgs>
   }
@@ -953,6 +1149,7 @@ export type $ExamAttemptPayload<ExtArgs extends runtime.Types.Extensions.Interna
     answers: runtime.JsonValue
     startedAt: Date
     submittedAt: Date | null
+    enrollmentId: string
     status: $Enums.AttemptStatus
     lastSavedAt: Date | null
     timeTaken: number | null
@@ -1351,6 +1548,7 @@ readonly fields: ExamAttemptFieldRefs;
 export interface Prisma__ExamAttemptClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   proctoring<T extends Prisma.ExamAttempt$proctoringArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ExamAttempt$proctoringArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProctoringPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  enrollment<T extends Prisma.EnrollmentsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EnrollmentsDefaultArgs<ExtArgs>>): Prisma.Prisma__EnrollmentsClient<runtime.Types.Result.GetResult<Prisma.$EnrollmentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   exam<T extends Prisma.ExamDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ExamDefaultArgs<ExtArgs>>): Prisma.Prisma__ExamClient<runtime.Types.Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1388,6 +1586,7 @@ export interface ExamAttemptFieldRefs {
   readonly answers: Prisma.FieldRef<"ExamAttempt", 'Json'>
   readonly startedAt: Prisma.FieldRef<"ExamAttempt", 'DateTime'>
   readonly submittedAt: Prisma.FieldRef<"ExamAttempt", 'DateTime'>
+  readonly enrollmentId: Prisma.FieldRef<"ExamAttempt", 'String'>
   readonly status: Prisma.FieldRef<"ExamAttempt", 'AttemptStatus'>
   readonly lastSavedAt: Prisma.FieldRef<"ExamAttempt", 'DateTime'>
   readonly timeTaken: Prisma.FieldRef<"ExamAttempt", 'Int'>

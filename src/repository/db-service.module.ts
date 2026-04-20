@@ -32,6 +32,9 @@ import { ClassTopicMapDbService } from './classTopicMap.db-service';
 import { ClassRoomProgressDbService } from './classRoomProgress.db-service';
 import { LiveClassDbService } from './liveClass.db-service';
 import { ExamDbService } from './exam.db-service';
+import { ExamQuestionDbService } from './examQuestion.db-service';
+import { ExamResultDbService } from './examResult.db-service';
+import { ExamAttemptDbService } from './examAttempt.db-service';
 
 @Module({
   providers: [
@@ -68,6 +71,9 @@ import { ExamDbService } from './exam.db-service';
     ClassRoomProgressDbService,
     LiveClassDbService,
     ExamDbService,
+    ExamQuestionDbService,
+    ExamAttemptDbService,
+    ExamResultDbService,
   ],
   exports: [
     UserDbService,
@@ -103,6 +109,9 @@ import { ExamDbService } from './exam.db-service';
     ClassRoomProgressDbService,
     LiveClassDbService,
     ExamDbService,
+    ExamQuestionDbService,
+    ExamAttemptDbService,
+    ExamResultDbService,
   ],
 })
 export class DbServiceModule {}
