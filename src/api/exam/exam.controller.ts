@@ -2,7 +2,7 @@ import { Controller, Post, Body, Req, UseGuards, Query, Param, Get } from '@nest
 import { ExamService } from './exam.service';
 import { PermissionGuard } from 'src/common/guards/permission.guard';
 import { Permissions } from 'src/common/decorators/permissions.decorator';
-import { CreateExamDto, CreateExamSubmissionDto, CreateQuestionDto } from './dto/exam.dto';
+import { CreateExamDto, CreateExamSubmissionDto, CreateQuestionDto, EvaluateExamDto } from './dto/exam.dto';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { SearchInputDto } from 'src/utils/search/search.input.dto';
 
@@ -51,5 +51,23 @@ export class ExamController {
   @Post('submit')
   async submitExam(@Body() body: CreateExamSubmissionDto, @CurrentUser() user: any) {
     return this.examService.submitExam(body, user);
+  }
+
+  @Permissions('exam:evaluate')
+  @Post('evaluate')
+  async evaluateExam(@Body() body: EvaluateExamDto, @CurrentUser() user: any) {
+    return this.examService.evaluateExam(body, user);
+  }
+
+  @Permissions('exam:result')
+  @Post('resultList')
+  async resultList(@Query() query: SearchInputDto, @Body() body: any, @CurrentUser() user: any) {
+    return this.examService.resultList(query, body, user);
+  }
+
+  @Permissions('exam:edit')
+  @Post('publishResult')
+  async publishResult(@Body() body: { examId: string }, @CurrentUser() user: any) {
+    return this.examService.publishResult(body, user);
   }
 }

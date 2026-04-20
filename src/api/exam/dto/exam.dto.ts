@@ -1,4 +1,5 @@
 import { IsArray, IsEnum, IsJSON, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { Prisma } from 'src/generated/prisma/client';
 import { AttemptStatus, ExamDifficulty, ExamStatus, QuizQuestionType } from 'src/generated/prisma/enums';
 
 export class CreateExamDto {
@@ -102,5 +103,27 @@ export class CreateExamSubmissionDto {
 
   @IsJSON()
   @IsNotEmpty()
-  answers: string;
+  answers: Prisma.InputJsonValue;
+}
+
+export class EvaluateExamDto {
+  @IsString()
+  @IsNotEmpty()
+  examId: string;
+
+  @IsString()
+  @IsNotEmpty()
+  resultId: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  score: number;
+
+  @IsNumber()
+  @IsNotEmpty()
+  percentage: number;
+
+  @IsJSON()
+  @IsNotEmpty()
+  evaluation: Prisma.InputJsonValue;
 }

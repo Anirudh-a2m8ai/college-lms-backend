@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { ExamDbService } from 'src/repository/exam.db-service';
-import { CreateExamDto, CreateExamSubmissionDto, CreateQuestionDto } from './dto/exam.dto';
+import { CreateExamDto, CreateExamSubmissionDto, CreateQuestionDto, EvaluateExamDto } from './dto/exam.dto';
 import { CourseVersionDbService } from 'src/repository/courseVersion.db-service';
 import { ClassRoomDbService } from 'src/repository/classRoom.db-service';
 import { plainToInstance } from 'class-transformer';
-import { ExamAttemptResponseDto, ExamResponseDto } from './response/exam.type';
+import { ExamAttemptResponseDto, ExamResponseDto, ExamResultResponseDto } from './response/exam.type';
 import { SearchInputDto } from 'src/utils/search/search.input.dto';
 import { PaginationMapper } from 'src/utils/search/pagination.mapper';
 import { OrderMapper } from 'src/utils/search/order.mapper';
@@ -73,6 +73,9 @@ export class ExamService {
   }
 
   async listAll(query: SearchInputDto, body: any, user: any) {
+    if (user.role === 'student') {
+      return this.listByStudent(query, body, user);
+    }
     const pagination = PaginationMapper(query);
     const orderBy = OrderMapper(query);
 
@@ -80,6 +83,12 @@ export class ExamService {
 
     if (user.tenantId) {
       filterInput.tenantId = user.tenantId;
+    }
+
+    if (user.role === 'instructor') {
+      filterInput.classRoom = {
+        instructorId: user.userId,
+      };
     }
 
     const where = FilterMapper(filterInput, query);
@@ -241,7 +250,7 @@ export class ExamService {
       },
     });
     if (!exam) {
-      throw new Error('Exam not found');
+      throw new NotFoundException('Exam not found');
     }
     const question = await this.examAttemptDbService.update({
       where: {
@@ -260,20 +269,31 @@ export class ExamService {
     });
     let score = 0;
     let totalMarks = 0;
+    let evaluation = {};
     findQuestions.forEach((question) => {
       if (question.correctAnswer === body.answers[question.id]) {
         score += question.marks;
+        evaluation[question.id] = {
+          isCorrect: true,
+          score: question.marks,
+        };
+      } else {
+        evaluation[question.id] = {
+          isCorrect: false,
+          score: 0,
+        };
       }
       totalMarks += question.marks;
     });
     const percentage = (score / totalMarks) * 100;
-    const result = await this.examResultDbService.create({
+    await this.examResultDbService.create({
       data: {
         examId: body.examId,
         enrollmentId: body.enrollmentId,
         userId: user.userId,
         score: score,
         percentage: percentage,
+        evaluation: evaluation,
         status: percentage >= exam.passPercentage! ? ResultStatus.PASSED : ResultStatus.FAILED,
       },
     });
@@ -283,5 +303,157 @@ export class ExamService {
       message: 'Question created successfully',
       data: questionResponse,
     };
+  }
+
+  async evaluateExam(body: EvaluateExamDto, user: any) {
+    const exam = await this.examDbService.findFirst({
+      where: {
+        id: body.examId,
+        tenantId: user.tenantId,
+      },
+    });
+    if (!exam) {
+      throw new NotFoundException('Exam not found');
+    }
+    const userResult = await this.examResultDbService.findUnique({
+      where: {
+        id: body.resultId,
+      },
+    });
+    if (!userResult) {
+      throw new NotFoundException('User result not found');
+    }
+    if (userResult.published) {
+      throw new Error('Result already published');
+    }
+    const result = await this.examResultDbService.create({
+      data: {
+        examId: userResult.examId,
+        enrollmentId: userResult.enrollmentId,
+        userId: userResult.userId,
+        version: userResult.version + 1,
+        isLatest: true,
+        score: body.score,
+        percentage: body.percentage,
+        evaluation: body.evaluation,
+        status: body.percentage >= exam.passPercentage! ? ResultStatus.PASSED : ResultStatus.FAILED,
+      },
+    });
+
+    await this.examResultDbService.update({
+      where: {
+        id: userResult.id,
+      },
+      data: {
+        isLatest: false,
+      },
+    });
+
+    const resultResponse = plainToInstance(ExamResultResponseDto, result);
+    return {
+      message: 'Result evaluated successfully',
+      data: resultResponse,
+    };
+  }
+
+  async resultList(query: SearchInputDto, body: any, user: any) {
+    const pagination = PaginationMapper(query);
+    const orderBy = OrderMapper(query);
+
+    let filterInput = body?.filter ? { ...body.filter } : {};
+
+    if (user.tenantId) {
+      filterInput.tenantId = user.tenantId;
+    }
+
+    if (body.examId) {
+      filterInput.examId = body.examId;
+    }
+
+    const where = FilterMapper(filterInput, query);
+    const [data, total] = await Promise.all([
+      this.examResultDbService.findMany({
+        where,
+        skip: pagination.skip,
+        take: pagination.take,
+        orderBy,
+      }),
+      this.examResultDbService.count({ where }),
+    ]);
+
+    const resultResponse = plainToInstance(ExamResultResponseDto, data, {
+      excludeExtraneousValues: true,
+    });
+
+    const sendData = {
+      data: resultResponse,
+      total,
+      pagination,
+    };
+
+    return PaginationResponse(sendData);
+  }
+
+  async publishResult(body: any, user: any) {
+    const exam = await this.examDbService.findFirst({
+      where: {
+        id: body.examId,
+        tenantId: user.tenantId,
+      },
+    });
+    if (!exam) {
+      throw new NotFoundException('Exam not found');
+    }
+    await this.examResultDbService.updateMany({
+      where: {
+        examId: body.examId,
+        isLatest: true,
+      },
+      data: {
+        published: true,
+      },
+    });
+
+    return {
+      message: 'Result published successfully',
+    };
+  }
+
+  async resultListForStudent(query: SearchInputDto, body: any, user: any) {
+    const pagination = PaginationMapper(query);
+    const orderBy = OrderMapper(query);
+
+    let filterInput = body?.filter ? { ...body.filter } : {};
+
+    if (user.tenantId) {
+      filterInput.tenantId = user.tenantId;
+    }
+
+    filterInput.userId = user.userId;
+    filterInput.published = true;
+    filterInput.isLatest = true;
+
+    const where = FilterMapper(filterInput, query);
+    const [data, total] = await Promise.all([
+      this.examResultDbService.findMany({
+        where,
+        skip: pagination.skip,
+        take: pagination.take,
+        orderBy,
+      }),
+      this.examResultDbService.count({ where }),
+    ]);
+
+    const resultResponse = plainToInstance(ExamResultResponseDto, data, {
+      excludeExtraneousValues: true,
+    });
+
+    const sendData = {
+      data: resultResponse,
+      total,
+      pagination,
+    };
+
+    return PaginationResponse(sendData);
   }
 }

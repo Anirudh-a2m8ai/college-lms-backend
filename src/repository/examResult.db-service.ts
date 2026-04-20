@@ -31,6 +31,10 @@ export class ExamResultDbService {
     return await this.prisma.examResult.update(payload);
   }
 
+  async updateMany(payload: Prisma.ExamResultUpdateManyArgs): Promise<BatchPayload> {
+    return await this.prisma.examResult.updateMany(payload);
+  }
+
   async delete(payload: Prisma.ExamResultDeleteArgs): Promise<ExamResult> {
     return await this.prisma.examResult.delete(payload);
   }

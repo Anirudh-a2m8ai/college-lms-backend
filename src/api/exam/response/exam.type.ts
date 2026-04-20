@@ -50,3 +50,30 @@ export class ExamAttemptResponseDto {
   @Expose()
   status: string;
 }
+
+@Exclude()
+export class ExamResultResponseDto {
+  @Expose()
+  id: string;
+
+  @Expose()
+  examId: string;
+
+  @Expose()
+  enrollmentId: string;
+
+  @Expose()
+  userId: string;
+
+  @Expose()
+  score: number;
+
+  @Expose()
+  percentage: number;
+
+  @Expose()
+  evaluation: JSON;
+
+  @Expose()
+  status: string;
+}

@@ -159,11 +159,14 @@ export class LiveClassGateway implements OnGatewayDisconnect {
   }
 
   @SubscribeMessage('poll:create')
-  handleCreatePoll(@MessageBody() payload: { classId: string; question: string; options: string[] }) {
+  handleCreatePoll(
+    @MessageBody() payload: { classId: string; question: string; options: string[]; correctOption: string },
+  ) {
     const roomName = `class-${payload.classId}`;
     const poll = {
       pollId: crypto.randomUUID(),
       question: payload.question,
+      correctOption: payload.correctOption,
       options: payload.options.map((opt) => ({
         id: crypto.randomUUID(),
         text: opt,
@@ -173,19 +176,21 @@ export class LiveClassGateway implements OnGatewayDisconnect {
       isActive: true,
     };
 
-    this.classPolls.set(payload.classId, poll);
+    this.classPolls.set(poll.pollId, poll);
 
-    this.server.to(roomName).emit('poll:created', poll);
+    const { correctOption, ...rest } = poll;
+
+    this.server.to(roomName).emit('poll:created', rest);
   }
 
   @SubscribeMessage('poll:vote')
   handleVote(
     @ConnectedSocket() client: socketType.AuthenticatedSocket,
-    @MessageBody() payload: { classId: string; optionId: string },
+    @MessageBody() payload: { classId: string; pollId: string; optionId: string },
   ) {
     const user = client.data.user;
     const roomName = `class-${payload.classId}`;
-    const poll = this.classPolls.get(payload.classId);
+    const poll = this.classPolls.get(payload.pollId);
 
     if (!poll || !poll.isActive) return;
 
