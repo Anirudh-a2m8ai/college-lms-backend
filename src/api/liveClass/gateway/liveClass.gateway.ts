@@ -38,6 +38,8 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     {
       pollId: string;
       question: string;
+      correctOption: string;
+      duration: number;
       options: { id: string; text: string; votes: number }[];
       voters: Set<string>;
       isActive: boolean;
@@ -160,13 +162,21 @@ export class LiveClassGateway implements OnGatewayDisconnect {
 
   @SubscribeMessage('poll:create')
   handleCreatePoll(
-    @MessageBody() payload: { classId: string; question: string; options: string[]; correctOption: string },
+    @MessageBody()
+    payload: {
+      classId: string;
+      question: string;
+      options: string[];
+      correctOption: string;
+      duration: number;
+    },
   ) {
     const roomName = `class-${payload.classId}`;
     const poll = {
       pollId: crypto.randomUUID(),
       question: payload.question,
       correctOption: payload.correctOption,
+      duration: payload.duration,
       options: payload.options.map((opt) => ({
         id: crypto.randomUUID(),
         text: opt,
@@ -202,7 +212,14 @@ export class LiveClassGateway implements OnGatewayDisconnect {
     option.votes += 1;
     poll.voters.add(user.userId);
 
-    this.server.to(roomName).emit('poll:updated', poll);
+    this.server.to(roomName).emit('poll:updated', {
+      pollId: poll.pollId,
+      question: poll.question,
+      options: poll.options,
+      voters: Array.from(poll.voters),
+      isActive: poll.isActive,
+      correctOption: poll.correctOption,
+    });
   }
 
   @SubscribeMessage('poll:end')
